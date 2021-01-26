@@ -5,6 +5,7 @@
  */
 package com.virtualeduc.tuescuelavirtual.models;
 
+
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -21,6 +22,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -28,7 +31,26 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "representantes")
-
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Representante.findAll", query = "SELECT r FROM Representante r")
+    , @NamedQuery(name = "Representante.findByIdRpr", query = "SELECT r FROM Representante r WHERE r.idRpr = :idRpr")
+    , @NamedQuery(name = "Representante.findByTipoDocRpr", query = "SELECT r FROM Representante r WHERE r.tipoDocRpr = :tipoDocRpr")
+    , @NamedQuery(name = "Representante.findByNumDocRpr", query = "SELECT r FROM Representante r WHERE r.numDocRpr = :numDocRpr")
+    , @NamedQuery(name = "Representante.findByPrimNombRpr", query = "SELECT r FROM Representante r WHERE r.primNombRpr = :primNombRpr")
+    , @NamedQuery(name = "Representante.findBySegNombRpr", query = "SELECT r FROM Representante r WHERE r.segNombRpr = :segNombRpr")
+    , @NamedQuery(name = "Representante.findByPrimApellRpr", query = "SELECT r FROM Representante r WHERE r.primApellRpr = :primApellRpr")
+    , @NamedQuery(name = "Representante.findBySegApellRpr", query = "SELECT r FROM Representante r WHERE r.segApellRpr = :segApellRpr")
+    , @NamedQuery(name = "Representante.findBySexoRpr", query = "SELECT r FROM Representante r WHERE r.sexoRpr = :sexoRpr")
+    , @NamedQuery(name = "Representante.findByFechNacRpr", query = "SELECT r FROM Representante r WHERE r.fechNacRpr = :fechNacRpr")
+    , @NamedQuery(name = "Representante.findByEdadRpr", query = "SELECT r FROM Representante r WHERE r.edadRpr = :edadRpr")
+    , @NamedQuery(name = "Representante.findByEdoCivRpr", query = "SELECT r FROM Representante r WHERE r.edoCivRpr = :edoCivRpr")
+    , @NamedQuery(name = "Representante.findByParentescoRpr", query = "SELECT r FROM Representante r WHERE r.parentescoRpr = :parentescoRpr")
+    , @NamedQuery(name = "Representante.findByDirPpalRpr", query = "SELECT r FROM Representante r WHERE r.dirPpalRpr = :dirPpalRpr")
+    , @NamedQuery(name = "Representante.findByDirSecRpr", query = "SELECT r FROM Representante r WHERE r.dirSecRpr = :dirSecRpr")
+    , @NamedQuery(name = "Representante.findByTlfPpalRpr", query = "SELECT r FROM Representante r WHERE r.tlfPpalRpr = :tlfPpalRpr")
+    , @NamedQuery(name = "Representante.findByTlfSecRpr", query = "SELECT r FROM Representante r WHERE r.tlfSecRpr = :tlfSecRpr")
+    , @NamedQuery(name = "Representante.findByEmailRpr", query = "SELECT r FROM Representante r WHERE r.emailRpr = :emailRpr")})
 public class Representante implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -55,7 +77,7 @@ public class Representante implements Serializable {
     private String segApellRpr;
     @Basic(optional = false)
     @Column(name = "SEXO_RPR")
-    private Character sexoRpr;
+    private String sexoRpr;
     @Basic(optional = false)
     @Column(name = "FECH_NAC_RPR")
     @Temporal(TemporalType.DATE)
@@ -83,10 +105,12 @@ public class Representante implements Serializable {
     private String tlfSecRpr;
     @Column(name = "EMAIL_RPR")
     private String emailRpr;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "representante")
-    private Collection<Alumno> alumnosCollection;
-    @OneToMany(mappedBy = "representante1")
-    private Collection<Alumno> alumnosCollection1;
+ 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idRpr1")
+    private Collection<Alumno> alumnoCollection;
+  
+    @OneToMany(mappedBy = "idRpr2")
+    private Collection<Alumno> alumnoCollection1;
 
     public Representante() {
     }
@@ -95,7 +119,7 @@ public class Representante implements Serializable {
         this.idRpr = idRpr;
     }
 
-    public Representante(Long idRpr, String tipoDocRpr, String numDocRpr, String primNombRpr, String primApellRpr, Character sexoRpr, Date fechNacRpr, int edadRpr, String edoCivRpr, String parentescoRpr, String dirPpalRpr, String dirSecRpr, String tlfPpalRpr, String tlfSecRpr) {
+    public Representante(Long idRpr, String tipoDocRpr, String numDocRpr, String primNombRpr, String primApellRpr, String sexoRpr, Date fechNacRpr, int edadRpr, String edoCivRpr, String parentescoRpr, String dirPpalRpr, String dirSecRpr, String tlfPpalRpr, String tlfSecRpr) {
         this.idRpr = idRpr;
         this.tipoDocRpr = tipoDocRpr;
         this.numDocRpr = numDocRpr;
@@ -168,11 +192,11 @@ public class Representante implements Serializable {
         this.segApellRpr = segApellRpr;
     }
 
-    public Character getSexoRpr() {
+    public String getSexoRpr() {
         return sexoRpr;
     }
 
-    public void setSexoRpr(Character sexoRpr) {
+    public void setSexoRpr(String sexoRpr) {
         this.sexoRpr = sexoRpr;
     }
 
@@ -248,21 +272,53 @@ public class Representante implements Serializable {
         this.emailRpr = emailRpr;
     }
 
-    public Collection<Alumno> getAlumnosCollection() {
-        return alumnosCollection;
+    @XmlTransient
+    public Collection<Alumno> getAlumnoCollection() {
+        return alumnoCollection;
     }
 
-    public void setAlumnosCollection(Collection<Alumno> alumnosCollection) {
-        this.alumnosCollection = alumnosCollection;
+    public void setAlumnoCollection(Collection<Alumno> alumnoCollection) {
+        this.alumnoCollection = alumnoCollection;
     }
 
-    public Collection<Alumno> getAlumnosCollection1() {
-        return alumnosCollection1;
+    @XmlTransient
+    public Collection<Alumno> getAlumnoCollection1() {
+        return alumnoCollection1;
     }
 
-    public void setAlumnosCollection1(Collection<Alumno> alumnosCollection1) {
-        this.alumnosCollection1 = alumnosCollection1;
+    public void setAlumnoCollection1(Collection<Alumno> alumnoCollection1) {
+        this.alumnoCollection1 = alumnoCollection1;
     }
 
+
+
+  
+    
+    
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idRpr != null ? idRpr.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Representante)) {
+            return false;
+        }
+        Representante other = (Representante) object;
+        if ((this.idRpr == null && other.idRpr != null) || (this.idRpr != null && !this.idRpr.equals(other.idRpr))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.virtualeduc.tuescuelavirtual.models.Representante[ idRpr=" + idRpr + " ]";
+    }
     
 }

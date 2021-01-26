@@ -18,6 +18,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -25,7 +27,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "secciones")
-
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Seccion.findAll", query = "SELECT s FROM Seccion s")
+    , @NamedQuery(name = "Seccion.findByIdSec", query = "SELECT s FROM Seccion s WHERE s.idSec = :idSec")
+    , @NamedQuery(name = "Seccion.findBySeccion", query = "SELECT s FROM Seccion s WHERE s.seccion = :seccion")})
 public class Seccion implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,8 +43,8 @@ public class Seccion implements Serializable {
     @Basic(optional = false)
     @Column(name = "SECCION")
     private Character seccion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seccion")
-    private Collection<Curso> cursosCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSec")
+    private Collection<Curso> cursoCollection;
 
     public Seccion() {
     }
@@ -68,12 +74,38 @@ public class Seccion implements Serializable {
         this.seccion = seccion;
     }
 
-    public Collection<Curso> getCursosCollection() {
-        return cursosCollection;
+    @XmlTransient
+    public Collection<Curso> getCursoCollection() {
+        return cursoCollection;
     }
 
-    public void setCursosCollection(Collection<Curso> cursosCollection) {
-        this.cursosCollection = cursosCollection;
+    public void setCursoCollection(Collection<Curso> cursoCollection) {
+        this.cursoCollection = cursoCollection;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idSec != null ? idSec.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Seccion)) {
+            return false;
+        }
+        Seccion other = (Seccion) object;
+        if ((this.idSec == null && other.idSec != null) || (this.idSec != null && !this.idSec.equals(other.idSec))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.virtualeduc.tuescuelavirtual.models.Seccion[ idSec=" + idSec + " ]";
+    }
+    
 }

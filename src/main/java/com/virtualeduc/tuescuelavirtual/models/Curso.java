@@ -20,6 +20,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -27,7 +29,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "cursos")
-
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Curso.findAll", query = "SELECT c FROM Curso c")
+    , @NamedQuery(name = "Curso.findByIdCurso", query = "SELECT c FROM Curso c WHERE c.idCurso = :idCurso")})
 public class Curso implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -38,15 +43,15 @@ public class Curso implements Serializable {
     private Long idCurso;
     @JoinColumn(name = "ID_ANNIO", referencedColumnName = "ID_ANNIO")
     @ManyToOne(optional = false)
-    private Annio annio;
+    private Annio idAnnio;
     @JoinColumn(name = "ID_ANNIO_ESC", referencedColumnName = "ID_ANNIO_ESC")
     @ManyToOne(optional = false)
-    private AnnioEscolar annioEscolar;
+    private AnnioEscolar idAnnioEsc;
     @JoinColumn(name = "ID_SEC", referencedColumnName = "ID_SEC")
     @ManyToOne(optional = false)
-    private Seccion seccion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "curso")
-    private Collection<Alumno> alumnosCollection;
+    private Seccion idSec;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCurso")
+    private Collection<Alumno> alumnoCollection;
 
     public Curso() {
     }
@@ -63,37 +68,64 @@ public class Curso implements Serializable {
         this.idCurso = idCurso;
     }
 
-    public Annio getAnnio() {
-        return annio;
+    public Annio getIdAnnio() {
+        return idAnnio;
     }
 
-    public void setAnnio(Annio annio) {
-        this.annio = annio;
+    public void setIdAnnio(Annio idAnnio) {
+        this.idAnnio = idAnnio;
     }
 
-    public AnnioEscolar getAnnioEscolar() {
-        return annioEscolar;
+    public AnnioEscolar getIdAnnioEsc() {
+        return idAnnioEsc;
     }
 
-    public void setAnnioEscolar(AnnioEscolar annioEscolar) {
-        this.annioEscolar = annioEscolar;
+    public void setIdAnnioEsc(AnnioEscolar idAnnioEsc) {
+        this.idAnnioEsc = idAnnioEsc;
     }
 
-    public Seccion getSeccion() {
-        return seccion;
+    public Seccion getIdSec() {
+        return idSec;
     }
 
-    public void setSeccion(Seccion seccion) {
-        this.seccion = seccion;
+    public void setIdSec(Seccion idSec) {
+        this.idSec = idSec;
     }
 
-    public Collection<Alumno> getAlumnosCollection() {
-        return alumnosCollection;
+
+    
+    @XmlTransient
+    public Collection<Alumno> getAlumnoCollection() {
+        return alumnoCollection;
     }
 
-    public void setAlumnosCollection(Collection<Alumno> alumnosCollection) {
-        this.alumnosCollection = alumnosCollection;
+    public void setAlumnoCollection(Collection<Alumno> alumnoCollection) {
+        this.alumnoCollection = alumnoCollection;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idCurso != null ? idCurso.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Curso)) {
+            return false;
+        }
+        Curso other = (Curso) object;
+        if ((this.idCurso == null && other.idCurso != null) || (this.idCurso != null && !this.idCurso.equals(other.idCurso))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.virtualeduc.tuescuelavirtual.models.Curso[ idCurso=" + idCurso + " ]";
+    }
     
 }

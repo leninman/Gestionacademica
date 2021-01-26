@@ -6,24 +6,27 @@
 package com.virtualeduc.tuescuelavirtual.services;
 
 import com.virtualeduc.tuescuelavirtual.models.Alumno;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoCursoDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
 
-
-import java.util.Collection;
+import com.virtualeduc.tuescuelavirtual.models.Responses;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  *
  * @author Personal
  */
 public interface IAlumnoService {
+
+    public Alumno consultarAlumnoPorCedula(String tipoDocAl, String numDocAl);
+
+    public Alumno consultarAlumnoPorId(Long id);
+
+    public List<AlumnoCursoDTO> consultarAlumnos();
     
-    public Alumno consultaAlumno(Long id);
-    
-    public Optional<Alumno> consultarAlumnos();
-    
-    public void guardaAlumno(Alumno alumno);
-    
-    
+    public List<AlumnoDTO> consultarTodosLosAlumnos();
+
+    public Responses guardaAlumno(Alumno alumno);
+
 }

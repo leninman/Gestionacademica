@@ -18,6 +18,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -25,7 +27,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "annios")
-
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Annio.findAll", query = "SELECT a FROM Annio a")
+    , @NamedQuery(name = "Annio.findByIdAnnio", query = "SELECT a FROM Annio a WHERE a.idAnnio = :idAnnio")
+    , @NamedQuery(name = "Annio.findByAnnio", query = "SELECT a FROM Annio a WHERE a.annio = :annio")
+    , @NamedQuery(name = "Annio.findByNivel", query = "SELECT a FROM Annio a WHERE a.nivel = :nivel")
+    , @NamedQuery(name = "Annio.findByEspecialidad", query = "SELECT a FROM Annio a WHERE a.especialidad = :especialidad")})
 public class Annio implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,8 +51,8 @@ public class Annio implements Serializable {
     @Basic(optional = false)
     @Column(name = "ESPECIALIDAD")
     private String especialidad;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "annio")
-    private Collection<Curso> cursosCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAnnio")
+    private Collection<Curso> cursoCollection;
 
     public Annio() {
     }
@@ -92,13 +100,38 @@ public class Annio implements Serializable {
         this.especialidad = especialidad;
     }
 
-    public Collection<Curso> getCursosCollection() {
-        return cursosCollection;
+    @XmlTransient
+    public Collection<Curso> getCursoCollection() {
+        return cursoCollection;
     }
 
-    public void setCursosCollection(Collection<Curso> cursosCollection) {
-        this.cursosCollection = cursosCollection;
+    public void setCursoCollection(Collection<Curso> cursoCollection) {
+        this.cursoCollection = cursoCollection;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idAnnio != null ? idAnnio.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Annio)) {
+            return false;
+        }
+        Annio other = (Annio) object;
+        if ((this.idAnnio == null && other.idAnnio != null) || (this.idAnnio != null && !this.idAnnio.equals(other.idAnnio))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.virtualeduc.tuescuelavirtual.models.Annio[ idAnnio=" + idAnnio + " ]";
+    }
     
 }

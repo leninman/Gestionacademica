@@ -6,6 +6,7 @@
 package com.virtualeduc.tuescuelavirtual.services;
 
 import com.virtualeduc.tuescuelavirtual.models.Representante;
+import java.util.Optional;
 
 /**
  *
@@ -13,5 +14,9 @@ import com.virtualeduc.tuescuelavirtual.models.Representante;
  */
 public interface IRepresentanteService {
     
-    public Representante Consultarepresentante(Long id);
+    public Representante consultarepresentanteporid(Long id);
+    
+    public Representante consultarepresentanteporcedula(String tipodocumento,String numerodocumento);
+    
+    public Representante guardarRepresentante(Representante representante); 
 }
