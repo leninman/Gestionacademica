@@ -6,6 +6,7 @@
 package com.virtualeduc.tuescuelavirtual.models;
 
 
+import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -119,12 +120,14 @@ public class Representante implements Serializable {
         this.idRpr = idRpr;
     }
 
-    public Representante(Long idRpr, String tipoDocRpr, String numDocRpr, String primNombRpr, String primApellRpr, String sexoRpr, Date fechNacRpr, int edadRpr, String edoCivRpr, String parentescoRpr, String dirPpalRpr, String dirSecRpr, String tlfPpalRpr, String tlfSecRpr) {
+    public Representante(Long idRpr, String tipoDocRpr, String numDocRpr, String primNombRpr, String segNombRpr, String primApellRpr, String segApellRpr, String sexoRpr, Date fechNacRpr, int edadRpr, String edoCivRpr, String parentescoRpr, String dirPpalRpr, String dirSecRpr, String tlfPpalRpr, String tlfSecRpr, String emailRpr, Collection<Alumno> alumnoCollection, Collection<Alumno> alumnoCollection1) {
         this.idRpr = idRpr;
         this.tipoDocRpr = tipoDocRpr;
         this.numDocRpr = numDocRpr;
         this.primNombRpr = primNombRpr;
+        this.segNombRpr = segNombRpr;
         this.primApellRpr = primApellRpr;
+        this.segApellRpr = segApellRpr;
         this.sexoRpr = sexoRpr;
         this.fechNacRpr = fechNacRpr;
         this.edadRpr = edadRpr;
@@ -134,6 +137,68 @@ public class Representante implements Serializable {
         this.dirSecRpr = dirSecRpr;
         this.tlfPpalRpr = tlfPpalRpr;
         this.tlfSecRpr = tlfSecRpr;
+        this.emailRpr = emailRpr;
+        this.alumnoCollection = alumnoCollection;
+        this.alumnoCollection1 = alumnoCollection1;
+    }
+
+   
+    
+     public Representante setRepresentante1(AlumnoDTO alumnoDTO) {
+        Representante rep=new Representante();
+        rep.setTipoDocRpr(alumnoDTO.getTipoDocRep1());
+            rep.setNumDocRpr(alumnoDTO.getNumDocRep1());
+            rep.setPrimNombRpr(alumnoDTO.getPrimNombRpr1());
+            rep.setSegNombRpr(alumnoDTO.getSegNombRpr1());
+            rep.setPrimApellRpr(alumnoDTO.getPrimApellRpr1());
+            rep.setSegApellRpr(alumnoDTO.getSegApellRpr1());
+            
+            rep.setSexoRpr(alumnoDTO.getSexoRpr1());
+            rep.setFechNacRpr(alumnoDTO.getFechNacRpr1());
+            
+            rep.setEdadRpr(alumnoDTO.getEdadRpr1());
+            rep.setEdoCivRpr(alumnoDTO.getEdoCivRpr1());
+            rep.setParentescoRpr(alumnoDTO.getParentescoRpr1());
+            
+            rep.setDirPpalRpr(alumnoDTO.getDirPpalRpr1());
+            rep.setDirSecRpr(alumnoDTO.getDirSecRpr1());
+            
+            rep.setTlfPpalRpr(alumnoDTO.getTlfPpalRpr1());
+            rep.setTlfSecRpr(alumnoDTO.getTlfSecRpr1());
+            
+            rep.setEmailRpr(alumnoDTO.getEmailRpr1());
+            
+            return rep;
+              
+    }
+     
+     
+     public Representante setRepresentante2(AlumnoDTO alumnoDTO) {
+        Representante rep=new Representante();
+        rep.setTipoDocRpr(alumnoDTO.getTipoDocRep2());
+            rep.setNumDocRpr(alumnoDTO.getNumDocRep2());
+            rep.setPrimNombRpr(alumnoDTO.getPrimNombRpr2());
+            rep.setSegNombRpr(alumnoDTO.getSegNombRpr2());
+            rep.setPrimApellRpr(alumnoDTO.getPrimApellRpr2());
+            rep.setSegApellRpr(alumnoDTO.getSegApellRpr2());
+            
+            rep.setSexoRpr(alumnoDTO.getSexoRpr2());
+            rep.setFechNacRpr(alumnoDTO.getFechNacRpr2());
+            
+            rep.setEdadRpr(alumnoDTO.getEdadRpr2());
+            rep.setEdoCivRpr(alumnoDTO.getEdoCivRpr2());
+            rep.setParentescoRpr(alumnoDTO.getParentescoRpr2());
+            
+            rep.setDirPpalRpr(alumnoDTO.getDirPpalRpr2());
+            rep.setDirSecRpr(alumnoDTO.getDirSecRpr2());
+            
+            rep.setTlfPpalRpr(alumnoDTO.getTlfPpalRpr2());
+            rep.setTlfSecRpr(alumnoDTO.getTlfSecRpr2());
+            
+            rep.setEmailRpr(alumnoDTO.getEmailRpr2());
+            
+            return rep;
+              
     }
 
     public Long getIdRpr() {

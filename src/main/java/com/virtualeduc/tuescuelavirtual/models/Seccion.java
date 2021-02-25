@@ -5,6 +5,7 @@
  */
 package com.virtualeduc.tuescuelavirtual.models;
 
+import com.virtualeduc.tuescuelavirtual.models.DTOS.SeccionDTO;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -14,6 +15,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -25,6 +28,20 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author Lenin
  */
+
+@NamedNativeQueries({
+
+    @NamedNativeQuery(name="Seccion.consultarSeccionBySeccion",
+            
+            query="SELECT * from secciones a "
+                    + "WHERE a.SECCION=:seccion",
+            resultClass = Seccion.class
+    ),
+    
+})
+
+
+
 @Entity
 @Table(name = "secciones")
 @XmlRootElement
@@ -56,6 +73,11 @@ public class Seccion implements Serializable {
     public Seccion(Long idSec, Character seccion) {
         this.idSec = idSec;
         this.seccion = seccion;
+    }
+    
+    public Seccion(SeccionDTO seccionDTO) {
+        this.idSec = seccionDTO.getIdSec();
+        this.seccion = seccionDTO.getSeccion();
     }
 
     public Long getIdSec() {

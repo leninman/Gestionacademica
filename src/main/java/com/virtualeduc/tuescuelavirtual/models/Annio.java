@@ -5,6 +5,7 @@
  */
 package com.virtualeduc.tuescuelavirtual.models;
 
+import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioDTO;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -14,6 +15,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -25,6 +28,23 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author Lenin
  */
+@NamedNativeQueries({
+
+    @NamedNativeQuery(name="Annio.consultarAnnioByAnnio",
+            
+            query="SELECT * from annios a "
+                    + "WHERE a.ANNIO=:annio",
+            resultClass = Annio.class
+    ),
+    
+})
+
+
+
+
+
+
+
 @Entity
 @Table(name = "annios")
 @XmlRootElement
@@ -59,6 +79,14 @@ public class Annio implements Serializable {
 
     public Annio(Long idAnnio) {
         this.idAnnio = idAnnio;
+    }
+    
+    
+     public Annio(AnnioDTO annioDTO) {
+        this.idAnnio = annioDTO.getIdAnnio();
+        this.annio=annioDTO.getAnnio();
+        this.nivel=annioDTO.getNivel();
+        this.especialidad=annioDTO.getEspecialidad();
     }
 
     public Annio(Long idAnnio, String annio, String nivel, String especialidad) {

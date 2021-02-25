@@ -5,6 +5,7 @@
  */
 package com.virtualeduc.tuescuelavirtual.models;
 
+import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -14,6 +15,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -25,6 +28,19 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author Lenin
  */
+
+@NamedNativeQueries({
+
+    @NamedNativeQuery(name="AnnioEscolar.consultarAnnioEscolarByAnnio",
+            
+            query="SELECT * from annio_escolar a "
+                    + "WHERE a.INT_ANNIO_ESC=:intannioesc",
+            resultClass = AnnioEscolar.class
+    ),
+    
+})
+
+
 @Entity
 @Table(name = "annio_escolar")
 @XmlRootElement
@@ -56,6 +72,12 @@ public class AnnioEscolar implements Serializable {
     public AnnioEscolar(Long idAnnioEsc, String intAnnioEsc) {
         this.idAnnioEsc = idAnnioEsc;
         this.intAnnioEsc = intAnnioEsc;
+    }
+    
+    
+     public AnnioEscolar(AnnioEscolarDTO annioescolarDTO) {
+        this.idAnnioEsc = annioescolarDTO.getIdAnnioEsc();
+        this.intAnnioEsc = annioescolarDTO.getIntAnnioEsc();
     }
 
     public Long getIdAnnioEsc() {

@@ -6,13 +6,22 @@
 package com.virtualeduc.tuescuelavirtual.controllers;
 
 import com.virtualeduc.tuescuelavirtual.models.Alumno;
+import com.virtualeduc.tuescuelavirtual.models.Annio;
+import com.virtualeduc.tuescuelavirtual.models.AnnioEscolar;
+import com.virtualeduc.tuescuelavirtual.models.Curso;
 
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoCursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.SeccionDTO;
 import com.virtualeduc.tuescuelavirtual.models.Representante;
 import com.virtualeduc.tuescuelavirtual.models.Responses;
+import com.virtualeduc.tuescuelavirtual.models.Seccion;
 
 import com.virtualeduc.tuescuelavirtual.services.IAlumnoService;
+import com.virtualeduc.tuescuelavirtual.services.ICursoService;
 import com.virtualeduc.tuescuelavirtual.services.IRepresentanteService;
 
 import java.util.List;
@@ -45,6 +54,9 @@ public class escuelavirtualController {
     @Autowired
     IRepresentanteService representanteservice;
 
+    @Autowired
+    ICursoService cursoservice;
+
     Representante representante;
 
     @GetMapping(path = "/consultaralumnos",
@@ -53,8 +65,7 @@ public class escuelavirtualController {
     List<AlumnoCursoDTO> consultaralumnos() {
         return alumnoservice.consultarAlumnos();
     }
-    
-    
+
     @GetMapping(path = "/consultarlistalumnos",
             produces = "application/json")
     public @ResponseBody
@@ -62,11 +73,99 @@ public class escuelavirtualController {
         return alumnoservice.consultarTodosLosAlumnos();
     }
 
+    @GetMapping(path = "/consultarannios",
+            produces = "application/json")
+    public @ResponseBody
+    List<AnnioDTO> consultarlistannios() {
+        return cursoservice.consultarannios();
+    }
+
+    @GetMapping(path = "/consultarannioescolar",
+            produces = "application/json")
+    public @ResponseBody
+    List<AnnioEscolarDTO> consultarlistannioescolar() {
+        return cursoservice.consultaranniosesc();
+    }
+
+    @GetMapping(path = "/consultarsecciones",
+            produces = "application/json")
+    public @ResponseBody
+    List<SeccionDTO> consultarsecciones() {
+        return cursoservice.consultarsecciones();
+    }
+
     @RequestMapping(method = RequestMethod.POST, path = "/registraralumno",
             consumes = "application/json", produces = "application/json")
-    public Responses registraralumno(@RequestBody Alumno alumno) {
+    public Responses registraralumno(@RequestBody AlumnoDTO alumnoDTO) {
 
-        return alumnoservice.guardaAlumno(alumno);
+        String tipoDocRpr;
+
+        String numDocRpr;
+        
+        alumnoDTO.setStatus("ACTIVO");
+        
+        Responses resp = new Responses();
+        
+        Alumno alumno = new Alumno(alumnoDTO);
+
+        Curso curso = new Curso();
+
+        AnnioDTO annioDTO = cursoservice.consultarAnnioPorAnnio(alumnoDTO.getAnnio());
+
+        AnnioEscolarDTO annioescolarDTO = cursoservice.consultarAnnioEscolarPorAnnioEscolar(alumnoDTO.getAnnioescolar());
+
+        SeccionDTO seccionDTO = cursoservice.consultarSeccionPorSeccion(alumnoDTO.getSeccion());
+
+        CursoDTO cursoDTO = cursoservice.consultarcursoporparametros(annioDTO.getIdAnnio(), annioescolarDTO.getIdAnnioEsc(), seccionDTO.getIdSec());
+
+        Annio annio = new Annio(annioDTO);
+
+        AnnioEscolar annioescolar = new AnnioEscolar(annioescolarDTO);
+
+        Seccion seccion = new Seccion(seccionDTO);
+
+        curso.setIdAnnio(annio);
+
+        curso.setIdAnnioEsc(annioescolar);
+
+        curso.setIdSec(seccion);
+
+        curso.setIdCurso(cursoDTO.getIdCurso());
+
+        alumno.setIdCurso(curso);
+
+        //CONSULTA POR EL NUMERO DE CEDULA SI EL REPRESENTANTE ESTE REGISTRADO
+        //SI NO ESTE REGISTRADO LO GUARDA Y SI YA EXISTE TOMA ESE REPRESENTANTE COMO EL
+        //REPRESENTANTE DEL ALUMNO QUE SE VA A REGISTRAR
+        tipoDocRpr = alumnoDTO.getTipoDocRep1();
+        numDocRpr = alumnoDTO.getNumDocRep1();
+        Representante rep1 = representanteservice.consultarepresentanteporcedula(tipoDocRpr, numDocRpr);
+        if (rep1 == null) {
+            Representante rep = new Representante();
+            rep1 = rep.setRepresentante1(alumnoDTO);
+            alumno.setIdRpr1(representanteservice.guardarRepresentante(rep1));
+        } else {
+            alumno.setIdRpr1(rep1);
+        }
+
+        if (alumnoDTO.getTipoDocRep2() != null && alumnoDTO.getNumDocRep2() != null) {
+
+            tipoDocRpr = alumnoDTO.getTipoDocRep2();
+            numDocRpr = alumnoDTO.getNumDocRep2();
+            Representante rep2 = representanteservice.consultarepresentanteporcedula(tipoDocRpr, numDocRpr);
+            if (rep2 == null) {
+                Representante rep = new Representante();
+                rep2 = rep.setRepresentante2(alumnoDTO);
+                alumno.setIdRpr1(representanteservice.guardarRepresentante(rep2));
+            } else {
+                alumno.setIdRpr2(rep2);
+            }
+
+        }
+
+        resp=alumnoservice.guardaAlumno(alumno);
+        
+        return resp;
 
     }
 

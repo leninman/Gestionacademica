@@ -5,6 +5,7 @@
  */
 package com.virtualeduc.tuescuelavirtual.models;
 
+import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -16,6 +17,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -27,6 +30,20 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author Lenin
  */
+
+@NamedNativeQueries({
+
+    @NamedNativeQuery(name="Curso.consultarCursoByParametros",
+            
+            query="SELECT * from cursos a "
+                    + "WHERE a.ID_ANNIO=:idannio and a.ID_SEC=:idseccion and a.ID_ANNIO_ESC=:idannioesc",
+            resultClass = Curso.class
+    ),
+    
+})
+
+
+
 @Entity
 @Table(name = "cursos")
 @XmlRootElement
@@ -55,7 +72,7 @@ public class Curso implements Serializable {
 
     public Curso() {
     }
-
+    
     public Curso(Long idCurso) {
         this.idCurso = idCurso;
     }

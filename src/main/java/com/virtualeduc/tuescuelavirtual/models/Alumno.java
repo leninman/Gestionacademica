@@ -6,6 +6,7 @@
 package com.virtualeduc.tuescuelavirtual.models;
 
 
+import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -176,6 +177,27 @@ public class Alumno implements Serializable {
     }
 
     public Alumno() {
+    }
+    
+    
+    public Alumno(AlumnoDTO alumnoDTO) {
+         this.tipoDocAl = alumnoDTO.getTipoDocAl();
+        this.numDocAl = alumnoDTO.getNumDocAl();
+        this.primNombAl = alumnoDTO.getPrimNombAl();
+        this.segNombAl = alumnoDTO.getSegNombAl();
+        this.primApellAl = alumnoDTO.getPrimApellAl();
+        this.segApellAl = alumnoDTO.getSegApellAl();
+        this.sexoAl = alumnoDTO.getSexoAl();
+        this.fechNacAl = alumnoDTO.getFechNacAl();
+        this.edadAl = alumnoDTO.getEdadAl();
+        this.dirPpalAl = alumnoDTO.getDirPpalAl();
+        this.dirSecAl = alumnoDTO.getDirSecAl();
+        this.tlfPpalAl = alumnoDTO.getTlfPpalAl();
+        this.tlfSecAl = alumnoDTO.getTlfSecAl();
+        this.emailAl = alumnoDTO.getEmailAl();
+        this.fechIngAl = alumnoDTO.getFechIngAl();
+        this.status = alumnoDTO.getStatus();
+        
     }
 
     public Alumno(Long idAl, String tipoDocAl, String numDocAl, String primNombAl, String segNombAl, String primApellAl, String segApellAl, Character sexoAl, Date fechNacAl, int edadAl, String dirPpalAl, String dirSecAl, String tlfPpalAl, String tlfSecAl, String emailAl, Date fechIngAl, String status, Representante idRpr1, Curso idCurso, Representante idRpr2, Date fechaCreacion) {

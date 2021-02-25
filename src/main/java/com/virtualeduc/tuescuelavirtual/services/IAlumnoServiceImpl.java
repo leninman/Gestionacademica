@@ -11,6 +11,7 @@ import com.virtualeduc.tuescuelavirtual.models.Representante;
 import com.virtualeduc.tuescuelavirtual.models.Responses;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoCursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
 import com.virtualeduc.tuescuelavirtual.repo.IAlumnoRepo;
 import com.virtualeduc.tuescuelavirtual.utils.Constantes;
 import java.util.ArrayList;
@@ -35,8 +36,13 @@ public class IAlumnoServiceImpl implements IAlumnoService {
 
     @Autowired
     IRepresentanteService representanteservice;
+    
+    @Autowired
+    ICursoService cursoservice;
 
     Alumno alumno;
+    
+    AlumnoDTO alumnoDTO;
 
     @Override
     @Transactional
@@ -50,24 +56,13 @@ public class IAlumnoServiceImpl implements IAlumnoService {
         //CONSULTA SI EL ALUMNO YA EXISTE, SI EXISTE RETORNA EL ALUMNO, SI NO LO GUARDA
         this.alumno = consultarAlumnoPorCedula(tipoDocAl, numDocAl);
         if (this.alumno == null) {
-            //CONSULTA POR EL NUMERO DE CEDULA SI EL REPRESENTANTE ESTE REGISTRADO
-            //SI NO ESTE REGISTRADO LO GUARDA Y SI YA EXISTE TOMA ESE REPRESENTANTE COMO EL
-            //REPRESENTANTE DEL ALUMNO QUE SE VA A REGISTRAR
-
-            String tipoDocRpr = alumno.getIdRpr1().getTipoDocRpr();
-            String numDocRpr = alumno.getIdRpr1().getNumDocRpr();
-            Representante rep = representanteservice.consultarepresentanteporcedula(tipoDocRpr, numDocRpr);
-            if (rep == null) {
-                alumno.setIdRpr1(representanteservice.guardarRepresentante(alumno.getIdRpr1()));
-            } else {
-                alumno.setIdRpr1(rep);
-            }
-
+           
             this.alumno = alumnorepo.save(alumno);
             if (this.alumno != null) {
                 resp.setResponseCode(Constantes.ALUMNO_REGISTRADO_CODE);
                 resp.setResponseDescription(Constantes.ALUMNO_REGISTRADO_DESC);
-                resp.setAlumno(this.alumno);
+                alumnoDTO=new AlumnoDTO(this.alumno);
+                resp.setAlumno(this.alumnoDTO);
             }
 
         } else {
@@ -75,7 +70,6 @@ public class IAlumnoServiceImpl implements IAlumnoService {
             resp.setResponseCode(Constantes.ALUMNO_EXISTE_CODE);
             resp.setResponseDescription(Constantes.ALUMNO_EXISTE_DESC);
             alumno.setIdAl(this.alumno.getIdAl());
-//            resp.setAlumno(this.alumno);
 
         }
 
