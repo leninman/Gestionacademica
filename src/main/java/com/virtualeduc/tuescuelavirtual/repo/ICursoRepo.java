@@ -19,6 +19,11 @@ public interface ICursoRepo extends JpaRepository<Curso, Long> {
     @Query(nativeQuery = true)
     public Curso consultarCursoByParametros(Long idannio,Long idseccion,Long idannioesc);
     
+    
+    @Query(nativeQuery = true)
+    public List<Curso> consultarCursosByPeriodo(Long idannioesc);
+    
+    
 
     
 }

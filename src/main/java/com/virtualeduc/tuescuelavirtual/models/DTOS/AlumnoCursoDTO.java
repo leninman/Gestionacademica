@@ -34,7 +34,7 @@ public class AlumnoCursoDTO implements Serializable {
 
     private String annio;
 
-    private Character seccion;
+    private String seccion;
 
     public AlumnoCursoDTO() {
     }
@@ -52,7 +52,7 @@ public class AlumnoCursoDTO implements Serializable {
 
     }
 
-    public AlumnoCursoDTO(Long IdAl, String tipoDocAl, String numDocAl, String primNombAl, String segNombAl, String primApellAl, String segApellAl, String annio, Character seccion) {
+    public AlumnoCursoDTO(Long IdAl, String tipoDocAl, String numDocAl, String primNombAl, String segNombAl, String primApellAl, String segApellAl, String annio, String seccion) {
         this.IdAl = IdAl;
         this.tipoDocAl = tipoDocAl;
         this.numDocAl = numDocAl;
@@ -129,11 +129,11 @@ public class AlumnoCursoDTO implements Serializable {
         this.annio = annio;
     }
 
-    public Character getSeccion() {
+    public String getSeccion() {
         return seccion;
     }
 
-    public void setSeccion(Character seccion) {
+    public void setSeccion(String seccion) {
         this.seccion = seccion;
     }
 

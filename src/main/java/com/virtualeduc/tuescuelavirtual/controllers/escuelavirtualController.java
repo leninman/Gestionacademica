@@ -31,10 +31,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -90,9 +92,20 @@ public class escuelavirtualController {
     @GetMapping(path = "/consultarsecciones",
             produces = "application/json")
     public @ResponseBody
-    List<SeccionDTO> consultarsecciones() {
+    List<SeccionDTO> consultarlistasecciones() {
         return cursoservice.consultarsecciones();
     }
+    
+     @GetMapping(path = "/consultarcursosporperiodo",
+            produces = "application/json")
+    public @ResponseBody
+    List<CursoDTO> consultarlistacursosporperiodo(@RequestParam(name="periodo") String periodo) {
+        
+        AnnioEscolarDTO annioEscolar=cursoservice.consultarAnnioEscolarPorAnnioEscolar(periodo);
+        
+        return cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
+    }
+    
 
     @RequestMapping(method = RequestMethod.POST, path = "/registraralumno",
             consumes = "application/json", produces = "application/json")

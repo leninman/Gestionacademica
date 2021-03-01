@@ -18,13 +18,13 @@ public class SeccionDTO implements Serializable {
     
     private Long idSec;
   
-    private Character seccion;
+    private String seccion;
 
       public SeccionDTO() {
         
     }
     
-    public SeccionDTO(Long idSec, Character seccion) {
+    public SeccionDTO(Long idSec, String seccion) {
         this.idSec = idSec;
         this.seccion = seccion;
     }
@@ -44,11 +44,11 @@ public class SeccionDTO implements Serializable {
         this.idSec = idSec;
     }
 
-    public Character getSeccion() {
+    public String getSeccion() {
         return seccion;
     }
 
-    public void setSeccion(Character seccion) {
+    public void setSeccion(String seccion) {
         this.seccion = seccion;
     }
       

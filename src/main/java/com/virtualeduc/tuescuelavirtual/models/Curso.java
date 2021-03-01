@@ -40,6 +40,12 @@ import javax.xml.bind.annotation.XmlTransient;
             resultClass = Curso.class
     ),
     
+    @NamedNativeQuery(name="Curso.consultarCursosByPeriodo",
+            
+            query="SELECT * from cursos a "
+                    + "WHERE a.ID_ANNIO_ESC=:idannioesc",
+            resultClass = Curso.class
+    ),
 })
 
 
@@ -67,6 +73,11 @@ public class Curso implements Serializable {
     @JoinColumn(name = "ID_SEC", referencedColumnName = "ID_SEC")
     @ManyToOne(optional = false)
     private Seccion idSec;
+    
+    @JoinColumn(name = "ID_TURNO", referencedColumnName = "ID_TURNO")
+    @ManyToOne(optional = false)
+    private Turno idTurno;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCurso")
     private Collection<Alumno> alumnoCollection;
 
@@ -109,7 +120,13 @@ public class Curso implements Serializable {
         this.idSec = idSec;
     }
 
+    public Turno getIdTurno() {
+        return idTurno;
+    }
 
+    public void setIdTurno(Turno idTurno) {
+        this.idTurno = idTurno;
+    }
     
     @XmlTransient
     public Collection<Alumno> getAlumnoCollection() {

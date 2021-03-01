@@ -5,7 +5,6 @@
  */
 package com.virtualeduc.tuescuelavirtual.models;
 
-import com.virtualeduc.tuescuelavirtual.models.DTOS.SeccionDTO;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -22,81 +21,75 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Lenin
  */
 
+
 @NamedNativeQueries({
 
-    @NamedNativeQuery(name="Seccion.consultarSeccionBySeccion",
+    @NamedNativeQuery(name="Turno.consultarTurnoByTurno",
             
-            query="SELECT * from secciones a "
-                    + "WHERE a.SECCION=:seccion",
-            resultClass = Seccion.class
+            query="SELECT * from turnos a "
+                    + "WHERE a.TURNO=:turno",
+            resultClass = Turno.class
     ),
     
 })
 
 
-
 @Entity
-@Table(name = "secciones")
+@Table(name = "turnos")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Seccion.findAll", query = "SELECT s FROM Seccion s")
-    , @NamedQuery(name = "Seccion.findByIdSec", query = "SELECT s FROM Seccion s WHERE s.idSec = :idSec")
-    , @NamedQuery(name = "Seccion.findBySeccion", query = "SELECT s FROM Seccion s WHERE s.seccion = :seccion")})
-public class Seccion implements Serializable {
+    @NamedQuery(name = "Turno.findAll", query = "SELECT t FROM Turno t")
+    , @NamedQuery(name = "Turno.findByIdTurno", query = "SELECT t FROM Turno t WHERE t.idTurno = :idTurno")
+    , @NamedQuery(name = "Turno.findByTurno", query = "SELECT t FROM Turno t WHERE t.turno = :turno")})
+public class Turno implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ID_SEC")
-    private Long idSec;
+    @Column(name = "ID_TURNO")
+    private Long idTurno;
     @Basic(optional = false)
-    @Column(name = "SECCION")
-    private String seccion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSec")
+    @Column(name = "TURNO")
+    private String turno;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTurno")
     private Collection<Curso> cursoCollection;
 
-    public Seccion() {
+    public Turno() {
     }
 
-    public Seccion(Long idSec) {
-        this.idSec = idSec;
+    public Turno(Long idTurno) {
+        this.idTurno = idTurno;
     }
 
-    public Seccion(Long idSec, String seccion) {
-        this.idSec = idSec;
-        this.seccion = seccion;
-    }
-    
-    public Seccion(SeccionDTO seccionDTO) {
-        this.idSec = seccionDTO.getIdSec();
-        this.seccion = seccionDTO.getSeccion();
+    public Turno(Long idTurno, String turno) {
+        this.idTurno = idTurno;
+        this.turno = turno;
     }
 
-    public Long getIdSec() {
-        return idSec;
+    public Long getIdTurno() {
+        return idTurno;
     }
 
-    public void setIdSec(Long idSec) {
-        this.idSec = idSec;
+    public void setIdTurno(Long idTurno) {
+        this.idTurno = idTurno;
     }
 
-    public String getSeccion() {
-        return seccion;
+    public String getTurno() {
+        return turno;
     }
 
-    public void setSeccion(String seccion) {
-        this.seccion = seccion;
+    public void setTurno(String turno) {
+        this.turno = turno;
     }
 
-    @XmlTransient
     public Collection<Curso> getCursoCollection() {
         return cursoCollection;
     }
@@ -104,22 +97,25 @@ public class Seccion implements Serializable {
     public void setCursoCollection(Collection<Curso> cursoCollection) {
         this.cursoCollection = cursoCollection;
     }
+    
+    
+    
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idSec != null ? idSec.hashCode() : 0);
+        hash += (idTurno != null ? idTurno.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Seccion)) {
+        if (!(object instanceof Turno)) {
             return false;
         }
-        Seccion other = (Seccion) object;
-        if ((this.idSec == null && other.idSec != null) || (this.idSec != null && !this.idSec.equals(other.idSec))) {
+        Turno other = (Turno) object;
+        if ((this.idTurno == null && other.idTurno != null) || (this.idTurno != null && !this.idTurno.equals(other.idTurno))) {
             return false;
         }
         return true;
@@ -127,7 +123,7 @@ public class Seccion implements Serializable {
 
     @Override
     public String toString() {
-        return "com.virtualeduc.tuescuelavirtual.models.Seccion[ idSec=" + idSec + " ]";
+        return "com.virtualeduc.tuescuelavirtual.models.Turno[ idTurno=" + idTurno + " ]";
     }
     
 }

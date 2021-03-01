@@ -5,9 +5,8 @@
  */
 package com.virtualeduc.tuescuelavirtual.repo;
 
-
-import com.virtualeduc.tuescuelavirtual.models.AnnioEscolar;
 import com.virtualeduc.tuescuelavirtual.models.Seccion;
+import com.virtualeduc.tuescuelavirtual.models.Turno;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -15,11 +14,8 @@ import org.springframework.data.jpa.repository.Query;
  *
  * @author Lenin
  */
-public interface ISeccionRepo extends JpaRepository<Seccion, Long> {
-    
+public interface ITurnoRepo extends JpaRepository<Turno, Long> {
     
     @Query(nativeQuery = true)
-    public Seccion consultarSeccionBySeccion(String seccion);
-    
-   
+    public Turno consultarTurnoByTurno(String turno);
 }

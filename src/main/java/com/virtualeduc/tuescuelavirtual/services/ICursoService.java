@@ -12,6 +12,7 @@ import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.SeccionDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.TurnoDTO;
 import com.virtualeduc.tuescuelavirtual.models.Seccion;
 import java.util.List;
 
@@ -31,12 +32,17 @@ public interface ICursoService {
       public List<CursoDTO> consultarcursos();
       
       public CursoDTO consultarcursoporparametros(Long idannio,Long idannioesc,Long idseccion);
+      
+       public List<CursoDTO> consultarcursosporperiodo(Long idannioesc);
      
       public AnnioDTO consultarAnnioPorAnnio(String annio);
       
       public AnnioEscolarDTO consultarAnnioEscolarPorAnnioEscolar(String annioEscolar);
       
-      public SeccionDTO consultarSeccionPorSeccion(Character seccion);
+      public SeccionDTO consultarSeccionPorSeccion(String seccion);
+      
+      public TurnoDTO consultarTurnoPorTurno(String turno);
+      
       
       
 }

@@ -112,7 +112,7 @@ public class Alumno implements Serializable {
     
     @Basic(optional = false)
     @Column(name = "SEXO_AL")
-    private Character sexoAl;
+    private String sexoAl;
     @Basic(optional = false)
     
     @Column(name = "FECH_NAC_AL")
@@ -200,7 +200,7 @@ public class Alumno implements Serializable {
         
     }
 
-    public Alumno(Long idAl, String tipoDocAl, String numDocAl, String primNombAl, String segNombAl, String primApellAl, String segApellAl, Character sexoAl, Date fechNacAl, int edadAl, String dirPpalAl, String dirSecAl, String tlfPpalAl, String tlfSecAl, String emailAl, Date fechIngAl, String status, Representante idRpr1, Curso idCurso, Representante idRpr2, Date fechaCreacion) {
+    public Alumno(Long idAl, String tipoDocAl, String numDocAl, String primNombAl, String segNombAl, String primApellAl, String segApellAl, String sexoAl, Date fechNacAl, int edadAl, String dirPpalAl, String dirSecAl, String tlfPpalAl, String tlfSecAl, String emailAl, Date fechIngAl, String status, Representante idRpr1, Curso idCurso, Representante idRpr2, Date fechaCreacion) {
         this.idAl = idAl;
         this.tipoDocAl = tipoDocAl;
         this.numDocAl = numDocAl;
@@ -288,11 +288,11 @@ public class Alumno implements Serializable {
         this.segApellAl = segApellAl;
     }
 
-    public Character getSexoAl() {
+    public String getSexoAl() {
         return sexoAl;
     }
 
-    public void setSexoAl(Character sexoAl) {
+    public void setSexoAl(String sexoAl) {
         this.sexoAl = sexoAl;
     }
 
