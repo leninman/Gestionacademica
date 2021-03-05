@@ -36,7 +36,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -96,10 +96,10 @@ public class escuelavirtualController {
         return cursoservice.consultarsecciones();
     }
     
-     @GetMapping(path = "/consultarcursosporperiodo",
+     @GetMapping(path = "/consultarcursosporperiodo/{periodo}",
             produces = "application/json")
     public @ResponseBody
-    List<CursoDTO> consultarlistacursosporperiodo(@RequestParam(name="periodo") String periodo) {
+    List<CursoDTO> consultarlistacursosporperiodo(@PathVariable String periodo) {
         
         AnnioEscolarDTO annioEscolar=cursoservice.consultarAnnioEscolarPorAnnioEscolar(periodo);
         
