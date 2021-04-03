@@ -61,6 +61,8 @@ public class escuelavirtualController {
 
     Representante representante;
 
+
+
     @GetMapping(path = "/consultaralumnos",
             produces = "application/json")
     public @ResponseBody
