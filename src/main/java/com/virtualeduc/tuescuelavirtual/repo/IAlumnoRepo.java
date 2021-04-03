@@ -19,38 +19,14 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface IAlumnoRepo extends JpaRepository<Alumno, Long> {
 
-    @Query(nativeQuery = true)
+    @Query(value="SELECT * from alumnos a "
+                    + "LEFT JOIN cursos b ON a.ID_CURSO=b.ID_CURSO "
+                    + "LEFT JOIN annios c ON b.ID_ANNIO=c.ID_ANNIO "
+                    + "LEFT JOIN secciones d ON b.ID_SEC=d.ID_SEC "
+                    + "LEFT JOIN annio_escolar e ON b.ID_ANNIO_ESC=e.ID_ANNIO_ESC "
+                    + "LEFT JOIN representantes f ON a.ID_RPR1=f.ID_RPR ",nativeQuery = true)
     List<Alumno> findListAlumnos();
     
     Alumno findAlumnoByTipoDocAlAndNumDocAl(String tipoDocAl, String numDocAl);
     
-//    @Query(nativeQuery = true)
-//    Alumno findByTipoDocAlAndNumDocAl(String tipoDocAl,String numDocAl);
-    
-    
-            
-//     @Query(value="SELECT a.idAl,"
-//             + "a.tipoDocAl," 
-//             + "a.numDocAl,"
-//             + "a.primNombAl,"
-//             + "a.segNombAl,"
-//             + "a.primApellAl,"
-//             + "a.segApellAl,"
-//             + "c.annio,"
-//             + "d.seccion,"
-//             + "e.intAnnioEsc,"
-//             + "f.idRpr "
-//             + "from alumnos a "
-//             + "LEFT JOIN cursos b ON a.idCurso.idCurso=b.idCurso "
-//             + "LEFT JOIN annios c ON b.idAnnio.idAnnio=c.idAnnio "
-//             + "LEFT JOIN secciones d ON b.idSec.idSec=d.idSec "
-//             + "LEFT JOIN annio_escolar e ON b.idAnnioEsc.idAnnioEsc=e.idAnnioEsc "
-//             + "LEFT JOIN representantes f ON a.idRpr1.idRpr=f.idRpr",nativeQuery = true)
-//            
-//     @Query("select a from Alumno a inner join fetch a.idCurso b ON a.idCurso.idCurso=b.idCurso")     
-
-//    Optional<List<Alumno>> findListAlumnos();
-//      List<Alumno> findListAlumnos();     
-    
-
 }

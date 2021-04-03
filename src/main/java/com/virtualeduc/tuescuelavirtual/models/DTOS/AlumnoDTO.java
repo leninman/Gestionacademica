@@ -37,7 +37,7 @@ public class AlumnoDTO implements Serializable {
 
     private Date fechNacAl;
 
-    private int edadAl;
+    private String edadAl;
 
     private String dirPpalAl;
 
@@ -83,7 +83,7 @@ public class AlumnoDTO implements Serializable {
 
     private Date fechNacRpr1;
 
-    private int edadRpr1;
+    private String edadRpr1;
 
     private String edoCivRpr1;
 
@@ -115,7 +115,7 @@ public class AlumnoDTO implements Serializable {
 
     private Date fechNacRpr2;
 
-    private int edadRpr2;
+    private String edadRpr2;
 
     private String edoCivRpr2;
 
@@ -139,7 +139,7 @@ public class AlumnoDTO implements Serializable {
     public AlumnoDTO() {
     }
 
-    public AlumnoDTO(Long idAl, String tipoDocAl, String numDocAl, String primNombAl, String segNombAl, String primApellAl, String segApellAl, String sexoAl, Date fechNacAl, int edadAl, String dirPpalAl, String dirSecAl, String tlfPpalAl, String tlfSecAl, String emailAl, Date fechIngAl, String status, Long idRpr1, Long idCurso, Long idRpr2, Date fechaCreacion, String annio, String annioescolar, String seccion, String tipoDocRep1, String numDocRep1, String primNombRpr1, String segNombRpr1, String primApellRpr1, String segApellRpr1, String sexoRpr1, Date fechNacRpr1, int edadRpr1, String edoCivRpr1, String parentescoRpr1, String dirPpalRpr1, String dirSecRpr1, String tlfPpalRpr1, String tlfSecRpr1, String emailRpr1, String tipoDocRep2, String numDocRep2, String primNombRpr2, String segNombRpr2, String primApellRpr2, String segApellRpr2, String sexoRpr2, Date fechNacRpr2, int edadRpr2, String edoCivRpr2, String parentescoRpr2, String dirPpalRpr2, String dirSecRpr2, String tlfPpalRpr2, String tlfSecRpr2, String emailRpr2) {
+    public AlumnoDTO(Long idAl, String tipoDocAl, String numDocAl, String primNombAl, String segNombAl, String primApellAl, String segApellAl, String sexoAl, Date fechNacAl, String edadAl, String dirPpalAl, String dirSecAl, String tlfPpalAl, String tlfSecAl, String emailAl, Date fechIngAl, String status, Long idRpr1, Long idCurso, Long idRpr2, Date fechaCreacion, String annio, String annioescolar, String seccion, String tipoDocRep1, String numDocRep1, String primNombRpr1, String segNombRpr1, String primApellRpr1, String segApellRpr1, String sexoRpr1, Date fechNacRpr1, String edadRpr1, String edoCivRpr1, String parentescoRpr1, String dirPpalRpr1, String dirSecRpr1, String tlfPpalRpr1, String tlfSecRpr1, String emailRpr1, String tipoDocRep2, String numDocRep2, String primNombRpr2, String segNombRpr2, String primApellRpr2, String segApellRpr2, String sexoRpr2, Date fechNacRpr2, String edadRpr2, String edoCivRpr2, String parentescoRpr2, String dirPpalRpr2, String dirSecRpr2, String tlfPpalRpr2, String tlfSecRpr2, String emailRpr2) {
         this.idAl = idAl;
         this.tipoDocAl = tipoDocAl;
         this.numDocAl = numDocAl;
@@ -341,11 +341,11 @@ public class AlumnoDTO implements Serializable {
         this.fechNacAl = fechNacAl;
     }
 
-    public int getEdadAl() {
+    public String getEdadAl() {
         return edadAl;
     }
 
-    public void setEdadAl(int edadAl) {
+    public void setEdadAl(String edadAl) {
         this.edadAl = edadAl;
     }
 
@@ -541,11 +541,11 @@ public class AlumnoDTO implements Serializable {
         this.fechNacRpr1 = fechNacRpr1;
     }
 
-    public int getEdadRpr1() {
+    public String getEdadRpr1() {
         return edadRpr1;
     }
 
-    public void setEdadRpr1(int edadRpr1) {
+    public void setEdadRpr1(String edadRpr1) {
         this.edadRpr1 = edadRpr1;
     }
 
@@ -653,11 +653,11 @@ public class AlumnoDTO implements Serializable {
         this.fechNacRpr2 = fechNacRpr2;
     }
 
-    public int getEdadRpr2() {
+    public String getEdadRpr2() {
         return edadRpr2;
     }
 
-    public void setEdadRpr2(int edadRpr2) {
+    public void setEdadRpr2(String edadRpr2) {
         this.edadRpr2 = edadRpr2;
     }
 

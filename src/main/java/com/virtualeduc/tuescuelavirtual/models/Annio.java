@@ -15,45 +15,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedNativeQuery;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Lenin
  */
-@NamedNativeQueries({
-
-    @NamedNativeQuery(name="Annio.consultarAnnioByAnnio",
-            
-            query="SELECT * from annios a "
-                    + "WHERE a.ANNIO=:annio",
-            resultClass = Annio.class
-    ),
-    
-})
-
-
-
-
-
-
-
 @Entity
 @Table(name = "annios")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Annio.findAll", query = "SELECT a FROM Annio a")
-    , @NamedQuery(name = "Annio.findByIdAnnio", query = "SELECT a FROM Annio a WHERE a.idAnnio = :idAnnio")
-    , @NamedQuery(name = "Annio.findByAnnio", query = "SELECT a FROM Annio a WHERE a.annio = :annio")
-    , @NamedQuery(name = "Annio.findByNivel", query = "SELECT a FROM Annio a WHERE a.nivel = :nivel")
-    , @NamedQuery(name = "Annio.findByEspecialidad", query = "SELECT a FROM Annio a WHERE a.especialidad = :especialidad")})
 public class Annio implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -136,30 +107,4 @@ public class Annio implements Serializable {
     public void setCursoCollection(Collection<Curso> cursoCollection) {
         this.cursoCollection = cursoCollection;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idAnnio != null ? idAnnio.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Annio)) {
-            return false;
-        }
-        Annio other = (Annio) object;
-        if ((this.idAnnio == null && other.idAnnio != null) || (this.idAnnio != null && !this.idAnnio.equals(other.idAnnio))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "com.virtualeduc.tuescuelavirtual.models.Annio[ idAnnio=" + idAnnio + " ]";
-    }
-    
 }

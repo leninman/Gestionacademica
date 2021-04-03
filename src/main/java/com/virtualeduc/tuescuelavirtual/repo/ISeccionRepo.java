@@ -18,7 +18,8 @@ import org.springframework.data.jpa.repository.Query;
 public interface ISeccionRepo extends JpaRepository<Seccion, Long> {
     
     
-    @Query(nativeQuery = true)
+    @Query(value="SELECT * from secciones a "
+                    + "WHERE a.SECCION=:seccion",nativeQuery = true)
     public Seccion consultarSeccionBySeccion(String seccion);
     
    

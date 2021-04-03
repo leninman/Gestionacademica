@@ -16,6 +16,6 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface IAnnioEscolarRepo extends JpaRepository<AnnioEscolar, Long> {
 
-    @Query(nativeQuery = true)
-    public AnnioEscolar consultarAnnioEscolarByAnnio(String intannioesc);
+    @Query(value="SELECT * from annio_escolar a where a.status='A'",nativeQuery = true)
+    public AnnioEscolar consultarAnnioEscolarVigente();
 }

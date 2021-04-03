@@ -36,6 +36,10 @@ public class CursoDTO {
     
     private String turno;
     
+    private String nivel;
+    
+    private String especialidad;
+    
    
     
    
@@ -43,7 +47,7 @@ public class CursoDTO {
         
     }
 
-    public CursoDTO(Long idCurso, Long idAnnio, Long idSec, Long idAnnioEsc, Long idTurno, String annio, String intAnnioEsc, String seccion, String turno) {
+    public CursoDTO(Long idCurso, Long idAnnio, Long idSec, Long idAnnioEsc, Long idTurno, String annio, String intAnnioEsc, String seccion, String turno, String nivel, String especialidad) {
         this.idCurso = idCurso;
         this.idAnnio = idAnnio;
         this.idSec = idSec;
@@ -53,7 +57,11 @@ public class CursoDTO {
         this.intAnnioEsc = intAnnioEsc;
         this.seccion = seccion;
         this.turno = turno;
+        this.nivel = nivel;
+        this.especialidad = especialidad;
     }
+
+   
      
      
 
@@ -71,6 +79,8 @@ public class CursoDTO {
         this.idAnnio=curso.getIdAnnio().getIdAnnio();
          this.idSec = curso.getIdSec().getIdSec();
          this.idAnnioEsc=curso.getIdAnnioEsc().getIdAnnioEsc();
+         this.nivel=curso.getIdAnnio().getNivel();
+         this.especialidad=curso.getIdAnnio().getEspecialidad();
          this.idTurno=curso.getIdTurno().getIdTurno();
          this.annio=annio;
          this.intAnnioEsc=annioesco;
@@ -156,14 +166,22 @@ public class CursoDTO {
     public void setTurno(String turno) {
         this.turno = turno;
     }
-    
-    
-    
 
-  
-    
-    
-    
+    public String getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(String nivel) {
+        this.nivel = nivel;
+    }
+
+    public String getEspecialidad() {
+        return especialidad;
+    }
+
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
     
     
 }

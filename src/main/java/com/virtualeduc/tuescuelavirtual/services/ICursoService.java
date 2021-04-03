@@ -37,7 +37,7 @@ public interface ICursoService {
      
       public AnnioDTO consultarAnnioPorAnnio(String annio);
       
-      public AnnioEscolarDTO consultarAnnioEscolarPorAnnioEscolar(String annioEscolar);
+      public AnnioEscolarDTO consultarAnnioEscolarPorAnnioEscolar();
       
       public SeccionDTO consultarSeccionPorSeccion(String seccion);
       

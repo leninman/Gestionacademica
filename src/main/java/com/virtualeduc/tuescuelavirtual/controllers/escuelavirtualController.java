@@ -96,12 +96,12 @@ public class escuelavirtualController {
         return cursoservice.consultarsecciones();
     }
     
-     @GetMapping(path = "/consultarcursosporperiodo/{periodo}",
+     @GetMapping(path = "/consultarcursosporperiodo",
             produces = "application/json")
     public @ResponseBody
-    List<CursoDTO> consultarlistacursosporperiodo(@PathVariable String periodo) {
+    List<CursoDTO> consultarlistacursosporperiodo() {
         
-        AnnioEscolarDTO annioEscolar=cursoservice.consultarAnnioEscolarPorAnnioEscolar(periodo);
+        AnnioEscolarDTO annioEscolar=cursoservice.consultarAnnioEscolarPorAnnioEscolar();
         
         return cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
     }
@@ -125,7 +125,7 @@ public class escuelavirtualController {
 
         AnnioDTO annioDTO = cursoservice.consultarAnnioPorAnnio(alumnoDTO.getAnnio());
 
-        AnnioEscolarDTO annioescolarDTO = cursoservice.consultarAnnioEscolarPorAnnioEscolar(alumnoDTO.getAnnioescolar());
+        AnnioEscolarDTO annioescolarDTO = cursoservice.consultarAnnioEscolarPorAnnioEscolar();
 
         SeccionDTO seccionDTO = cursoservice.consultarSeccionPorSeccion(alumnoDTO.getSeccion());
 

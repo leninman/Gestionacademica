@@ -16,6 +16,7 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface ITurnoRepo extends JpaRepository<Turno, Long> {
     
-    @Query(nativeQuery = true)
+    @Query(value="SELECT * from turnos a "
+                    + "WHERE a.TURNO=:turno",nativeQuery = true)
     public Turno consultarTurnoByTurno(String turno);
 }

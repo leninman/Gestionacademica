@@ -5,7 +5,6 @@
  */
 package com.virtualeduc.tuescuelavirtual.models;
 
-
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
 import java.io.Serializable;
 import java.util.Date;
@@ -18,67 +17,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedNativeQuery;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Lenin
  */
-@NamedNativeQueries({
-
-    @NamedNativeQuery(name="Alumno.findListAlumnos",
-            
-            query="SELECT * from alumnos a "
-                    + "LEFT JOIN cursos b ON a.ID_CURSO=b.ID_CURSO "
-                    + "LEFT JOIN annios c ON b.ID_ANNIO=c.ID_ANNIO "
-                    + "LEFT JOIN secciones d ON b.ID_SEC=d.ID_SEC "
-                    + "LEFT JOIN annio_escolar e ON b.ID_ANNIO_ESC=e.ID_ANNIO_ESC "
-                    + "LEFT JOIN representantes f ON a.ID_RPR1=f.ID_RPR",
-            resultClass = Alumno.class
-    ),
-    
-    
-    @NamedNativeQuery(name="Alumno.findByTipoDocAlAndNumDocAl",
-            
-            query="SELECT * FROM alumnos WHERE alumnos.TIPO_DOC_AL=:tipoDocAl and alumnos.NUM_DOC_AL=:numDocAl",
-            resultClass=Alumno.class
-    ),
-    
-//     @NamedNativeQuery(name="Customermachine.deleteUserMachines",
-//             
-//             query="DELETE FROM CUSTOMER_MACHINE WHERE MACH_ID_CUSCUN_USER=:cuscunuser"       
-//     ),
-})
-
 @Entity
 @Table(name = "alumnos")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Alumno.findAll", query = "SELECT a FROM Alumno a")
-    , @NamedQuery(name = "Alumno.findByIdAl", query = "SELECT a FROM Alumno a WHERE a.idAl = :idAl")
-    , @NamedQuery(name = "Alumno.findByTipoDocAl", query = "SELECT a FROM Alumno a WHERE a.tipoDocAl = :tipoDocAl")
-    , @NamedQuery(name = "Alumno.findByNumDocAl", query = "SELECT a FROM Alumno a WHERE a.numDocAl = :numDocAl")    
-    , @NamedQuery(name = "Alumno.findByPrimNombAl", query = "SELECT a FROM Alumno a WHERE a.primNombAl = :primNombAl")
-    , @NamedQuery(name = "Alumno.findBySegNombAl", query = "SELECT a FROM Alumno a WHERE a.segNombAl = :segNombAl")
-    , @NamedQuery(name = "Alumno.findByPrimApellAl", query = "SELECT a FROM Alumno a WHERE a.primApellAl = :primApellAl")
-    , @NamedQuery(name = "Alumno.findBySegApellAl", query = "SELECT a FROM Alumno a WHERE a.segApellAl = :segApellAl")
-    , @NamedQuery(name = "Alumno.findBySexoAl", query = "SELECT a FROM Alumno a WHERE a.sexoAl = :sexoAl")
-    , @NamedQuery(name = "Alumno.findByFechNacAl", query = "SELECT a FROM Alumno a WHERE a.fechNacAl = :fechNacAl")
-    , @NamedQuery(name = "Alumno.findByEdadAl", query = "SELECT a FROM Alumno a WHERE a.edadAl = :edadAl")
-    , @NamedQuery(name = "Alumno.findByDirPpalAl", query = "SELECT a FROM Alumno a WHERE a.dirPpalAl = :dirPpalAl")
-    , @NamedQuery(name = "Alumno.findByDirSecAl", query = "SELECT a FROM Alumno a WHERE a.dirSecAl = :dirSecAl")
-    , @NamedQuery(name = "Alumno.findByTlfPpalAl", query = "SELECT a FROM Alumno a WHERE a.tlfPpalAl = :tlfPpalAl")
-    , @NamedQuery(name = "Alumno.findByTlfSecAl", query = "SELECT a FROM Alumno a WHERE a.tlfSecAl = :tlfSecAl")
-    , @NamedQuery(name = "Alumno.findByEmailAl", query = "SELECT a FROM Alumno a WHERE a.emailAl = :emailAl")
-    , @NamedQuery(name = "Alumno.findByFechIngAl", query = "SELECT a FROM Alumno a WHERE a.fechIngAl = :fechIngAl")})
 public class Alumno implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -87,88 +36,87 @@ public class Alumno implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID_AL")
     private Long idAl;
-    
+
     @Basic(optional = false)
     @Column(name = "TIPO_DOC_AL")
     private String tipoDocAl;
-    
+
     @Basic(optional = false)
     @Column(name = "NUM_DOC_AL")
     private String numDocAl;
-    
+
     @Basic(optional = false)
     @Column(name = "PRIM_NOMB_AL")
     private String primNombAl;
-    
+
     @Column(name = "SEG_NOMB_AL")
     private String segNombAl;
-    
+
     @Basic(optional = false)
     @Column(name = "PRIM_APELL_AL")
     private String primApellAl;
-    
+
     @Column(name = "SEG_APELL_AL")
     private String segApellAl;
-    
+
     @Basic(optional = false)
     @Column(name = "SEXO_AL")
     private String sexoAl;
     @Basic(optional = false)
-    
+
     @Column(name = "FECH_NAC_AL")
     @Temporal(TemporalType.DATE)
     private Date fechNacAl;
-    
+
     @Basic(optional = false)
     @Column(name = "EDAD_AL")
-    private int edadAl;
-    
+    private String edadAl;
+
     @Basic(optional = false)
     @Column(name = "DIR_PPAL_AL")
     private String dirPpalAl;
-    
-    @Basic(optional = false)
+
+   
     @Column(name = "DIR_SEC_AL")
     private String dirSecAl;
-    
+
     @Basic(optional = false)
     @Column(name = "TLF_PPAL_AL")
     private String tlfPpalAl;
+
     
-    @Basic(optional = false)
     @Column(name = "TLF_SEC_AL")
     private String tlfSecAl;
-    
+
     @Basic(optional = false)
     @Column(name = "EMAIL_AL")
     private String emailAl;
-    
+
     @Basic(optional = false)
     @Column(name = "FECH_ING_AL")
     @Temporal(TemporalType.DATE)
     private Date fechIngAl;
-    
+
     @Basic(optional = false)
     @Column(name = "STATUS")
     private String status;
-      
+
     @JoinColumn(name = "ID_RPR1", referencedColumnName = "ID_RPR")
-    @ManyToOne(fetch=FetchType.LAZY,optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Representante idRpr1;
-    
+
     @JoinColumn(name = "ID_CURSO", referencedColumnName = "ID_CURSO")
     @ManyToOne(optional = false)
     private Curso idCurso;
-   
+
     @JoinColumn(name = "ID_RPR2", referencedColumnName = "ID_RPR")
-    @ManyToOne(fetch=FetchType.LAZY,optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Representante idRpr2;
-    
+
     @Basic(optional = false)
     @Column(name = "FECHA_CREACION")
     @Temporal(TemporalType.DATE)
     private Date fechaCreacion;
-
 
     @PrePersist
     public void prePersist() {
@@ -178,10 +126,9 @@ public class Alumno implements Serializable {
 
     public Alumno() {
     }
-    
-    
+
     public Alumno(AlumnoDTO alumnoDTO) {
-         this.tipoDocAl = alumnoDTO.getTipoDocAl();
+        this.tipoDocAl = alumnoDTO.getTipoDocAl();
         this.numDocAl = alumnoDTO.getNumDocAl();
         this.primNombAl = alumnoDTO.getPrimNombAl();
         this.segNombAl = alumnoDTO.getSegNombAl();
@@ -197,10 +144,10 @@ public class Alumno implements Serializable {
         this.emailAl = alumnoDTO.getEmailAl();
         this.fechIngAl = alumnoDTO.getFechIngAl();
         this.status = alumnoDTO.getStatus();
-        
+
     }
 
-    public Alumno(Long idAl, String tipoDocAl, String numDocAl, String primNombAl, String segNombAl, String primApellAl, String segApellAl, String sexoAl, Date fechNacAl, int edadAl, String dirPpalAl, String dirSecAl, String tlfPpalAl, String tlfSecAl, String emailAl, Date fechIngAl, String status, Representante idRpr1, Curso idCurso, Representante idRpr2, Date fechaCreacion) {
+    public Alumno(Long idAl, String tipoDocAl, String numDocAl, String primNombAl, String segNombAl, String primApellAl, String segApellAl, String sexoAl, Date fechNacAl, String edadAl, String dirPpalAl, String dirSecAl, String tlfPpalAl, String tlfSecAl, String emailAl, Date fechIngAl, String status, Representante idRpr1, Curso idCurso, Representante idRpr2, Date fechaCreacion) {
         this.idAl = idAl;
         this.tipoDocAl = tipoDocAl;
         this.numDocAl = numDocAl;
@@ -223,10 +170,6 @@ public class Alumno implements Serializable {
         this.idRpr2 = idRpr2;
         this.fechaCreacion = fechaCreacion;
     }
-
-    
-    
-    
 
     public Alumno(Long idAl) {
         this.idAl = idAl;
@@ -304,11 +247,11 @@ public class Alumno implements Serializable {
         this.fechNacAl = fechNacAl;
     }
 
-    public int getEdadAl() {
+    public String getEdadAl() {
         return edadAl;
     }
 
-    public void setEdadAl(int edadAl) {
+    public void setEdadAl(String edadAl) {
         this.edadAl = edadAl;
     }
 
@@ -398,35 +341,6 @@ public class Alumno implements Serializable {
 
     public void setIdRpr2(Representante idRpr2) {
         this.idRpr2 = idRpr2;
-    }
-
-    
-    
-    
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idAl != null ? idAl.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Alumno)) {
-            return false;
-        }
-        Alumno other = (Alumno) object;
-        if ((this.idAl == null && other.idAl != null) || (this.idAl != null && !this.idAl.equals(other.idAl))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "com.virtualeduc.tuescuelavirtual.models.Alumno[ idAl=" + idAl + " ]";
     }
 
 }

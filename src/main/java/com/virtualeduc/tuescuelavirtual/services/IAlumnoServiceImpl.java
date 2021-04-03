@@ -61,8 +61,8 @@ public class IAlumnoServiceImpl implements IAlumnoService {
             if (this.alumno != null) {
                 resp.setResponseCode(Constantes.ALUMNO_REGISTRADO_CODE);
                 resp.setResponseDescription(Constantes.ALUMNO_REGISTRADO_DESC);
-                alumnoDTO=new AlumnoDTO(this.alumno);
-                resp.setAlumno(this.alumnoDTO);
+               // alumnoDTO=new AlumnoDTO(this.alumno);
+//                resp.setAlumno(this.alumnoDTO);
             }
 
         } else {

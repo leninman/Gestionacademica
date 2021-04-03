@@ -17,13 +17,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
@@ -32,26 +29,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "representantes")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Representante.findAll", query = "SELECT r FROM Representante r")
-    , @NamedQuery(name = "Representante.findByIdRpr", query = "SELECT r FROM Representante r WHERE r.idRpr = :idRpr")
-    , @NamedQuery(name = "Representante.findByTipoDocRpr", query = "SELECT r FROM Representante r WHERE r.tipoDocRpr = :tipoDocRpr")
-    , @NamedQuery(name = "Representante.findByNumDocRpr", query = "SELECT r FROM Representante r WHERE r.numDocRpr = :numDocRpr")
-    , @NamedQuery(name = "Representante.findByPrimNombRpr", query = "SELECT r FROM Representante r WHERE r.primNombRpr = :primNombRpr")
-    , @NamedQuery(name = "Representante.findBySegNombRpr", query = "SELECT r FROM Representante r WHERE r.segNombRpr = :segNombRpr")
-    , @NamedQuery(name = "Representante.findByPrimApellRpr", query = "SELECT r FROM Representante r WHERE r.primApellRpr = :primApellRpr")
-    , @NamedQuery(name = "Representante.findBySegApellRpr", query = "SELECT r FROM Representante r WHERE r.segApellRpr = :segApellRpr")
-    , @NamedQuery(name = "Representante.findBySexoRpr", query = "SELECT r FROM Representante r WHERE r.sexoRpr = :sexoRpr")
-    , @NamedQuery(name = "Representante.findByFechNacRpr", query = "SELECT r FROM Representante r WHERE r.fechNacRpr = :fechNacRpr")
-    , @NamedQuery(name = "Representante.findByEdadRpr", query = "SELECT r FROM Representante r WHERE r.edadRpr = :edadRpr")
-    , @NamedQuery(name = "Representante.findByEdoCivRpr", query = "SELECT r FROM Representante r WHERE r.edoCivRpr = :edoCivRpr")
-    , @NamedQuery(name = "Representante.findByParentescoRpr", query = "SELECT r FROM Representante r WHERE r.parentescoRpr = :parentescoRpr")
-    , @NamedQuery(name = "Representante.findByDirPpalRpr", query = "SELECT r FROM Representante r WHERE r.dirPpalRpr = :dirPpalRpr")
-    , @NamedQuery(name = "Representante.findByDirSecRpr", query = "SELECT r FROM Representante r WHERE r.dirSecRpr = :dirSecRpr")
-    , @NamedQuery(name = "Representante.findByTlfPpalRpr", query = "SELECT r FROM Representante r WHERE r.tlfPpalRpr = :tlfPpalRpr")
-    , @NamedQuery(name = "Representante.findByTlfSecRpr", query = "SELECT r FROM Representante r WHERE r.tlfSecRpr = :tlfSecRpr")
-    , @NamedQuery(name = "Representante.findByEmailRpr", query = "SELECT r FROM Representante r WHERE r.emailRpr = :emailRpr")})
 public class Representante implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -60,50 +37,64 @@ public class Representante implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID_RPR")
     private Long idRpr;
+    
     @Basic(optional = false)
     @Column(name = "TIPO_DOC_RPR")
     private String tipoDocRpr;
+    
     @Basic(optional = false)
     @Column(name = "NUM_DOC_RPR")
     private String numDocRpr;
+    
     @Basic(optional = false)
     @Column(name = "PRIM_NOMB_RPR")
     private String primNombRpr;
+    
     @Column(name = "SEG_NOMB_RPR")
     private String segNombRpr;
+    
     @Basic(optional = false)
     @Column(name = "PRIM_APELL_RPR")
     private String primApellRpr;
+    
     @Column(name = "SEG_APELL_RPR")
     private String segApellRpr;
+    
     @Basic(optional = false)
     @Column(name = "SEXO_RPR")
     private String sexoRpr;
+    
     @Basic(optional = false)
     @Column(name = "FECH_NAC_RPR")
     @Temporal(TemporalType.DATE)
     private Date fechNacRpr;
+    
     @Basic(optional = false)
     @Column(name = "EDAD_RPR")
-    private int edadRpr;
+    private String edadRpr;
+    
     @Basic(optional = false)
     @Column(name = "EDO_CIV_RPR")
     private String edoCivRpr;
+    
     @Basic(optional = false)
     @Column(name = "PARENTESCO_RPR")
     private String parentescoRpr;
+    
     @Basic(optional = false)
     @Column(name = "DIR_PPAL_RPR")
     private String dirPpalRpr;
-    @Basic(optional = false)
+    
     @Column(name = "DIR_SEC_RPR")
     private String dirSecRpr;
+    
     @Basic(optional = false)
     @Column(name = "TLF_PPAL_RPR")
     private String tlfPpalRpr;
-    @Basic(optional = false)
+    
     @Column(name = "TLF_SEC_RPR")
     private String tlfSecRpr;
+    
     @Column(name = "EMAIL_RPR")
     private String emailRpr;
  
@@ -120,7 +111,7 @@ public class Representante implements Serializable {
         this.idRpr = idRpr;
     }
 
-    public Representante(Long idRpr, String tipoDocRpr, String numDocRpr, String primNombRpr, String segNombRpr, String primApellRpr, String segApellRpr, String sexoRpr, Date fechNacRpr, int edadRpr, String edoCivRpr, String parentescoRpr, String dirPpalRpr, String dirSecRpr, String tlfPpalRpr, String tlfSecRpr, String emailRpr, Collection<Alumno> alumnoCollection, Collection<Alumno> alumnoCollection1) {
+    public Representante(Long idRpr, String tipoDocRpr, String numDocRpr, String primNombRpr, String segNombRpr, String primApellRpr, String segApellRpr, String sexoRpr, Date fechNacRpr, String edadRpr, String edoCivRpr, String parentescoRpr, String dirPpalRpr, String dirSecRpr, String tlfPpalRpr, String tlfSecRpr, String emailRpr, Collection<Alumno> alumnoCollection, Collection<Alumno> alumnoCollection1) {
         this.idRpr = idRpr;
         this.tipoDocRpr = tipoDocRpr;
         this.numDocRpr = numDocRpr;
@@ -273,11 +264,11 @@ public class Representante implements Serializable {
         this.fechNacRpr = fechNacRpr;
     }
 
-    public int getEdadRpr() {
+    public String getEdadRpr() {
         return edadRpr;
     }
 
-    public void setEdadRpr(int edadRpr) {
+    public void setEdadRpr(String edadRpr) {
         this.edadRpr = edadRpr;
     }
 
@@ -353,37 +344,5 @@ public class Representante implements Serializable {
 
     public void setAlumnoCollection1(Collection<Alumno> alumnoCollection1) {
         this.alumnoCollection1 = alumnoCollection1;
-    }
-
-
-
-  
-    
-    
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idRpr != null ? idRpr.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Representante)) {
-            return false;
-        }
-        Representante other = (Representante) object;
-        if ((this.idRpr == null && other.idRpr != null) || (this.idRpr != null && !this.idRpr.equals(other.idRpr))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "com.virtualeduc.tuescuelavirtual.models.Representante[ idRpr=" + idRpr + " ]";
-    }
-    
+    }    
 }

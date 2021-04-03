@@ -60,9 +60,9 @@ public class ICursoServiceImpl implements ICursoService {
     }
 
     @Override
-    public AnnioEscolarDTO consultarAnnioEscolarPorAnnioEscolar(String annioEscolar) {
+    public AnnioEscolarDTO consultarAnnioEscolarPorAnnioEscolar() {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        AnnioEscolar annioescolar = annioescolarrepo.consultarAnnioEscolarByAnnio(annioEscolar);
+        AnnioEscolar annioescolar = annioescolarrepo.consultarAnnioEscolarVigente();
 
         AnnioEscolarDTO annioescolarDTO = new AnnioEscolarDTO(annioescolar);
 
@@ -168,7 +168,7 @@ public class ICursoServiceImpl implements ICursoService {
 
             an = this.anniorepo.consultarAnnioByAnnio(curso.getIdAnnio().getAnnio());
 
-            anesc = this.annioescolarrepo.consultarAnnioEscolarByAnnio(curso.getIdAnnioEsc().getIntAnnioEsc());
+            anesc = this.annioescolarrepo.consultarAnnioEscolarVigente();
 
             sec = this.seccionrepo.consultarSeccionBySeccion(curso.getIdSec().getSeccion());
 
@@ -204,7 +204,7 @@ public class ICursoServiceImpl implements ICursoService {
 
             an = this.anniorepo.consultarAnnioByAnnio(curso.getIdAnnio().getAnnio());
 
-            anesc = this.annioescolarrepo.consultarAnnioEscolarByAnnio(curso.getIdAnnioEsc().getIntAnnioEsc());
+            anesc = this.annioescolarrepo.consultarAnnioEscolarVigente();
 
             sec = this.seccionrepo.consultarSeccionBySeccion(curso.getIdSec().getSeccion());
 
@@ -245,7 +245,7 @@ public class ICursoServiceImpl implements ICursoService {
 
                 an = this.anniorepo.consultarAnnioByAnnio(curso.getIdAnnio().getAnnio());
 
-                anesc = this.annioescolarrepo.consultarAnnioEscolarByAnnio(curso.getIdAnnioEsc().getIntAnnioEsc());
+                anesc = this.annioescolarrepo.consultarAnnioEscolarVigente();
 
                 sec = this.seccionrepo.consultarSeccionBySeccion(curso.getIdSec().getSeccion());
 
