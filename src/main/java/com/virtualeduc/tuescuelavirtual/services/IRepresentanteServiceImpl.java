@@ -5,6 +5,7 @@
  */
 package com.virtualeduc.tuescuelavirtual.services;
 
+import com.virtualeduc.tuescuelavirtual.models.DTOS.RepresentanteDTO;
 import com.virtualeduc.tuescuelavirtual.models.Representante;
 import com.virtualeduc.tuescuelavirtual.repo.IRepresentanteRepo;
 import java.util.List;
@@ -43,6 +44,16 @@ public class IRepresentanteServiceImpl implements IRepresentanteService {
 //        rep=new Representante();
         return representanteRepo.save(representante);
 //        return rep;
+    }
+
+    @Override
+    public RepresentanteDTO obtenerRepresentantePorCedula(String tipodocumento, String numerodocumento) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         Representante rep=representanteRepo.findRepresentanteByTipoDocRprAndNumDocRpr(tipodocumento, numerodocumento);
+         
+         RepresentanteDTO repdto=new RepresentanteDTO(rep);
+         
+         return repdto;
     }
 
     

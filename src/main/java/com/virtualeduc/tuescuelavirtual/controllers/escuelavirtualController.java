@@ -15,6 +15,7 @@ import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.RepresentanteDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.SeccionDTO;
 import com.virtualeduc.tuescuelavirtual.models.Representante;
 import com.virtualeduc.tuescuelavirtual.models.Responses;
@@ -108,6 +109,12 @@ public class escuelavirtualController {
         return cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
     }
     
+    
+     @GetMapping(path = "/consultarepresentante/{tdoc}/{ndoc}",
+            produces = "application/json")
+     public RepresentanteDTO consultarepresentante(@PathVariable("tdoc") String tdoc,@PathVariable("ndoc") String ndoc){
+            return representanteservice.obtenerRepresentantePorCedula(tdoc, ndoc);
+     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/registraralumno",
             consumes = "application/json", produces = "application/json")
@@ -183,5 +190,7 @@ public class escuelavirtualController {
         return resp;
 
     }
+    
+    
 
 }
