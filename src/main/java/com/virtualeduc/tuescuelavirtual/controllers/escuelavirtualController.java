@@ -4,51 +4,27 @@
  * and open the template in the editor.
  */
 package com.virtualeduc.tuescuelavirtual.controllers;
-
-import com.virtualeduc.tuescuelavirtual.models.Alumno;
-import com.virtualeduc.tuescuelavirtual.models.Annio;
-import com.virtualeduc.tuescuelavirtual.models.AnnioEscolar;
-import com.virtualeduc.tuescuelavirtual.models.Curso;
-
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoCursoDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.RepresentanteDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.SeccionDTO;
 import com.virtualeduc.tuescuelavirtual.models.Representante;
-import com.virtualeduc.tuescuelavirtual.models.Responses;
-import com.virtualeduc.tuescuelavirtual.models.Seccion;
-
 import com.virtualeduc.tuescuelavirtual.services.IAlumnoService;
 import com.virtualeduc.tuescuelavirtual.services.ICursoService;
 import com.virtualeduc.tuescuelavirtual.services.IRepresentanteService;
-
+import java.util.ArrayList;
 import java.util.List;
-
-//import javax.xml.ws.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
 /**
  *
  * @author Personal
  */
-@RestController
+@Controller
 @RequestMapping("/app")
-@CrossOrigin(origins = {"http://localhost:4200"})
 public class escuelavirtualController {
 
     @Autowired
@@ -62,9 +38,29 @@ public class escuelavirtualController {
 
     Representante representante;
 
+    @GetMapping(path = "/inicio")
+    public String inicio(Model model) {
+        return "inicio";
+    }
 
+    @GetMapping(path = "/registroalumno")
+    public String registrolumno(Model model) {
+        List<CursoDTO> cursos = new ArrayList<>();
+        AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolarPorAnnioEscolar();
+        cursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
+        model.addAttribute("Cursos", cursos);
+        return "alumnos/registroalumno";
+    }
 
-    @GetMapping(path = "/consultaralumnos",
+    @GetMapping(path = "/listaralumnos")
+    public String listaralumnos(Model model) {
+        List<AlumnoCursoDTO> listaAlumnos = new ArrayList<>();
+        listaAlumnos = alumnoservice.consultarAlumnos();
+        model.addAttribute("Alumnos", listaAlumnos);
+        return "alumnos/listaralumnos";
+    }
+
+    /*@GetMapping(path = "/consultaralumnos",
             produces = "application/json")
     public @ResponseBody
     List<AlumnoCursoDTO> consultaralumnos() {
@@ -189,8 +185,5 @@ public class escuelavirtualController {
         
         return resp;
 
-    }
-    
-    
-
+    }*/
 }

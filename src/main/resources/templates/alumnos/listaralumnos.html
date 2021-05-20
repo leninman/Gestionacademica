@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+
+</head>
+<header>
+</header>
+
+<body>
+  <div class="card border-success offset-md-1" style="width: 90%;">
+    <div class="card-body text-dark">
+      <form>
+        <div class="form-row">
+          <div class="form-group col-md-1">
+            <label>Tipo</label>
+            <select id="inputTipoDoc" class="form-control">
+              <option>V</option>
+              <option>E</option>
+              <option>P</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2">
+            <label>Cedula</label>
+            <input type="text" class="form-control" id="inputNumeroDeCedula"
+            onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="8">
+          </div>
+          <div class="form-group col-md-2">
+            <label>Numero del alumno</label>
+            <input type="text" class="form-control"
+            onkeypress='return event.charCode >= 48 && event.charCode <= 57' id="inputNumeroDelAlumno">
+          </div>
+          
+        </div>
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+          <div class="btn-group mr-1" role="group" aria-label="First group">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-search"
+                style="font-size:20px;color:white"></i>Buscar</button>
+          </div>
+          <div class="btn-group mr-1" role="group" aria-label="Second group">
+            <button type="submit" class="btn btn-secondary">Limpiar</button>
+          </div>
+          <div class="btn-group mr-1" role="group" aria-label="Third group">
+              <a class="btn btn-success" th:href="@{/app/registroalumno}">Nuevo</a>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <label class="card-title" id="card-title">Listado de alumnos</label>
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>NUMERO DEL ALUMNO</th>
+              <th>CEDULA</th>
+              <th>NOMBRE Y APELLIDO</th>
+              <th>AÑO QUE CURSA</th>
+              <th>SECCION</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="alumno:${Alumnos}" id="dataRow">
+              <td th:text="${alumno.IdAl}"></td>
+              <td th:text="${alumno.tipoDocAl}+${alumno.numDocAl}"></td>
+              <td th:text="${alumno.primNombAl}+' '+${alumno.primApellAl}"></td>
+              <td th:text="${alumno.annio}"></td>
+              <td th:text="${alumno.seccion}"></td>
+              <td>
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                  <div class="btn-group mr-1" role="group" aria-label="First group">
+                    <div class="btn-group mr-1" role="group" aria-label="First group">
+                      <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
+                        title="Ver" id="btnVer"><i class="bi bi-eye"></i></button>
+                    </div>
+                  </div>
+                  <div class="btn-group mr-1" role="group" aria-label="Second group">
+                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
+                      title="Editar" id="btnEditar"><i class="bi bi-pencil-fill"></i></button>
+                  </div>
+                  <div class="btn-group mr-1" role="group" aria-label="Third group">
+                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
+                      title="Eliminar" id="btnEliminar"><i class="bi bi-trash"></i></button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
