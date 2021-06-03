@@ -9,6 +9,7 @@ import com.virtualeduc.tuescuelavirtual.models.Alumno;
 import com.virtualeduc.tuescuelavirtual.models.Annio;
 import com.virtualeduc.tuescuelavirtual.models.AnnioEscolar;
 import com.virtualeduc.tuescuelavirtual.models.Curso;
+
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoCursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioDTO;
@@ -19,23 +20,25 @@ import com.virtualeduc.tuescuelavirtual.models.DTOS.SeccionDTO;
 import com.virtualeduc.tuescuelavirtual.models.Representante;
 import com.virtualeduc.tuescuelavirtual.models.Responses;
 import com.virtualeduc.tuescuelavirtual.models.Seccion;
+
 import com.virtualeduc.tuescuelavirtual.services.IAlumnoService;
 import com.virtualeduc.tuescuelavirtual.services.ICursoService;
 import com.virtualeduc.tuescuelavirtual.services.IRepresentanteService;
-import java.util.ArrayList;
+
 import java.util.List;
+
+//import javax.xml.ws.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-import org.springframework.web.bind.annotation.RequestParam;
+
+
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,9 +46,10 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Personal
  */
-@Controller
+@RestController
 @RequestMapping("/app")
-public class escuelavirtualController {
+@CrossOrigin(origins = {"http://localhost:8080"})
+public class coreController {
 
     @Autowired
     IAlumnoService alumnoservice;
@@ -58,73 +62,13 @@ public class escuelavirtualController {
 
     Representante representante;
 
-    @GetMapping(path = "/inicio")
-    public String inicio(Model model) {
-        return "inicio";
-    }
 
-    @GetMapping(path = "/registroalumno")
-    public String registrolumno(Model model) {
-        List<CursoDTO> cursos = new ArrayList<>();
-        AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolarPorAnnioEscolar();
-        cursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
-        model.addAttribute("Cursos", cursos);
-        return "alumnos/registroalumno";
-    }
 
-    @GetMapping(path = "/listaralumnos")
-    public String listaralumnos(Model model) {
-        List<AlumnoCursoDTO> listaAlumnos = new ArrayList<>();
-        listaAlumnos = alumnoservice.consultarAlumnos();
-        model.addAttribute("Alumnos", listaAlumnos);
-        return "alumnos/listaralumnos";
-    }
-
-    @RequestMapping(path = "/consrepresentante",method = RequestMethod.GET)
-    public String consultarepresentante(@RequestParam String tipoDeDocumento,@RequestParam String numeroDeDocumento, Model model){
-        RepresentanteDTO rep = new RepresentanteDTO();
-        rep=representanteservice.obtenerRepresentantePorCedula(tipoDeDocumento, numeroDeDocumento);
-        model.addAttribute("representante",rep);
-        return "redirect:alumnos/registroalumno";
-    }
-
-    
-    
-    
- /*SERVICIOS REST*/
-    /*@GetMapping(path = "/consultaralumnos",
+    @GetMapping(path = "/consultaralumnos",
             produces = "application/json")
     public @ResponseBody
     List<AlumnoCursoDTO> consultaralumnos() {
         return alumnoservice.consultarAlumnos();
-    }
-
-    @GetMapping(path = "/consultarlistalumnos",
-            produces = "application/json")
-    public @ResponseBody
-    List<AlumnoDTO> consultarlistalumnos() {
-        return alumnoservice.consultarTodosLosAlumnos();
-    }
-
-    @GetMapping(path = "/consultarannios",
-            produces = "application/json")
-    public @ResponseBody
-    List<AnnioDTO> consultarlistannios() {
-        return cursoservice.consultarannios();
-    }
-
-    @GetMapping(path = "/consultarannioescolar",
-            produces = "application/json")
-    public @ResponseBody
-    List<AnnioEscolarDTO> consultarlistannioescolar() {
-        return cursoservice.consultaranniosesc();
-    }
-
-    @GetMapping(path = "/consultarsecciones",
-            produces = "application/json")
-    public @ResponseBody
-    List<SeccionDTO> consultarlistasecciones() {
-        return cursoservice.consultarsecciones();
     }
     
      @GetMapping(path = "/consultarcursosporperiodo",
@@ -136,7 +80,6 @@ public class escuelavirtualController {
         
         return cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
     }
-    
     
      @GetMapping(path = "/consultarepresentante/{tdoc}/{ndoc}",
             produces = "application/json")
@@ -217,5 +160,36 @@ public class escuelavirtualController {
         
         return resp;
 
+    }
+    
+     /*@GetMapping(path = "/consultarlistalumnos",
+            produces = "application/json")
+    public @ResponseBody
+    List<AlumnoDTO> consultarlistalumnos() {
+        return alumnoservice.consultarTodosLosAlumnos();
+    }
+
+    @GetMapping(path = "/consultarannios",
+            produces = "application/json")
+    public @ResponseBody
+    List<AnnioDTO> consultarlistannios() {
+        return cursoservice.consultarannios();
+    }
+
+    @GetMapping(path = "/consultarannioescolar",
+            produces = "application/json")
+    public @ResponseBody
+    List<AnnioEscolarDTO> consultarlistannioescolar() {
+        return cursoservice.consultaranniosesc();
+    }
+
+    @GetMapping(path = "/consultarsecciones",
+            produces = "application/json")
+    public @ResponseBody
+    List<SeccionDTO> consultarlistasecciones() {
+        return cursoservice.consultarsecciones();
     }*/
+    
+    
+
 }
