@@ -8,7 +8,6 @@ function mostrarrepresentante2() {
         element.style.display = 'none';
     }
 }
-
 function mostrarcursoelegido() {
     x = document.getElementById("cursoelegido");
     y = document.getElementById("tablecursos");
@@ -48,41 +47,53 @@ function mostrarcursoelegido() {
 
 }
 
-
-function mostrar() {
-
-    //var x=document.getElementById("tipoDocumento");
-    //var y=document.getElementById("numDocumento");
-    console.log(document.getElementById("tipoDocumento").nodeValue);
-    console.log(document.getElementById("numDocumento").innerHTML);
-
-
-
-
-
-}
-
+$(document).ready(function(){
+    $("#tipoDocAl").val("");
+    $("#sexoAl").val("");
+    $("#status").val("");
+    $("#estadodirppalest").val("");
+    $("#municipiodirppalest").val("");
+    $("#ciudaddirppalest").val("");
+    $("#parroquiadirppalest").val("");
+    $("#codpostaldirppalest").val("");
+    $("#estadodirsecest").val("");
+    $("#municipiodirsecest").val("");
+    $("#ciudaddirsecest").val("");
 
 
 
 
-    $("#botonBuscRep").click(function () {
-        tdoc = $("#tipoDocumento").val();
-        ndoc = $("#numDocumento").val();
-        
-        $.ajax({
-            type: "GET",
-            url: "http://localhost:8080/app/consultarcursosporperiodo",
-          
-            
-            success: function () {
-                alert(hola);
-            },
-            error: function () {
-                alert(no);
-            }
-        });
+
+
+
+
+
+    $("#sexoRpr1").val("");
+    $("#tdocrep1").val("");
+    
+});
+
+$("#botonBuscRep").click(function () {
+    $.ajax({
+        data: { tdoc: $('select[name=tdoc]').val(), ndoc: $('input:text[name=ndoc]').val() },
+        url: "http://localhost:8080/app/consultarepresentante",
+        dataType: 'json', //tipo de datos retornados
+        type: "GET"
+    }).done(function (data) {
+        console.log(data);
+        document.getElementById("primNombRpr1").setAttribute("value", data['primNombRpr']);
+        document.getElementById("segNombRpr1").setAttribute("value", data['segNombRpr']);
+        document.getElementById("primApellRpr1").setAttribute("value", data['primApellRpr']);
+        document.getElementById("segApellRpr1").setAttribute("value", data['segApellRpr']);
+        document.getElementById("edadRpr1").setAttribute("value", data['edadRpr']);
+        document.getElementById("sexoRpr1").setAttribute("value", data['sexoRpr']);
+
     });
+});
+
+
+
+
 
 
 

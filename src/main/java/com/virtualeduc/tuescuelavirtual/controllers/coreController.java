@@ -37,8 +37,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -81,9 +80,9 @@ public class coreController {
         return cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
     }
     
-     @GetMapping(path = "/consultarepresentante/{tdoc}/{ndoc}",
+     @GetMapping(path = "/consultarepresentante",
             produces = "application/json")
-     public RepresentanteDTO consultarepresentante(@PathVariable("tdoc") String tdoc,@PathVariable("ndoc") String ndoc){
+     public RepresentanteDTO consultarepresentante(@RequestParam("tdoc") String tdoc,@RequestParam("ndoc") String ndoc){
             return representanteservice.obtenerRepresentantePorCedula(tdoc, ndoc);
      }
 

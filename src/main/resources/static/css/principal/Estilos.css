@@ -18,11 +18,6 @@ body {
     height: 600px;
 }
 
-input,select{
-  
-      border-radius: 100px;
-        border: 1px solid #008F39;
-}
 
 h2 {
     font-style: italic;
@@ -109,3 +104,4 @@ h2 {
     display:block;
     align-items: center;
 }
+
