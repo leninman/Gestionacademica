@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/alumno/Estilos.css">
- 
+
 </head>
 <header>
 </header>
 
 <body>
-    
+
     <div class="card border-success mb-4 offset-md-1" style="width: 80%;">
         <div class="card-body text-dark">
             <div class="container">
@@ -170,7 +170,7 @@
                                 <div class="col-sm-2">
 
                                     <label for="parroquiadirsecest">Parroquia</label>
-                                    <select class="form-control" name="parroquiadirsecest">
+                                    <select class="form-control" name="parroquiadirsecest" id="parroquiadirsecest">
                                         <option>Guarenas</option>
                                         <option>Guatire</option>
                                     </select>
@@ -178,7 +178,7 @@
                                 <div class="col-sm-2">
 
                                     <label for="codpostaldirsecest">Cod. Postal</label>
-                                    <select class="form-control" name="codpostaldirsecest">
+                                    <select class="form-control" name="codpostaldirsecest" id="codpostaldirsecest">
                                         <option>1220</option>
                                         <option>1221</option>
                                     </select>
@@ -192,7 +192,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-2">
-                                    <select class="form-control" name="codoperadorappalest">
+                                    <select class="form-control" name="codoperadorappalest" id="codoperadorappalest">
                                         <option>0212</option>
                                         <option>0412</option>
                                         <option>0414</option>
@@ -204,11 +204,11 @@
 
                                     <input type="text" placeholder="Numero de telefono" class="form-control"
                                         onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="7"
-                                        name="textoTlfPpalAl">
+                                        name="textoTlfPpalAl" id="textoTlfPpalAl">
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="email" placeholder="Correo electronico" class="form-control"
-                                        name="emailAl">
+                                        name="emailAl" id="emailAl">
                                 </div>
                             </div>
                             <br>
@@ -219,7 +219,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-2">
-                                    <select class="form-control" name="codoperadorasecest">
+                                    <select class="form-control" name="codoperadorasecest" id="codoperadorasecest">
                                         <option>0212</option>
                                         <option>0412</option>
                                         <option>0414</option>
@@ -253,7 +253,7 @@
                             <div class="form-group" style="display: flex;align-items: center;justify-content: center;">
                                 <div class="col-md-2">
                                     <label for="tipoDocRep1">T documento</label>
-                                    <select class="form-control" name="tdocrep1" id="tdocrep1">
+                                    <select class="form-control" name="tipoDocRep1" id="tipoDocRep1">
                                         <option selected>V</option>
                                         <option>E</option>
                                         <option>P</option>
@@ -261,10 +261,11 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="numDocRep1">Numero de Cédula</label>
-                                    <input type="text" class="form-control" th:name="ndoc" id="ndoc"
+                                    <input type="text" class="form-control" th:name="numDocRep1" id="numDocRep1"
                                         onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="8">
                                 </div>
                                 <div class="col-md-6">
+                                    <br>
                                     <input type="button" class="btn btn-success" id="botonBuscRep" th:value="Buscar">
                                 </div>
                             </div>
@@ -300,10 +301,11 @@
                                 <div class="col-sm-3">
                                     <label for="sexoRpr1">Sexo</label>
                                     <select class="form-control" name="sexoRpr1" id="sexoRpr1">
-                                        <option value=" " disabled>Sexo</option>
                                         <option value="femenino">Femenino</option>
                                         <option value="masculino">Masculino</option>
                                     </select>
+                                    <input type="text" class="form-control" name="txtSexoRpr1" id="txtSexoRpr1">
+
                                 </div>
                                 <div class="col-sm-2">
                                     <label for="parentescoRpr1">Parentesco</label>
@@ -311,6 +313,8 @@
                                         <option value="madre">Madre</option>
                                         <option value="padre">Padre</option>
                                     </select>
+                                    <input type="text" class="form-control" name="txtParentescoRpr1"
+                                        id="txtParentescoRpr1">
                                 </div>
                                 <div class="col-sm-3">
                                     <label for="edoCivRpr1">Edo Civil</label>
@@ -320,6 +324,7 @@
                                         <option value="viudo">Viudo</option>
                                         <option value="divorciado">Divorciado</option>
                                     </select>
+                                    <input type="text" class="form-control" name="txtEdoCivRpr1" id="txtEdoCivRpr1">
                                 </div>
                                 <div class="col-md-3">
                                     <label for="fechNacRpr1">Fecha de nacimiento</label>
@@ -332,39 +337,48 @@
                                     <label>Direccion principal de domicilio</label>
                                     <input type="text" class="form-control" name="textoDirPpalRpr1"
                                         id="textoDirPpalRpr1">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <textarea class="form-control" name="textAreaDirPpalRpr1"
+                                                id="textAreaDirPpalRpr1" rows="2" cols="120"></textarea>
+                                        </div>
+
+                                    </div>
+
+
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <div class="col-sm-3">
-                                    <label for="estadodirppalrep1">Estado</label>
+                                    <label for="estadodirppalrep1" id="lblEstadodirppalrep1">Estado</label>
                                     <select class="form-control" name="estadodirppalrep1" id="estadodirppalrep1">
                                         <option>Miranda</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-3">
-                                    <label for="municipiodirppalrep1">Municipio</label>
+                                    <label for="municipiodirppalrep1" id="lblMunicipiodirppalrep1">Municipio</label>
                                     <select class="form-control" name="municipiodirppalrep1" id="municipiodirppalrep1">
                                         <option>Plaza</option>
                                         <option>Zamora</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label for="ciudaddirppalrep1">Ciudad</label>
+                                    <label for="ciudaddirppalrep1" id="lblCiudaddirppalrep1">Ciudad</label>
                                     <select class="form-control" name="ciudaddirppalrep1" id="ciudaddirppalrep1">
                                         <option>Guarenas</option>
                                         <option>Guatire</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label for="parroquiadirppalrep1">Parroquia</label>
+                                    <label for="parroquiadirppalrep1" id="lblParroquiadirppalrep1">Parroquia</label>
                                     <select class="form-control" name="parroquiadirppalrep1" id="parroquiadirppalrep1">
                                         <option>Guarenas</option>
                                         <option>Guatire</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label for="codpostaldirppalrep1">Código postal</label>
+                                    <label for="codpostaldirppalrep1" id="lblCodpostaldirppalrep1">Código postal</label>
                                     <select class="form-control" name="codpostaldirppalrep1" id="codpostaldirppalrep1">
                                         <option>1220</option>
                                         <option>1221</option>
@@ -376,26 +390,34 @@
                                 <div class="col-sm-12">
                                     <label>Direccion secundaria de domicilio</label>
                                     <input type="text" class="form-control" name="textoDirSecRpr1" id="textoDirSecRpr1">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <textarea class="form-control" name="textAreaDirSecRpr1"
+                                                id="textAreaDirSecRpr1" rows="2" cols="120"></textarea>
+                                        </div>
+    
+                                    </div>
                                 </div>
+                               
                             </div>
                             <br>
                             <div class="form-group row">
                                 <div class="col-sm-3">
-                                    <label for="estadodirsecrep1">Estado</label>
+                                    <label for="estadodirsecrep1" id="lblEstadodirsecrep1">Estado</label>
                                     <select class="form-control" name="estadodirsecrep1" id="estadodirsecrep1">
                                         <option>Miranda</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-3">
 
-                                    <label for="municipiodirsecrep1">Municipio</label>
+                                    <label for="municipiodirsecrep1" id="lblMunicipiodirsecrep1">Municipio</label>
                                     <select class="form-control" name="municipiodirsecrep1" id="municipiodirsecrep1">
                                         <option>Plaza</option>
                                         <option>Zamora</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label for="ciudaddirsecrep1">Ciudad</label>
+                                    <label for="ciudaddirsecrep1" id="lblCiudaddirsecrep1">Ciudad</label>
                                     <select class="form-control" name="ciudaddirsecrep1" id="ciudaddirsecrep1">
                                         <option>Guarenas</option>
                                         <option>Guatire</option>
@@ -403,7 +425,7 @@
                                 </div>
                                 <div class="col-sm-2">
 
-                                    <label for="parroquiadirsecrep1">Parroquia</label>
+                                    <label for="parroquiadirsecrep1" id="lblParroquiadirsecrep1">Parroquia</label>
                                     <select class="form-control" name="parroquiadirsecrep1" id="parroquiadirsecrep1">
                                         <option>Guarenas</option>
                                         <option>Guatire</option>
@@ -411,7 +433,7 @@
                                 </div>
                                 <div class="col-sm-2">
 
-                                    <label for="codpostaldirppalrep1">Código postal</label>
+                                    <label for="codpostaldirsecrep1" id="lblCodpostaldirsecrep1">Código postal</label>
                                     <select class="form-control" name="codpostaldirsecrep1" id="codpostaldirsecrep1">
                                         <option>1220</option>
                                         <option>1221</option>
@@ -433,12 +455,17 @@
                                         <option>0416</option>
                                         <option>0424</option>
                                     </select>
+                                    <input type="text" class="form-control" name="txtCodoperadorappalrep1" id="txtCodoperadorappalrep1"> 
+                                    
                                 </div>
                                 <div class="col-sm-4">
                                     <input type="text" placeholder="Numero de telefono" class="form-control"
                                         name="textoTlfPpalRpr1" id="textoTlfPpalRpr1"
                                         onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="7">
+                                        <input type="text" class="form-control" name="txtTextoTlfPpalRpr1" id="txtTextoTlfPpalRpr1">  
                                 </div>
+
+                               
                                 <div class="col-sm-6">
                                     <input type="email" placeholder="Correo electronico" class="form-control"
                                         name="emailRpr1" id="emailRpr1">
@@ -786,8 +813,8 @@
     <div class="card mb-4 offset-md-1" style="width: 80%;">
         <div class="form-group">
             <div class="col-sm-5">
-                <button type="submit" class="btn btn-primary">Guardar</button>
-                <button type="submit" class="btn btn-default">Cancelar</button>
+                <button type="submit" class="btn btn-success">Guardar</button>
+                <button type="submit" class="btn btn-success">Cancelar</button>
             </div>
         </div>
     </div>
