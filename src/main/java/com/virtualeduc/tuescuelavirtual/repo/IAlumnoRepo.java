@@ -8,8 +8,6 @@ package com.virtualeduc.tuescuelavirtual.repo;
 import com.virtualeduc.tuescuelavirtual.models.Alumno;
 
 import java.util.List;
-import javax.persistence.NamedQuery;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

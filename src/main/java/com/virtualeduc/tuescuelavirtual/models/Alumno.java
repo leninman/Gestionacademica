@@ -62,8 +62,8 @@ public class Alumno implements Serializable {
     @Basic(optional = false)
     @Column(name = "SEXO_AL")
     private String sexoAl;
+    
     @Basic(optional = false)
-
     @Column(name = "FECH_NAC_AL")
     @Temporal(TemporalType.DATE)
     private Date fechNacAl;
@@ -106,7 +106,7 @@ public class Alumno implements Serializable {
     private Representante idRpr1;
 
     @JoinColumn(name = "ID_CURSO", referencedColumnName = "ID_CURSO")
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
     private Curso idCurso;
 
     @JoinColumn(name = "ID_RPR2", referencedColumnName = "ID_RPR")

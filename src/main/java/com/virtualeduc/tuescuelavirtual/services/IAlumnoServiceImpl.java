@@ -4,20 +4,14 @@
  * and open the template in the editor.
  */
 package com.virtualeduc.tuescuelavirtual.services;
-
 import com.virtualeduc.tuescuelavirtual.models.Alumno;
-
-import com.virtualeduc.tuescuelavirtual.models.Representante;
 import com.virtualeduc.tuescuelavirtual.models.Responses;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoCursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
 import com.virtualeduc.tuescuelavirtual.repo.IAlumnoRepo;
 import com.virtualeduc.tuescuelavirtual.utils.Constantes;
 import java.util.ArrayList;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

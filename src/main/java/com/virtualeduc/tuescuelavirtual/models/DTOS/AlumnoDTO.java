@@ -4,14 +4,13 @@
  * and open the template in the editor.
  */
 package com.virtualeduc.tuescuelavirtual.models.DTOS;
-
 import com.virtualeduc.tuescuelavirtual.models.Alumno;
-import com.virtualeduc.tuescuelavirtual.models.Curso;
-import com.virtualeduc.tuescuelavirtual.models.Representante;
 import java.io.Serializable;
 import java.util.Date;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
-import javax.persistence.PrePersist;
 
 /**
  *
@@ -19,40 +18,59 @@ import javax.persistence.PrePersist;
  */
 public class AlumnoDTO implements Serializable {
 
-    private Long idAl;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
+	private Long idAl;
+
+    @NotEmpty(message="requerido")
     private String tipoDocAl;
 
+    @NotEmpty(message="requerido")
     private String numDocAl;
 
+    @NotEmpty(message="requerido")
     private String primNombAl;
 
     private String segNombAl;
 
+    @NotEmpty(message="requerido")
     private String primApellAl;
 
     private String segApellAl;
 
+    @NotEmpty(message="requerido")
     private String sexoAl;
 
+   
     private Date fechNacAl;
 
+    @NotEmpty(message="requerido")
     private String edadAl;
 
+    @NotEmpty(message="requerido")
     private String dirPpalAl;
 
     private String dirSecAl;
 
+    @NotEmpty(message="requerido")
     private String tlfPpalAl;
 
     private String tlfSecAl;
 
+    @NotEmpty(message="requerido")
+    @Email
     private String emailAl;
+
 
     private Date fechIngAl;
 
+    @NotEmpty(message="requerido")
     private String status;
 
+   
     private Long idRpr1;
 
     private Long idCurso;
@@ -60,75 +78,106 @@ public class AlumnoDTO implements Serializable {
     private Long idRpr2;
 
     private Date fechaCreacion;
-
+    
+    @NotBlank(message="requerido")
     private String annio;
 
+    @NotEmpty(message="requerido")
     private String annioescolar;
 
+    @NotEmpty(message="requerido")
     private String seccion;
 
+    @NotEmpty(message="requerido")
     private String tipoDocRep1;
 
+    @NotBlank(message="requerido")
     private String numDocRep1;
 
+    @NotEmpty(message="requerido")
     private String primNombRpr1;
 
     private String segNombRpr1;
 
+    @NotEmpty(message="requerido")
     private String primApellRpr1;
 
     private String segApellRpr1;
 
+    @NotEmpty(message="requerido")
     private String sexoRpr1;
 
     private Date fechNacRpr1;
 
+    @NotEmpty(message="requerido")
     private String edadRpr1;
 
+    @NotEmpty(message="requerido")
     private String edoCivRpr1;
 
+    @NotEmpty(message="requerido")
     private String parentescoRpr1;
 
+    @NotEmpty(message="requerido")
     private String dirPpalRpr1;
 
+    @NotEmpty(message="requerido")
     private String dirSecRpr1;
 
+    @NotEmpty(message="requerido")
     private String tlfPpalRpr1;
 
+    @NotEmpty(message="requerido")
     private String tlfSecRpr1;
 
+    @NotEmpty(message="requerido")
     private String emailRpr1;
 
+    @NotEmpty(message="requerido")
     private String tipoDocRep2;
 
+    @NotEmpty(message="requerido")
     private String numDocRep2;
 
+    @NotEmpty(message="requerido")
     private String primNombRpr2;
 
+    @NotEmpty(message="requerido")
     private String segNombRpr2;
 
+    @NotEmpty(message="requerido")
     private String primApellRpr2;
 
+    @NotEmpty(message="requerido")
     private String segApellRpr2;
 
+    @NotEmpty(message="requerido")
     private String sexoRpr2;
 
     private Date fechNacRpr2;
 
+    @NotEmpty(message="requerido")
     private String edadRpr2;
 
+    @NotEmpty(message="requerido")
     private String edoCivRpr2;
 
+    @NotEmpty(message="requerido")
     private String parentescoRpr2;
 
+    @NotEmpty(message="requerido")
     private String dirPpalRpr2;
 
+    @NotEmpty(message="requerido")
     private String dirSecRpr2;
 
+    @NotEmpty(message="requerido")
     private String tlfPpalRpr2;
 
+    @NotEmpty(message="requerido")
     private String tlfSecRpr2;
 
+    @NotEmpty(message="requerido")
     private String emailRpr2;
 
 //    @PrePersist
@@ -139,66 +188,88 @@ public class AlumnoDTO implements Serializable {
     public AlumnoDTO() {
     }
 
-    public AlumnoDTO(Long idAl, String tipoDocAl, String numDocAl, String primNombAl, String segNombAl, String primApellAl, String segApellAl, String sexoAl, Date fechNacAl, String edadAl, String dirPpalAl, String dirSecAl, String tlfPpalAl, String tlfSecAl, String emailAl, Date fechIngAl, String status, Long idRpr1, Long idCurso, Long idRpr2, Date fechaCreacion, String annio, String annioescolar, String seccion, String tipoDocRep1, String numDocRep1, String primNombRpr1, String segNombRpr1, String primApellRpr1, String segApellRpr1, String sexoRpr1, Date fechNacRpr1, String edadRpr1, String edoCivRpr1, String parentescoRpr1, String dirPpalRpr1, String dirSecRpr1, String tlfPpalRpr1, String tlfSecRpr1, String emailRpr1, String tipoDocRep2, String numDocRep2, String primNombRpr2, String segNombRpr2, String primApellRpr2, String segApellRpr2, String sexoRpr2, Date fechNacRpr2, String edadRpr2, String edoCivRpr2, String parentescoRpr2, String dirPpalRpr2, String dirSecRpr2, String tlfPpalRpr2, String tlfSecRpr2, String emailRpr2) {
-        this.idAl = idAl;
-        this.tipoDocAl = tipoDocAl;
-        this.numDocAl = numDocAl;
-        this.primNombAl = primNombAl;
-        this.segNombAl = segNombAl;
-        this.primApellAl = primApellAl;
-        this.segApellAl = segApellAl;
-        this.sexoAl = sexoAl;
-        this.fechNacAl = fechNacAl;
-        this.edadAl = edadAl;
-        this.dirPpalAl = dirPpalAl;
-        this.dirSecAl = dirSecAl;
-        this.tlfPpalAl = tlfPpalAl;
-        this.tlfSecAl = tlfSecAl;
-        this.emailAl = emailAl;
-        this.fechIngAl = fechIngAl;
-        this.status = status;
-        this.idRpr1 = idRpr1;
-        this.idCurso = idCurso;
-        this.idRpr2 = idRpr2;
-        this.fechaCreacion = fechaCreacion;
-        this.annio = annio;
-        this.annioescolar = annioescolar;
-        this.seccion = seccion;
-        this.tipoDocRep1 = tipoDocRep1;
-        this.numDocRep1 = numDocRep1;
-        this.primNombRpr1 = primNombRpr1;
-        this.segNombRpr1 = segNombRpr1;
-        this.primApellRpr1 = primApellRpr1;
-        this.segApellRpr1 = segApellRpr1;
-        this.sexoRpr1 = sexoRpr1;
-        this.fechNacRpr1 = fechNacRpr1;
-        this.edadRpr1 = edadRpr1;
-        this.edoCivRpr1 = edoCivRpr1;
-        this.parentescoRpr1 = parentescoRpr1;
-        this.dirPpalRpr1 = dirPpalRpr1;
-        this.dirSecRpr1 = dirSecRpr1;
-        this.tlfPpalRpr1 = tlfPpalRpr1;
-        this.tlfSecRpr1 = tlfSecRpr1;
-        this.emailRpr1 = emailRpr1;
-        this.tipoDocRep2 = tipoDocRep2;
-        this.numDocRep2 = numDocRep2;
-        this.primNombRpr2 = primNombRpr2;
-        this.segNombRpr2 = segNombRpr2;
-        this.primApellRpr2 = primApellRpr2;
-        this.segApellRpr2 = segApellRpr2;
-        this.sexoRpr2 = sexoRpr2;
-        this.fechNacRpr2 = fechNacRpr2;
-        this.edadRpr2 = edadRpr2;
-        this.edoCivRpr2 = edoCivRpr2;
-        this.parentescoRpr2 = parentescoRpr2;
-        this.dirPpalRpr2 = dirPpalRpr2;
-        this.dirSecRpr2 = dirSecRpr2;
-        this.tlfPpalRpr2 = tlfPpalRpr2;
-        this.tlfSecRpr2 = tlfSecRpr2;
-        this.emailRpr2 = emailRpr2;
-    }
 
-    public AlumnoDTO(Long idAl) {
+
+    public AlumnoDTO(Long idAl, @NotEmpty String tipoDocAl, @NotEmpty String numDocAl,
+		@NotEmpty(message = "requerido") String primNombAl, String segNombAl,
+		@NotBlank(message = "requerido") String primApellAl, String segApellAl,
+		@NotBlank(message = "requerido") String sexoAl, @NotBlank(message = "requerido") Date fechNacAl,
+		@NotBlank(message = "requerido") String edadAl, @NotBlank(message = "requerido") String dirPpalAl,
+		String dirSecAl, @NotBlank(message = "requerido") String tlfPpalAl, String tlfSecAl,
+		@NotBlank(message = "requerido") String emailAl, @NotBlank(message = "requerido") Date fechIngAl,
+		@NotBlank(message = "requerido") String status, Long idRpr1, Long idCurso, Long idRpr2, Date fechaCreacion,
+		@NotBlank(message = "requerido") String annio, @NotBlank(message = "requerido") String annioescolar,
+		@NotBlank(message = "requerido") String seccion, @NotBlank(message = "requerido") String tipoDocRep1,
+		@NotBlank(message = "requerido") String numDocRep1, @NotBlank(message = "requerido") String primNombRpr1,
+		String segNombRpr1, @NotBlank(message = "requerido") String primApellRpr1, String segApellRpr1,
+		@NotBlank(message = "requerido") String sexoRpr1, Date fechNacRpr1,
+		@NotBlank(message = "requerido") String edadRpr1, String edoCivRpr1, String parentescoRpr1, String dirPpalRpr1,
+		String dirSecRpr1, String tlfPpalRpr1, String tlfSecRpr1, String emailRpr1, String tipoDocRep2,
+		String numDocRep2, String primNombRpr2, String segNombRpr2, String primApellRpr2, String segApellRpr2,
+		String sexoRpr2, Date fechNacRpr2, String edadRpr2, String edoCivRpr2, String parentescoRpr2,
+		String dirPpalRpr2, String dirSecRpr2, String tlfPpalRpr2, String tlfSecRpr2, String emailRpr2) {
+	super();
+	this.idAl = idAl;
+	this.tipoDocAl = tipoDocAl;
+	this.numDocAl = numDocAl;
+	this.primNombAl = primNombAl;
+	this.segNombAl = segNombAl;
+	this.primApellAl = primApellAl;
+	this.segApellAl = segApellAl;
+	this.sexoAl = sexoAl;
+	this.fechNacAl = fechNacAl;
+	this.edadAl = edadAl;
+	this.dirPpalAl = dirPpalAl;
+	this.dirSecAl = dirSecAl;
+	this.tlfPpalAl = tlfPpalAl;
+	this.tlfSecAl = tlfSecAl;
+	this.emailAl = emailAl;
+	this.fechIngAl = fechIngAl;
+	this.status = status;
+	this.idRpr1 = idRpr1;
+	this.idCurso = idCurso;
+	this.idRpr2 = idRpr2;
+	this.fechaCreacion = fechaCreacion;
+	this.annio = annio;
+	this.annioescolar = annioescolar;
+	this.seccion = seccion;
+	this.tipoDocRep1 = tipoDocRep1;
+	this.numDocRep1 = numDocRep1;
+	this.primNombRpr1 = primNombRpr1;
+	this.segNombRpr1 = segNombRpr1;
+	this.primApellRpr1 = primApellRpr1;
+	this.segApellRpr1 = segApellRpr1;
+	this.sexoRpr1 = sexoRpr1;
+	this.fechNacRpr1 = fechNacRpr1;
+	this.edadRpr1 = edadRpr1;
+	this.edoCivRpr1 = edoCivRpr1;
+	this.parentescoRpr1 = parentescoRpr1;
+	this.dirPpalRpr1 = dirPpalRpr1;
+	this.dirSecRpr1 = dirSecRpr1;
+	this.tlfPpalRpr1 = tlfPpalRpr1;
+	this.tlfSecRpr1 = tlfSecRpr1;
+	this.emailRpr1 = emailRpr1;
+	this.tipoDocRep2 = tipoDocRep2;
+	this.numDocRep2 = numDocRep2;
+	this.primNombRpr2 = primNombRpr2;
+	this.segNombRpr2 = segNombRpr2;
+	this.primApellRpr2 = primApellRpr2;
+	this.segApellRpr2 = segApellRpr2;
+	this.sexoRpr2 = sexoRpr2;
+	this.fechNacRpr2 = fechNacRpr2;
+	this.edadRpr2 = edadRpr2;
+	this.edoCivRpr2 = edoCivRpr2;
+	this.parentescoRpr2 = parentescoRpr2;
+	this.dirPpalRpr2 = dirPpalRpr2;
+	this.dirSecRpr2 = dirSecRpr2;
+	this.tlfPpalRpr2 = tlfPpalRpr2;
+	this.tlfSecRpr2 = tlfSecRpr2;
+	this.emailRpr2 = emailRpr2;
+}
+
+
+
+	public AlumnoDTO(Long idAl) {
         this.idAl = idAl;
     }
 

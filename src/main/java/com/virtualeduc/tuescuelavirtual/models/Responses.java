@@ -14,7 +14,12 @@ import java.io.Serializable;
  */
 public class Responses implements Serializable {
 
-    private int responseCode;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private int responseCode;
 
     private String responseDescription;
     

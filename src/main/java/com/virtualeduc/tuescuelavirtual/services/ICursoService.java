@@ -5,15 +5,12 @@
  */
 package com.virtualeduc.tuescuelavirtual.services;
 
-import com.virtualeduc.tuescuelavirtual.models.Annio;
-import com.virtualeduc.tuescuelavirtual.models.AnnioEscolar;
-import com.virtualeduc.tuescuelavirtual.models.Curso;
+
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.SeccionDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.TurnoDTO;
-import com.virtualeduc.tuescuelavirtual.models.Seccion;
 import java.util.List;
 
 /**

@@ -1,5 +1,115 @@
-input,select{
-  
+
+.input-nombre-apellido{
       border-radius: 100px;
       border: 1px solid #008F39;
+      width: 300px;  
 }
+.input-buttons{
+      border-radius: 100px;
+      border: 1px solid #008F39;
+      background-color: #008F39;
+      font-style:normal;
+      color: white;
+      width:100px;   
+}
+
+span > i {
+      color:white;
+
+  }
+  span > #guardarAlumno {
+     
+      background-color: #008F39;
+      color: white;
+      
+      width:100px;
+     
+  }
+.input-cedula{
+      border-radius: 100px;
+      border: 1px solid #008F39;
+      width: 200px;   
+}
+.input-cmb-cedula{
+      border-radius: 100px;
+      border: 1px solid #008F39;
+      width: 60px;
+      text-align: center;   
+}
+.input-fech-nac{
+      border-radius: 100px;
+      border: 1px solid #008F39;
+      width: 255px;    
+}
+
+.input-fech-nac-rep{
+      border-radius: 100px;
+      border: 1px solid #008F39;
+      width: 150px;    
+}
+.input-fech-ing{
+      border-radius: 100px;
+      border: 1px solid #008F39;
+      width: 200px;    
+}
+.input-edad{ 
+      border-radius: 100px;
+      border: 1px solid #008F39;
+      width: 50px;     
+}
+.input-sexo{ 
+      border-radius: 100px;
+      border: 1px solid #008F39;
+      width: 100px;   
+}
+
+.input-parentesco{ 
+      border-radius: 100px;
+      border: 1px solid #008F39;
+      width: 110px;   
+}
+
+.input-ed-civ{ 
+      border-radius: 100px;
+      border: 1px solid #008F39;
+      width: 105px;   
+}
+.input-est-acad{
+      border-radius: 100px;
+      border: 1px solid #008F39;
+      width: 100px;     
+}
+.input-txtDireccion{ 
+      border-radius: 100px;
+      border: 1px solid #008F39;
+      width: 92%;    
+}
+.input-estado{ 
+      border-radius: 100px;
+      border: 1px solid #008F39;
+      width: 120px;    
+}
+.input-cod-operadora{ 
+      border-radius: 100px;
+      border: 1px solid #008F39;
+      width: 80px;    
+}
+
+.input-num-tlf{ 
+      border-radius: 100px;
+      border: 1px solid #008F39;
+      width: 200px;    
+}
+
+.input-email{ 
+      border-radius: 100px;
+      border: 1px solid #008F39;
+      width: 400px;    
+}
+
+
+
+
+
+
+

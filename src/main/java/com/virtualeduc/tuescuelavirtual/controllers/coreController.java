@@ -24,16 +24,13 @@ import com.virtualeduc.tuescuelavirtual.models.Seccion;
 import com.virtualeduc.tuescuelavirtual.services.IAlumnoService;
 import com.virtualeduc.tuescuelavirtual.services.ICursoService;
 import com.virtualeduc.tuescuelavirtual.services.IRepresentanteService;
-
 import java.util.List;
-
-//import javax.xml.ws.Response;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -88,13 +85,22 @@ public class coreController {
 
     @RequestMapping(method = RequestMethod.POST, path = "/registraralumno",
             consumes = "application/json", produces = "application/json")
-    public Responses registraralumno(@RequestBody AlumnoDTO alumnoDTO) {
+    public Responses registraralumno(@Valid @RequestBody AlumnoDTO alumnoDTO,BindingResult result,Model model) {
 
         String tipoDocRpr;
 
         String numDocRpr;
+                
         
-        alumnoDTO.setStatus("ACTIVO");
+        /*if(result.hasErrors()) {
+        	Map<String,String> errores=new HashMap<>();
+        	result.getFieldErrors().forEach(err->{
+        		errores.put(err.getField(),"El campo ".concat(err.getField()).concat(" ".concat(err.getDefaultMessage())));
+        	});
+        	model.addAttribute("error", errores);
+        }*/
+        
+        
         
         Responses resp = new Responses();
         
@@ -127,7 +133,7 @@ public class coreController {
         alumno.setIdCurso(curso);
 
         //CONSULTA POR EL NUMERO DE CEDULA SI EL REPRESENTANTE ESTE REGISTRADO
-        //SI NO ESTE REGISTRADO LO GUARDA Y SI YA EXISTE TOMA ESE REPRESENTANTE COMO EL
+        //SI NO ESTA REGISTRADO LO GUARDA Y SI YA EXISTE TOMA ESE REPRESENTANTE COMO EL
         //REPRESENTANTE DEL ALUMNO QUE SE VA A REGISTRAR
         tipoDocRpr = alumnoDTO.getTipoDocRep1();
         numDocRpr = alumnoDTO.getNumDocRep1();

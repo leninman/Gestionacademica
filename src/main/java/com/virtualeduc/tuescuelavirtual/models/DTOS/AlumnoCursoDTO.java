@@ -18,7 +18,12 @@ import java.io.Serializable;
  */
 public class AlumnoCursoDTO implements Serializable {
 
-    private Long IdAl;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Long IdAl;
 
     private String tipoDocAl;
 

@@ -14,7 +14,13 @@ import java.util.Date;
  * @author Lenin
  */
 public class RepresentanteDTO implements Serializable{
-      private Long idRpr;
+      /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+	private Long idRpr;
     
    
     private String tipoDocRpr;

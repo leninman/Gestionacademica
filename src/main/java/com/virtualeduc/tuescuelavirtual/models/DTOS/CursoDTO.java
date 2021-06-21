@@ -4,11 +4,8 @@
  * and open the template in the editor.
  */
 package com.virtualeduc.tuescuelavirtual.models.DTOS;
-
-import com.virtualeduc.tuescuelavirtual.models.Annio;
-import com.virtualeduc.tuescuelavirtual.models.AnnioEscolar;
 import com.virtualeduc.tuescuelavirtual.models.Curso;
-import com.virtualeduc.tuescuelavirtual.models.Seccion;
+
 
 /**
  *

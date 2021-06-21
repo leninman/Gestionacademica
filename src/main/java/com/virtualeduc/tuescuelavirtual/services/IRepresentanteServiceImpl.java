@@ -4,12 +4,9 @@
  * and open the template in the editor.
  */
 package com.virtualeduc.tuescuelavirtual.services;
-
 import com.virtualeduc.tuescuelavirtual.models.DTOS.RepresentanteDTO;
 import com.virtualeduc.tuescuelavirtual.models.Representante;
 import com.virtualeduc.tuescuelavirtual.repo.IRepresentanteRepo;
-import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
