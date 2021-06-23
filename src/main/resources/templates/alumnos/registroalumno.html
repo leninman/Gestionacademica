@@ -19,9 +19,10 @@
             <div class="card-body" style="text-align:left;width:100%">
                 <div class="container">
                     <div class="col-md-20">
-                        <form class="form-horizontal" th:action="@{/app/registraralumno}" th:object="${alumnoDTO}"
-                            id="formAlumno" name="formAlumno" method="post">
+                        <form class="form-horizontal" id="formAlumno" name="formAlumno" method="post">
                             <br>
+
+                            <!--************************ALUMNO*********************************-->
                             <div class="row">
                                 <div class="col-sm-4">&nbsp;</div>
                                 <div class="form-group col-md-4">
@@ -84,19 +85,19 @@
                                 <div class="col-sm-2">
                                     <label for="sexoAl" class="col-form-label">Sexo*</label>
                                     <select class="input-sexo" name="sexoAl" id="sexoAl">
-                                        <option value="femenino">Femenino</option>
-                                        <option value="masculino">Masculino</option>
+                                        <option value="femenino">FEMENINO</option>
+                                        <option value="masculino">MASCULINO</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-3">
-                                    <label for="status" class="col-form-label">Estado Académico</label>
+                                    <label for="status" class="col-form-label">Est Académico*</label>
                                     <select class="input-est-acad" name="status" id="status">
-                                        <option value="activo">Activo</option>
-                                        <option value="retirado">Retirado</option>
+                                        <option value="activo">ACTIVO</option>
+                                        <option value="retirado">RETIRADO</option>
                                     </select>
                                 </div>
                                 <div class="col-md-5">
-                                    <label for="fechIngAl" class="col-form-label">Fecha de ingreso</label>
+                                    <label for="fechIngAl" class="col-form-label">Fecha de ingreso*</label>
                                     <input type="date" class="input-fech-ing" name="fechIngAl" id="fechIngAl">
                                 </div>
                             </div>
@@ -104,7 +105,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <label for="textoDirPpalAl" class="col-form-label">Direccion principal de
-                                        domicilio</label>
+                                        domicilio*</label>
                                     <input type="text" class="input-txtDireccion" name="textoDirPpalAl"
                                         id="textoDirPpalAl">
                                 </div>
@@ -112,34 +113,34 @@
                             <br>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label for="estadodirppalest" class="col-form-label">Estado</label>
+                                    <label for="estadodirppalest" class="col-form-label">Estado*</label>
                                     <select class="input-estado" name="estadodirppalest" id="estadodirppalest">
-                                        <option>Miranda</option>
+                                        <option>MIRANDA</option>
                                     </select>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="municipiodirppalest" class="col-form-label">Municipio</label>
+                                    <label for="municipiodirppalest" class="col-form-label">Municipio*</label>
                                     <select class="input-estado" name="municipiodirppalest" id="municipiodirppalest">
-                                        <option>Plaza</option>
-                                        <option>Zamora</option>
+                                        <option>PLAZA</option>
+                                        <option>ZAMORA</option>
                                     </select>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="ciudaddirppalest" class="col-form-label">Ciudad</label>
+                                    <label for="ciudaddirppalest" class="col-form-label">Ciudad*</label>
                                     <select class="input-estado" name="ciudaddirppalest" id="ciudaddirppalest">
-                                        <option>Guarenas</option>
-                                        <option>Guatire</option>
+                                        <option>GUARENAS</option>
+                                        <option>GUATIRE</option>
                                     </select>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="parroquiadirppalest" class="col-form-label">Parroquia</label>
+                                    <label for="parroquiadirppalest" class="col-form-label">Parroquia*</label>
                                     <select class="input-estado" name="parroquiadirppalest" id="parroquiadirppalest">
-                                        <option>Guarenas</option>
-                                        <option>Guatire</option>
+                                        <option>GUARENAS</option>
+                                        <option>GUATIRE</option>
                                     </select>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="codpostaldirppalest" class="col-form-label">Cod. Postal</label>
+                                    <label for="codpostaldirppalest" class="col-form-label">Cod. Postal*</label>
                                     <select class="input-estado" name="codpostaldirppalest" id="codpostaldirppalest">
                                         <option>1220</option>
                                         <option>1221</option>
@@ -159,31 +160,31 @@
                                 <div class="col-sm-2">
                                     <label for="estadodirsecest" class="col-form-label">Estado</label>
                                     <select class="input-estado" name="estadodirsecest" id="estadodirsecest">
-                                        <option>Miranda</option>
+                                        <option>MIRANDA</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-2">
 
                                     <label for="municipiodirsecest" class="col-form-label">Municipio</label>
                                     <select class="input-estado" name="municipiodirsecest" id="municipiodirsecest">
-                                        <option>Plaza</option>
-                                        <option>Zamora</option>
+                                        <option>PLAZA</option>
+                                        <option>ZAMORA</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-2">
 
                                     <label for="ciudaddirsecest" class="col-form-label">Ciudad</label>
                                     <select class="input-estado" name="ciudaddirsecest" id="ciudaddirsecest">
-                                        <option>Guarenas</option>
-                                        <option>Guatire</option>
+                                        <option>GUARENAS</option>
+                                        <option>GUATIRE</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-2">
 
                                     <label for="parroquiadirsecest" class="col-form-label">Parroquia</label>
                                     <select class="input-estado" name="parroquiadirsecest" id="parroquiadirsecest">
-                                        <option>Guarenas</option>
-                                        <option>Guatire</option>
+                                        <option>GUARENAS</option>
+                                        <option>GUATIRE</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-2">
@@ -198,7 +199,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <label class="col-form-label">Información de Contacto Principal</label>
+                                    <label class="col-form-label">Información de Contacto Principal*</label>
                                 </div>
                             </div>
                             <div class="row">
@@ -250,11 +251,10 @@
                             <br>
                             <br>
                             <br>
+                            <!--************************FIN ALUMNO*********************************-->
+
 
                             <!--************************REPRESENTANTE PRINCIPAL*********************************-->
-
-
-
                             <div class="row">
                                 <div class="col-sm-4">&nbsp;</div>
                                 <div class="form-group col-md-8">
@@ -267,7 +267,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-md-8">
-                                    <label for="numDocRep1" class="col-form-label">Numero de Cédula</label>
+                                    <label for="numDocRep1" class="col-form-label">Numero de Cédula*</label>
                                     <select class="input-cmb-cedula" name="tipoDocRep1" id="tipoDocRep1">
                                         <option selected>V</option>
                                         <option>E</option>
@@ -281,7 +281,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="primNombRpr1" class="col-form-label">Primer nombre</label>
+                                    <label for="primNombRpr1" class="col-form-label">Primer nombre*</label>
                                     <input type="text" class="input-nombre-apellido" name="primNombRpr1"
                                         id="primNombRpr1">
                                 </div>
@@ -294,7 +294,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="primApellRpr1" class="col-form-label">Primer apellido</label>
+                                    <label for="primApellRpr1" class="col-form-label">Primer apellido*</label>
                                     <input type="text" class="input-nombre-apellido" name="primApellRpr1"
                                         id="primApellRpr1">
                                 </div>
@@ -307,143 +307,154 @@
                             <br>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <label for="fechNacRpr1" class="col-form-label">Fec nac</label>
+                                    <label for="fechNacRpr1" class="col-form-label">Fec nac*</label>
                                     <input type="date" class="input-fech-nac-rep" name="fechNacRpr1" id="fechNacRpr1">
                                 </div>
                                 <div class="col-sm-2">
-                                    <label for="edadRpr1" class="col-form-label">Edad</label>
+                                    <label for="edadRpr1" class="col-form-label">Edad*</label>
                                     <input type="text" class="input-edad" name="edadRpr1" id="edadRpr1"
                                         onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2">
                                 </div>
                                 <div class="col-sm-2">
-                                    <label for="sexoRpr1" class="col-form-label">Sexo</label>
+                                    <label for="sexoRpr1" class="col-form-label">Sexo*</label>
                                     <select class="input-sexo" name="sexoRpr1" id="sexoRpr1">
-                                        <option value="femenino">Femenino</option>
-                                        <option value="masculino">Masculino</option>
+                                        <option value="femenino">FEMENINO</option>
+                                        <option value="masculino">MASCULINO</option>
                                     </select>
                                     <input type="text" class="input-sexo" name="txtSexoRpr1" id="txtSexoRpr1">
                                 </div>
                                 <div class="col-sm-2">
-                                    <label for="parentescoRpr1" class="col-form-label">Par</label>
+                                    <label for="parentescoRpr1" class="col-form-label">Pco*</label>
                                     <select class="input-parentesco" name="parentescoRpr1" id="parentescoRpr1">
-                                        <option value="madre">Madre</option>
-                                        <option value="padre">Padre</option>
-                                        <option value="otro">Otro</option>
+                                        <option value="madre">MADRE</option>
+                                        <option value="padre">PADRE</option>
+                                        <option value="otro">OTRO</option>
                                     </select>
                                     <input type="text" class="input-parentesco" name="txtParentescoRpr1"
                                         id="txtParentescoRpr1">
-                                    <input type="text" class="form-control" name="txtOtroParentescoRpr1"
+                                    <input type="text" class="input-parentesco" name="txtOtroParentescoRpr1"
                                         id="txtOtroParentescoRpr1">
                                 </div>
                                 <div class="col-sm-3">
-                                    <label for="edoCivRpr1" class="col-form-label">Edo Civ</label>
+                                    <label for="edoCivRpr1" class="col-form-label">Edo Civ*</label>
                                     <select class="input-ed-civ" name="edoCivRpr1" id="edoCivRpr1">
-                                        <option value="casado">Casado</option>
-                                        <option value="soltero">Soltero</option>
-                                        <option value="viudo">Viudo</option>
-                                        <option value="divorciado">Divorciado</option>
+                                        <option value="casado">CASADO</option>
+                                        <option value="soltero">SOLTERO</option>
+                                        <option value="viudo">VIUDO</option>
+                                        <option value="divorciado">DIVORCIADO</option>
                                     </select>
                                     <input type="text" class="input-ed-civ" name="txtEdoCivRpr1" id="txtEdoCivRpr1">
                                 </div>
-                                
                             </div>
                             <br>
-                            <div class="form-group row">
+                            <div class="row">
                                 <div class="col-sm-12">
-                                    <label>Direccion principal de domicilio</label>
-                                    <input type="text" class="form-control" name="textoDirPpalRpr1"
+                                    <label class="col-form-label">Direccion principal de domicilio*</label>
+                                    <input type="text" class="input-txtDireccion" name="textoDirPpalRpr1"
                                         id="textoDirPpalRpr1">
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <textarea class="form-control" name="textAreaDirPpalRpr1"
+                                            <textarea class="input-txtDireccion" name="textAreaDirPpalRpr1"
                                                 id="textAreaDirPpalRpr1" rows="2" cols="120"></textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-sm-3">
-                                    <label for="estadodirppalrep1" id="lblEstadodirppalrep1">Estado</label>
-                                    <select class="form-control" name="estadodirppalrep1" id="estadodirppalrep1">
-                                        <option>Miranda</option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-3">
-                                    <label for="municipiodirppalrep1" id="lblMunicipiodirppalrep1">Municipio</label>
-                                    <select class="form-control" name="municipiodirppalrep1" id="municipiodirppalrep1">
-                                        <option>Plaza</option>
-                                        <option>Zamora</option>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <label for="estadodirppalrep1" id="lblEstadodirppalrep1"
+                                        class="col-form-label">Estado*</label>
+                                    <select class="input-estado" name="estadodirppalrep1" id="estadodirppalrep1">
+                                        <option>MIRANDA</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label for="ciudaddirppalrep1" id="lblCiudaddirppalrep1">Ciudad</label>
-                                    <select class="form-control" name="ciudaddirppalrep1" id="ciudaddirppalrep1">
-                                        <option>Guarenas</option>
-                                        <option>Guatire</option>
+                                    <label for="municipiodirppalrep1" id="lblMunicipiodirppalrep1"
+                                        class="col-form-label">Municipio*</label>
+                                    <select class="input-estado" name="municipiodirppalrep1" id="municipiodirppalrep1">
+                                        <option>PLAZA</option>
+                                        <option>ZAMORA</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label for="parroquiadirppalrep1" id="lblParroquiadirppalrep1">Parroquia</label>
-                                    <select class="form-control" name="parroquiadirppalrep1" id="parroquiadirppalrep1">
-                                        <option>Guarenas</option>
-                                        <option>Guatire</option>
+                                    <label for="ciudaddirppalrep1" id="lblCiudaddirppalrep1"
+                                        class="col-form-label">Ciudad*</label>
+                                    <select class="input-estado" name="ciudaddirppalrep1" id="ciudaddirppalrep1">
+                                        <option>GUARENAS</option>
+                                        <option>GUATIRE</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label for="codpostaldirppalrep1" id="lblCodpostaldirppalrep1">Código
-                                        postal</label>
-                                    <select class="form-control" name="codpostaldirppalrep1" id="codpostaldirppalrep1">
+                                    <label for="parroquiadirppalrep1" id="lblParroquiadirppalrep1"
+                                        class="col-form-label">Parroquia*</label>
+                                    <select class="input-estado" name="parroquiadirppalrep1" id="parroquiadirppalrep1">
+                                        <option>GUARENAS</option>
+                                        <option>GUATIRE</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label for="codpostaldirppalrep1" id="lblCodpostaldirppalrep1"
+                                        class="col-form-label">Código
+                                        postal*</label>
+                                    <select class="input-estado" name="codpostaldirppalrep1" id="codpostaldirppalrep1">
                                         <option>1220</option>
                                         <option>1221</option>
                                     </select>
                                 </div>
                             </div>
                             <br>
-                            <div class="form-group row">
+                            <div class="row">
                                 <div class="col-sm-12">
-                                    <label>Direccion secundaria de domicilio</label>
-                                    <input type="text" class="form-control" name="textoDirSecRpr1" id="textoDirSecRpr1">
+                                    <label class="col-form-label">Direccion secundaria de domicilio</label>
+                                    <input type="text" class="input-txtDireccion" name="textoDirSecRpr1"
+                                        id="textoDirSecRpr1">
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <textarea class="form-control" name="textAreaDirSecRpr1"
+                                            <textarea class="input-txtDireccion" name="textAreaDirSecRpr1"
                                                 id="textAreaDirSecRpr1" rows="2" cols="120"></textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <br>
-                            <div class="form-group row">
-                                <div class="col-sm-3">
-                                    <label for="estadodirsecrep1" id="lblEstadodirsecrep1">Estado</label>
-                                    <select class="form-control" name="estadodirsecrep1" id="estadodirsecrep1">
-                                        <option>Miranda</option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-3">
-                                    <label for="municipiodirsecrep1" id="lblMunicipiodirsecrep1">Municipio</label>
-                                    <select class="form-control" name="municipiodirsecrep1" id="municipiodirsecrep1">
-                                        <option>Plaza</option>
-                                        <option>Zamora</option>
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <label for="estadodirsecrep1" id="lblEstadodirsecrep1"
+                                        class="col-form-label">Estado</label>
+                                    <select class="input-estado" name="estadodirsecrep1" id="estadodirsecrep1">
+                                        <option>MIRANDA</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label for="ciudaddirsecrep1" id="lblCiudaddirsecrep1">Ciudad</label>
-                                    <select class="form-control" name="ciudaddirsecrep1" id="ciudaddirsecrep1">
-                                        <option>Guarenas</option>
-                                        <option>Guatire</option>
+                                    <label for="municipiodirsecrep1" id="lblMunicipiodirsecrep1"
+                                        class="col-form-label">Municipio</label>
+                                    <select class="input-estado" name="municipiodirsecrep1" id="municipiodirsecrep1">
+                                        <option>PLAZA</option>
+                                        <option>ZAMORA</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label for="parroquiadirsecrep1" id="lblParroquiadirsecrep1">Parroquia</label>
-                                    <select class="form-control" name="parroquiadirsecrep1" id="parroquiadirsecrep1">
-                                        <option>Guarenas</option>
-                                        <option>Guatire</option>
+                                    <label for="ciudaddirsecrep1" id="lblCiudaddirsecrep1"
+                                        class="col-form-label">Ciudad</label>
+                                    <select class="input-estado" name="ciudaddirsecrep1" id="ciudaddirsecrep1">
+                                        <option>GUARENAS</option>
+                                        <option>GUATIRE</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label for="codpostaldirsecrep1" id="lblCodpostaldirsecrep1">Código
+                                    <label for="parroquiadirsecrep1" id="lblParroquiadirsecrep1"
+                                        class="col-form-label">Parroquia</label>
+                                    <select class="input-estado" name="parroquiadirsecrep1" id="parroquiadirsecrep1">
+                                        <option>GUARENAS</option>
+                                        <option>GUATIRE</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label for="codpostaldirsecrep1" id="lblCodpostaldirsecrep1"
+                                        class="col-form-label">Código
                                         postal</label>
-                                    <select class="form-control" name="codpostaldirsecrep1" id="codpostaldirsecrep1">
+                                    <select class="input-estado" name="codpostaldirsecrep1" id="codpostaldirsecrep1">
                                         <option>1220</option>
                                         <option>1221</option>
                                     </select>
@@ -452,56 +463,59 @@
                             <br>
                             <div class="row">
                                 <div class="col">
-                                    <label>Información de Contacto Principal</label>
+                                    <label class="col-form-label">Información de Contacto Principal*</label>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-sm-2">
-                                    <select class="form-control" name="codoperadorappalrep1" id="codoperadorappalrep1">
+                            <div class="row">
+                                <div class="col-sm-1">
+                                    <select class="input-cod-operadora" name="codoperadorappalrep1"
+                                        id="codoperadorappalrep1">
                                         <option>0212</option>
                                         <option>0412</option>
                                         <option>0414</option>
                                         <option>0416</option>
                                         <option>0424</option>
                                     </select>
-                                    <input type="text" class="form-control" name="txtCodoperadorappalrep1"
+                                    <input type="text" class="input-cod-operadora" name="txtCodoperadorappalrep1"
                                         id="txtCodoperadorappalrep1">
                                 </div>
-                                <div class="col-sm-4">
-                                    <input type="text" placeholder="Numero de telefono" class="form-control"
+                                <div class="col-sm-2">
+                                    <input type="text" placeholder="Numero de telefono" class="input-num-tlf"
                                         name="textoTlfPpalRpr1" id="textoTlfPpalRpr1"
                                         onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="7">
-                                    <input type="text" class="form-control" name="txtTextoTlfPpalRpr1"
+                                    <input type="text" class="input-num-tlf" name="txtTextoTlfPpalRpr1"
                                         id="txtTextoTlfPpalRpr1">
                                 </div>
+                                <div class="col-sm-2">&nbsp;</div>
                                 <div class="col-sm-6">
-                                    <input type="email" placeholder="Correo electronico" class="form-control"
+                                    <input type="email" placeholder="Correo electronico" class="input-email"
                                         name="emailRpr1" id="emailRpr1">
                                 </div>
                             </div>
                             <br>
                             <div class="row">
                                 <div class="col">
-                                    <label>Información de Contacto Secundario</label>
+                                    <label class="col-form-label">Información de Contacto Secundario</label>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-sm-2">
-                                    <select class="form-control" name="codoperadorasecrep1" id="codoperadorasecrep1">
+                            <div class="row">
+                                <div class="col-sm-1">
+                                    <select class="input-cod-operadora" name="codoperadorasecrep1"
+                                        id="codoperadorasecrep1">
                                         <option>0212</option>
                                         <option>0412</option>
                                         <option>0414</option>
                                         <option>0416</option>
                                         <option>0424</option>
                                     </select>
-                                    <input type="text" class="form-control" name="txtCodoperadorasecrep1"
+                                    <input type="text" class="input-cod-operadora" name="txtCodoperadorasecrep1"
                                         id="txtCodoperadorasecrep1">
                                 </div>
-                                <div class="col-sm-4">
-                                    <input type="text" placeholder="Numero de telefono" class="form-control"
+                                <div class="col-sm-2">
+                                    <input type="text" placeholder="Numero de telefono" class="input-num-tlf"
                                         name="textoTlfSecRpr1" id="textoTlfSecRpr1"
                                         onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="7">
-                                    <input type="text" class="form-control" name="txtTextoTlfSecRpr1"
+                                    <input type="text" class="input-num-tlf" name="txtTextoTlfSecRpr1"
                                         id="txtTextoTlfSecRpr1">
                                 </div>
                             </div>
@@ -513,155 +527,167 @@
                                     representante secundario ?
                                 </div>
                             </div>
-
-
-
+                            <br>
+                            <br>
+                            <br>
                             <!--************************FIN REPRESENTANTE PRINCIPAL*********************************-->
 
 
-                            <!--************************FORMULARIO DEL REPRESENTANTE SECUNDARIO*********************************-->
-
-
-                            <div class="col-md-10 offset-md-1" id="datosRepSec" style="display: none;">
-
+                            <!--************************ REPRESENTANTE SECUNDARIO*********************************-->
+                            <div id="datosRepSec" style="display: none;">
+                                <div class="row">
+                                    <div class="col-sm-4">&nbsp;</div>
+                                    <div class="form-group col-md-8">
+                                        <h5>
+                                            <b>Información básica del representante secundario</b>
+                                        </h5>
+                                    </div>
+                                </div>
                                 <br>
-                                <legend style="text-align: center;">Informacion básica del representante secundario
-                                </legend>
                                 <br>
-                                <br>
-                                <div class="form-group"
-                                    style="display: flex;align-items: center;justify-content: center;">
-                                    <div class="col-md-2">
-                                        <label for="tipoDocRep2">T documento</label>
-                                        <select class="form-control" name="tipoDocRep2" id="tipoDocRep2">
+
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <label for="numDocRep2" class="col-form-label">Numero de Cédula*</label>
+                                        <select class="input-cmb-cedula" name="tipoDocRep2" id="tipoDocRep2">
                                             <option selected>V</option>
                                             <option>E</option>
                                             <option>P</option>
                                         </select>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="numDocRep2">Numero de Cédula</label>
-                                        <input type="text" class="form-control" th:name="numDocRep2" id="numDocRep2"
+                                        <input name="numDocRep2" id="numDocRep2" class="input-cedula"
                                             onkeypress='return event.charCode >= 48 && event.charCode <= 57'
                                             maxlength="8">
+                                        <input type="button" class="input-buttons" id="botonBuscRep2" value="Buscar">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="primNombRpr2" class="col-form-label">Primer nombre*</label>
+                                        <input type="text" class="input-nombre-apellido" name="primNombRpr2"
+                                            id="primNombRpr2">
                                     </div>
                                     <div class="col-md-6">
-                                        <br>
-                                        <input type="button" class="btn btn-success" id="botonBuscRep2"
-                                            th:value="Buscar">
+                                        <label for="segNombRpr2" class="col-form-label">Segundo nombre</label>
+                                        <input type="text" class="input-nombre-apellido" name="segNombRpr2"
+                                            id="segNombRpr2">
                                     </div>
                                 </div>
                                 <br>
                                 <div class="form-group row">
                                     <div class="col-md-6">
-                                        <label for="primNombRpr1">Primer nombre</label>
-                                        <input type="text" class="form-control" name="primNombRpr2" id="primNombRpr2">
+                                        <label for="primApellRpr2" class="col-form-label">Primer apellido*</label>
+                                        <input type="text" class="input-nombre-apellido" name="primApellRpr2"
+                                            id="primApellRpr2">
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="segNombRpr1">Segundo nombre</label>
-                                        <input type="text" class="form-control" name="segNombRpr2" id="segNombRpr2">
+                                        <label for="segApellRpr2" class="col-form-label">Segundo apellido</label>
+                                        <input type="text" class="input-nombre-apellido" name="segApellRpr2"
+                                            id="segApellRpr2">
                                     </div>
                                 </div>
                                 <br>
-                                <div class="form-group row">
-                                    <div class="col-md-6">
-                                        <label for="primApellRpr1">Primer apellido</label>
-                                        <input type="text" class="form-control" name="primApellRpr2" id="primApellRpr2">
+
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <label for="fechNacRpr2" class="col-form-label">Fec nac*</label>
+                                        <input type="date" class="input-fech-nac-rep" name="fechNacRpr2"
+                                            id="fechNacRpr2">
                                     </div>
-                                    <div class="col-md-6">
-                                        <label for="segApellRpr1">Segundo apellido</label>
-                                        <input type="text" class="form-control" name="segApellRpr2" id="segApellRpr2">
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="form-group row">
-                                    <div class="col-sm-1">
-                                        <label for="edadRpr2">Edad</label>
-                                        <input type="text" class="form-control" name="edadRpr2" id="edadRpr2"
+                                    <div class="col-sm-2">
+                                        <label for="edadRpr2" class="col-form-label">Edad*</label>
+                                        <input type="text" class="input-edad" name="edadRpr2" id="edadRpr2"
                                             onkeypress='return event.charCode >= 48 && event.charCode <= 57'
                                             maxlength="2">
                                     </div>
-                                    <div class="col-sm-3">
-                                        <label for="sexoRpr2">Sexo</label>
-                                        <select class="form-control" name="sexoRpr2" id="sexoRpr2">
-                                            <option value="femenino">Femenino</option>
-                                            <option value="masculino">Masculino</option>
+                                    <div class="col-sm-2">
+                                        <label for="sexoRpr2" class="col-form-label">Sexo*</label>
+                                        <select class="input-sexo" name="sexoRpr2" id="sexoRpr2">
+                                            <option value="femenino">FEMENINO</option>
+                                            <option value="masculino">MASCULINO</option>
                                         </select>
-                                        <input type="text" class="form-control" name="txtSexoRpr2" id="txtSexoRpr2">
-
+                                        <input type="text" class="input-sexo" name="txtSexoRpr2" id="txtSexoRpr2">
                                     </div>
                                     <div class="col-sm-2">
-                                        <label for="parentescoRpr2">Parentesco</label>
-                                        <select class="form-control" name="parentescoRpr2" id="parentescoRpr2">
-                                            <option value="madre">Madre</option>
-                                            <option value="padre">Padre</option>
+                                        <label for="parentescoRpr2" class="col-form-label">Pco*</label>
+                                        <select class="input-parentesco" name="parentescoRpr2" id="parentescoRpr2">
+                                            <option value="madre">MADRE</option>
+                                            <option value="padre">PADRE</option>
+                                            <option value="otro">OTRO</option>
                                         </select>
-                                        <input type="text" class="form-control" name="txtParentescoRpr2"
+                                        <input type="text" class="input-parentesco" name="txtParentescoRpr2"
                                             id="txtParentescoRpr2">
+                                        <input type="text" class="input-parentesco" name="txtOtroParentescoRpr2"
+                                            id="txtOtroParentescoRpr2">
                                     </div>
                                     <div class="col-sm-3">
-                                        <label for="edoCivRpr2">Edo Civil</label>
-                                        <select class="form-control" name="edoCivRpr2" id="edoCivRpr2">
-                                            <option value="casado">Casado</option>
-                                            <option value="soltero">Soltero</option>
-                                            <option value="viudo">Viudo</option>
-                                            <option value="divorciado">Divorciado</option>
+                                        <label for="edoCivRpr2" class="col-form-label">Edo Civ*</label>
+                                        <select class="input-ed-civ" name="edoCivRpr2" id="edoCivRpr2">
+                                            <option value="casado">CASADO</option>
+                                            <option value="soltero">SOLTERO</option>
+                                            <option value="viudo">VIUDO</option>
+                                            <option value="divorciado">DIVORCIADO</option>
                                         </select>
-                                        <input type="text" class="form-control" name="txtEdoCivRpr2" id="txtEdoCivRpr2">
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="fechNacRpr2">Fecha de nacimiento</label>
-                                        <input type="date" class="form-control" name="fechNacRpr2" id="fechNacRpr2">
+                                        <input type="text" class="input-ed-civ" name="txtEdoCivRpr2" id="txtEdoCivRpr2">
                                     </div>
                                 </div>
                                 <br>
-                                <div class="form-group row">
+
+
+                                <div class="row">
                                     <div class="col-sm-12">
-                                        <label>Direccion principal de domicilio</label>
-                                        <input type="text" class="form-control" name="textoDirPpalRpr2"
+                                        <label class="col-form-label">Direccion principal de domicilio*</label>
+                                        <input type="text" class="input-txtDireccion" name="textoDirPpalRpr2"
                                             id="textoDirPpalRpr2">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <textarea class="form-control" name="textAreaDirPpalRpr2"
+                                                <textarea class="input-txtDireccion" name="textAreaDirPpalRpr2"
                                                     id="textAreaDirPpalRpr2" rows="2" cols="120"></textarea>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-3">
-                                        <label for="estadodirppalrep2" id="lblEstadodirppalrep2">Estado</label>
-                                        <select class="form-control" name="estadodirppalrep2" id="estadodirppalrep2">
-                                            <option>Miranda</option>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <label for="estadodirppalrep2" id="lblEstadodirppalrep2"
+                                            class="col-form-label">Estado*</label>
+                                        <select class="input-estado" name="estadodirppalrep2" id="estadodirppalrep2">
+                                            <option>MIRANDA</option>
                                         </select>
                                     </div>
-                                    <div class="col-sm-3">
-                                        <label for="municipiodirppalrep2" id="lblMunicipiodirppalrep2">Municipio</label>
-                                        <select class="form-control" name="municipiodirppalrep2"
+                                    <div class="col-sm-2">
+                                        <label for="municipiodirppalrep2" id="lblMunicipiodirppalrep2"
+                                            class="col-form-label">Municipio*</label>
+                                        <select class="input-estado" name="municipiodirppalrep2"
                                             id="municipiodirppalrep2">
-                                            <option>Plaza</option>
-                                            <option>Zamora</option>
+                                            <option>PLAZA</option>
+                                            <option>ZAMORA</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-2">
-                                        <label for="ciudaddirppalrep2" id="lblCiudaddirppalrep2">Ciudad</label>
-                                        <select class="form-control" name="ciudaddirppalrep2" id="ciudaddirppalrep2">
-                                            <option>Guarenas</option>
-                                            <option>Guatire</option>
+                                        <label for="ciudaddirppalrep2" id="lblCiudaddirppalrep2"
+                                            class="col-form-label">Ciudad*</label>
+                                        <select class="input-estado" name="ciudaddirppalrep2" id="ciudaddirppalrep2">
+                                            <option>GUERENAS</option>
+                                            <option>GUATIRE</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-2">
-                                        <label for="parroquiadirppalrep2" id="lblParroquiadirppalrep2">Parroquia</label>
-                                        <select class="form-control" name="parroquiadirppalrep2"
+                                        <label for="parroquiadirppalrep2" id="lblParroquiadirppalrep2"
+                                            class="col-form-label">Parroquia*</label>
+                                        <select class="input-estado" name="parroquiadirppalrep2"
                                             id="parroquiadirppalrep2">
-                                            <option>Guarenas</option>
-                                            <option>Guatire</option>
+                                            <option>GUARENAS</option>
+                                            <option>GUATIRE</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-2">
-                                        <label for="codpostaldirppalrep2" id="lblCodpostaldirppalrep2">Código
-                                            postal</label>
-                                        <select class="form-control" name="codpostaldirppalrep2"
+                                        <label for="codpostaldirppalrep2" id="lblCodpostaldirppalrep2"
+                                            class="col-form-label">Código
+                                            postal*</label>
+                                        <select class="input-estado" name="codpostaldirppalrep2"
                                             id="codpostaldirppalrep2">
                                             <option>1220</option>
                                             <option>1221</option>
@@ -669,54 +695,60 @@
                                     </div>
                                 </div>
                                 <br>
-                                <div class="form-group row">
+                                <div class="row">
                                     <div class="col-sm-12">
-                                        <label>Direccion secundaria de domicilio</label>
-                                        <input type="text" class="form-control" name="textoDirSecRpr2"
+                                        <label class="col-form-label">Direccion secundaria de domicilio</label>
+                                        <input type="text" class="input-txtDireccion" name="textoDirSecRpr2"
                                             id="textoDirSecRpr2">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <textarea class="form-control" name="textAreaDirSecRpr2"
+                                                <textarea class="input-txtDireccion" name="textAreaDirSecRpr2"
                                                     id="textAreaDirSecRpr2" rows="2" cols="120"></textarea>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <br>
-                                <div class="form-group row">
-                                    <div class="col-sm-3">
-                                        <label for="estadodirsecrep2" id="lblEstadodirsecrep2">Estado</label>
-                                        <select class="form-control" name="estadodirsecrep2" id="estadodirsecrep2">
-                                            <option>Miranda</option>
+
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <label for="estadodirsecrep2" id="lblEstadodirsecrep2"
+                                            class="col-form-label">Estado</label>
+                                        <select class="input-estado" name="estadodirsecrep2" id="estadodirsecrep2">
+                                            <option>MIRANDA</option>
                                         </select>
                                     </div>
-                                    <div class="col-sm-3">
-                                        <label for="municipiodirsecrep2" id="lblMunicipiodirsecrep2">Municipio</label>
-                                        <select class="form-control" name="municipiodirsecrep2"
+                                    <div class="col-sm-2">
+                                        <label for="municipiodirsecrep2" id="lblMunicipiodirsecrep2"
+                                            class="col-form-label">Municipio</label>
+                                        <select class="input-estado" name="municipiodirsecrep2"
                                             id="municipiodirsecrep2">
-                                            <option>Plaza</option>
-                                            <option>Zamora</option>
+                                            <option>PLAZA</option>
+                                            <option>ZAMORA/option>
                                         </select>
                                     </div>
                                     <div class="col-sm-2">
-                                        <label for="ciudaddirsecrep2" id="lblCiudaddirsecrep2">Ciudad</label>
-                                        <select class="form-control" name="ciudaddirsecrep2" id="ciudaddirsecrep2">
-                                            <option>Guarenas</option>
-                                            <option>Guatire</option>
+                                        <label for="ciudaddirsecrep2" id="lblCiudaddirsecrep2"
+                                            class="col-form-label">Ciudad</label>
+                                        <select class="input-estado" name="ciudaddirsecrep2" id="ciudaddirsecrep2">
+                                            <option>GUARENAS</option>
+                                            <option>GUATIRE</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-2">
-                                        <label for="parroquiadirsecrep2" id="lblParroquiadirsecrep2">Parroquia</label>
-                                        <select class="form-control" name="parroquiadirsecrep2"
+                                        <label for="parroquiadirsecrep2" id="lblParroquiadirsecrep2"
+                                            class="col-form-label">Parroquia</label>
+                                        <select class="input-estado" name="parroquiadirsecrep2"
                                             id="parroquiadirsecrep2">
-                                            <option>Guarenas</option>
-                                            <option>Guatire</option>
+                                            <option>GUARENAS</option>
+                                            <option>GUATIRE</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-2">
-                                        <label for="codpostaldirsecrep2" id="lblCodpostaldirsecrep2">Código
+                                        <label for="codpostaldirsecrep2" id="lblCodpostaldirsecrep2"
+                                            class="col-form-label">Código
                                             postal</label>
-                                        <select class="form-control" name="codpostaldirsecrep2"
+                                        <select class="input-estado" name="codpostaldirsecrep2"
                                             id="codpostaldirsecrep2">
                                             <option>1220</option>
                                             <option>1221</option>
@@ -724,14 +756,17 @@
                                     </div>
                                 </div>
                                 <br>
+
+
+
                                 <div class="row">
                                     <div class="col">
-                                        <label>Información de Contacto Principal</label>
+                                        <label class="col-form-label">Información de Contacto Principal*</label>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-2">
-                                        <select class="form-control" name="codoperadorappalrep2"
+                                <div class="row">
+                                    <div class="col-sm-1">
+                                        <select class="input-cod-operadora" name="codoperadorappalrep2"
                                             id="codoperadorappalrep2">
                                             <option>0212</option>
                                             <option>0412</option>
@@ -739,31 +774,32 @@
                                             <option>0416</option>
                                             <option>0424</option>
                                         </select>
-                                        <input type="text" class="form-control" name="txtCodoperadorappalrep2"
+                                        <input type="text" class="input-cod-operadora" name="txtCodoperadorappalrep2"
                                             id="txtCodoperadorappalrep2">
                                     </div>
-                                    <div class="col-sm-4">
-                                        <input type="text" placeholder="Numero de telefono" class="form-control"
+                                    <div class="col-sm-2">
+                                        <input type="text" placeholder="Numero de telefono" class="input-num-tlf"
                                             name="textoTlfPpalRpr2" id="textoTlfPpalRpr2"
                                             onkeypress='return event.charCode >= 48 && event.charCode <= 57'
                                             maxlength="7">
-                                        <input type="text" class="form-control" name="txtTextoTlfPpalRpr2"
+                                        <input type="text" class="input-num-tlf" name="txtTextoTlfPpalRpr2"
                                             id="txtTextoTlfPpalRpr2">
                                     </div>
+                                    <div class="col-sm-2">&nbsp;</div>
                                     <div class="col-sm-6">
-                                        <input type="email" placeholder="Correo electronico" class="form-control"
+                                        <input type="email" placeholder="Correo electronico" class="input-email"
                                             name="emailRpr2" id="emailRpr2">
                                     </div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col">
-                                        <label>Información de Contacto Secundario</label>
+                                        <label class="col-form-label">Información de Contacto Secundario</label>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-2">
-                                        <select class="form-control" name="codoperadorasecrep2"
+                                <div class="row">
+                                    <div class="col-sm-1">
+                                        <select class="input-cod-operadora" name="codoperadorasecrep2"
                                             id="codoperadorasecrep2">
                                             <option>0212</option>
                                             <option>0412</option>
@@ -771,116 +807,101 @@
                                             <option>0416</option>
                                             <option>0424</option>
                                         </select>
-                                        <input type="text" class="form-control" name="txtCodoperadorasecrep2"
+                                        <input type="text" class="input-cod-operadora" name="txtCodoperadorasecrep2"
                                             id="txtCodoperadorasecrep2">
                                     </div>
-                                    <div class="col-sm-4">
-                                        <input type="text" placeholder="Numero de telefono" class="form-control"
+                                    <div class="col-sm-2">
+                                        <input type="text" placeholder="Numero de telefono" class="input-num-tlf"
                                             name="textoTlfSecRpr2" id="textoTlfSecRpr2"
                                             onkeypress='return event.charCode >= 48 && event.charCode <= 57'
                                             maxlength="7">
-                                        <input type="text" class="form-control" name="txtTextoTlfSecRpr2"
+                                        <input type="text" class="input-num-tlf" name="txtTextoTlfSecRpr2"
                                             id="txtTextoTlfSecRpr2">
                                     </div>
                                 </div>
-                                <br>
-
-                            </div><!-- /.col-lg-12 -->
-
-
-                            <!--************************FIN DEL FORMULARIO DEL REPRESENTANTE SECUNDARIO*********************************-->
-
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <!--************************FIN REPRESENTANTE SECUNDARIO*********************************-->
 
 
-
-                            <div class="col-md-10 offset-md-1">
-
-                                <br>
-                                <legend style="text-align: center;">Informacion del curso</legend>
-                                <br>
-                                <br>
-                                <div class="form-group" style="text-align: center;">
-                                    <table id="tablecursos" class="table table-striped table-hover"
-                                        style="display: block;">
-                                        <thead>
-                                            <tr>
-                                                <th>NUMERO DEL CURSO</th>
-                                                <th>AÑO</th>
-                                                <th>SECCION</th>
-                                                <th>TURNO</th>
-                                                <th>NIVEL</th>
-                                                <th>ESPECIALIDAD</th>
-                                                <th>ACCION</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr th:each="curso:${Cursos}">
-                                                <td th:text="${curso.idCurso}"></td>
-                                                <td th:text="${curso.annio}"></td>
-                                                <td th:text="${curso.seccion}"></td>
-                                                <td th:text="${curso.turno}"></td>
-                                                <td th:text="${curso.nivel}"></td>
-                                                <td th:text="${curso.especialidad}"></td>
-                                                <td>
-
-                                                    <a class="btn btn-success" onclick="mostrarcursoelegido();">Asignar
-                                                        curso</a>
-
-                                                </td>
-
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <div class="row" id="titulocursoelegido" style="display: flex;display: none;">
-                                    <h5>Curso elegido</h5>
-                                </div>
-                                <div class="row" id="cursoelegido" style="align-content:center;display: none;">
-
-
-                                    <!--<div class="col-sm-2">
-                                        <label>Periodo escolar</label>
-                                        <input disabled type="text" class="form-control" name="anescelegido"
-                                            id="anescelegido">
-                                    </div>-->
-                                    <div class="col-sm-2">
-                                        <label>Año que cursa</label>
-                                        <input disabled type="text" class="form-control" name="annioelegido"
-                                            id="annioelegido">
-                                    </div>
-                                    <div class="col-sm-1">
-                                        <label>Seccion</label>
-                                        <input disabled type="text" class="form-control" name="secelegida"
-                                            id="secelegida">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <label>Turno</label>
-                                        <input disabled type="text" class="form-control" name="turnoelegido"
-                                            id="turnoelegido">
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <label>Nivel</label>
-                                        <input disabled type="text" class="form-control" name="nivel" id="nivel">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <label>Especialidad</label>
-                                        <input disabled type="text" class="form-control" name="especialidad"
-                                            id="especialidad">
-                                    </div>
-
+                            <!--************************CURSO*********************************-->
+                            <div class="row">
+                                <div class="col-sm-4">&nbsp;</div>
+                                <div class="form-group col-md-8">
+                                    <h5>
+                                        <b>Información del curso</b>
+                                    </h5>
                                 </div>
                             </div>
+                            <br>
+                            <div class="row" id="rowtablecursos">
+                                <table id="tablecursos" class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>NUMERO DEL CURSO</th>
+                                            <th>AÑO</th>
+                                            <th>SECCION</th>
+                                            <th>TURNO</th>
+                                            <th>NIVEL</th>
+                                            <th>ESPECIALIDAD</th>
+                                            <th>ACCION</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="curso:${Cursos}">
+                                            <td th:text="${curso.idCurso}"></td>
+                                            <td th:text="${curso.annio}"></td>
+                                            <td th:text="${curso.seccion}"></td>
+                                            <td th:text="${curso.turno}"></td>
+                                            <td th:text="${curso.nivel}"></td>
+                                            <td th:text="${curso.especialidad}"></td>
+                                            <td>
 
+                                                <input type="button" class="input-buttons" value="Asignar" onclick="mostrarcursoelegido();">
 
+                                            </td>
 
-                            <div class="form-group">
-                                <div class="col-md-10 offset-md-1">
-                                    <input type="button" class="input-buttons" name="guardarAlumno" id="guardarAlumno"
-                                    value="Registrar">
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            
+                            <div class="row" id="cursoelegido" style="align-content:center;display: none;">
+                                <div class="col-sm-2">
+                                    <label>Año que cursa</label>
+                                    <input disabled type="text" class="form-control" name="annioelegido"
+                                        id="annioelegido">
+                                </div>
+                                <div class="col-sm-1">
+                                    <label>Seccion</label>
+                                    <input disabled type="text" class="form-control" name="secelegida" id="secelegida">
+                                </div>
+                                <div class="col-sm-2">
+                                    <label>Turno</label>
+                                    <input disabled type="text" class="form-control" name="turnoelegido"
+                                        id="turnoelegido">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>Nivel</label>
+                                    <input disabled type="text" class="form-control" name="nivel" id="nivel">
+                                </div>
+                                <div class="col-sm-2">
+                                    <label>Especialidad</label>
+                                    <input disabled type="text" class="form-control" name="especialidad"
+                                        id="especialidad">
+                                </div>
+
+                            </div>
+                            <br>
+                            <br>
+                            <div class="row">
+                                    <input type="submit" class="input-buttons" name="guardarAlumno" id="guardarAlumno"
+                                        value="Registrar">
                                     <input type="button" class="input-buttons" value="Limpiar" id="btnLimpiar">
                                     <input type="button" class="input-buttons" value="Salir" id="btnSalir">
-                                </div>
                             </div>
                         </form>
                     </div>
@@ -891,8 +912,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="/js/registroalumno.js"></script>
+    <script src="/js/jquery-validate/dist/jquery.validate.min.js"></script>
+    <script src="/js/validaAlumno.js"></script>
 
 </body>
 
