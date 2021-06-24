@@ -320,15 +320,15 @@ $("#guardarAlumno").click(function () {
   var sexoRpr2;
   var edoCivRpr2;
 
-  if (!valida()) {
+ /*if (!valida()) {
     alert("DEBE COMPLETAR LOS CAMPOS REQUERIDOS");
-    return;
+    return false;
   }
 
   if(!cursoasignado){
     alert("DEBE REALIZAR LA ASIGNACION DE UN CURSO AL ALUMNO");
-    return;
-  }
+    return false;
+  }*/
 
   dirPppalAl =
     $("#textoDirPpalAl").val() +
@@ -374,8 +374,8 @@ $("#guardarAlumno").click(function () {
     $("#codoperadorappalest").val() + "-" + $("#textoTlfPpalAl").val();
 
   if (
-    $("#codoperadorappalest").val() == null &&
-    $("#textoTlfPpalAl").val() == ""
+    $("#codoperadorasecest").val() == null &&
+    $("#textoTlfSecAl").val() == ""
   ) {
     tlfSecAl = tlfPpalAl;
   } else {
@@ -601,10 +601,10 @@ $("#guardarAlumno").click(function () {
     dataType: "json",
     async: false,
     cache: false,
-    success: function (response) {},
-  }).done(function () {
-    alert("ALUMNO Y REPRESENTANTE(S) REGISTRADO(S) CORRECTAMENTE");
-    window.location.href = "/app/listaralumnos";
+    success: function (response) {
+      alert("ALUMNO Y REPRESENTANTE(S) REGISTRADO(S) CORRECTAMENTE");
+      window.location.href = "/app/listaralumnos";
+    },
   });
 });
 

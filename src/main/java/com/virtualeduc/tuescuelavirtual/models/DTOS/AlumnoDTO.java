@@ -25,52 +25,38 @@ public class AlumnoDTO implements Serializable {
 
 	private Long idAl;
 
-    @NotEmpty(message="requerido")
     private String tipoDocAl;
 
-    @NotEmpty(message="requerido")
     private String numDocAl;
 
-    @NotEmpty(message="requerido")
     private String primNombAl;
 
     private String segNombAl;
 
-    @NotEmpty(message="requerido")
     private String primApellAl;
 
     private String segApellAl;
 
-    @NotEmpty(message="requerido")
     private String sexoAl;
 
-   
     private Date fechNacAl;
 
-    @NotEmpty(message="requerido")
     private String edadAl;
 
-    @NotEmpty(message="requerido")
     private String dirPpalAl;
 
     private String dirSecAl;
 
-    @NotEmpty(message="requerido")
     private String tlfPpalAl;
 
     private String tlfSecAl;
 
-    @NotEmpty(message="requerido")
-    @Email
     private String emailAl;
-
 
     private Date fechIngAl;
 
-    @NotEmpty(message="requerido")
     private String status;
 
-   
     private Long idRpr1;
 
     private Long idCurso;
@@ -79,105 +65,74 @@ public class AlumnoDTO implements Serializable {
 
     private Date fechaCreacion;
     
-    @NotBlank(message="requerido")
     private String annio;
 
-    @NotEmpty(message="requerido")
     private String annioescolar;
 
-    @NotEmpty(message="requerido")
     private String seccion;
 
-    @NotEmpty(message="requerido")
     private String tipoDocRep1;
 
-    @NotBlank(message="requerido")
     private String numDocRep1;
 
-    @NotEmpty(message="requerido")
     private String primNombRpr1;
 
     private String segNombRpr1;
 
-    @NotEmpty(message="requerido")
     private String primApellRpr1;
 
     private String segApellRpr1;
 
-    @NotEmpty(message="requerido")
     private String sexoRpr1;
 
     private Date fechNacRpr1;
 
-    @NotEmpty(message="requerido")
     private String edadRpr1;
 
-    @NotEmpty(message="requerido")
     private String edoCivRpr1;
 
-    @NotEmpty(message="requerido")
     private String parentescoRpr1;
 
-    @NotEmpty(message="requerido")
     private String dirPpalRpr1;
 
-    @NotEmpty(message="requerido")
     private String dirSecRpr1;
 
-    @NotEmpty(message="requerido")
     private String tlfPpalRpr1;
 
-    @NotEmpty(message="requerido")
     private String tlfSecRpr1;
 
-    @NotEmpty(message="requerido")
     private String emailRpr1;
 
-    @NotEmpty(message="requerido")
     private String tipoDocRep2;
 
-    @NotEmpty(message="requerido")
     private String numDocRep2;
 
-    @NotEmpty(message="requerido")
     private String primNombRpr2;
 
-    @NotEmpty(message="requerido")
     private String segNombRpr2;
 
-    @NotEmpty(message="requerido")
     private String primApellRpr2;
 
-    @NotEmpty(message="requerido")
     private String segApellRpr2;
 
-    @NotEmpty(message="requerido")
     private String sexoRpr2;
 
     private Date fechNacRpr2;
 
-    @NotEmpty(message="requerido")
     private String edadRpr2;
 
-    @NotEmpty(message="requerido")
     private String edoCivRpr2;
 
-    @NotEmpty(message="requerido")
     private String parentescoRpr2;
 
-    @NotEmpty(message="requerido")
     private String dirPpalRpr2;
 
-    @NotEmpty(message="requerido")
     private String dirSecRpr2;
 
-    @NotEmpty(message="requerido")
     private String tlfPpalRpr2;
 
-    @NotEmpty(message="requerido")
     private String tlfSecRpr2;
 
-    @NotEmpty(message="requerido")
     private String emailRpr2;
 
 //    @PrePersist
@@ -190,24 +145,21 @@ public class AlumnoDTO implements Serializable {
 
 
 
-    public AlumnoDTO(Long idAl, @NotEmpty String tipoDocAl, @NotEmpty String numDocAl,
-		@NotEmpty(message = "requerido") String primNombAl, String segNombAl,
-		@NotBlank(message = "requerido") String primApellAl, String segApellAl,
-		@NotBlank(message = "requerido") String sexoAl, @NotBlank(message = "requerido") Date fechNacAl,
-		@NotBlank(message = "requerido") String edadAl, @NotBlank(message = "requerido") String dirPpalAl,
-		String dirSecAl, @NotBlank(message = "requerido") String tlfPpalAl, String tlfSecAl,
-		@NotBlank(message = "requerido") String emailAl, @NotBlank(message = "requerido") Date fechIngAl,
-		@NotBlank(message = "requerido") String status, Long idRpr1, Long idCurso, Long idRpr2, Date fechaCreacion,
-		@NotBlank(message = "requerido") String annio, @NotBlank(message = "requerido") String annioescolar,
-		@NotBlank(message = "requerido") String seccion, @NotBlank(message = "requerido") String tipoDocRep1,
-		@NotBlank(message = "requerido") String numDocRep1, @NotBlank(message = "requerido") String primNombRpr1,
-		String segNombRpr1, @NotBlank(message = "requerido") String primApellRpr1, String segApellRpr1,
-		@NotBlank(message = "requerido") String sexoRpr1, Date fechNacRpr1,
-		@NotBlank(message = "requerido") String edadRpr1, String edoCivRpr1, String parentescoRpr1, String dirPpalRpr1,
-		String dirSecRpr1, String tlfPpalRpr1, String tlfSecRpr1, String emailRpr1, String tipoDocRep2,
-		String numDocRep2, String primNombRpr2, String segNombRpr2, String primApellRpr2, String segApellRpr2,
-		String sexoRpr2, Date fechNacRpr2, String edadRpr2, String edoCivRpr2, String parentescoRpr2,
-		String dirPpalRpr2, String dirSecRpr2, String tlfPpalRpr2, String tlfSecRpr2, String emailRpr2) {
+
+
+
+
+	public AlumnoDTO(Long idAl, String tipoDocAl, String numDocAl, String primNombAl, String segNombAl, String primApellAl,
+		String segApellAl, String sexoAl, Date fechNacAl, String edadAl, String dirPpalAl, String dirSecAl,
+		String tlfPpalAl, String tlfSecAl, String emailAl, Date fechIngAl, String status, Long idRpr1, Long idCurso,
+		Long idRpr2, Date fechaCreacion, String annio, String annioescolar, String seccion, String tipoDocRep1,
+		String numDocRep1, String primNombRpr1, String segNombRpr1, String primApellRpr1, String segApellRpr1,
+		String sexoRpr1, Date fechNacRpr1, String edadRpr1, String edoCivRpr1, String parentescoRpr1,
+		String dirPpalRpr1, String dirSecRpr1, String tlfPpalRpr1, String tlfSecRpr1, String emailRpr1,
+		String tipoDocRep2, String numDocRep2, String primNombRpr2, String segNombRpr2, String primApellRpr2,
+		String segApellRpr2, String sexoRpr2, Date fechNacRpr2, String edadRpr2, String edoCivRpr2,
+		String parentescoRpr2, String dirPpalRpr2, String dirSecRpr2, String tlfPpalRpr2, String tlfSecRpr2,
+		String emailRpr2) {
 	super();
 	this.idAl = idAl;
 	this.tipoDocAl = tipoDocAl;
@@ -266,6 +218,10 @@ public class AlumnoDTO implements Serializable {
 	this.tlfSecRpr2 = tlfSecRpr2;
 	this.emailRpr2 = emailRpr2;
 }
+
+
+
+
 
 
 

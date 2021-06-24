@@ -2,7 +2,7 @@
   border-radius: 100px;
   border: 1px solid #008f39;
   width: 300px;
-  text-transform: uppercase;
+  
 }
 .input-buttons {
   border-radius: 100px;
@@ -80,7 +80,7 @@ span > #guardarAlumno {
   border-radius: 100px;
   border: 1px solid #008f39;
   width: 92%;
-  text-transform: uppercase;
+  
 }
 .input-estado {
   border-radius: 100px;

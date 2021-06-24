@@ -31,6 +31,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -59,7 +61,7 @@ public class coreController {
     Representante representante;
 
 
-
+//CONSULTA LA LISTA DE ALUMNOS ACTIVOS
     @GetMapping(path = "/consultaralumnos",
             produces = "application/json")
     public @ResponseBody
@@ -67,6 +69,7 @@ public class coreController {
         return alumnoservice.consultarAlumnos();
     }
     
+//CONSULTA LA LISTA DE CURSOS DEL PERIODO ACUAL VIGENTE QUE ESTE ACTIVO
      @GetMapping(path = "/consultarcursosporperiodo",
             produces = "application/json")
     public @ResponseBody
@@ -76,32 +79,42 @@ public class coreController {
         
         return cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
     }
+     
+
+//CONSULTA DE ALUMNO POR CEDULA
+     @GetMapping(path = "/consultaralumno",
+            produces = "application/json")
+     public @ResponseBody AlumnoDTO consultaralumno(@RequestParam("tdoc") String tdoc,@RequestParam("ndoc") String ndoc){
+         
+    	 AlumnoDTO alumnoDTO;
+         
+         Alumno alumno=new Alumno();
+    	 
+         alumno= alumnoservice.consultarAlumnoPorCedula(tdoc, ndoc);
+         
+         alumnoDTO=new AlumnoDTO(alumno);
+         
+         return alumnoDTO;
+     }
     
+     
+//CONSULTA DE REPRESENTANTE POR CEDULA
      @GetMapping(path = "/consultarepresentante",
             produces = "application/json")
-     public RepresentanteDTO consultarepresentante(@RequestParam("tdoc") String tdoc,@RequestParam("ndoc") String ndoc){
+     public @ResponseBody RepresentanteDTO consultarepresentante(@RequestParam("tdoc") String tdoc,@RequestParam("ndoc") String ndoc){
             return representanteservice.obtenerRepresentantePorCedula(tdoc, ndoc);
      }
 
-    @RequestMapping(method = RequestMethod.POST, path = "/registraralumno",
-            consumes = "application/json", produces = "application/json")
-    public Responses registraralumno(@Valid @RequestBody AlumnoDTO alumnoDTO,BindingResult result,Model model) {
+//REGISTRA ALUMNO Y SUS REPRESENTANTES EN EL SISTEMA  
+    @PostMapping(path = "/registraralumno",consumes = "application/json", produces = "application/json")
+    public @ResponseBody Responses registraralumno(@RequestBody AlumnoDTO alumnoDTO,Model model) {
 
         String tipoDocRpr;
 
         String numDocRpr;
-                
         
-        /*if(result.hasErrors()) {
-        	Map<String,String> errores=new HashMap<>();
-        	result.getFieldErrors().forEach(err->{
-        		errores.put(err.getField(),"El campo ".concat(err.getField()).concat(" ".concat(err.getDefaultMessage())));
-        	});
-        	model.addAttribute("error", errores);
-        }*/
-        
-        
-        
+        model.addAttribute("alumnoDTO", new AlumnoDTO());
+                  
         Responses resp = new Responses();
         
         Alumno alumno = new Alumno(alumnoDTO);
@@ -147,18 +160,19 @@ public class coreController {
         }
 
         if (alumnoDTO.getTipoDocRep2() != null && alumnoDTO.getNumDocRep2() != null) {
-
             tipoDocRpr = alumnoDTO.getTipoDocRep2();
             numDocRpr = alumnoDTO.getNumDocRep2();
             Representante rep2 = representanteservice.consultarepresentanteporcedula(tipoDocRpr, numDocRpr);
             if (rep2 == null) {
                 Representante rep = new Representante();
                 rep2 = rep.setRepresentante2(alumnoDTO);
-                alumno.setIdRpr1(representanteservice.guardarRepresentante(rep2));
+                alumno.setIdRpr2(representanteservice.guardarRepresentante(rep2));
             } else {
                 alumno.setIdRpr2(rep2);
             }
 
+        }else {
+        	alumno.setIdRpr2(rep1);
         }
 
         resp=alumnoservice.guardaAlumno(alumno);
@@ -167,33 +181,7 @@ public class coreController {
 
     }
     
-     /*@GetMapping(path = "/consultarlistalumnos",
-            produces = "application/json")
-    public @ResponseBody
-    List<AlumnoDTO> consultarlistalumnos() {
-        return alumnoservice.consultarTodosLosAlumnos();
-    }
 
-    @GetMapping(path = "/consultarannios",
-            produces = "application/json")
-    public @ResponseBody
-    List<AnnioDTO> consultarlistannios() {
-        return cursoservice.consultarannios();
-    }
-
-    @GetMapping(path = "/consultarannioescolar",
-            produces = "application/json")
-    public @ResponseBody
-    List<AnnioEscolarDTO> consultarlistannioescolar() {
-        return cursoservice.consultaranniosesc();
-    }
-
-    @GetMapping(path = "/consultarsecciones",
-            produces = "application/json")
-    public @ResponseBody
-    List<SeccionDTO> consultarlistasecciones() {
-        return cursoservice.consultarsecciones();
-    }*/
     
     
 

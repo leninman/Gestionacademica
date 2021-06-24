@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.virtualeduc.tuescuelavirtual.services;
+
 import com.virtualeduc.tuescuelavirtual.models.Alumno;
 import com.virtualeduc.tuescuelavirtual.models.Responses;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoCursoDTO;
@@ -25,114 +26,116 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Service
 public class IAlumnoServiceImpl implements IAlumnoService {
 
-    @Autowired
-    IAlumnoRepo alumnorepo;
+	@Autowired
+	IAlumnoRepo alumnorepo;
 
-    @Autowired
-    IRepresentanteService representanteservice;
-    
-    @Autowired
-    ICursoService cursoservice;
+	@Autowired
+	IRepresentanteService representanteservice;
 
-    Alumno alumno;
-    
-    AlumnoDTO alumnoDTO;
+	@Autowired
+	ICursoService cursoservice;
 
-    @Override
-    @Transactional
-    @ResponseStatus(HttpStatus.CREATED)
-    public Responses guardaAlumno(Alumno alumno) {
+	Alumno alumno;
+
+	AlumnoDTO alumnoDTO;
+
+	@Override
+	@Transactional
+	@ResponseStatus(HttpStatus.CREATED)
+	public Responses guardaAlumno(Alumno alumno) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        String tipoDocAl = alumno.getTipoDocAl();
-        String numDocAl = alumno.getNumDocAl();
-        Responses resp = new Responses();
+		// String tipoDocAl = alumno.getTipoDocAl();
+		// String numDocAl = alumno.getNumDocAl();
+		Responses resp = new Responses();
 
-        //CONSULTA SI EL ALUMNO YA EXISTE, SI EXISTE RETORNA EL ALUMNO, SI NO LO GUARDA
-        this.alumno = consultarAlumnoPorCedula(tipoDocAl, numDocAl);
-        if (this.alumno == null) {
-           
-            this.alumno = alumnorepo.save(alumno);
-            if (this.alumno != null) {
-                resp.setResponseCode(Constantes.ALUMNO_REGISTRADO_CODE);
-                resp.setResponseDescription(Constantes.ALUMNO_REGISTRADO_DESC);
-               // alumnoDTO=new AlumnoDTO(this.alumno);
-//                resp.setAlumno(this.alumnoDTO);
-            }
+		// CONSULTA SI EL ALUMNO YA EXISTE, SI EXISTE RETORNA EL ALUMNO, SI NO LO GUARDA
+		// this.alumno = consultarAlumnoPorCedula(tipoDocAl, numDocAl);
+		// if (this.alumno == null) {
 
-        } else {
+		this.alumno = alumnorepo.save(alumno);
 
-            resp.setResponseCode(Constantes.ALUMNO_EXISTE_CODE);
-            resp.setResponseDescription(Constantes.ALUMNO_EXISTE_DESC);
-            alumno.setIdAl(this.alumno.getIdAl());
+		if (this.alumno != null) {
+			resp.setResponseCode(Constantes.ALUMNO_REGISTRADO_CODE);
+			resp.setResponseDescription(Constantes.ALUMNO_REGISTRADO_DESC);
+			// alumnoDTO=new AlumnoDTO(this.alumno);
+//           resp.setAlumno(this.alumnoDTO);
+		}
 
-        }
+		// } else {
 
-        return resp;
-    }
+		resp.setResponseCode(Constantes.ALUMNO_EXISTE_CODE);
+		resp.setResponseDescription(Constantes.ALUMNO_EXISTE_DESC);
+		alumno.setIdAl(this.alumno.getIdAl());
 
-    /**
-     *
-     * @return
-     */
-    @Override
-    @Transactional(readOnly = true)
-    public List<AlumnoCursoDTO> consultarAlumnos() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		// }
 
-        List<Alumno> alumnos = alumnorepo.findListAlumnos();
+		return resp;
+	}
 
-        List<AlumnoCursoDTO> alumnosCursoDTO = new ArrayList<AlumnoCursoDTO>();
+	/**
+	 *
+	 * @return
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<AlumnoCursoDTO> consultarAlumnos() {
+		// throw new UnsupportedOperationException("Not supported yet."); //To change
+		// body of generated methods, choose Tools | Templates.
 
-        for (int i = 0; i < alumnos.size(); i++) {
+		List<Alumno> alumnos = alumnorepo.findListAlumnos();
 
-            Alumno al = new Alumno();
+		List<AlumnoCursoDTO> alumnosCursoDTO = new ArrayList<AlumnoCursoDTO>();
 
-            al = alumnos.get(i);
+		for (int i = 0; i < alumnos.size(); i++) {
 
-            AlumnoCursoDTO al1 = new AlumnoCursoDTO(al);
+			Alumno al = new Alumno();
 
-            alumnosCursoDTO.add(al1);
+			al = alumnos.get(i);
 
-        }
+			AlumnoCursoDTO al1 = new AlumnoCursoDTO(al);
 
-        return alumnosCursoDTO;
+			alumnosCursoDTO.add(al1);
 
-    }
+		}
 
-    @Override
-    @Transactional(readOnly = true)
-    public Alumno consultarAlumnoPorId(Long id) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        return alumnorepo.findById(id).orElse(null);
-    }
+		return alumnosCursoDTO;
 
-    @Override
-    public Alumno consultarAlumnoPorCedula(String tipoDoc, String numDoc) {
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Alumno consultarAlumnoPorId(Long id) {
+		// throw new UnsupportedOperationException("Not supported yet."); //To change
+		// body of generated methods, choose Tools | Templates.
+		return alumnorepo.findById(id).orElse(null);
+	}
+
+	@Override
+	public Alumno consultarAlumnoPorCedula(String tipoDoc, String numDoc) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates. 
+		return alumnorepo.findAlumnoByTipoDocAlAndNumDocAl(tipoDoc, numDoc);
+	}
+
+	@Override
+	public List<AlumnoDTO> consultarTodosLosAlumnos() {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        return alumnorepo.findAlumnoByTipoDocAlAndNumDocAl(tipoDoc, numDoc);
-    }
+		List<AlumnoDTO> alumnosDTO = new ArrayList<AlumnoDTO>();
 
-    @Override
-    public List<AlumnoDTO> consultarTodosLosAlumnos() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-          List<AlumnoDTO> alumnosDTO=new ArrayList<AlumnoDTO>();
-          
-          List<Alumno> alumnos=alumnorepo.findAll();
-          
-           for (int i = 0; i < alumnos.size(); i++) {
+		List<Alumno> alumnos = alumnorepo.findAll();
 
-            Alumno al = new Alumno();
+		for (int i = 0; i < alumnos.size(); i++) {
 
-            al = alumnos.get(i);
+			Alumno al = new Alumno();
 
-            AlumnoDTO al1 = new AlumnoDTO(al);
+			al = alumnos.get(i);
 
-            alumnosDTO.add(al1);
+			AlumnoDTO al1 = new AlumnoDTO(al);
 
-        }
-          
-          
-          return alumnosDTO;
-    }
+			alumnosDTO.add(al1);
+
+		}
+
+		return alumnosDTO;
+	}
 
 }
