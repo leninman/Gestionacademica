@@ -115,7 +115,7 @@ span > #guardarAlumno {
   margin-right: 0px;
 }
 
-span.error {
+.error {
   color: red;
   font-size: 0.8em;
 }

@@ -35,9 +35,11 @@ public class IAlumnoServiceImpl implements IAlumnoService {
 	@Autowired
 	ICursoService cursoservice;
 
-	Alumno alumno;
+	Alumno alumnoconsultado;;
 
 	AlumnoDTO alumnoDTO;
+	
+	Alumno alumnoguardado;
 
 	@Override
 	@Transactional
@@ -47,28 +49,27 @@ public class IAlumnoServiceImpl implements IAlumnoService {
 		// String tipoDocAl = alumno.getTipoDocAl();
 		// String numDocAl = alumno.getNumDocAl();
 		Responses resp = new Responses();
+		
+		alumnoguardado=new Alumno();
+		
+		alumnoconsultado=new Alumno();
+		
+		alumnoconsultado=this.consultarAlumnoPorCedula(alumno.getTipoDocAl(), alumno.getNumDocAl());
 
 		// CONSULTA SI EL ALUMNO YA EXISTE, SI EXISTE RETORNA EL ALUMNO, SI NO LO GUARDA
-		// this.alumno = consultarAlumnoPorCedula(tipoDocAl, numDocAl);
-		// if (this.alumno == null) {
-
-		this.alumno = alumnorepo.save(alumno);
-
-		if (this.alumno != null) {
+		if (alumnoconsultado==null) {
+			this.alumnoguardado = alumnorepo.save(alumno);
 			resp.setResponseCode(Constantes.ALUMNO_REGISTRADO_CODE);
 			resp.setResponseDescription(Constantes.ALUMNO_REGISTRADO_DESC);
-			// alumnoDTO=new AlumnoDTO(this.alumno);
-//           resp.setAlumno(this.alumnoDTO);
+			this.alumnoDTO=new AlumnoDTO(alumnoguardado);
+			
+		} else {
+			resp.setResponseCode(Constantes.ALUMNO_EXISTE_CODE);
+			resp.setResponseDescription(Constantes.ALUMNO_EXISTE_DESC);
+			this.alumnoDTO=new AlumnoDTO(alumnoconsultado);
+			//alumno.setIdAl(this.alumnoDTO.getIdAl());
 		}
-
-		// } else {
-
-		resp.setResponseCode(Constantes.ALUMNO_EXISTE_CODE);
-		resp.setResponseDescription(Constantes.ALUMNO_EXISTE_DESC);
-		alumno.setIdAl(this.alumno.getIdAl());
-
-		// }
-
+		resp.setAlumno(this.alumnoDTO);
 		return resp;
 	}
 

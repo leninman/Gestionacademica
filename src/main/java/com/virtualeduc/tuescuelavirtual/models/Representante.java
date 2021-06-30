@@ -5,7 +5,6 @@
  */
 package com.virtualeduc.tuescuelavirtual.models;
 
-
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
 import java.io.Serializable;
 import java.util.Collection;
@@ -31,318 +30,360 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "representantes")
 public class Representante implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID_RPR")
-    private Long idRpr;
-    
-    @Basic(optional = false)
-    @Column(name = "TIPO_DOC_RPR")
-    private String tipoDocRpr;
-    
-    @Basic(optional = false)
-    @Column(name = "NUM_DOC_RPR")
-    private String numDocRpr;
-    
-    @Basic(optional = false)
-    @Column(name = "PRIM_NOMB_RPR")
-    private String primNombRpr;
-    
-    @Column(name = "SEG_NOMB_RPR")
-    private String segNombRpr;
-    
-    @Basic(optional = false)
-    @Column(name = "PRIM_APELL_RPR")
-    private String primApellRpr;
-    
-    @Column(name = "SEG_APELL_RPR")
-    private String segApellRpr;
-    
-    @Basic(optional = false)
-    @Column(name = "SEXO_RPR")
-    private String sexoRpr;
-    
-    @Basic(optional = false)
-    @Column(name = "FECH_NAC_RPR")
-    @Temporal(TemporalType.DATE)
-    private Date fechNacRpr;
-    
-    @Basic(optional = false)
-    @Column(name = "EDAD_RPR")
-    private String edadRpr;
-    
-    @Basic(optional = false)
-    @Column(name = "EDO_CIV_RPR")
-    private String edoCivRpr;
-    
-    @Basic(optional = false)
-    @Column(name = "PARENTESCO_RPR")
-    private String parentescoRpr;
-    
-    @Basic(optional = false)
-    @Column(name = "DIR_PPAL_RPR")
-    private String dirPpalRpr;
-    
-    @Column(name = "DIR_SEC_RPR")
-    private String dirSecRpr;
-    
-    @Basic(optional = false)
-    @Column(name = "TLF_PPAL_RPR")
-    private String tlfPpalRpr;
-    
-    @Column(name = "TLF_SEC_RPR")
-    private String tlfSecRpr;
-    
-    @Column(name = "EMAIL_RPR")
-    private String emailRpr;
- 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idRpr1")
-    private Collection<Alumno> alumnoCollection;
-  
-    @OneToMany(mappedBy = "idRpr2")
-    private Collection<Alumno> alumnoCollection1;
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "ID_RPR")
+	private Long idRpr;
 
-    public Representante() {
-    }
+	@Basic(optional = false)
+	@Column(name = "TIPO_DOC_RPR")
+	private String tipoDocRpr;
 
-    public Representante(Long idRpr) {
-        this.idRpr = idRpr;
-    }
+	@Basic(optional = false)
+	@Column(name = "NUM_DOC_RPR")
+	private String numDocRpr;
 
-    public Representante(Long idRpr, String tipoDocRpr, String numDocRpr, String primNombRpr, String segNombRpr, String primApellRpr, String segApellRpr, String sexoRpr, Date fechNacRpr, String edadRpr, String edoCivRpr, String parentescoRpr, String dirPpalRpr, String dirSecRpr, String tlfPpalRpr, String tlfSecRpr, String emailRpr, Collection<Alumno> alumnoCollection, Collection<Alumno> alumnoCollection1) {
-        this.idRpr = idRpr;
-        this.tipoDocRpr = tipoDocRpr;
-        this.numDocRpr = numDocRpr;
-        this.primNombRpr = primNombRpr;
-        this.segNombRpr = segNombRpr;
-        this.primApellRpr = primApellRpr;
-        this.segApellRpr = segApellRpr;
-        this.sexoRpr = sexoRpr;
-        this.fechNacRpr = fechNacRpr;
-        this.edadRpr = edadRpr;
-        this.edoCivRpr = edoCivRpr;
-        this.parentescoRpr = parentescoRpr;
-        this.dirPpalRpr = dirPpalRpr;
-        this.dirSecRpr = dirSecRpr;
-        this.tlfPpalRpr = tlfPpalRpr;
-        this.tlfSecRpr = tlfSecRpr;
-        this.emailRpr = emailRpr;
-        this.alumnoCollection = alumnoCollection;
-        this.alumnoCollection1 = alumnoCollection1;
-    }
+	@Basic(optional = false)
+	@Column(name = "PRIM_NOMB_RPR")
+	private String primNombRpr;
 
-   
-    
-     public Representante setRepresentante1(AlumnoDTO alumnoDTO) {
-        Representante rep=new Representante();
-        rep.setTipoDocRpr(alumnoDTO.getTipoDocRep1());
-            rep.setNumDocRpr(alumnoDTO.getNumDocRep1());
-            rep.setPrimNombRpr(alumnoDTO.getPrimNombRpr1());
-            rep.setSegNombRpr(alumnoDTO.getSegNombRpr1());
-            rep.setPrimApellRpr(alumnoDTO.getPrimApellRpr1());
-            rep.setSegApellRpr(alumnoDTO.getSegApellRpr1());
-            
-            rep.setSexoRpr(alumnoDTO.getSexoRpr1());
-            rep.setFechNacRpr(alumnoDTO.getFechNacRpr1());
-            
-            rep.setEdadRpr(alumnoDTO.getEdadRpr1());
-            rep.setEdoCivRpr(alumnoDTO.getEdoCivRpr1());
-            rep.setParentescoRpr(alumnoDTO.getParentescoRpr1());
-            
-            rep.setDirPpalRpr(alumnoDTO.getDirPpalRpr1());
-            rep.setDirSecRpr(alumnoDTO.getDirSecRpr1());
-            
-            rep.setTlfPpalRpr(alumnoDTO.getTlfPpalRpr1());
-            rep.setTlfSecRpr(alumnoDTO.getTlfSecRpr1());
-            
-            rep.setEmailRpr(alumnoDTO.getEmailRpr1());
-            
-            return rep;
-              
-    }
-     
-     
-     public Representante setRepresentante2(AlumnoDTO alumnoDTO) {
-        Representante rep=new Representante();
-        rep.setTipoDocRpr(alumnoDTO.getTipoDocRep2());
-            rep.setNumDocRpr(alumnoDTO.getNumDocRep2());
-            rep.setPrimNombRpr(alumnoDTO.getPrimNombRpr2());
-            rep.setSegNombRpr(alumnoDTO.getSegNombRpr2());
-            rep.setPrimApellRpr(alumnoDTO.getPrimApellRpr2());
-            rep.setSegApellRpr(alumnoDTO.getSegApellRpr2());
-            
-            rep.setSexoRpr(alumnoDTO.getSexoRpr2());
-            rep.setFechNacRpr(alumnoDTO.getFechNacRpr2());
-            
-            rep.setEdadRpr(alumnoDTO.getEdadRpr2());
-            rep.setEdoCivRpr(alumnoDTO.getEdoCivRpr2());
-            rep.setParentescoRpr(alumnoDTO.getParentescoRpr2());
-            
-            rep.setDirPpalRpr(alumnoDTO.getDirPpalRpr2());
-            rep.setDirSecRpr(alumnoDTO.getDirSecRpr2());
-            
-            rep.setTlfPpalRpr(alumnoDTO.getTlfPpalRpr2());
-            rep.setTlfSecRpr(alumnoDTO.getTlfSecRpr2());
-            
-            rep.setEmailRpr(alumnoDTO.getEmailRpr2());
-            
-            return rep;
-              
-    }
+	@Column(name = "SEG_NOMB_RPR")
+	private String segNombRpr;
 
-    public Long getIdRpr() {
-        return idRpr;
-    }
+	@Basic(optional = false)
+	@Column(name = "PRIM_APELL_RPR")
+	private String primApellRpr;
 
-    public void setIdRpr(Long idRpr) {
-        this.idRpr = idRpr;
-    }
+	@Column(name = "SEG_APELL_RPR")
+	private String segApellRpr;
 
-    public String getTipoDocRpr() {
-        return tipoDocRpr;
-    }
+	@Basic(optional = false)
+	@Column(name = "SEXO_RPR")
+	private String sexoRpr;
 
-    public void setTipoDocRpr(String tipoDocRpr) {
-        this.tipoDocRpr = tipoDocRpr;
-    }
+	@Basic(optional = false)
+	@Column(name = "FECH_NAC_RPR")
+	@Temporal(TemporalType.DATE)
+	private Date fechNacRpr;
 
-    public String getNumDocRpr() {
-        return numDocRpr;
-    }
+	@Basic(optional = false)
+	@Column(name = "EDAD_RPR")
+	private String edadRpr;
 
-    public void setNumDocRpr(String numDocRpr) {
-        this.numDocRpr = numDocRpr;
-    }
+	@Basic(optional = false)
+	@Column(name = "EDO_CIV_RPR")
+	private String edoCivRpr;
 
-    public String getPrimNombRpr() {
-        return primNombRpr;
-    }
+	@Basic(optional = false)
+	@Column(name = "PARENTESCO_RPR")
+	private String parentescoRpr;
 
-    public void setPrimNombRpr(String primNombRpr) {
-        this.primNombRpr = primNombRpr;
-    }
+	@Basic(optional = false)
+	@Column(name = "DIR_PPAL_RPR")
+	private String dirPpalRpr;
 
-    public String getSegNombRpr() {
-        return segNombRpr;
-    }
+	@Basic(optional = false)
+	@Column(name = "DIR_SEC_RPR")
+	private String dirSecRpr;
 
-    public void setSegNombRpr(String segNombRpr) {
-        this.segNombRpr = segNombRpr;
-    }
+	@Basic(optional = false)
+	@Column(name = "TLF_PPAL_RPR")
+	private String tlfPpalRpr;
 
-    public String getPrimApellRpr() {
-        return primApellRpr;
-    }
+	@Basic(optional = false)
+	@Column(name = "TLF_SEC_RPR")
+	private String tlfSecRpr;
 
-    public void setPrimApellRpr(String primApellRpr) {
-        this.primApellRpr = primApellRpr;
-    }
+	@Basic(optional = false)
+	@Column(name = "EMAIL_RPR")
+	private String emailRpr;
 
-    public String getSegApellRpr() {
-        return segApellRpr;
-    }
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idRpr1")
+	private Collection<Alumno> alumnoCollection;
 
-    public void setSegApellRpr(String segApellRpr) {
-        this.segApellRpr = segApellRpr;
-    }
+	@OneToMany(mappedBy = "idRpr2")
+	private Collection<Alumno> alumnoCollection1;
 
-    public String getSexoRpr() {
-        return sexoRpr;
-    }
+	public Representante() {
+	}
 
-    public void setSexoRpr(String sexoRpr) {
-        this.sexoRpr = sexoRpr;
-    }
+	public Representante(Long idRpr) {
+		this.idRpr = idRpr;
+	}
 
-    public Date getFechNacRpr() {
-        return fechNacRpr;
-    }
+	public Representante(Long idRpr, String tipoDocRpr, String numDocRpr, String primNombRpr, String segNombRpr,
+			String primApellRpr, String segApellRpr, String sexoRpr, Date fechNacRpr, String edadRpr, String edoCivRpr,
+			String parentescoRpr, String dirPpalRpr, String dirSecRpr, String tlfPpalRpr, String tlfSecRpr,
+			String emailRpr, Collection<Alumno> alumnoCollection, Collection<Alumno> alumnoCollection1) {
+		this.idRpr = idRpr;
+		this.tipoDocRpr = tipoDocRpr;
+		this.numDocRpr = numDocRpr;
+		this.primNombRpr = primNombRpr;
+		this.segNombRpr = segNombRpr;
+		this.primApellRpr = primApellRpr;
+		this.segApellRpr = segApellRpr;
+		this.sexoRpr = sexoRpr;
+		this.fechNacRpr = fechNacRpr;
+		this.edadRpr = edadRpr;
+		this.edoCivRpr = edoCivRpr;
+		this.parentescoRpr = parentescoRpr;
+		this.dirPpalRpr = dirPpalRpr;
+		this.dirSecRpr = dirSecRpr;
+		this.tlfPpalRpr = tlfPpalRpr;
+		this.tlfSecRpr = tlfSecRpr;
+		this.emailRpr = emailRpr;
+		this.alumnoCollection = alumnoCollection;
+		this.alumnoCollection1 = alumnoCollection1;
+	}
 
-    public void setFechNacRpr(Date fechNacRpr) {
-        this.fechNacRpr = fechNacRpr;
-    }
+	public Representante setRepresentante1(AlumnoDTO alumnoDTO) {
+		Representante rep = new Representante();
+		rep.setTipoDocRpr(alumnoDTO.getTipoDocRep1());
+		rep.setNumDocRpr(alumnoDTO.getNumDocRep1());
+		rep.setPrimNombRpr(alumnoDTO.getPrimNombRpr1());
+		rep.setSegNombRpr(alumnoDTO.getSegNombRpr1());
+		rep.setPrimApellRpr(alumnoDTO.getPrimApellRpr1());
+		rep.setSegApellRpr(alumnoDTO.getSegApellRpr1());
 
-    public String getEdadRpr() {
-        return edadRpr;
-    }
+		rep.setSexoRpr(alumnoDTO.getSexoRpr1());
+		rep.setFechNacRpr(alumnoDTO.getFechNacRpr1());
 
-    public void setEdadRpr(String edadRpr) {
-        this.edadRpr = edadRpr;
-    }
+		rep.setEdadRpr(alumnoDTO.getEdadRpr1());
+		rep.setEdoCivRpr(alumnoDTO.getEdoCivRpr1());
+		rep.setParentescoRpr(alumnoDTO.getParentescoRpr1());
 
-    public String getEdoCivRpr() {
-        return edoCivRpr;
-    }
+		rep.setDirPpalRpr(alumnoDTO.getTextoDirPpalRpr1().concat(",").concat(alumnoDTO.getEstadodirppalrep1())
+				.concat(",").concat(alumnoDTO.getMunicipiodirppalrep1()).concat(",")
+				.concat(alumnoDTO.getCiudaddirppalrep1()).concat(",").concat(alumnoDTO.getParroquiadirppalrep1())
+				.concat(",").concat(alumnoDTO.getCodpostaldirppalrep1()));
 
-    public void setEdoCivRpr(String edoCivRpr) {
-        this.edoCivRpr = edoCivRpr;
-    }
+		if ((alumnoDTO.getTextoDirSecRpr1() != "" || alumnoDTO.getTextoDirSecRpr1() != null)
+				&& alumnoDTO.getEstadodirsecrep1() != null && alumnoDTO.getMunicipiodirsecrep1() != null
+				&& alumnoDTO.getCiudaddirsecrep1() != null && alumnoDTO.getParroquiadirsecrep1() != null) {
+			rep.setDirSecRpr(alumnoDTO.getTextoDirSecRpr1().concat(",").concat(alumnoDTO.getEstadodirsecrep1())
+					.concat(",").concat(alumnoDTO.getMunicipiodirsecrep1()).concat(",")
+					.concat(alumnoDTO.getCiudaddirsecrep1()).concat(",").concat(alumnoDTO.getParroquiadirsecrep1())
+					.concat(",").concat(alumnoDTO.getCodpostaldirsecrep1()));
+		} else {
+			rep.setDirSecRpr(rep.getDirPpalRpr());
+		}
 
-    public String getParentescoRpr() {
-        return parentescoRpr;
-    }
+		rep.setTlfPpalRpr(alumnoDTO.getCodoperadorappalrep1().concat("-").concat(alumnoDTO.getTextoTlfPpalRpr1()));
 
-    public void setParentescoRpr(String parentescoRpr) {
-        this.parentescoRpr = parentescoRpr;
-    }
+		if (alumnoDTO.getCodoperadorasecrep1() != null
+				&& (alumnoDTO.getTextoTlfSecRpr1() != "" || alumnoDTO.getTextoTlfSecRpr1() != null)) {
+			rep.setTlfSecRpr(alumnoDTO.getCodoperadorasecrep1().concat("-").concat(alumnoDTO.getTextoTlfSecRpr1()));
+		} else {
+			rep.setTlfSecRpr(rep.getTlfPpalRpr());
+		}
 
-    public String getDirPpalRpr() {
-        return dirPpalRpr;
-    }
+		rep.setEmailRpr(alumnoDTO.getEmailRpr1());
 
-    public void setDirPpalRpr(String dirPpalRpr) {
-        this.dirPpalRpr = dirPpalRpr;
-    }
+		return rep;
 
-    public String getDirSecRpr() {
-        return dirSecRpr;
-    }
+	}
 
-    public void setDirSecRpr(String dirSecRpr) {
-        this.dirSecRpr = dirSecRpr;
-    }
+	public Representante setRepresentante2(AlumnoDTO alumnoDTO) {
+		Representante rep = new Representante();
+		rep.setTipoDocRpr(alumnoDTO.getTipoDocRep2());
+		rep.setNumDocRpr(alumnoDTO.getNumDocRep2());
+		rep.setPrimNombRpr(alumnoDTO.getPrimNombRpr2());
+		rep.setSegNombRpr(alumnoDTO.getSegNombRpr2());
+		rep.setPrimApellRpr(alumnoDTO.getPrimApellRpr2());
+		rep.setSegApellRpr(alumnoDTO.getSegApellRpr2());
 
-    public String getTlfPpalRpr() {
-        return tlfPpalRpr;
-    }
+		rep.setSexoRpr(alumnoDTO.getSexoRpr2());
+		rep.setFechNacRpr(alumnoDTO.getFechNacRpr2());
 
-    public void setTlfPpalRpr(String tlfPpalRpr) {
-        this.tlfPpalRpr = tlfPpalRpr;
-    }
+		rep.setEdadRpr(alumnoDTO.getEdadRpr2());
+		rep.setEdoCivRpr(alumnoDTO.getEdoCivRpr2());
+		rep.setParentescoRpr(alumnoDTO.getParentescoRpr2());
 
-    public String getTlfSecRpr() {
-        return tlfSecRpr;
-    }
+		rep.setDirPpalRpr(alumnoDTO.getTextoDirPpalRpr2().concat(",").concat(alumnoDTO.getEstadodirppalrep2())
+				.concat(",").concat(alumnoDTO.getMunicipiodirppalrep2()).concat(",")
+				.concat(alumnoDTO.getCiudaddirppalrep2()).concat(",").concat(alumnoDTO.getParroquiadirppalrep2())
+				.concat(",").concat(alumnoDTO.getCodpostaldirppalrep2()));
 
-    public void setTlfSecRpr(String tlfSecRpr) {
-        this.tlfSecRpr = tlfSecRpr;
-    }
+		if ((alumnoDTO.getTextoDirSecRpr2() != "" || alumnoDTO.getTextoDirSecRpr2() != null)
+				&& alumnoDTO.getEstadodirsecrep2() != null && alumnoDTO.getMunicipiodirsecrep2() != null
+				&& alumnoDTO.getCiudaddirsecrep2() != null && (alumnoDTO.getParroquiadirsecrep2() != null)
+				&& alumnoDTO.getCodpostaldirsecrep2() != null) {
+			rep.setDirSecRpr(alumnoDTO.getTextoDirSecRpr2().concat(",").concat(alumnoDTO.getEstadodirsecrep2())
+					.concat(",").concat(alumnoDTO.getMunicipiodirsecrep2()).concat(",")
+					.concat(alumnoDTO.getCiudaddirsecrep2()).concat(",").concat(alumnoDTO.getParroquiadirsecrep2())
+					.concat(",").concat(alumnoDTO.getCodpostaldirsecrep2()));
+		} else {
+			rep.setDirSecRpr(rep.getDirPpalRpr());
+		}
 
-    public String getEmailRpr() {
-        return emailRpr;
-    }
+		rep.setTlfPpalRpr(alumnoDTO.getCodoperadorappalrep2().concat("-").concat(alumnoDTO.getTextoTlfPpalRpr2()));
 
-    public void setEmailRpr(String emailRpr) {
-        this.emailRpr = emailRpr;
-    }
+		if (alumnoDTO.getCodoperadorasecrep2() != null
+				&& (alumnoDTO.getTextoTlfSecRpr2() != "" || alumnoDTO.getTextoTlfSecRpr2() != null)) {
+			rep.setTlfSecRpr(alumnoDTO.getCodoperadorasecrep2().concat("-").concat(alumnoDTO.getTextoTlfSecRpr2()));
+		} else {
+			rep.setTlfSecRpr(rep.getTlfPpalRpr());
+		}
 
-    @XmlTransient
-    public Collection<Alumno> getAlumnoCollection() {
-        return alumnoCollection;
-    }
+		rep.setEmailRpr(alumnoDTO.getEmailRpr2());
 
-    public void setAlumnoCollection(Collection<Alumno> alumnoCollection) {
-        this.alumnoCollection = alumnoCollection;
-    }
+		return rep;
 
-    @XmlTransient
-    public Collection<Alumno> getAlumnoCollection1() {
-        return alumnoCollection1;
-    }
+	}
 
-    public void setAlumnoCollection1(Collection<Alumno> alumnoCollection1) {
-        this.alumnoCollection1 = alumnoCollection1;
-    }    
+	public Long getIdRpr() {
+		return idRpr;
+	}
+
+	public void setIdRpr(Long idRpr) {
+		this.idRpr = idRpr;
+	}
+
+	public String getTipoDocRpr() {
+		return tipoDocRpr;
+	}
+
+	public void setTipoDocRpr(String tipoDocRpr) {
+		this.tipoDocRpr = tipoDocRpr;
+	}
+
+	public String getNumDocRpr() {
+		return numDocRpr;
+	}
+
+	public void setNumDocRpr(String numDocRpr) {
+		this.numDocRpr = numDocRpr;
+	}
+
+	public String getPrimNombRpr() {
+		return primNombRpr;
+	}
+
+	public void setPrimNombRpr(String primNombRpr) {
+		this.primNombRpr = primNombRpr;
+	}
+
+	public String getSegNombRpr() {
+		return segNombRpr;
+	}
+
+	public void setSegNombRpr(String segNombRpr) {
+		this.segNombRpr = segNombRpr;
+	}
+
+	public String getPrimApellRpr() {
+		return primApellRpr;
+	}
+
+	public void setPrimApellRpr(String primApellRpr) {
+		this.primApellRpr = primApellRpr;
+	}
+
+	public String getSegApellRpr() {
+		return segApellRpr;
+	}
+
+	public void setSegApellRpr(String segApellRpr) {
+		this.segApellRpr = segApellRpr;
+	}
+
+	public String getSexoRpr() {
+		return sexoRpr;
+	}
+
+	public void setSexoRpr(String sexoRpr) {
+		this.sexoRpr = sexoRpr;
+	}
+
+	public Date getFechNacRpr() {
+		return fechNacRpr;
+	}
+
+	public void setFechNacRpr(Date fechNacRpr) {
+		this.fechNacRpr = fechNacRpr;
+	}
+
+	public String getEdadRpr() {
+		return edadRpr;
+	}
+
+	public void setEdadRpr(String edadRpr) {
+		this.edadRpr = edadRpr;
+	}
+
+	public String getEdoCivRpr() {
+		return edoCivRpr;
+	}
+
+	public void setEdoCivRpr(String edoCivRpr) {
+		this.edoCivRpr = edoCivRpr;
+	}
+
+	public String getParentescoRpr() {
+		return parentescoRpr;
+	}
+
+	public void setParentescoRpr(String parentescoRpr) {
+		this.parentescoRpr = parentescoRpr;
+	}
+
+	public String getDirPpalRpr() {
+		return dirPpalRpr;
+	}
+
+	public void setDirPpalRpr(String dirPpalRpr) {
+		this.dirPpalRpr = dirPpalRpr;
+	}
+
+	public String getDirSecRpr() {
+		return dirSecRpr;
+	}
+
+	public void setDirSecRpr(String dirSecRpr) {
+		this.dirSecRpr = dirSecRpr;
+	}
+
+	public String getTlfPpalRpr() {
+		return tlfPpalRpr;
+	}
+
+	public void setTlfPpalRpr(String tlfPpalRpr) {
+		this.tlfPpalRpr = tlfPpalRpr;
+	}
+
+	public String getTlfSecRpr() {
+		return tlfSecRpr;
+	}
+
+	public void setTlfSecRpr(String tlfSecRpr) {
+		this.tlfSecRpr = tlfSecRpr;
+	}
+
+	public String getEmailRpr() {
+		return emailRpr;
+	}
+
+	public void setEmailRpr(String emailRpr) {
+		this.emailRpr = emailRpr;
+	}
+
+	@XmlTransient
+	public Collection<Alumno> getAlumnoCollection() {
+		return alumnoCollection;
+	}
+
+	public void setAlumnoCollection(Collection<Alumno> alumnoCollection) {
+		this.alumnoCollection = alumnoCollection;
+	}
+
+	@XmlTransient
+	public Collection<Alumno> getAlumnoCollection1() {
+		return alumnoCollection1;
+	}
+
+	public void setAlumnoCollection1(Collection<Alumno> alumnoCollection1) {
+		this.alumnoCollection1 = alumnoCollection1;
+	}
 }

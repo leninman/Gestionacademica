@@ -10,6 +10,7 @@ function mostrarrepresentante2() {
     element.style.display = "none";
   }
 }
+
 function mostrarcursoelegido() {
   x = document.getElementById("cursoelegido");
   y = document.getElementById("rowtablecursos");
@@ -32,8 +33,8 @@ function mostrarcursoelegido() {
       var especialidad = cell.innerHTML;
       if (x.style.display == "none") {
         x.style.display = "flex";
-        document.getElementById("annioelegido").setAttribute("value", annio);
-        document.getElementById("secelegida").setAttribute("value", seccion);
+        document.getElementById("annio").setAttribute("value", annio);
+        document.getElementById("seccion").setAttribute("value", seccion);
         document.getElementById("turnoelegido").setAttribute("value", turno);
         document.getElementById("nivel").setAttribute("value", nivel);
         document
@@ -41,7 +42,7 @@ function mostrarcursoelegido() {
           .setAttribute("value", especialidad);
       }
       y.style.display = "none";
-      cursoasignado=true;
+      cursoasignado = true;
     };
   }
 }
@@ -123,6 +124,28 @@ $(document).ready(function () {
   rep1encontrado = 0;
   rep2encontrado = 0;
   cursoasignado = false;
+  //console.log(flag);
+
+ // $("#txtTipoDocAl").hide();
+ // $("#txtSexoAl").hide();
+ // $("#txtStatus").hide();
+ // $("#txtEstadodirppalest").hide();
+ // $("#txtMunicipiodirppalest").hide();
+ // $("#txtCiudaddirppalest").hide();
+ // $("#txtParroquiadirppalest").hide();
+ // $("#txtCodpostaldirppalest").hide();
+ // $("#txtEstadodirsecest").hide();
+//  $("#txtMunicipiodirsecest").hide();
+//  $("#txtCiudaddirsecest").hide();
+ // $("#txtParroquiadirsecest").hide();
+ // $("#txtCodpostaldirsecest").hide();
+ // $("#txtCodoperadorappalest").hide();
+  //$("#txtCodoperadorasecest").hide();
+  
+  
+  
+  
+
 });
 
 $("#parentescoRpr1").change(function () {
@@ -136,74 +159,43 @@ $("#parentescoRpr1").change(function () {
 //y mostrar los datos del representante en caso de que ya este registrado
 $("#botonBuscRep").click(function () {
   $.ajax({
-    data: {
-      tdoc: $("select[name=tipoDocRep1]").val(),
-      ndoc: $("input:text[name=numDocRep1]").val(),
-    },
-    url: "http://localhost:8080/app/consultarepresentante",
-    dataType: "json", //tipo de datos retornados
-    type: "GET",
-  })
+      data: {
+        tdoc: $("select[name=tipoDocRep1]").val(),
+        ndoc: $("input:text[name=numDocRep1]").val(),
+      },
+      url: "http://localhost:8080/app/consultarepresentante",
+      dataType: "json", //tipo de datos retornados
+      type: "GET",
+    })
     .done(function (data) {
       rep1encontrado = 1;
+      console.log(data);
       $("#primNombRpr1").val(data["primNombRpr"]);
       $("#segNombRpr1").val(data["segNombRpr"]);
       $("#primApellRpr1").val(data["primApellRpr"]);
       $("#segApellRpr1").val(data["segApellRpr"]);
       $("#edadRpr1").val(data["edadRpr"]);
-      $("#sexoRpr1").hide();
-      $("#txtSexoRpr1").show();
-      $("#txtSexoRpr1").val(data["sexoRpr"]);
-      $("#parentescoRpr1").hide();
-      $("#txtParentescoRpr1").show();
-      $("#txtParentescoRpr1").val(data["parentescoRpr"]);
-      $("#edoCivRpr1").hide();
-      $("#txtEdoCivRpr1").show();
-      $("#txtEdoCivRpr1").val(data["edoCivRpr"]);
+      $("#sexoRpr1").val(data["sexoRpr"]);
+      $("#parentescoRpr1").val(data["parentescoRpr"]);
+      $("#edoCivRpr1").val(data["edoCivRpr"]);
       $("#fechNacRpr1").val(data["fechNacRpr"]);
-      $("#textoDirPpalRpr1").hide();
-      $("#textAreaDirPpalRpr1").show();
-      $("#textAreaDirPpalRpr1").val(data["dirPpalRpr"]);
-      $("#estadodirppalrep1").hide();
-      $("#municipiodirppalrep1").hide();
-      $("#ciudaddirppalrep1").hide();
-      $("#parroquiadirppalrep1").hide();
-      $("#codpostaldirppalrep1").hide();
-      $("#lblEstadodirppalrep1").hide();
-      $("#lblMunicipiodirppalrep1").hide();
-      $("#lblCiudaddirppalrep1").hide();
-      $("#lblParroquiadirppalrep1").hide();
-      $("#lblCodpostaldirppalrep1").hide();
-      $("#textoDirSecRpr1").hide();
-      $("#textAreaDirSecRpr1").show();
-      $("#textAreaDirSecRpr1").val(data["dirSecRpr"]);
-      $("#estadodirsecrep1").hide();
-      $("#municipiodirsecrep1").hide();
-      $("#ciudaddirsecrep1").hide();
-      $("#parroquiadirsecrep1").hide();
-      $("#codpostaldirsecrep1").hide();
-      $("#lblEstadodirsecrep1").hide();
-      $("#lblMunicipiodirsecrep1").hide();
-      $("#lblCiudaddirsecrep1").hide();
-      $("#lblParroquiadirsecrep1").hide();
-      $("#lblCodpostaldirsecrep1").hide();
-      $("#codoperadorappalrep1").hide();
-      $("#textoTlfPpalRpr1").hide();
-      $("#codoperadorasecrep1").hide();
-      $("#textoTlfSecRpr1").hide();
-      $("#txtTextoTlfPpalRpr1").show();
-      $("#txtCodoperadorappalrep1").show();
-      var codigoArea = data["tlfPpalRpr"].substring(0, 4);
-      var telefono = data["tlfPpalRpr"].substring(5, 14);
-      $("#txtTextoTlfPpalRpr1").val(telefono);
-      $("#txtCodoperadorappalrep1").val(codigoArea);
+      $("#textoDirPpalRpr1").val(data["textoDirPpalRpr"]);
+      $("#estadodirppalrep1").val(data["estadodirppalrep"]);
+      $("#municipiodirppalrep1").val(data["municipiodirppalrep"]);
+      $("#ciudaddirppalrep1").val(data["ciudaddirppalrep"]);
+      $("#parroquiadirppalrep1").val(data["parroquiadirppalrep"]);
+      $("#codpostaldirppalrep1").val(data["codpostaldirppalrep"]);
+      $("#textoDirSecRpr1").val(data["textoDirSecRpr"]);
+      $("#estadodirsecrep1").val(data["estadodirsecrep"]);
+      $("#municipiodirsecrep1").val(data["municipiodirsecrep"]);
+      $("#ciudaddirsecrep1").val(data["ciudaddirsecrep"]);
+      $("#parroquiadirsecrep1").val(data["parroquiadirsecrep"]);
+      $("#codpostaldirsecrep1").val(data["codpostaldirsecrep"]);
+      $("#codoperadorappalrep1").val(data["codoperadorappalrep"]);
+      $("#textoTlfPpalRpr1").val(data["textoTlfPpalRpr"]);
+      $("#codoperadorasecrep1").val(data["codoperadorasecrep"]);
+      $("#textoTlfSecRpr1").val(data["textoTlfSecRpr"]);
       $("#emailRpr1").val(data["emailRpr"]);
-      $("#txtTextoTlfSecRpr1").show();
-      $("#txtCodoperadorasecrep1").show();
-      var codigoArea = data["tlfSecRpr"].substring(0, 4);
-      var telefono = data["tlfSecRpr"].substring(5, 14);
-      $("#txtTextoTlfSecRpr1").val(telefono);
-      $("#txtCodoperadorasecrep1").val(codigoArea);
     })
     .fail(function (data) {
       alert("El representante no se encuentra registrado");
@@ -214,82 +206,50 @@ $("#botonBuscRep").click(function () {
 //y mostrar los datos del representante en caso de que ya este registrado
 $("#botonBuscRep2").click(function () {
   $.ajax({
-    data: {
-      tdoc: $("select[name=tipoDocRep2]").val(),
-      ndoc: $("input:text[name=numDocRep2]").val(),
-    },
-    url: "http://localhost:8080/app/consultarepresentante",
-    dataType: "json", //tipo de datos retornados
-    type: "GET",
-  })
+      data: {
+        tdoc: $("select[name=tipoDocRep2]").val(),
+        ndoc: $("input:text[name=numDocRep2]").val(),
+      },
+      url: "http://localhost:8080/app/consultarepresentante",
+      dataType: "json", //tipo de datos retornados
+      type: "GET",
+    })
     .done(function (data) {
-      rep2encontrado = 1;
+      rep1encontrado = 1;
+      console.log(data);
       $("#primNombRpr2").val(data["primNombRpr"]);
       $("#segNombRpr2").val(data["segNombRpr"]);
       $("#primApellRpr2").val(data["primApellRpr"]);
       $("#segApellRpr2").val(data["segApellRpr"]);
       $("#edadRpr2").val(data["edadRpr"]);
-      $("#sexoRpr2").hide();
-      $("#txtSexoRpr2").show();
-      $("#txtSexoRpr2").val(data["sexoRpr"]);
-      $("#parentescoRpr2").hide();
-      $("#txtParentescoRpr2").show();
-      $("#txtParentescoRpr2").val(data["parentescoRpr"]);
-      $("#edoCivRpr2").hide();
-      $("#txtEdoCivRpr2").show();
-      $("#txtEdoCivRpr2").val(data["edoCivRpr"]);
+      $("#sexoRpr2").val(data["sexoRpr"]);
+      $("#parentescoRpr2").val(data["parentescoRpr"]);
+      $("#edoCivRpr2").val(data["edoCivRpr"]);
       $("#fechNacRpr2").val(data["fechNacRpr"]);
-      $("#textoDirPpalRpr2").hide();
-      $("#textAreaDirPpalRpr2").show();
-      $("#textAreaDirPpalRpr2").val(data["dirPpalRpr"]);
-      $("#estadodirppalrep2").hide();
-      $("#municipiodirppalrep2").hide();
-      $("#ciudaddirppalrep2").hide();
-      $("#parroquiadirppalrep2").hide();
-      $("#codpostaldirppalrep2").hide();
-      $("#lblEstadodirppalrep2").hide();
-      $("#lblMunicipiodirppalrep2").hide();
-      $("#lblCiudaddirppalrep2").hide();
-      $("#lblParroquiadirppalrep2").hide();
-      $("#lblCodpostaldirppalrep2").hide();
-      $("#textoDirSecRpr2").hide();
-      $("#textAreaDirSecRpr2").show();
-      $("#textAreaDirSecRpr2").val(data["dirSecRpr"]);
-      $("#estadodirsecrep2").hide();
-      $("#municipiodirsecrep2").hide();
-      $("#ciudaddirsecrep2").hide();
-      $("#parroquiadirsecrep2").hide();
-      $("#codpostaldirsecrep2").hide();
-      $("#lblEstadodirsecrep2").hide();
-      $("#lblMunicipiodirsecrep2").hide();
-      $("#lblCiudaddirsecrep2").hide();
-      $("#lblParroquiadirsecrep2").hide();
-      $("#lblCodpostaldirsecrep2").hide();
-      $("#codoperadorappalrep2").hide();
-      $("#textoTlfPpalRpr2").hide();
-      // $("#lbltxtTlfPpalRpr1").show();
-      $("#codoperadorasecrep2").hide();
-      $("#textoTlfSecRpr2").hide();
-      $("#txtTextoTlfPpalRpr2").show();
-      $("#txtCodoperadorappalrep2").show();
-      var codigoArea = data["tlfPpalRpr"].substring(0, 4);
-      var telefono = data["tlfPpalRpr"].substring(5, 14);
-      $("#txtTextoTlfPpalRpr2").val(telefono);
-      $("#txtCodoperadorappalrep2").val(codigoArea);
+      $("#textoDirPpalRpr2").val(data["textoDirPpalRpr"]);
+      $("#estadodirppalrep2").val(data["estadodirppalrep"]);
+      $("#municipiodirppalrep2").val(data["municipiodirppalrep"]);
+      $("#ciudaddirppalrep2").val(data["ciudaddirppalrep"]);
+      $("#parroquiadirppalrep2").val(data["parroquiadirppalrep"]);
+      $("#codpostaldirppalrep2").val(data["codpostaldirppalrep"]);
+      $("#textoDirSecRpr2").val(data["textoDirSecRpr"]);
+      $("#estadodirsecrep2").val(data["estadodirsecrep"]);
+      $("#municipiodirsecrep2").val(data["municipiodirsecrep"]);
+      $("#ciudaddirsecrep2").val(data["ciudaddirsecrep"]);
+      $("#parroquiadirsecrep2").val(data["parroquiadirsecrep"]);
+      $("#codpostaldirsecrep2").val(data["codpostaldirsecrep"]);
+      $("#codoperadorappalrep2").val(data["codoperadorappalrep"]);
+      $("#textoTlfPpalRpr2").val(data["textoTlfPpalRpr"]);
+      $("#codoperadorasecrep2").val(data["codoperadorasecrep"]);
+      $("#textoTlfSecRpr2").val(data["textoTlfSecRpr"]);
       $("#emailRpr2").val(data["emailRpr"]);
-      $("#txtTextoTlfSecRpr2").show();
-      $("#txtCodoperadorasecrep2").show();
-      var codigoArea = data["tlfSecRpr"].substring(0, 4);
-      var telefono = data["tlfSecRpr"].substring(5, 14);
-      $("#txtTextoTlfSecRpr2").val(telefono);
-      $("#txtCodoperadorasecrep2").val(codigoArea);
     })
     .fail(function (data) {
-      alert("error");
+      alert("El representante no se encuentra registrado");
     });
 });
 
-$("#guardarAlumno").click(function () {
+/*$("#guardarAlumno").click(function () {
   var dirPppalAl;
   var dirSecAl;
   var tlfPpalAl;
@@ -319,16 +279,6 @@ $("#guardarAlumno").click(function () {
   var emailRpr2;
   var sexoRpr2;
   var edoCivRpr2;
-
- /*if (!valida()) {
-    alert("DEBE COMPLETAR LOS CAMPOS REQUERIDOS");
-    return false;
-  }
-
-  if(!cursoasignado){
-    alert("DEBE REALIZAR LA ASIGNACION DE UN CURSO AL ALUMNO");
-    return false;
-  }*/
 
   dirPppalAl =
     $("#textoDirPpalAl").val() +
@@ -606,7 +556,7 @@ $("#guardarAlumno").click(function () {
       window.location.href = "/app/listaralumnos";
     },
   });
-});
+});*/
 
 $("#btnLimpiar").click(function () {
   window.location.href = "/app/registroalumno";
