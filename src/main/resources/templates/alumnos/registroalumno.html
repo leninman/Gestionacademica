@@ -9,6 +9,32 @@
     <link rel="stylesheet" type="text/css" href="/css/alumno/Estilos.css">
 </head>
 <header>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #D3D3D3;color: white;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <a class="navbar-brand" href="#">Hidden brand</a>
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+          <a class="nav-link" th:href="@{/app/inicio}" data-toggle="tooltip" data-placement="top" title="Ir al inicio"><i class="bi bi-house"></i>Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" th:href="@{/app/registroalumno}" data-toggle="tooltip" data-placement="top" title="Limpiar pantalla"><i class="bi bi-eraser"></i>Limpiar <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" th:href="@{/app/listaralumnos}"><i class="bi bi-x"></i>Salir<span class="sr-only">(current)</span></a>
+        </li>
+        <!--<li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>-->
+      </ul>
+      <!--<form class="my-2 my-lg-0">
+        <a class="btn input-buttons" th:href="@{/app/registroalumno}" id="nuevoAlumno">Nuevo</a>
+        <input type="button" class="input-buttons" value="Salir" id="salir">
+      </form>-->
+    </div>
+  </nav>
 </header>
 
 <body>
@@ -17,7 +43,7 @@
      class="alert">
 </div>
     <div class="container my-5">
-        <div class="card border-success" style="width: 100%;">
+        <div class="card" style="width: 100%;border-color:#337ab7">
             <div class="card-body" style="text-align:left;width:100%">
                 <div class="container">
                     <div class="col-md-20">
@@ -914,11 +940,10 @@
 							<p th:text="${flagExisteAl}"></p>
 							<br>
                             <br>
-                            <div class="row">
+                            <div class="row" >
                                     <input type="submit" class="input-buttons" name="submit"
-                                        value="Registrar">
-                                    <input type="button" class="input-buttons" value="Limpiar" id="btnLimpiar">
-                                    <input type="button" class="input-buttons" value="Salir" id="btnSalir">
+                                        value="Registrar" style="margin: 0 auto;">
+                                    
                             </div>
                         </form>
                     </div>
