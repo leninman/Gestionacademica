@@ -34,6 +34,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,6 +61,8 @@ public class escuelavirtualController {
 	ICursoService cursoservice;
 
 	Representante representante;
+	
+	boolean buscarAlumno=false;
 
 	@GetMapping(path = "/inicio")
 	public String inicio(Model model) {
@@ -84,6 +87,29 @@ public class escuelavirtualController {
 		model.addAttribute("alumnoDTO", alumnoDTO);
 		return "alumnos/registroalumno";
 	}
+	
+	
+	//CONSULTA DE ALUMNO POR CEDULA
+    @GetMapping(path = "/consultaralumnoporcedula/{inputTipoDoc}/{inputNumeroDeCedula}",
+           produces = "application/json")
+    public String consultaralumnoporcedula(@PathVariable(value="inputTipoDoc") String inputTipoDoc,@PathVariable(value="inputNumeroDeCedula") String inputNumeroDeCedula,Model model){
+        
+   	    AlumnoDTO alumnoDTO;
+        
+        Alumno alumno=new Alumno();
+        
+        alumno= alumnoservice.consultarAlumnoPorCedula(inputTipoDoc, inputNumeroDeCedula);
+        
+        alumnoDTO=new AlumnoDTO(alumno);
+        
+        model.addAttribute("alumnoconsultado", alumnoDTO);
+        
+        buscarAlumno=true;
+        
+        model.addAttribute("buscarAlumno", buscarAlumno);
+        
+        return "redirect:listaralumnos";
+    }
 
 	// REGISTRA ALUMNO Y SUS REPRESENTANTES EN EL SISTEMA
 	@PostMapping(path = "/agregaralumno")
@@ -93,23 +119,26 @@ public class escuelavirtualController {
 		String tipoDocRpr;
 
 		String numDocRpr;
-
-		if (alumnoservice.consultarAlumnoPorCedula(alumnoDTO.getTipoDocAl(), alumnoDTO.getNumDocAl()) != null) {
-
-			redirectAttributes.addFlashAttribute("mensaje1", "El alumno con este numero de cédula ya se encuentra registrado en el sistema")
-			.addFlashAttribute("clase", "danger");
-			
-			return "redirect:registroalumno";
-		}
-
+		
+		
 		if (result.hasErrors()) {
 			model.addAttribute("alumnoDTO", alumnoDTO);
 			List<CursoDTO> cursos = new ArrayList<>();
 			AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolarPorAnnioEscolar();
 			cursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
 			model.addAttribute("Cursos", cursos);
-			return "/registroalumno";
+			return "alumnos/registroalumno";
 		}
+
+		if (alumnoservice.consultarAlumnoPorCedula(alumnoDTO.getTipoDocAl(), alumnoDTO.getNumDocAl()) != null) {
+
+			redirectAttributes.addFlashAttribute("mensaje1", "El alumno con este numero de cédula ya se encuentra registrado en el sistema")
+			.addFlashAttribute("clase", "danger");
+			
+			return "alumnos/registroalumno";
+		}
+
+	
 
 		// model.addAttribute("alumnoDTO", new AlumnoDTO());
 

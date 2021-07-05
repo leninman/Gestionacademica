@@ -7,64 +7,125 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
   <link rel="stylesheet" type="text/css" href="/css/alumno/Estilos.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+  
+ 
+  
+  
+  <!--datables CSS básico-->
+  <!--<link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css" />-->
+  <!--datables estilo bootstrap 4 CSS-->
+  <!--<link rel="stylesheet" type="text/css" href="DataTables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">-->
+  <!--font awesome con CDN-->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
 </head>
 <header>
-</header>
-<body>
- <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje2 != null}"
-     th:text="${mensaje2}"
-     class="alert">
-</div>
-  <div class="card border-success offset-md-1" style="width: 80%;">
-    <div class="card-body text-dark">
-      <form>
-        <div class="form-row">
-          <div class="form-group col-md-1">
-            <label>Tipo</label>
-            <select id="inputTipoDoc" class="form-control">
-              <option>V</option>
-              <option>E</option>
-              <option>P</option>
-            </select>
-          </div>
-          <div class="form-group col-md-2">
-            <label>Cedula</label>
-            <input type="text" class="form-control" id="inputNumeroDeCedula"
-              onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="8">
-          </div>
-          <div class="form-group col-md-2">
-            <label>Numero del alumno</label>
-            <input type="text" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
-              id="inputNumeroDelAlumno">
-          </div>
-
-        </div>
-        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-          <div class="btn-group mr-1" role="group" aria-label="First group">
-            <button type="submit" class="btn btn-success"><i class="fa fa-search"
-              ></i>Buscar</button>
-          </div>
-          <div class="btn-group mr-1" role="group" aria-label="Second group">
-            <button type="submit" class="btn btn-success">Limpiar</button>
-          </div>
-          <div class="btn-group mr-1" role="group" aria-label="Third group">
-            <a class="btn btn-success" th:href="@{/app/registroalumno}">Nuevo</a>
-          </div>
-        </div>
-      </form>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #D3D3D3;color: white;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <a class="navbar-brand" href="#">Hidden brand</a>
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" th:href="@{/app/registroalumno}" data-toggle="tooltip" data-placement="top" title="Registrar Nuevo Alumno"><i class="bi bi-person-plus"></i>Nuevo <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" th:href="@{/app/inicio}"><i class="bi bi-x"></i>Salir<span class="sr-only">(current)</span></a>
+        </li>
+        <!--<li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>-->
+      </ul>
+      <!--<form class="my-2 my-lg-0">
+        <a class="btn input-buttons" th:href="@{/app/registroalumno}" id="nuevoAlumno">Nuevo</a>
+        <input type="button" class="input-buttons" value="Salir" id="salir">
+      </form>-->
     </div>
-    <div class="card">
-      <div class="card-body">
-        <label class="card-title" id="card-title">Listado de alumnos</label>
-        <p th:text="${flagExisteAl}">HOLA</p>
-        <table class="table table-hover table-bordered" id="tabAlumnos">
+  </nav>
+</header>
+
+<body>
+  <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje2 != null}"
+    th:text="${mensaje2}" class="alert">
+  </div>
+  <div class="card offset-md-1" style="width: 80%;border: none;">
+     
+
+     
+
+
+
+
+
+      <!--<nav class="navbar navbar-light bg-light">
+        <form>
+          <button class="btn btn-outline-success" type="button">Main button</button>
+          <button class="btn btn-sm btn-outline-secondary" type="button">Smaller button</button>
+          <a class="btn input-buttons" th:href="@{/app/registroalumno}" id="nuevoAlumno">Nuevo</a>
+          <input type="button" class="input-buttons" value="Salir" id="salir">
+        </form>
+      </nav>-->
+      <!--<form>
+      <div class="row">
+          <div class="form-group col-md-12">
+            <label>Tipo</label>
+            <select id="inputTipoDoc" class="input-cmb-cedula" name="inputTipoDoc">
+              <option value="V">V</option>
+              <option value="E">E</option>
+              <option value="P">P</option>
+            </select>
+            <label>Cedula</label>
+            <input type="text" class="input-cedula" id="inputNumeroDeCedula" name="inputNumeroDeCedula" 
+             onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="8">
+            <label>Numero del alumno</label>
+            <input type="text" class="input-cedula" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+            id="inputNumeroDelAlumno">
+          </div>
+         
+        </div>
+        <nav class="navbar navbar-light bg-light">
+          <form class="form-inline">
+            <button class="btn btn-outline-success" type="button">Main button</button>
+            <button class="btn btn-sm btn-outline-secondary" type="button">Smaller button</button>
+            <a class="btn input-buttons" th:href="@{/app/registroalumno}" id="nuevoAlumno">Nuevo</a>
+            <input type="button" class="input-buttons" value="Salir" id="salir">
+          </form>
+        </nav>
+        <div class="row">
+          <a class="btn input-buttons"  th:href="@{/app/consultaralumnoporcedula/}+${inputTipoDoc}+'/'+${inputNumeroDeCedula}" id="buscarAlumno">Buscar</a>
+          <input type="button" class="input-buttons" value="Buscar" id="buscarAlumno">
+          <a class="btn input-buttons" th:href="@{/app/registroalumno}" id="nuevoAlumno">Nuevo</a>
+          <input type="button" class="input-buttons" value="Salir" id="salir">
+          
+        </div>
+      </form>-->
+   
+    <div class="card" style="border: none;">
+      <div class="card-body" style="border: none;">
+        <br>
+        <br>
+        <div class="row">
+          <div class="col-sm-4">&nbsp;</div>
+          <div class="form-group col-md-4">
+            <h5>
+              <b>Listado de alumnos activos</b>
+            </h5>
+          </div>
+        </div>
+        <table class="table table-striped table-hover" id="tablaAlumnos">
           <thead>
             <tr>
-              <th>NUMERO DEL ALUMNO</th>
+              <th>N° ALUMNO</th>
               <th>CEDULA</th>
               <th>NOMBRE Y APELLIDO</th>
               <th>AÑO QUE CURSA</th>
               <th>SECCION</th>
+              <th></th>
+              <th></th>
               <th></th>
             </tr>
           </thead>
@@ -75,23 +136,28 @@
               <td th:text="${alumno.primNombAl}+' '+${alumno.primApellAl}"></td>
               <td th:text="${alumno.annio}"></td>
               <td th:text="${alumno.seccion}"></td>
-              <td>
+              <!--<td>
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                  <div class="btn-group mr-1" role="group" aria-label="First group">
-                    <div class="btn-group mr-1" role="group" aria-label="First group">
-                      <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
-                        title="Ver" id="btnVer"><i class="bi bi-eye"></i></button>
-                    </div>
-                  </div>
-                  <div class="btn-group mr-1" role="group" aria-label="Second group">
-                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
-                      title="Editar" id="btnEditar"><i class="bi bi-pencil-fill"></i></button>
-                  </div>
-                  <div class="btn-group mr-1" role="group" aria-label="Third group">
-                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
-                      title="Eliminar" id="btnEliminar"><i class="bi bi-trash"></i></button>
-                  </div>
+                  <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Ver"
+                    id="btnVer"><i class="bi bi-eye"></i></button>
+                  <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
+                    title="Editar" id="btnEditar"><i class="bi bi-pencil-fill"></i></button>
+                  <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
+                    title="Eliminar" id="btnEliminar"><i class="bi bi-trash"></i></button>
                 </div>
+              </td>-->
+
+              <td>
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Ver"
+                id="btnVer"><i class="bi bi-eye"></i></button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
+                    title="Editar" id="btnEditar"><i class="bi bi-pencil-fill"></i></button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
+                    title="Eliminar" id="btnEliminar"><i class="bi bi-trash"></i></button>
               </td>
             </tr>
           </tbody>
@@ -99,16 +165,33 @@
       </div>
     </div>
   </div>
-  
- 
-  
-  
+
+
+
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   <script src="/js/listalumno.js"></script>
-   <!--  <script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+ 
+  
+  
+ <!-- <script src="/js/dataTable.js"></script>-->
+ 
+
+  <!-- datatables JS -->
+  <!--<script type="text/javascript" src="/js/jquery.dataTables.min.js"></script>-->
+
+  <!-- para usar botones en datatables JS -->
+  <!--<script src="DataTables/Buttons-1.7.1/js/dataTables.buttons.min.js"></script>-->
+  <!-- <script src="DataTables/JSZip-2.5.0/jszip.min.js"></script>
+  <script src="DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
+  <script src="DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
+  <script src="DataTables/Buttons-1.7.1/js/buttons.html5.min.js"></script>-->
+  <script src="/js/listalumno.js"></script>
+
+  <!--  <script>
         
    if ('${flagExisteAl}' == 'showAlertExisteAl') {
             
