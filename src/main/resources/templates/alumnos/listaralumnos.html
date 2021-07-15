@@ -9,7 +9,7 @@
   <link rel="stylesheet" type="text/css" href="/css/alumno/Estilos.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  
   
   
@@ -17,35 +17,33 @@
   <!--<link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css" />-->
   <!--datables estilo bootstrap 4 CSS-->
   <!--<link rel="stylesheet" type="text/css" href="DataTables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">-->
-  <!--font awesome con CDN-->
+  <!--font awesome con CDN
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />-->
 
 </head>
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #D3D3D3;color: white;">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+  <!--<nav class="navbar navbar-expand-lg navbar-light" style="background-color:rgb(211, 205, 205); color: white;">-->
+    <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <a class="navbar-brand" href="#">Hidden brand</a>
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" th:href="@{/app/registroalumno}" data-toggle="tooltip" data-placement="top" title="Registrar Nuevo Alumno"><i class="bi bi-person-plus"></i>Nuevo <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
+    </button>-->
+    <!--<div class="collapse navbar-collapse" id="navbarTogglerDemo01">-->
+      <!-- <a class="navbar-brand" href="#">Hidden brand</a>-->
+      <!--<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
+        
+        <!--<li class="nav-item active">
           <a class="nav-link" th:href="@{/app/inicio}"><i class="bi bi-x"></i>Salir<span class="sr-only">(current)</span></a>
-        </li>
+        </li>-->
         <!--<li class="nav-item">
           <a class="nav-link disabled" href="#">Disabled</a>
         </li>-->
-      </ul>
+     <!-- </ul>-->
       <!--<form class="my-2 my-lg-0">
         <a class="btn input-buttons" th:href="@{/app/registroalumno}" id="nuevoAlumno">Nuevo</a>
         <input type="button" class="input-buttons" value="Salir" id="salir">
       </form>-->
-    </div>
-  </nav>
+    <!--</div>-->
+  <!--</nav>-->
 </header>
 
 <body>
@@ -104,7 +102,42 @@
         </div>
       </form>-->
    
-    <div class="card" style="border: none;">
+    <div class="card" style="width: 100%;border-color:#337ab7">
+      <div class="card-header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <!--<a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>-->
+        
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" th:href="@{/app/registroalumno}" data-toggle="tooltip" data-placement="top" title="Registrar Nuevo Alumno"><i class="bi bi-person-plus"></i>Nuevo <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" th:href="@{/app/inicio}"><i class="bi bi-x"></i>Salir<span class="sr-only">(current)</span></a>
+              </li>
+              <!--<li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>-->
+              <!--<li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+              </li>-->
+            </ul>
+            
+          </div>
+        </nav>
+      </div>
       <div class="card-body" style="border: none;">
         <br>
         <br>
@@ -148,8 +181,8 @@
               </td>-->
 
               <td>
-                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Ver"
-                id="btnVer"><i class="bi bi-eye"></i></button>
+                <a type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Ver"
+                id="btnVer" th:href="@{/app/consultaralumnoporid/}+${alumno.IdAl}"><i class="bi bi-eye"></i><a>
               </td>
               <td>
                 <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"

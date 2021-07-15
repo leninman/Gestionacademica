@@ -249,6 +249,10 @@ $("#botonBuscRep2").click(function () {
     });
 });
 
+$("#btnLimpiar").click(function () {
+  window.location.href = "/app/registroalumno";
+});
+
 /*$("#guardarAlumno").click(function () {
   var dirPppalAl;
   var dirSecAl;
@@ -558,6 +562,3 @@ $("#botonBuscRep2").click(function () {
   });
 });*/
 
-$("#btnLimpiar").click(function () {
-  window.location.href = "/app/registroalumno";
-});

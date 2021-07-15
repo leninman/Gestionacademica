@@ -465,7 +465,7 @@ public class AlumnoDTO implements Serializable {
         this.primNombAl = alumno.getPrimNombAl();
         this.segNombAl = alumno.getSegNombAl();
         this.primApellAl = alumno.getPrimApellAl();
-        this.segApellAl = alumno.getSegNombAl();
+        this.segApellAl = alumno.getSegApellAl();
         this.sexoAl = alumno.getSexoAl();
         this.fechNacAl = alumno.getFechNacAl();
         this.edadAl = alumno.getEdadAl();

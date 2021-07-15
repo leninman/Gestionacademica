@@ -110,6 +110,26 @@ public class escuelavirtualController {
         
         return "redirect:listaralumnos";
     }
+    
+
+	//CONSULTA DE ALUMNO POR ID
+    @GetMapping(path = "/consultaralumnoporid/{idAl}",
+            produces = "application/json")
+     public String consultaralumnoporid(@PathVariable(value="idAl") Long idAl,Model model){
+    	 
+    	 AlumnoDTO alumnoDTO;
+         Alumno alumno=new Alumno();
+         alumno= alumnoservice.consultarAlumnoPorId(idAl);
+         alumnoDTO=new AlumnoDTO(alumno);
+         model.addAttribute("alumnoDTO", alumnoDTO);
+         return "alumnos/verAlumno";
+     }
+    
+    
+    
+    
+    
+    
 
 	// REGISTRA ALUMNO Y SUS REPRESENTANTES EN EL SISTEMA
 	@PostMapping(path = "/agregaralumno")

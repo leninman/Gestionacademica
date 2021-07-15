@@ -13,108 +13,54 @@
     />
     <link rel="stylesheet" type="text/css" href="/css/alumno/Estilos.css" />
   </head>
-  <header>
-  </header>
+  <header></header>
   <body>
-    <div
-      th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
-      th:if="${mensaje1 != null}"
-      th:text="${mensaje1}"
-      class="alert"
-    ></div>
     <div class="container my-5">
       <div class="card" style="width: 100%; border-color: #337ab7">
-        <div class="card-header">
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a
-                    class="nav-link"
-                    th:href="@{/app/inicio}"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Ir al inicio"
-                    ><i class="bi bi-house"></i
-                  >Home</a>
-                </li>
-                &nbsp; &nbsp;
-                <li class="nav-item active">
-                  <a
-                    class="nav-link"
-                    th:href="@{/app/registroalumno}"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Limpiar pantalla"
-                    ><i class="bi bi-eraser"></i
-                  >Limpiar</a>
-                </li>
-                &nbsp; &nbsp;
-                <li class="nav-item active">
-                  <a
-                    class="nav-link my-2 my-sm-0"
-                    th:href="@{/app/listaralumnos}"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Salir"
-                    ><i class="bi bi-x"></i
-                  >Salir</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
+        <div class="card-header"></div>
         <div class="card-body" style="text-align: left; width: 100%">
           <div class="container">
             <div class="col-md-20">
               <form
                 class="form-horizontal"
-                th:action="@{/app/agregaralumno}"
-                th:object="${alumnoDTO}"
-                id="formAlumno"
-                name="formAlumno"
-                method="post"
+                id="formVerAlumno"
+                name="formVerAlumno"
               >
                 <br />
-
                 <!--************************ALUMNO*********************************-->
                 <div class="row">
                   <div class="col-sm-4">&nbsp;</div>
                   <div class="form-group col-md-4">
                     <h5>
-                      <b>Información básica del alumno</b>
+                      <b>Ficha del alumno</b>
                     </h5>
                   </div>
                 </div>
-
                 <br />
                 <br />
                 <div class="row">
                   <div class="col-md-6">
                     <label for="primNombAl" class="col-form-label"
-                      >Primer Nombre*</label
+                      >Primer Nombre:</label
                     >
                     <input
                       type="text"
-                      class="input-nombre-apellido"
+                      class="input-nombre-apellido-view"
                       id="primNombAl"
-                      th:field="*{primNombAl}"
+                      th:value="${alumnoDTO.primNombAl}"
+                      disabled
                     />
-                    <div
-                      class="error"
-                      th:if="${#fields.hasErrors('primNombAl')}"
-                      th:errors="*{primNombAl}"
-                    ></div>
                   </div>
                   <div class="col-md-6">
                     <label for="segNombAl" class="col-form-label"
-                      >Segundo nombre</label
+                      >Segundo nombre:</label
                     >
                     <input
                       type="text"
-                      class="input-nombre-apellido"
-                      name="segNombAl"
+                      class="input-nombre-apellido-view"
                       id="segNombAl"
+                      th:value="${alumnoDTO.segNombAl}"
+                      disabled
                     />
                   </div>
                 </div>
@@ -122,429 +68,179 @@
                 <div class="row">
                   <div class="col-md-6">
                     <label for="primApellAl" class="col-form-label"
-                      >Primer apellido*</label
+                      >Primer apellido:</label
                     >
                     <input
                       type="text"
-                      class="input-nombre-apellido"
+                      class="input-nombre-apellido-view"
                       id="primApellAl"
-                      th:field="*{primApellAl}"
+                      th:value="${alumnoDTO.primApellAl}"
+                      disabled
                     />
-                    <div
-                      th:if="${#fields.hasErrors('primApellAl')}"
-                      th:errors="*{primApellAl}"
-                      class="error"
-                    ></div>
                   </div>
                   <div class="col-md-6">
                     <label for="segApellAl" class="col-form-label"
-                      >Segundo apellido</label
+                      >Segundo apellido:</label
                     >
                     <input
                       type="text"
-                      class="input-nombre-apellido"
-                      name="segApellAl"
+                      class="input-nombre-apellido-view"
                       id="segApellAl"
+                      th:value="${alumnoDTO.segApellAl}"
+                      disabled
                     />
                   </div>
                 </div>
                 <br />
                 <div class="row">
                   <div class="col-md-6">
-                    <label for="numDocAl" class="col-form-label">Cédula*</label>
-                    <select
-                      class="input-cmb-cedula"
-                      id="tipoDocAl"
-                      th:field="*{tipoDocAl}"
-                    >
-                      <option value="V">V</option>
-                      <option value="E">E</option>
-                      <option value="P">P</option>
-                    </select>
-                    <div
-                      th:if="${#fields.hasErrors('tipoDocAl')}"
-                      th:errors="*{tipoDocAl}"
-                      class="error"
-                    ></div>
+                    <label for="numDocAl" class="col-form-label">Cédula:</label>
                     <input
                       type="text"
-                      class="input-cedula"
-                      onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                      maxlength="8"
+                      class="input-nombre-apellido-view"
                       id="numDocAl"
-                      th:field="*{numDocAl}"
+                      th:value="${alumnoDTO.tipoDocAl}+${alumnoDTO.numDocAl}"
+                      disabled
                     />
-                    <div
-                      th:if="${#fields.hasErrors('numDocAl')}"
-                      th:errors="*{numDocAl}"
-                      class="error"
-                    ></div>
                   </div>
                   <div class="col-md-6">
                     <label for="fechNacAl" class="col-form-label"
-                      >Fecha de nacimiento*</label
+                      >Fecha de nacimiento:</label
                     >
                     <input
                       type="date"
-                      class="input-fech-nac"
+                      class="input-fech-nac-view"
                       id="fechNacAl"
-                      th:field="*{fechNacAl}"
+                      th:value="${alumnoDTO.fechNacAl}"
+                      disabled
                     />
-                    <div
-                      th:if="${#fields.hasErrors('fechNacAl')}"
-                      th:errors="*{fechNacAl}"
-                      class="error"
-                    ></div>
                   </div>
                 </div>
                 <br />
                 <div class="row">
-                  <div class="col-sm-2">
-                    <label for="edadAl" class="col-form-label">Edad*</label>
+                  <div class="col-sm-4">
+                    <label for="edadAl" class="col-form-label">Edad:</label>
                     <input
                       type="text"
-                      class="input-edad"
-                      onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                      maxlength="2"
+                      class="input-edad-view"
                       id="edadAl"
-                      th:field="*{edadAl}"
+                      th:value="${alumnoDTO.edadAl}"
+                      disabled
                     />
-                    <div
-                      th:if="${#fields.hasErrors('edadAl')}"
-                      th:errors="*{edadAl}"
-                      class="error"
-                    ></div>
+                    <label for="sexoAl" class="col-form-label">Sexo:</label>
+                    <input
+                      type="text"
+                      class="input-sexo-view"
+                      id="sexoAl"
+                      th:value="${alumnoDTO.sexoAl}"
+                    />
                   </div>
-                  <div class="col-sm-2">
-                    <label for="sexoAl" class="col-form-label">Sexo*</label>
-                    <select class="input-sexo" id="sexoAl" th:field="*{sexoAl}">
-                      <option value="FEMENINO">FEMENINO</option>
-                      <option value="MASCULINO">MASCULINO</option>
-                    </select>
-                    <div
-                      th:if="${#fields.hasErrors('sexoAl')}"
-                      th:errors="*{sexoAl}"
-                      class="error"
-                    ></div>
-                  </div>
-                  <div class="col-sm-3">
-                    <label for="status" class="col-form-label"
-                      >Est Académico*</label
-                    >
-                    <select
-                      class="input-est-acad"
+                  <div class="col-sm-2"></div>
+
+                  <div class="col-sm-6">
+                    <label for="status" class="col-form-label">Status:</label>
+                    <input
+                      type="text"
+                      class="input-est-acad-view"
                       id="status"
-                      th:field="*{status}"
-                    >
-                      <option value="ACTIVO">ACTIVO</option>
-                      <option value="RETIRADO">RETIRADO</option>
-                    </select>
-                    <div
-                      th:if="${#fields.hasErrors('status')}"
-                      th:errors="*{status}"
-                      class="error"
-                    ></div>
-                  </div>
-                  <div class="col-md-5">
+                      th:value="${alumnoDTO.status}"
+                      disabled
+                    />
+
                     <label for="fechIngAl" class="col-form-label"
-                      >Fecha de ingreso*</label
+                      >Fech Ing:</label
                     >
                     <input
                       type="date"
-                      class="input-fech-ing"
+                      class="input-fech-ing-view"
                       id="fechIngAl"
-                      th:field="*{fechIngAl}"
+                      th:value="${alumnoDTO.fechIngAl}"
+                      disabled
                     />
-                    <div
-                      th:if="${#fields.hasErrors('fechIngAl')}"
-                      th:errors="*{fechIngAl}"
-                      class="error"
-                    ></div>
                   </div>
                 </div>
                 <br />
                 <div class="row">
                   <div class="col-sm-12">
                     <label for="textoDirPpalAl" class="col-form-label"
-                      >Dirección principal de domicilio*</label
+                      >Dirección principal de domicilio:</label
                     >
                     <input
                       type="text"
-                      class="input-txtDireccion"
+                      class="input-txtDireccion-view"
                       id="textoDirPpalAl"
-                      th:field="*{textoDirPpalAl}"
+                      th:value="${alumnoDTO.textoDirPpalAl}+','+'estado '+${alumnoDTO.estadodirppalest}+','+'municipio '+
+                      ${alumnoDTO.municipiodirppalest}+','+'ciudad '+${alumnoDTO.ciudaddirppalest}+','+'parroquia '+${alumnoDTO.parroquiadirppalest}
+                      +','+'cod postal '+${alumnoDTO.codpostaldirppalest}"
+                      disabled
                     />
-                    <div
-                      th:if="${#fields.hasErrors('textoDirPpalAl')}"
-                      th:errors="*{textoDirPpalAl}"
-                      class="error"
-                    ></div>
-                  </div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col-md-2">
-                    <label for="estadodirppalest" class="col-form-label"
-                      >Estado*</label
-                    >
-                    <select
-                      class="input-estado"
-                      id="estadodirppalest"
-                      th:field="*{estadodirppalest}"
-                    >
-                      <option value="MIRANDA">MIRANDA</option>
-                    </select>
-                    <div
-                      th:if="${#fields.hasErrors('estadodirppalest')}"
-                      th:errors="*{estadodirppalest}"
-                      class="error"
-                    ></div>
-                  </div>
-                  <div class="col-md-2">
-                    <label for="municipiodirppalest" class="col-form-label"
-                      >Municipio*</label
-                    >
-                    <select
-                      class="input-estado"
-                      id="municipiodirppalest"
-                      th:field="*{municipiodirppalest}"
-                    >
-                      <option value="PLAZA">PLAZA</option>
-                      <option value="ZAMORA">ZAMORA</option>
-                    </select>
-                    <div
-                      th:if="${#fields.hasErrors('municipiodirppalest')}"
-                      th:errors="*{municipiodirppalest}"
-                      class="error"
-                    ></div>
-                  </div>
-                  <div class="col-md-2">
-                    <label for="ciudaddirppalest" class="col-form-label"
-                      >Ciudad*</label
-                    >
-                    <select
-                      class="input-estado"
-                      id="ciudaddirppalest"
-                      th:field="*{ciudaddirppalest}"
-                    >
-                      <option value="GUARENAS">GUARENAS</option>
-                      <option value="GUATIRE">GUATIRE</option>
-                    </select>
-                    <div
-                      th:if="${#fields.hasErrors('ciudaddirppalest')}"
-                      th:errors="*{ciudaddirppalest}"
-                      class="error"
-                    ></div>
-                  </div>
-                  <div class="col-md-2">
-                    <label for="parroquiadirppalest" class="col-form-label"
-                      >Parroquia*</label
-                    >
-                    <select
-                      class="input-estado"
-                      id="parroquiadirppalest"
-                      th:field="*{parroquiadirppalest}"
-                    >
-                      <option value="GUARENAS">GUARENAS</option>
-                      <option value="GUATIRE">GUATIRE</option>
-                    </select>
-                    <div
-                      th:if="${#fields.hasErrors('parroquiadirppalest')}"
-                      th:errors="*{parroquiadirppalest}"
-                      class="error"
-                    ></div>
-                  </div>
-                  <div class="col-md-2">
-                    <label for="codpostaldirppalest" class="col-form-label"
-                      >Cod. Postal*</label
-                    >
-                    <select
-                      class="input-estado"
-                      id="codpostaldirppalest"
-                      th:field="*{codpostaldirppalest}"
-                    >
-                      <option value="1220">1220</option>
-                      <option value="1221">1221</option>
-                    </select>
-                    <div
-                      th:if="${#fields.hasErrors('codpostaldirppalest')}"
-                      th:errors="*{codpostaldirppalest}"
-                      class="error"
-                    ></div>
                   </div>
                 </div>
                 <br />
                 <div class="row">
                   <div class="col-sm-12">
-                    <label class="col-form-label"
-                      >Direccion secundaria de domicilio</label
+                    <label for="textoDirSecAl" class="col-form-label"
+                      >Dirección secundaria de domicilio:</label
                     >
                     <input
                       type="text"
-                      class="input-txtDireccion"
-                      name="textoDirSecAl"
+                      class="input-txtDireccion-view"
                       id="textoDirSecAl"
+                      th:value="${alumnoDTO.textoDirSecAl}+','+'estado '+${alumnoDTO.estadodirsecest}+','+'municipio '+
+                          ${alumnoDTO.municipiodirsecest}+','+'ciudad '+${alumnoDTO.ciudaddirsecest}+','+'parroquia '+${alumnoDTO.parroquiadirsecest}
+                          +','+'cod postal '+${alumnoDTO.codpostaldirsecest}"
+                      disabled
                     />
-                  </div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col-sm-2">
-                    <label for="estadodirsecest" class="col-form-label"
-                      >Estado</label
-                    >
-                    <select
-                      class="input-estado"
-                      name="estadodirsecest"
-                      id="estadodirsecest"
-                    >
-                      <option value="MIRANDA">MIRANDA</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-2">
-                    <label for="municipiodirsecest" class="col-form-label"
-                      >Municipio</label
-                    >
-                    <select
-                      class="input-estado"
-                      name="municipiodirsecest"
-                      id="municipiodirsecest"
-                    >
-                      <option value="PLAZA">PLAZA</option>
-                      <option value="ZAMORA">ZAMORA</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-2">
-                    <label for="ciudaddirsecest" class="col-form-label"
-                      >Ciudad</label
-                    >
-                    <select
-                      class="input-estado"
-                      name="ciudaddirsecest"
-                      id="ciudaddirsecest"
-                    >
-                      <option value="GUARENAS">GUARENAS</option>
-                      <option value="GUATIRE">GUATIRE</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-2">
-                    <label for="parroquiadirsecest" class="col-form-label"
-                      >Parroquia</label
-                    >
-                    <select
-                      class="input-estado"
-                      name="parroquiadirsecest"
-                      id="parroquiadirsecest"
-                    >
-                      <option value="GUARENAS">GUARENAS</option>
-                      <option value="GUATIRE">GUATIRE</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-2">
-                    <label for="codpostaldirsecest" class="col-form-label"
-                      >Cod. Postal</label
-                    >
-                    <select
-                      class="input-estado"
-                      name="codpostaldirsecest"
-                      id="codpostaldirsecest"
-                    >
-                      <option value="1220">1220</option>
-                      <option value="1221">1221</option>
-                    </select>
                   </div>
                 </div>
                 <br />
                 <div class="row">
                   <div class="col-sm-12">
                     <label class="col-form-label"
-                      >Información de Contacto Principal*</label
+                      >Información de Contacto Principal:</label
                     >
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-sm-1">
-                    <select
-                      class="input-cod-operadora"
-                      id="codoperadorappalest"
-                      th:field="*{codoperadorappalest}"
-                    >
-                      <option value="0212">0212</option>
-                      <option value="0412">0412</option>
-                      <option value="0414">0414</option>
-                      <option value="0416">0416</option>
-                      <option value="0424">0424</option>
-                      <option value="0426">0426</option>
-                    </select>
-                    <div
-                      th:if="${#fields.hasErrors('codoperadorappalest')}"
-                      th:errors="*{codoperadorappalest}"
-                      class="error"
-                    ></div>
-                  </div>
-                  <div class="col-sm-2">
+                  <div class="col-sm-4">
+                    Teléfono:
                     <input
                       type="text"
-                      class="input-num-tlf"
-                      placeholder="Numero de telefono"
-                      onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                      maxlength="7"
-                      id="textoTlfPpalAl"
-                      th:field="*{textoTlfPpalAl}"
+                      class="input-num-tlf-view"
+                      id="status"
+                      th:value="${alumnoDTO.codoperadorappalest}+'-'+${alumnoDTO.textoTlfPpalAl}"
+                      disabled
                     />
-                    <div
-                      th:if="${#fields.hasErrors('textoTlfPpalAl')}"
-                      th:errors="*{textoTlfPpalAl}"
-                      class="error"
-                    ></div>
                   </div>
                   <div class="col-sm-2">&nbsp;</div>
                   <div class="col-sm-6">
+                    Email:
                     <input
-                      type="email"
-                      class="input-email"
-                      placeholder="Correo electronico"
-                      id="emailAl"
-                      th:field="*{emailAl}"
+                      type="text"
+                      class="input-email-view"
+                      id="status"
+                      th:value="${alumnoDTO.emailAl}"
+                      disabled
                     />
-                    <div
-                      th:if="${#fields.hasErrors('emailAl')}"
-                      th:errors="*{emailAl}"
-                      class="error"
-                    ></div>
                   </div>
                 </div>
                 <br />
                 <div class="row">
                   <div class="col-sm-12">
                     <label class="col-form-label"
-                      >Información de Contacto Secundario</label
+                      >Información de Contacto Secundario:</label
                     >
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-sm-1">
-                    <select
-                      class="input-cod-operadora"
-                      name="codoperadorasecest"
-                      id="codoperadorasecest"
-                    >
-                      <option value="0212">0212</option>
-                      <option value="0412">0412</option>
-                      <option value="0414">0414</option>
-                      <option value="0416">0416</option>
-                      <option value="0424">0424</option>
-                      <option value="0426">0426</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-2">
+                  <div class="col-sm-4">
+                    Teléfono:
                     <input
                       type="text"
-                      placeholder="Numero de telefono"
-                      class="input-num-tlf"
-                      onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                      maxlength="7"
-                      name="textoTlfSecAl"
+                      class="input-num-tlf-view"
+                      id="status"
+                      th:value="${alumnoDTO.codoperadorasecest}+'-'+${alumnoDTO.textoTlfSecAl}"
+                      disabled
                     />
                   </div>
                 </div>
@@ -558,79 +254,37 @@
                   <div class="col-sm-4">&nbsp;</div>
                   <div class="form-group col-md-8">
                     <h5>
-                      <b>Información básica del representante principal</b>
+                      <b>Representante principal</b>
                     </h5>
                   </div>
                 </div>
                 <br />
                 <br />
-                <div class="row">
-                  <div class="col-md-8">
-                    <label for="numDocRep1" class="col-form-label"
-                      >Numero de Cédula*</label
-                    >
-                    <select
-                      class="input-cmb-cedula"
-                      id="tipoDocRep1"
-                      th:field="*{tipoDocRep1}"
-                    >
-                      <option value="V">V</option>
-                      <option value="E">E</option>
-                      <option value="P">P</option>
-                    </select>
-                    <div
-                      th:if="${#fields.hasErrors('tipoDocRep1')}"
-                      th:errors="*{tipoDocRep1}"
-                      class="error"
-                    ></div>
-                    <input
-                      name="numDocRep1"
-                      id="numDocRep1"
-                      class="input-cedula"
-                      th:field="*{numDocRep1}"
-                      onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                      maxlength="8"
-                    />
-                    <div
-                      th:if="${#fields.hasErrors('numDocRep1')}"
-                      th:errors="*{numDocRep1}"
-                      class="error"
-                    ></div>
-                    <input
-                      type="button"
-                      class="input-buttons"
-                      id="botonBuscRep"
-                      value="Buscar"
-                    />
-                  </div>
-                </div>
+
                 <br />
                 <div class="row">
                   <div class="col-md-6">
                     <label for="primNombRpr1" class="col-form-label"
-                      >Primer nombre*</label
+                      >Primer nombre:</label
                     >
                     <input
                       type="text"
-                      class="input-nombre-apellido"
+                      class="input-nombre-apellido-view"
                       id="primNombRpr1"
-                      th:field="*{primNombRpr1}"
+                      th:value="${alumnoDTO.primNombRpr1}"
+                      disabled
                     />
-                    <div
-                      th:if="${#fields.hasErrors('primNombRpr1')}"
-                      th:errors="*{primNombRpr1}"
-                      class="error"
-                    ></div>
                   </div>
                   <div class="col-md-6">
                     <label for="segNombRpr1" class="col-form-label"
-                      >Segundo nombre</label
+                      >Segundo nombre:</label
                     >
                     <input
                       type="text"
-                      class="input-nombre-apellido"
-                      name="segNombRpr1"
+                      class="input-nombre-apellido-view"
                       id="segNombRpr1"
+                      th:value="${alumnoDTO.segNombRpr1}"
+                      disabled
                     />
                   </div>
                 </div>
@@ -638,19 +292,15 @@
                 <div class="row">
                   <div class="col-md-6">
                     <label for="primApellRpr1" class="col-form-label"
-                      >Primer apellido*</label
+                      >Primer apellido:</label
                     >
                     <input
                       type="text"
-                      class="input-nombre-apellido"
-                      id="primApellRpr1"
-                      th:field="*{primApellRpr1}"
+                      class="input-nombre-apellido-view"
+                      id="primApellRp1"
+                      th:value="${alumnoDTO.primApellRpr1}"
+                      disabled
                     />
-                    <div
-                      th:if="${#fields.hasErrors('primApellRpr1')}"
-                      th:errors="*{primApellRpr1}"
-                      class="error"
-                    ></div>
                   </div>
                   <div class="col-md-6">
                     <label for="segApellRpr1" class="col-form-label"
@@ -658,71 +308,65 @@
                     >
                     <input
                       type="text"
-                      class="input-nombre-apellido"
-                      name="segApellRpr1"
+                      class="input-nombre-apellido-view"
                       id="segApellRpr1"
+                      th:value="${alumnoDTO.segApellRpr1}"
+                      disabled
                     />
                   </div>
                 </div>
                 <br />
                 <div class="row">
-                  <div class="col-sm-3">
+                  <div class="col-md-6">
+                    <label for="numDocRep1" class="col-form-label"
+                      >Numero de Cédula:</label
+                    >
+                    <input
+                      type="text"
+                      class="input-nombre-apellido-view"
+                      id="numDocRep1"
+                      th:value="${alumnoDTO.tipoDocRep1}+${alumnoDTO.numDocRep1}"
+                      disabled
+                    />
+                  </div>
+
+                  <div class="col-sm-6">
                     <label for="fechNacRpr1" class="col-form-label"
-                      >Fec nac*</label
+                      >Fecha de nacimiento:</label
                     >
                     <input
                       type="date"
-                      class="input-fech-nac-rep"
+                      class="input-fech-nac-view"
                       id="fechNacRpr1"
-                      th:field="*{fechNacRpr1}"
+                      th:value="${alumnoDTO.fechNacRpr1}"
+                      disabled
                     />
-                    <div
-                      th:if="${#fields.hasErrors('fechNacRpr1')}"
-                      th:errors="*{fechNacRpr1}"
-                      class="error"
-                    ></div>
                   </div>
+                </div>
+                <br />
+                <div class="row">
                   <div class="col-sm-2">
                     <label for="edadRpr1" class="col-form-label">Edad*</label>
                     <input
                       type="text"
                       class="input-edad"
                       id="edadRpr1"
-                      th:field="*{edadRpr1}"
                       onkeypress="return event.charCode >= 48 && event.charCode <= 57"
                       maxlength="2"
                     />
-                    <div
-                      th:if="${#fields.hasErrors('edadRpr1')}"
-                      th:errors="*{edadRpr1}"
-                      class="error"
-                    ></div>
                   </div>
                   <div class="col-sm-2">
                     <label for="sexoRpr1" class="col-form-label">Sexo*</label>
-                    <select
-                      class="input-sexo"
-                      id="sexoRpr1"
-                      th:field="*{sexoRpr1}"
-                    >
+                    <select class="input-sexo" id="sexoRpr1">
                       <option value="FEMENINO">FEMENINO</option>
                       <option value="MASCULINO">MASCULINO</option>
                     </select>
-                    <div
-                      th:if="${#fields.hasErrors('sexoRpr1')}"
-                      th:errors="*{sexoRpr1}"
-                      class="error"
-                    ></div>
                   </div>
                   <div class="col-sm-2">
                     <label for="parentescoRpr1" class="col-form-label"
                       >Pco*</label
                     >
-                    <select
-                      class="input-parentesco"
-                      id="parentescoRpr1"
-                      th:field="*{parentescoRpr1}"
-                    >
+                    <select class="input-parentesco" id="parentescoRpr1">
                       <option value="MADRE">MADRE</option>
                       <option value="PADRE">PADRE</option>
                       <option value="OTRO">OTRO</option>
@@ -733,31 +377,17 @@
                       name="txtOtroParentescoRpr1"
                       id="txtOtroParentescoRpr1"
                     />
-                    <div
-                      th:if="${#fields.hasErrors('parentescoRpr1')}"
-                      th:errors="*{parentescoRpr1}"
-                      class="error"
-                    ></div>
                   </div>
                   <div class="col-sm-3">
                     <label for="edoCivRpr1" class="col-form-label"
                       >Edo Civ*</label
                     >
-                    <select
-                      class="input-ed-civ"
-                      id="edoCivRpr1"
-                      th:field="*{edoCivRpr1}"
-                    >
+                    <select class="input-ed-civ" id="edoCivRpr1">
                       <option value="CASADO">CASADO</option>
                       <option value="SOLTERO">SOLTERO</option>
                       <option value="VIUDO">VIUDO</option>
                       <option value="DIVORCIADO">DIVORCIADO</option>
                     </select>
-                    <div
-                      th:if="${#fields.hasErrors('edoCivRpr1')}"
-                      th:errors="*{edoCivRpr1}"
-                      class="error"
-                    ></div>
                   </div>
                 </div>
                 <br />
@@ -770,13 +400,7 @@
                       type="text"
                       class="input-txtDireccion"
                       id="textoDirPpalRpr1"
-                      th:field="*{textoDirPpalRpr1}"
                     />
-                    <div
-                      th:if="${#fields.hasErrors('textoDirPpalRpr1')}"
-                      th:errors="*{textoDirPpalRpr1}"
-                      class="error"
-                    ></div>
                   </div>
                 </div>
                 <br />
@@ -788,18 +412,9 @@
                       class="col-form-label"
                       >Estado*</label
                     >
-                    <select
-                      class="input-estado"
-                      id="estadodirppalrep1"
-                      th:field="*{estadodirppalrep1}"
-                    >
+                    <select class="input-estado" id="estadodirppalrep1">
                       <option value="MIRANDA">MIRANDA</option>
                     </select>
-                    <div
-                      th:if="${#fields.hasErrors('estadodirppalrep1')}"
-                      th:errors="*{estadodirppalrep1}"
-                      class="error"
-                    ></div>
                   </div>
                   <div class="col-sm-2">
                     <label
@@ -808,19 +423,10 @@
                       class="col-form-label"
                       >Municipio*</label
                     >
-                    <select
-                      class="input-estado"
-                      id="municipiodirppalrep1"
-                      th:field="*{municipiodirppalrep1}"
-                    >
+                    <select class="input-estado" id="municipiodirppalrep1">
                       <option value="PLAZA">PLAZA</option>
                       <option value="ZAMORA">ZAMORA</option>
                     </select>
-                    <div
-                      th:if="${#fields.hasErrors('municipiodirppalrep1')}"
-                      th:errors="*{municipiodirppalrep1}"
-                      class="error"
-                    ></div>
                   </div>
                   <div class="col-sm-2">
                     <label
@@ -829,19 +435,10 @@
                       class="col-form-label"
                       >Ciudad*</label
                     >
-                    <select
-                      class="input-estado"
-                      id="ciudaddirppalrep1"
-                      th:field="*{ciudaddirppalrep1}"
-                    >
+                    <select class="input-estado" id="ciudaddirppalrep1">
                       <option value="GUARENAS">GUARENAS</option>
                       <option value="GUATIRE">GUATIRE</option>
                     </select>
-                    <div
-                      th:if="${#fields.hasErrors('ciudaddirppalrep1')}"
-                      th:errors="*{ciudaddirppalrep1}"
-                      class="error"
-                    ></div>
                   </div>
                   <div class="col-sm-2">
                     <label
@@ -850,20 +447,10 @@
                       class="col-form-label"
                       >Parroquia*</label
                     >
-                    <select
-                      class="input-estado"
-                      id="parroquiadirppalrep1"
-                      th:field="*{parroquiadirppalrep1}"
-                    >
+                    <select class="input-estado" id="parroquiadirppalrep1">
                       <option value="GUARENAS">GUARENAS</option>
                       <option value="GUATIRE">GUATIRE</option>
                     </select>
-
-                    <div
-                      th:if="${#fields.hasErrors('parroquiadirppalrep1')}"
-                      th:errors="*{parroquiadirppalrep1}"
-                      class="error"
-                    ></div>
                   </div>
                   <div class="col-sm-2">
                     <label
@@ -872,19 +459,10 @@
                       class="col-form-label"
                       >Código postal*</label
                     >
-                    <select
-                      class="input-estado"
-                      id="codpostaldirppalrep1"
-                      th:field="*{codpostaldirppalrep1}"
-                    >
+                    <select class="input-estado" id="codpostaldirppalrep1">
                       <option value="1220">1220</option>
                       <option value="1221">1221</option>
                     </select>
-                    <div
-                      th:if="${#fields.hasErrors('codpostaldirppalrep1')}"
-                      th:errors="*{codpostaldirppalrep1}"
-                      class="error"
-                    ></div>
                   </div>
                 </div>
                 <br />
@@ -1026,7 +604,6 @@
                     <select
                       class="input-cod-operadora"
                       id="codoperadorappalrep1"
-                      th:field="*{codoperadorappalrep1}"
                     >
                       <option value="0212">0212</option>
                       <option value="0412">0412</option>
@@ -1041,11 +618,6 @@
                       name="txtCodoperadorappalrep1"
                       id="txtCodoperadorappalrep1"
                     />
-                    <div
-                      th:if="${#fields.hasErrors('codoperadorappalrep1')}"
-                      th:errors="*{codoperadorappalrep1}"
-                      class="error"
-                    ></div>
                   </div>
                   <div class="col-sm-2">
                     <input
@@ -1053,15 +625,9 @@
                       placeholder="Numero de telefono"
                       class="input-num-tlf"
                       id="textoTlfPpalRpr1"
-                      th:field="*{textoTlfPpalRpr1}"
                       onkeypress="return event.charCode >= 48 && event.charCode <= 57"
                       maxlength="7"
                     />
-                    <div
-                      th:if="${#fields.hasErrors('textoTlfPpalRpr1')}"
-                      th:errors="*{textoTlfPpalRpr1}"
-                      class="error"
-                    ></div>
                   </div>
                   <div class="col-sm-2">&nbsp;</div>
                   <div class="col-sm-6">
@@ -1070,13 +636,7 @@
                       placeholder="Correo electronico"
                       class="input-email"
                       id="emailRpr1"
-                      th:field="*{emailRpr1}"
                     />
-                    <div
-                      th:if="${#fields.hasErrors('emailRpr1')}"
-                      th:errors="*{emailRpr1}"
-                      class="error"
-                    ></div>
                   </div>
                 </div>
                 <br />
@@ -1121,21 +681,6 @@
                   </div>
                 </div>
                 <br />
-                <div class="form-group">
-                  <div class="col-sm-5">
-                    <input
-                      id="chkRepresentante2"
-                      type="checkbox"
-                      value="0"
-                      unchecked
-                      name="chkRepresentante2"
-                      onclick="mostrarrepresentante2()"
-                    /> Posee representante secundario ?
-                  </div>
-                </div>
-                <br />
-                <br />
-                <br />
                 <!--************************FIN REPRESENTANTE PRINCIPAL*********************************-->
 
                 <!--************************ REPRESENTANTE SECUNDARIO*********************************-->
@@ -1144,7 +689,7 @@
                     <div class="col-sm-4">&nbsp;</div>
                     <div class="form-group col-md-8">
                       <h5>
-                        <b>Información básica del representante secundario</b>
+                        <b>Representante secundario</b>
                       </h5>
                     </div>
                   </div>
@@ -1577,7 +1122,7 @@
                   <div class="col-sm-4">&nbsp;</div>
                   <div class="form-group col-md-8">
                     <h5>
-                      <b>Información del curso</b>
+                      <b>Curso</b>
                     </h5>
                   </div>
                 </div>
@@ -1691,15 +1236,5 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!--<script src="/js/Swalert.js"></script>-->
-    <script src="/js/registroalumno.js"></script>
-    <!--   <script>
-   			if ('${flagExisteAl}' == 'showAlertExisteAl') {
-           		 Swal.fire({
-            	title: "El alumno ya existe"
-    			});
-    		}
-      </script>-->
   </body>
 </html>
