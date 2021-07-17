@@ -102,9 +102,20 @@ span > #guardarAlumno {
   width: 110px;
 }
 
+.input-parentesco-view {
+  border: none;
+  width: 110px;
+}
+
+
 .input-ed-civ {
   border-radius: 100px;
   border: 1px solid #337ab7;
+  width: 105px;
+}
+
+.input-ed-civ-view {
+  border: none;
   width: 105px;
 }
 .input-est-acad {
@@ -163,6 +174,13 @@ span > #guardarAlumno {
   
   border: none;
   width: 400px;
+}
+
+.input-curso-view {
+  
+  border: none;
+  text-align: left;
+ 
 }
 
 /*#tablecursos {

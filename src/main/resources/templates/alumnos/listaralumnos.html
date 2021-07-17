@@ -50,7 +50,18 @@
   <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje2 != null}"
     th:text="${mensaje2}" class="alert">
   </div>
-  <div class="card offset-md-1" style="width: 80%;border: none;">
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-sm-4">&nbsp;</div>
+    <div class="form-group col-md-4">
+      <h5>
+        <b>LISTADO DE ALUMNOS ACTIVOS</b>
+      </h5>
+    </div>
+  </div>
+  <div class="container my-5">
+  <div class="card offset-md-1" style="width: 100%;border: none;margin-left: auto;margin-right: auto;">
      
 
      
@@ -141,14 +152,7 @@
       <div class="card-body" style="border: none;">
         <br>
         <br>
-        <div class="row">
-          <div class="col-sm-4">&nbsp;</div>
-          <div class="form-group col-md-4">
-            <h5>
-              <b>Listado de alumnos activos</b>
-            </h5>
-          </div>
-        </div>
+       
         <table class="table table-striped table-hover" id="tablaAlumnos">
           <thead>
             <tr>
@@ -198,6 +202,7 @@
       </div>
     </div>
   </div>
+</div>
 
 
 
