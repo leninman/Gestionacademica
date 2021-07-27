@@ -32,6 +32,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -78,6 +79,14 @@ public class coreController {
         AnnioEscolarDTO annioEscolar=cursoservice.consultarAnnioEscolarPorAnnioEscolar();
         
         return cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
+    }
+     
+ 
+   //CONSULTA CURSO POR ID DEL CURSO
+     @GetMapping(path = "/consultarcursoporid")
+    public CursoDTO consultarcursoporid(@RequestParam(name="idcurso") Long idcurso) {
+         
+        return cursoservice.consultarCursoPorId(idcurso);
     }
      
 

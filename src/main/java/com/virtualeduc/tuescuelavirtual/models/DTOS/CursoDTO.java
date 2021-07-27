@@ -70,7 +70,7 @@ public class CursoDTO {
    
     
     
-    public CursoDTO(Curso curso,String annio,String annioesco,String sec,String turn) {
+    public CursoDTO(Curso curso) {
         
         this.idCurso=curso.getIdCurso();
         this.idAnnio=curso.getIdAnnio().getIdAnnio();
@@ -79,10 +79,10 @@ public class CursoDTO {
          this.nivel=curso.getIdAnnio().getNivel();
          this.especialidad=curso.getIdAnnio().getEspecialidad();
          this.idTurno=curso.getIdTurno().getIdTurno();
-         this.annio=annio;
-         this.intAnnioEsc=annioesco;
-         this.seccion=sec;
-         this.turno=turn;
+         this.annio=curso.getIdAnnio().getAnnio();
+         this.intAnnioEsc=curso.getIdAnnioEsc().getIntAnnioEsc();
+         this.seccion=curso.getIdSec().getSeccion();
+         this.turno=curso.getIdTurno().getTurno();
          
         
     }

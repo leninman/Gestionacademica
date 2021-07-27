@@ -757,8 +757,10 @@
                     <input
                       type="text"
                       class="input-curso-view"
-                      name="turnoelegido"
-                      id="turnoelegido"
+                      name="turno"
+                      id="turno"
+                      th:value="${alumnoDTO.turno}"
+                      disabled
                     />
                   </div>
                   <div class="col-sm-3">
@@ -768,6 +770,8 @@
                       class="input-curso-view"
                       name="nivel"
                       id="nivel"
+                      th:value="${alumnoDTO.nivel}"
+                      disabled
                     />
                   </div>
                   <div class="col-sm-2">
@@ -777,6 +781,8 @@
                       class="input-curso-view"
                       name="especialidad"
                       id="especialidad"
+                      th:value="${alumnoDTO.especialidad}"
+                      disabled
                     />
                   </div>
                 </div>

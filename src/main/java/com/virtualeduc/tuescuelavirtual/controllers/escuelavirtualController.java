@@ -61,8 +61,8 @@ public class escuelavirtualController {
 	ICursoService cursoservice;
 
 	Representante representante;
-	
-	boolean buscarAlumno=false;
+
+	boolean buscarAlumno = false;
 
 	@GetMapping(path = "/inicio")
 	public String inicio(Model model) {
@@ -78,7 +78,7 @@ public class escuelavirtualController {
 	}
 
 	@GetMapping(path = "/registroalumno")
-	public String registrolumno(Model model) {
+	public String registroalumno(Model model) {
 		AlumnoDTO alumnoDTO = new AlumnoDTO();
 		List<CursoDTO> cursos = new ArrayList<>();
 		AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolarPorAnnioEscolar();
@@ -87,49 +87,58 @@ public class escuelavirtualController {
 		model.addAttribute("alumnoDTO", alumnoDTO);
 		return "alumnos/registroalumno";
 	}
-	
-	
-	//CONSULTA DE ALUMNO POR CEDULA
-    @GetMapping(path = "/consultaralumnoporcedula/{inputTipoDoc}/{inputNumeroDeCedula}",
-           produces = "application/json")
-    public String consultaralumnoporcedula(@PathVariable(value="inputTipoDoc") String inputTipoDoc,@PathVariable(value="inputNumeroDeCedula") String inputNumeroDeCedula,Model model){
-        
-   	    AlumnoDTO alumnoDTO;
-        
-        Alumno alumno=new Alumno();
-        
-        alumno= alumnoservice.consultarAlumnoPorCedula(inputTipoDoc, inputNumeroDeCedula);
-        
-        alumnoDTO=new AlumnoDTO(alumno);
-        
-        model.addAttribute("alumnoconsultado", alumnoDTO);
-        
-        buscarAlumno=true;
-        
-        model.addAttribute("buscarAlumno", buscarAlumno);
-        
-        return "redirect:listaralumnos";
-    }
-    
 
-	//CONSULTA DE ALUMNO POR ID
-    @GetMapping(path = "/consultaralumnoporid/{idAl}",
-            produces = "application/json")
-     public String consultaralumnoporid(@PathVariable(value="idAl") Long idAl,Model model){
-    	 
-    	 AlumnoDTO alumnoDTO;
-         Alumno alumno=new Alumno();
-         alumno= alumnoservice.consultarAlumnoPorId(idAl);
-         alumnoDTO=new AlumnoDTO(alumno);
-         model.addAttribute("alumnoDTO", alumnoDTO);
-         return "alumnos/verAlumno";
-     }
-    
-    
-    
-    
-    
-    
+	@GetMapping(path = "/editaralumno/{idAl}")
+	public String editaralumno(@PathVariable(value = "idAl") Long idAl, Model model) {
+		AlumnoDTO alumnoDTO = new AlumnoDTO(alumnoservice.consultarAlumnoPorId(idAl));
+		List<CursoDTO> cursos = new ArrayList<>();
+		AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolarPorAnnioEscolar();
+		cursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
+		model.addAttribute("Cursos", cursos);
+		model.addAttribute("alumnoDTO", alumnoDTO);
+		return "alumnos/editaralumno";
+	}
+	
+	@PostMapping(path="/modificaralumno")
+		public String modificaralumno(AlumnoDTO alumnoDTO) {
+		
+		return "alumnos/listaralumnos";
+	}
+	
+
+	// CONSULTA DE ALUMNO POR CEDULA
+	@GetMapping(path = "/consultaralumnoporcedula/{inputTipoDoc}/{inputNumeroDeCedula}", produces = "application/json")
+	public String consultaralumnoporcedula(@PathVariable(value = "inputTipoDoc") String inputTipoDoc,
+			@PathVariable(value = "inputNumeroDeCedula") String inputNumeroDeCedula, Model model) {
+
+		AlumnoDTO alumnoDTO;
+
+		Alumno alumno = new Alumno();
+
+		alumno = alumnoservice.consultarAlumnoPorCedula(inputTipoDoc, inputNumeroDeCedula);
+
+		alumnoDTO = new AlumnoDTO(alumno);
+
+		model.addAttribute("alumnoconsultado", alumnoDTO);
+
+		buscarAlumno = true;
+
+		model.addAttribute("buscarAlumno", buscarAlumno);
+
+		return "redirect:listaralumnos";
+	}
+
+	// CONSULTA DE ALUMNO POR ID
+	@GetMapping(path = "/consultaralumnoporid/{idAl}", produces = "application/json")
+	public String consultaralumnoporid(@PathVariable(value = "idAl") Long idAl, Model model) {
+
+		AlumnoDTO alumnoDTO;
+		Alumno alumno = new Alumno();
+		alumno = alumnoservice.consultarAlumnoPorId(idAl);
+		alumnoDTO = new AlumnoDTO(alumno);
+		model.addAttribute("alumnoDTO", alumnoDTO);
+		return "alumnos/verAlumno";
+	}
 
 	// REGISTRA ALUMNO Y SUS REPRESENTANTES EN EL SISTEMA
 	@PostMapping(path = "/agregaralumno")
@@ -139,8 +148,7 @@ public class escuelavirtualController {
 		String tipoDocRpr;
 
 		String numDocRpr;
-		
-		
+
 		if (result.hasErrors()) {
 			model.addAttribute("alumnoDTO", alumnoDTO);
 			List<CursoDTO> cursos = new ArrayList<>();
@@ -152,13 +160,13 @@ public class escuelavirtualController {
 
 		if (alumnoservice.consultarAlumnoPorCedula(alumnoDTO.getTipoDocAl(), alumnoDTO.getNumDocAl()) != null) {
 
-			redirectAttributes.addFlashAttribute("mensaje1", "El alumno con este numero de cédula ya se encuentra registrado en el sistema")
-			.addFlashAttribute("clase", "danger");
-			
+			redirectAttributes
+					.addFlashAttribute("mensaje1",
+							"El alumno con este numero de cédula ya se encuentra registrado en el sistema")
+					.addFlashAttribute("clase", "danger");
+
 			return "alumnos/registroalumno";
 		}
-
-	
 
 		// model.addAttribute("alumnoDTO", new AlumnoDTO());
 
@@ -225,8 +233,10 @@ public class escuelavirtualController {
 
 		resp = alumnoservice.guardaAlumno(alumno);
 		if (resp.getResponseCode() == Constantes.ALUMNO_REGISTRADO_CODE) {
-			redirectAttributes.addFlashAttribute("mensaje2", "El alumno y su(s) representante(s)han sido registrado exitosamente en el sistema")
-			.addFlashAttribute("clase", "success");
+			redirectAttributes
+					.addFlashAttribute("mensaje2",
+							"El alumno y su(s) representante(s)han sido registrado exitosamente en el sistema")
+					.addFlashAttribute("clase", "success");
 		}
 		return "redirect:listaralumnos?success";
 

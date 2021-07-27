@@ -189,8 +189,8 @@
                 id="btnVer" th:href="@{/app/consultaralumnoporid/}+${alumno.IdAl}"><i class="bi bi-eye"></i><a>
               </td>
               <td>
-                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
-                    title="Editar" id="btnEditar"><i class="bi bi-pencil-fill"></i></button>
+                <a type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
+                    title="Editar" id="btnEditar" th:href="@{/app/editaralumno/}+${alumno.IdAl}"><i class="bi bi-pencil-fill"></i></a>
               </td>
               <td>
                 <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"

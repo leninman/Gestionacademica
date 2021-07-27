@@ -40,6 +40,10 @@ public interface ICursoService {
       
       public TurnoDTO consultarTurnoPorTurno(String turno);
       
+      public CursoDTO consultarCursoPorId(Long idcurso);
+      
+      
+      
       
       
 }

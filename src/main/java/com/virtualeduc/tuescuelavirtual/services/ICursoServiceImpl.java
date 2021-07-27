@@ -148,13 +148,13 @@ public class ICursoServiceImpl implements ICursoService {
     public List<CursoDTO> consultarcursos() {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 
-        Annio an = new Annio();
+       // Annio an = new Annio();
 
-        AnnioEscolar anesc = new AnnioEscolar();
+     //   AnnioEscolar anesc = new AnnioEscolar();
 
-        Seccion sec = new Seccion();
+  //      Seccion sec = new Seccion();
 
-        Turno tur = new Turno();
+ //       Turno tur = new Turno();
 
         List<Curso> cursos = cursorepo.findAll();
 
@@ -166,15 +166,15 @@ public class ICursoServiceImpl implements ICursoService {
 
             curso = cursos.get(i);
 
-            an = this.anniorepo.consultarAnnioByAnnio(curso.getIdAnnio().getAnnio());
+            /*an = this.anniorepo.consultarAnnioByAnnio(curso.getIdAnnio().getAnnio());
 
             anesc = this.annioescolarrepo.consultarAnnioEscolarVigente();
 
             sec = this.seccionrepo.consultarSeccionBySeccion(curso.getIdSec().getSeccion());
 
-            tur = this.turnorepo.consultarTurnoByTurno(curso.getIdTurno().getTurno());
+            tur = this.turnorepo.consultarTurnoByTurno(curso.getIdTurno().getTurno());*/
 
-            CursoDTO cur = new CursoDTO(curso, an.getAnnio(), anesc.getIntAnnioEsc(), sec.getSeccion(), tur.getTurno());
+            CursoDTO cur = new CursoDTO(curso);
 
             cursosDTO.add(cur);
 
@@ -190,27 +190,27 @@ public class ICursoServiceImpl implements ICursoService {
 
         CursoDTO cursoDTO = null;
 
-        Annio an = new Annio();
+       // Annio an = new Annio();
 
-        AnnioEscolar anesc = new AnnioEscolar();
+        //AnnioEscolar anesc = new AnnioEscolar();
 
-        Seccion sec = new Seccion();
+        //Seccion sec = new Seccion();
 
-        Turno tur = new Turno();
+      //  Turno tur = new Turno();
 
         Curso curso = cursorepo.consultarCursoByParametros(idannio, idannioesc, idseccion);
 
         if (curso != null) {
 
-            an = this.anniorepo.consultarAnnioByAnnio(curso.getIdAnnio().getAnnio());
+            /*an = this.anniorepo.consultarAnnioByAnnio(curso.getIdAnnio().getAnnio());
 
             anesc = this.annioescolarrepo.consultarAnnioEscolarVigente();
 
             sec = this.seccionrepo.consultarSeccionBySeccion(curso.getIdSec().getSeccion());
 
-            tur = this.turnorepo.consultarTurnoByTurno(curso.getIdTurno().getTurno());
+            tur = this.turnorepo.consultarTurnoByTurno(curso.getIdTurno().getTurno());*/
 
-            cursoDTO = new CursoDTO(curso, an.getAnnio(), anesc.getIntAnnioEsc(), sec.getSeccion(), tur.getTurno());
+            cursoDTO = new CursoDTO(curso);
 
         }
         return cursoDTO;
@@ -222,13 +222,13 @@ public class ICursoServiceImpl implements ICursoService {
 //        CursoDTO curDTO = null;
 
 //        Curso cur = new Curso();
-        Annio an = new Annio();
+       // Annio an = new Annio();
 
-        AnnioEscolar anesc = new AnnioEscolar();
+       // AnnioEscolar anesc = new AnnioEscolar();
 
-        Seccion sec = new Seccion();
+     //   Seccion sec = new Seccion();
 
-        Turno tur = new Turno();
+     //   Turno tur = new Turno();
 
         List<Curso> cur = new ArrayList<>();
 
@@ -243,15 +243,15 @@ public class ICursoServiceImpl implements ICursoService {
 
                 curso = cur.get(i);
 
-                an = this.anniorepo.consultarAnnioByAnnio(curso.getIdAnnio().getAnnio());
+                /*an = this.anniorepo.consultarAnnioByAnnio(curso.getIdAnnio().getAnnio());
 
                 anesc = this.annioescolarrepo.consultarAnnioEscolarVigente();
 
                 sec = this.seccionrepo.consultarSeccionBySeccion(curso.getIdSec().getSeccion());
 
-                tur = this.turnorepo.consultarTurnoByTurno(curso.getIdTurno().getTurno());
+                tur = this.turnorepo.consultarTurnoByTurno(curso.getIdTurno().getTurno());*/
 
-                CursoDTO curs = new CursoDTO(curso, an.getAnnio(), anesc.getIntAnnioEsc(), sec.getSeccion(), tur.getTurno());
+                CursoDTO curs = new CursoDTO(curso);
 
                 curDTO.add(curs);
 
@@ -271,5 +271,13 @@ public class ICursoServiceImpl implements ICursoService {
 
         return turnoDTO;
     }
+
+	@Override
+	public CursoDTO consultarCursoPorId(Long idcurso) {
+		// TODO Auto-generated method stub
+		CursoDTO cursoDTO;
+		cursoDTO=new CursoDTO(cursorepo.consultarCursoById(idcurso));
+		return cursoDTO;
+	}
 
 }
