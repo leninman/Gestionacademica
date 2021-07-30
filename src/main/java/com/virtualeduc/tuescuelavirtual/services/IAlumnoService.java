@@ -27,6 +27,8 @@ public interface IAlumnoService {
     
     public List<AlumnoDTO> consultarTodosLosAlumnos();
 
-    public Responses guardaAlumno(Alumno alumno);
+    public Responses guardaAlumno(Alumno alumno,Boolean guardar);
+    
+   // public Responses RetirarAlumno(Long idAl);
 
 }

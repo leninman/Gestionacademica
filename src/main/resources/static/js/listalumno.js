@@ -1,6 +1,6 @@
 
 $(document).ready(function () {
-    $("#inputTipoDoc").val("");
+  
 
     $('#tablaAlumnos').DataTable({        
         language: {

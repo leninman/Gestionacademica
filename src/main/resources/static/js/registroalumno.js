@@ -35,7 +35,7 @@ function mostrarcursoelegido() {
         x.style.display = "flex";
         document.getElementById("annio").setAttribute("value", annio);
         document.getElementById("seccion").setAttribute("value", seccion);
-        document.getElementById("turnoelegido").setAttribute("value", turno);
+        document.getElementById("turno").setAttribute("value", turno);
         document.getElementById("nivel").setAttribute("value", nivel);
         document
           .getElementById("especialidad")

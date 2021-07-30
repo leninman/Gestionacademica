@@ -115,7 +115,7 @@ public class coreController {
      }
 
 //REGISTRA ALUMNO Y SUS REPRESENTANTES EN EL SISTEMA  
-    @PostMapping(path = "/registraralumno",consumes = "application/json", produces = "application/json")
+    /*@PostMapping(path = "/registraralumno",consumes = "application/json", produces = "application/json")
     public @ResponseBody Responses registraralumno(@RequestBody AlumnoDTO alumnoDTO,Model model) {
 
         String tipoDocRpr;
@@ -188,6 +188,6 @@ public class coreController {
         
         return resp;
 
-    }
+    }*/
    
 }

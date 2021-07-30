@@ -163,7 +163,7 @@
               <th>SECCION</th>
               <th></th>
               <th></th>
-              <th></th>
+              <!--<th></th>-->
             </tr>
           </thead>
           <tbody>
@@ -192,10 +192,10 @@
                 <a type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
                     title="Editar" id="btnEditar" th:href="@{/app/editaralumno/}+${alumno.IdAl}"><i class="bi bi-pencil-fill"></i></a>
               </td>
-              <td>
-                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
-                    title="Eliminar" id="btnEliminar"><i class="bi bi-trash"></i></button>
-              </td>
+              <!--<td>
+                <a type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
+                    title="Eliminar" id="btnEliminar" th:href="@{/app/eliminaralumno/}+${alumno.IdAl}"><i class="bi bi-trash"></i></a>
+              </td>-->
             </tr>
           </tbody>
         </table>

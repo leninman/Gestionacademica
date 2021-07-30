@@ -12,6 +12,7 @@ import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.RepresentanteDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.SeccionDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.TurnoDTO;
 import com.virtualeduc.tuescuelavirtual.models.Alumno;
 import com.virtualeduc.tuescuelavirtual.models.Annio;
 import com.virtualeduc.tuescuelavirtual.models.AnnioEscolar;
@@ -19,11 +20,13 @@ import com.virtualeduc.tuescuelavirtual.models.Curso;
 import com.virtualeduc.tuescuelavirtual.models.Representante;
 import com.virtualeduc.tuescuelavirtual.models.Responses;
 import com.virtualeduc.tuescuelavirtual.models.Seccion;
+import com.virtualeduc.tuescuelavirtual.models.Turno;
 import com.virtualeduc.tuescuelavirtual.services.IAlumnoService;
 import com.virtualeduc.tuescuelavirtual.services.ICursoService;
 import com.virtualeduc.tuescuelavirtual.services.IRepresentanteService;
 import com.virtualeduc.tuescuelavirtual.utils.Constantes;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +39,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -63,6 +67,8 @@ public class escuelavirtualController {
 	Representante representante;
 
 	boolean buscarAlumno = false;
+	
+	boolean guardar;
 
 	@GetMapping(path = "/inicio")
 	public String inicio(Model model) {
@@ -99,10 +105,92 @@ public class escuelavirtualController {
 		return "alumnos/editaralumno";
 	}
 	
+	/*@PutMapping(path = "/eliminaralumno/{idAl}")
+	public Responses eliminaralumno(@PathVariable(value = "idAl") Long idAl) {
+		
+		return alumnoservice.RetirarAlumno(idAl);
+	}*/
+	
 	@PostMapping(path="/modificaralumno")
 		public String modificaralumno(AlumnoDTO alumnoDTO) {
 		
-		return "alumnos/listaralumnos";
+		guardar=false;
+		
+		Representante rep1;
+		
+		Representante rep2;
+		
+		String tipoDocRpr;
+		
+		String numDocRpr;
+		
+		
+		Alumno alumnoguardado=alumnoservice.consultarAlumnoPorId(alumnoDTO.getIdAl());
+		
+		
+		Alumno alumnoActualizar=new Alumno(alumnoDTO);
+		
+		alumnoActualizar.setIdAl(alumnoguardado.getIdAl());
+		
+		if(alumnoguardado.getIdAl()!=null) {
+			alumnoActualizar.setFechaCreacion(alumnoguardado.getFechaCreacion());
+		}
+		
+		Curso curso = new Curso();
+
+		AnnioDTO annioDTO = cursoservice.consultarAnnioPorAnnio(alumnoDTO.getAnnio());
+
+		AnnioEscolarDTO annioescolarDTO = cursoservice.consultarAnnioEscolarPorAnnioEscolar();
+
+		SeccionDTO seccionDTO = cursoservice.consultarSeccionPorSeccion(alumnoDTO.getSeccion());
+
+		CursoDTO cursoDTO = cursoservice.consultarcursoporparametros(annioDTO.getIdAnnio(),
+				annioescolarDTO.getIdAnnioEsc(), seccionDTO.getIdSec());
+
+		Annio annio = new Annio(annioDTO);
+
+		AnnioEscolar annioescolar = new AnnioEscolar(annioescolarDTO);
+
+		Seccion seccion = new Seccion(seccionDTO);
+
+		curso.setIdAnnio(annio);
+
+		curso.setIdAnnioEsc(annioescolar);
+
+		curso.setIdSec(seccion);
+
+		curso.setIdCurso(cursoDTO.getIdCurso());
+
+		alumnoActualizar.setIdCurso(curso);
+		if(alumnoDTO.getTipoDocRep1()!=null && alumnoDTO.getNumDocRep1()!=null) {
+			tipoDocRpr = alumnoDTO.getTipoDocRep1();
+			
+			numDocRpr = alumnoDTO.getNumDocRep1();
+			
+			 rep1 = representanteservice.consultarepresentanteporcedula(tipoDocRpr, numDocRpr);
+		}else {
+			 rep1=alumnoguardado.getIdRpr1();
+		}
+		
+		alumnoActualizar.setIdRpr1(rep1);
+		
+		if(alumnoDTO.getTipoDocRep2()!=null && alumnoDTO.getNumDocRep2()!=null) {
+			
+			tipoDocRpr = alumnoDTO.getTipoDocRep2();
+			
+			numDocRpr = alumnoDTO.getNumDocRep2();
+			
+			rep2 = representanteservice.consultarepresentanteporcedula(tipoDocRpr, numDocRpr);
+		}else {
+			rep2=alumnoguardado.getIdRpr2();
+		}
+		
+		
+		alumnoActualizar.setIdRpr2(rep2);
+		
+		alumnoservice.guardaAlumno(alumnoActualizar,guardar);
+		
+		return "redirect:listaralumnos?success";
 	}
 	
 
@@ -169,6 +257,8 @@ public class escuelavirtualController {
 		}
 
 		// model.addAttribute("alumnoDTO", new AlumnoDTO());
+		
+		guardar=true;
 
 		Responses resp = new Responses();
 
@@ -178,9 +268,12 @@ public class escuelavirtualController {
 
 		AnnioDTO annioDTO = cursoservice.consultarAnnioPorAnnio(alumnoDTO.getAnnio());
 
+		//CONSULTA EL AÑO ESCOLAR VIGENTE Y QUE ESTE CON STATUS ACTIVO
 		AnnioEscolarDTO annioescolarDTO = cursoservice.consultarAnnioEscolarPorAnnioEscolar();
 
 		SeccionDTO seccionDTO = cursoservice.consultarSeccionPorSeccion(alumnoDTO.getSeccion());
+		
+		TurnoDTO turnoDTO=cursoservice.consultarTurnoPorTurno(alumnoDTO.getTurno());
 
 		CursoDTO cursoDTO = cursoservice.consultarcursoporparametros(annioDTO.getIdAnnio(),
 				annioescolarDTO.getIdAnnioEsc(), seccionDTO.getIdSec());
@@ -190,12 +283,16 @@ public class escuelavirtualController {
 		AnnioEscolar annioescolar = new AnnioEscolar(annioescolarDTO);
 
 		Seccion seccion = new Seccion(seccionDTO);
+		
+		Turno turno=new Turno(turnoDTO);
 
 		curso.setIdAnnio(annio);
 
 		curso.setIdAnnioEsc(annioescolar);
 
 		curso.setIdSec(seccion);
+		
+		curso.setIdTurno(turno);
 
 		curso.setIdCurso(cursoDTO.getIdCurso());
 
@@ -231,7 +328,7 @@ public class escuelavirtualController {
 			alumno.setIdRpr2(rep1);
 		}
 
-		resp = alumnoservice.guardaAlumno(alumno);
+		resp = alumnoservice.guardaAlumno(alumno,guardar);
 		if (resp.getResponseCode() == Constantes.ALUMNO_REGISTRADO_CODE) {
 			redirectAttributes
 					.addFlashAttribute("mensaje2",
