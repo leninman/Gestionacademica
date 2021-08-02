@@ -74,7 +74,7 @@ public class escuelavirtualController {
 	public String inicio(Model model) {
 		return "inicio";
 	}
-
+//METODO PARA LA PAGINA DE INICIO
 	@GetMapping(path = "/listaralumnos")
 	public String listaralumnos(Model model) {
 		List<AlumnoCursoDTO> listaAlumnos = new ArrayList<>();
