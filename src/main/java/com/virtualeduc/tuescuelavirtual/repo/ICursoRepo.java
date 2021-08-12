@@ -28,6 +28,24 @@ public interface ICursoRepo extends JpaRepository<Curso, Long> {
     public List<Curso> consultarCursosByPeriodo(Long idannioesc);
     
     
+    @Query(value="select"
+    		+ " a.id_curso,a.id_annio,a.id_sec,a.id_annio_esc,a.id_turno,"
+    		+ " b.annio,b.nivel,b.especialidad,"
+    		+ " c.seccion,"
+    		+ " d.turno,"
+    		+ " e.int_annio_esc"
+    		+ " from cursos a"
+    		+ " left join annios b on a.id_annio=b.id_annio"
+    		+ " left join secciones c on a.id_sec=c.id_sec"
+    		+ " left join turnos d on a.id_turno=d.id_turno"
+    		+ " left join annio_escolar e on a.id_annio_esc=e.id_annio_esc"
+            + " where a.id_curso=?1",nativeQuery = true)
+    public Curso consultarCursoById(Long idcurso);
+    
+    @Query(value="Select a.id_curso,a.id_annio,a.id_sec,a.id_annio_esc,a.id_turno from cursos a "
+            + "WHERE a.ID_ANNIO=?1 and a.ID_ANNIO_ESC=?2 and a.ID_SEC=?3 and a.ID_TURNO=?4",nativeQuery = true)
+public Curso consultarCursoPorParametros(Long idannio,Long idannioesc,Long idseccion,Long idturno);
+
 
     
 }

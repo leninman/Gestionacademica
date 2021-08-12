@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" type="text/css" href="/css/curso/Estilos.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <header></header>
+  <body>
+    <div
+      th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+      th:if="${mensaje3 != null}"
+      th:text="${mensaje3}"
+      class="alert"
+    ></div>
+    <div
+      th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+      th:if="${mensaje6 != null}"
+      th:text="${mensaje6}"
+      class="alert"
+    ></div>
+    <div
+      th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+      th:if="${mensaje7 != null}"
+      th:text="${mensaje7}"
+      class="alert"
+    ></div>
+    <div
+      th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+      th:if="${mensaje8 != null}"
+      th:text="${mensaje8}"
+      class="alert"
+    ></div>
+
+    <div class="container my-5">
+      <div class="card" style="width: 100%; border-color: #337ab7">
+        <div class="card-header">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown nav-item active">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Año Escolar
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Ingresar nuevo año escolar</a>
+                    <!--<a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>-->
+                  </div>
+                </li>
+                <li class="nav-item active">
+                  <a
+                    class="nav-link"
+                    th:href="@{/app/nuevocurso}"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Registrar Nuevo Curso"
+                    ><i></i>Nuevo <span class="sr-only">(current)</span></a
+                  >
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" th:href="@{/app/inicio}"
+                    ><i class="bi bi-x"></i>Salir<span class="sr-only"
+                      >(current)</span
+                    ></a
+                  >
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+        <div class="card-body" style="text-align: left; width: 100%">
+          <div class="container">
+            <div class="col-md-20">
+              <form class="form-horizontal" id="formAlumno" name="formAlumno">
+                <div class="row">
+                  <div class="col-sm-4">&nbsp;</div>
+                  <div class="form-group col-md-8">
+                    <h5>
+                      <b>Información del curso</b>
+                    </h5>
+                  </div>
+                </div>
+                <br />
+                <div class="row" id="rowtablecursos">
+                  <table
+                    id="tablecursos"
+                    class="table table-striped table-hover"
+                  >
+                    <thead>
+                      <tr>
+                        <th>NUMERO DEL CURSO</th>
+                        <th>AÑO</th>
+                        <th>SECCION</th>
+                        <th>TURNO</th>
+                        <th>NIVEL</th>
+                        <th>ESPECIALIDAD</th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr th:each="curso:${Cursos}">
+                        <td th:text="${curso.idCurso}"></td>
+                        <td th:text="${curso.annio}"></td>
+                        <td th:text="${curso.seccion}"></td>
+                        <td th:text="${curso.turno}"></td>
+                        <td th:text="${curso.nivel}"></td>
+                        <td th:text="${curso.especialidad}"></td>
+                        <td>
+                          <a
+                            type="button"
+                            class="btn btn-secondary"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Editar"
+                            id="btnEditar"
+                            th:href="@{/app/editacurso/}+${curso.idCurso}"
+                            ><i class="bi bi-pencil-fill"></i
+                          ></a>
+                        </td>
+                        <td>
+                          <a
+                            type="button"
+                            class="btn btn-secondary"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Eliminar"
+                            id="btnEliminar"
+                            th:href="@{/app/eliminacurso/}+${curso.idCurso}"
+                            ><i class="bi bi-trash"></i
+                          ></a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="/js/listacurso.js"></script>
+  </body>
+</html>

@@ -16,6 +16,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.virtualeduc.tuescuelavirtual.models.DTOS.TurnoDTO;
 /**
  *
  * @author Lenin
@@ -49,6 +51,12 @@ public class Turno implements Serializable {
         this.idTurno = idTurno;
         this.turno = turno;
     }
+    
+    public Turno(TurnoDTO turnoDTO) {
+        this.idTurno = turnoDTO.getIdTurno();
+        this.turno = turnoDTO.getTurno();
+    }
+    
 
     public Long getIdTurno() {
         return idTurno;

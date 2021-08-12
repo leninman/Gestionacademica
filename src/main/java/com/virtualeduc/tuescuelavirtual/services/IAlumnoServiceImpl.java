@@ -12,6 +12,7 @@ import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
 import com.virtualeduc.tuescuelavirtual.repo.IAlumnoRepo;
 import com.virtualeduc.tuescuelavirtual.utils.Constantes;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,17 +41,26 @@ public class IAlumnoServiceImpl implements IAlumnoService {
 	AlumnoDTO alumnoDTO;
 	
 	Alumno alumnoguardado;
+	
+	
+	Alumno alumnoactualizado;
 
 	@Override
 	@Transactional
 	@ResponseStatus(HttpStatus.CREATED)
-	public Responses guardaAlumno(Alumno alumno) {
+	public Responses guardaAlumno(Alumno alumno,Boolean guardar) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 		// String tipoDocAl = alumno.getTipoDocAl();
 		// String numDocAl = alumno.getNumDocAl();
 		Responses resp = new Responses();
+		if(guardar) {
+		
+		
+		
 		
 		alumnoguardado=new Alumno();
+		
+		alumnoactualizado=new Alumno();
 		
 		alumnoconsultado=new Alumno();
 		
@@ -58,19 +68,31 @@ public class IAlumnoServiceImpl implements IAlumnoService {
 
 		// CONSULTA SI EL ALUMNO YA EXISTE, SI EXISTE RETORNA EL ALUMNO, SI NO LO GUARDA
 		if (alumnoconsultado==null) {
-			this.alumnoguardado = alumnorepo.save(alumno);
+			alumno.setFechaCreacion(new Date());
+			alumnoguardado = alumnorepo.save(alumno);
 			resp.setResponseCode(Constantes.ALUMNO_REGISTRADO_CODE);
 			resp.setResponseDescription(Constantes.ALUMNO_REGISTRADO_DESC);
-			this.alumnoDTO=new AlumnoDTO(alumnoguardado);
+			alumnoDTO=new AlumnoDTO(alumnoguardado);
 			
 		} else {
 			resp.setResponseCode(Constantes.ALUMNO_EXISTE_CODE);
 			resp.setResponseDescription(Constantes.ALUMNO_EXISTE_DESC);
-			this.alumnoDTO=new AlumnoDTO(alumnoconsultado);
+			alumnoDTO=new AlumnoDTO(alumnoconsultado);
 			//alumno.setIdAl(this.alumnoDTO.getIdAl());
 		}
 		resp.setAlumno(this.alumnoDTO);
+	
+		
+	}else {
+		resp.setResponseCode(Constantes.ALUMNO_MODIFICADO_CODE);
+		resp.setResponseDescription(Constantes.ALUMNO_MODIFICADO_DESC);
+		this.alumnoactualizado = alumnorepo.save(alumno);
+		this.alumnoDTO=new AlumnoDTO(alumnoactualizado);
+		resp.setAlumno(this.alumnoDTO);
+	}
+		
 		return resp;
+		
 	}
 
 	/**
@@ -138,5 +160,32 @@ public class IAlumnoServiceImpl implements IAlumnoService {
 
 		return alumnosDTO;
 	}
+
+	@Override
+	public Long[] consultarAlumnoPorIdCurso(Long idcurso) {
+		// TODO Auto-generated method stub
+		Long[] listaIdAlumnos=null;
+		
+		listaIdAlumnos=alumnorepo.findAlumnoByIdCurso(idcurso);
+		
+		return listaIdAlumnos;
+	}
+
+	/*@Override
+	public Responses RetirarAlumno(Long idAl) {
+		// TODO Auto-generated method stub
+		Responses response=new Responses();
+		Alumno alumnoAmodificar=new Alumno();
+		Alumno alumnoModificado=new Alumno();
+		alumnoAmodificar=alumnorepo.findById(idAl).orElse(null);
+		alumnoAmodificar.setStatus("RETIRADO");
+		alumnoModificado=alumnorepo.save(alumnoAmodificar);
+		response.setResponseCode(Constantes.ALUMNO_RETIRADO_CODE);
+		response.setResponseDescription(Constantes.ALUMNO_RETIRADO_DESC);
+		response.setAlumno(new AlumnoDTO(alumnoModificado));
+		return response;
+		
+		
+	}*/
 
 }

@@ -4,6 +4,14 @@
   width: 300px;
   
 }
+
+.input-nombre-apellido-view {
+
+  width: 110px;
+  border: none;
+  enable-background:0;
+  
+}
 .input-buttons {
   border-radius: 100px;
   border: 1px solid #337ab7;
@@ -27,16 +35,29 @@ span > #guardarAlumno {
   border: 1px solid #337ab7;
   width: 200px;
 }
+
+.input-cedula-view {
+  enable-background:0;
+  width: 100px;
+}
 .input-cmb-cedula {
   border-radius: 100px;
   border: 1px solid #337ab7;
   width: 60px;
   text-align: center;
 }
+
 .input-fech-nac {
   border-radius: 100px;
   border: 1px solid #337ab7;
   width: 255px;
+}
+
+
+.input-fech-nac-view {
+ 
+  width: 150px;
+  border: none;
 }
 
 .input-fech-nac-rep {
@@ -49,14 +70,29 @@ span > #guardarAlumno {
   border: 1px solid #337ab7;
   width: 200px;
 }
+.input-fech-ing-view {
+ 
+  border: none;
+  width: 150px;
+}
 .input-edad {
   border-radius: 100px;
   border: 1px solid #337ab7;
   width: 50px;
 }
+.input-edad-view {
+ 
+  border: none;
+  width: 50px;
+}
 .input-sexo {
   border-radius: 100px;
   border: 1px solid #337ab7;
+  width: 100px;
+}
+
+.input-sexo-view {
+  border:none;
   width: 100px;
 }
 
@@ -66,9 +102,20 @@ span > #guardarAlumno {
   width: 110px;
 }
 
+.input-parentesco-view {
+  border: none;
+  width: 110px;
+}
+
+
 .input-ed-civ {
   border-radius: 100px;
   border: 1px solid #337ab7;
+  width: 105px;
+}
+
+.input-ed-civ-view {
+  border: none;
   width: 105px;
 }
 .input-est-acad {
@@ -76,9 +123,22 @@ span > #guardarAlumno {
   border: 1px solid #337ab7;
   width: 100px;
 }
+
+.input-est-acad-view {
+  
+  border: none;
+  width: 100px;
+}
 .input-txtDireccion {
   border-radius: 100px;
   border: 1px solid #337ab7;
+  width: 92%;
+  
+}
+
+.input-txtDireccion-view {
+ 
+  border:none;
   width: 92%;
   
 }
@@ -99,10 +159,29 @@ span > #guardarAlumno {
   width: 200px;
 }
 
+.input-num-tlf-view {
+  border: none;
+  width: 200px;
+}
+
 .input-email {
   border-radius: 100px;
   border: 1px solid #337ab7;
   width: 400px;
+}
+
+.input-email-view {
+  
+  border: none;
+  width: 400px;
+}
+
+.input-curso-view {
+  
+  border: none;
+  text-align: left;
+  width: 300px;
+ 
 }
 
 /*#tablecursos {

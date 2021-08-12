@@ -2,7 +2,7 @@
 $(document).ready(function () {
   
 
-    $('#tablaAlumnos').DataTable({        
+    $('#tablecursos').DataTable({        
         language: {
                 "lengthMenu": "Mostrar _MENU_ registros",
                 "zeroRecords": "No se encontraron resultados",

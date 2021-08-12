@@ -1,42 +1,69 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="/css/principal/Estilos.css">
 
-        <title></title>
-    <header>
-
-    </header>
-
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/principal/Estilos.css" />
 </head>
+<header>
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color:rgb(181, 181, 181);height:min-content">
+        
+            
+                <a class="navbar-brand logo" href="#">
+                    <div class="container">
+                        <img th:src="@{/images/LOGOPOCATERRA.svg}" alt="BECA" width="80" height="100%" style="margin-left: 1%"/>
+                    </div>
+                   
+                    <!--<img src="/images/LOGOPOCATERRA.svg" width="120" height="100%" alt="forecastr logo" 
+                    style="margin-left: 1%" />-->
+                    
+                    </a>
+            
+            
+                <h2>U.E.P JOSE RAFAEL POCATERRA</h2>
+          
+        
+        <!-- Topbar Navbar -->
+                <!--<ul class="navbar-nav ml-auto">
+                  
+                    <li class="nav-item dropdown no-arrow">
+                      <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small"  th:text="${session.Usuario.nombreCompleto}"></span>
+                        <img class="img-profile rounded-circle" th:src="@{/img/user_orange.png}" alt="memorynotfound user">
+                      </a>
+                      
+                      <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                 <a  th:each="menu : ${menues}" th:if="${menu.tipoMenu}=='U'" class="dropdown-item" th:href="${menu.accion}" th:id="${menu.accion}+'l'">
+                  <i  th:class="${menu.icono}"></i>
+                  <span th:text="${menu.nombreOpcion}"></span>
+                 </a>
+               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                          <i class="fas fa-sign-out-alt"></i>
+                          <span th:text="#{msj.cerrar.sesion}"></span>
+                        </a>
+                      </div>
+                    </li>
+                  </ul>-->
+             </nav>    
+             <!-- End of Topbar -->
+       
+    
+</header>
 
 <body>
-
-
-
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #7F87A3;" id="myNavBar">
-        <!-- Brand -->
-
-        <a class="navbar-brand logo" href="#">
-            <div class="container">
-                <img  src="/images/LOGOPOCATERRA.svg" width="120" height="100%" alt="forecastr logo"
-                      loading="lazy">
-
-            </div>
-            <div></div>
-        </a>
-        <h2>U.E.P JOSE RAFAEL POCATERRA</h2>
-
-
-        <!-- Links -->
+    <div class="navbar navbar-expand-lg navbar-light" id="myNavBar">
+        
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false">
+                    aria-expanded="false">
                     PERSONAS
+                   <i class="fa fa-users" aria-hidden="true"></i>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
                     <a class="dropdown-item" th:href="@{/app/listaralumnos}">ALUMNOS</a>
@@ -47,11 +74,12 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false">
+                    aria-expanded="false">
                     MAESTROS
+                   <i class="fa fa-archive" aria-hidden="true"></i>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                    <a class="dropdown-item" href="#">CURSOS</a>
+                    <a class="dropdown-item" th:href="@{/app/listarcursos}">CURSOS</a>
                     <a class="dropdown-item" href="#">SECCIONES</a>
                     <a class="dropdown-item" href="#">PERIODO ESCOLAR</a>
                 </div>
@@ -59,28 +87,27 @@
 
             <!-- Dropdown -->
             <li class="nav-item dropdown">
-                 <a class="nav-link" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        CALIFICACIONES
-                    </a>
+                <a class="nav-link" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    CALIFICACIONES
+                </a>
 
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                        <a class="dropdown-item" href="#">CARGA</a>
-                        <a class="dropdown-item" href="#">REPORTES</a>
-
-                    </div>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                    <a class="dropdown-item" href="#">CARGA</a>
+                    <a class="dropdown-item" href="#">REPORTES</a>
+                </div>
             </li>
             <li class="nav-item">
-                    <a class="nav-link" href="#">INGRESAR</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">REGISTRO</a>
-                </li>
+                <a class="nav-link" href="#">CERRAR SESIÓN</a>
+            </li>
+            <!--<li class="nav-item">
+                <a class="nav-link" href="#">REGISTRO</a>
+            </li>-->
         </ul>
-    </nav>
-
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

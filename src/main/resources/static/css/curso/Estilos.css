@@ -1,0 +1,61 @@
+#tablecursos th {
+  background-color: #337ab7 !important;
+  color: white;
+  font-size: small;
+}
+
+#tablecursos>tbody>tr>td {
+  vertical-align: middle !important;
+  text-align: center;
+  font-size: small;
+}
+
+#rowtablecursos {
+  text-align: center;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.card{
+  margin-right:auto;
+  margin-left:auto;
+  width: 80%; 
+  border-color: #337ab7;
+}
+
+.card-body{
+  width: 80%;
+  margin-right:auto;
+  margin-left:auto;
+  justify-content: center;
+}
+
+.row{
+  margin-right:auto;
+  margin-left:auto;
+  justify-content: center;
+}
+
+#Annio,#Turno,#Seccion,#Nivel,#intAnnioEsc{
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  width: 300px;
+  align-items: center;
+  text-align: center;
+  
+}
+
+.input-buttons {
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  background-color: #337ab7;
+  font-style: normal;
+  color: white;
+  width: 100px;
+}
+
+
+
+
+
+
