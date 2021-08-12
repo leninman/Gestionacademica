@@ -67,14 +67,17 @@ public class escuelavirtualController {
 	Representante representante;
 
 	boolean buscarAlumno = false;
-	
+
 	boolean guardar;
 
+	boolean guardarCurso;
+
+	// METODO PARA LA PAGINA DE INICIO
 	@GetMapping(path = "/inicio")
 	public String inicio(Model model) {
 		return "inicio";
 	}
-//METODO PARA LA PAGINA DE INICIO
+
 	@GetMapping(path = "/listaralumnos")
 	public String listaralumnos(Model model) {
 		List<AlumnoCursoDTO> listaAlumnos = new ArrayList<>();
@@ -83,11 +86,114 @@ public class escuelavirtualController {
 		return "alumnos/listaralumnos";
 	}
 
+	@GetMapping(path = "/listarcursos")
+	public String listarcursos(Model model) {
+		List<CursoDTO> listacursos = new ArrayList<>();
+		AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
+		listacursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
+		model.addAttribute("Cursos", listacursos);
+		return "cursos/listacursos";
+	}
+
+	@GetMapping(path = "/nuevocurso")
+	public String nuevocurso(Model model) {
+		CursoDTO cursoDTO = new CursoDTO();
+		model.addAttribute("annioescolar", cursoservice.consultarAnnioEscolar());
+		model.addAttribute("annios", cursoservice.consultarannios());
+		model.addAttribute("secciones", cursoservice.consultarsecciones());
+		model.addAttribute("turnos", cursoservice.consultarturnos());
+		model.addAttribute("cursoDTO", cursoDTO);
+		return "cursos/crearcurso";
+	}
+
+	@PostMapping(path = "/agregarcurso")
+	public String registrarcurso(@Valid CursoDTO cursoDTO, BindingResult result, Model model,
+			RedirectAttributes redirectAttributes) {
+
+		guardarCurso = true;
+
+		Responses resp = new Responses();
+
+		if (cursoservice.cursoporcurso(cursoDTO) != null) {
+
+			redirectAttributes.addFlashAttribute("mensaje4", Constantes.CURSO_EXISTE_DESC).addFlashAttribute("clase",
+					"danger");
+
+			return "redirect:nuevocurso";
+		}
+
+		resp = cursoservice.guardarCurso(cursoDTO, guardarCurso);
+
+		if (resp.getResponseCode() == Constantes.CURSO_REGISTRADO_CODE) {
+			redirectAttributes.addFlashAttribute("mensaje3", Constantes.CURSO_REGISTRADO_DESC)
+					.addFlashAttribute("clase", "success");
+		}
+
+		return "redirect:listarcursos?success";
+	}
+
+	@GetMapping(path = "/eliminacurso/{idCurso}")
+	public String eliminacurso(@PathVariable(value = "idCurso") Long idCurso, Model model,
+			RedirectAttributes redirectAttributes) {
+
+		Responses resp = new Responses();
+
+		if (alumnoservice.consultarAlumnoPorIdCurso(idCurso).length != 0) {
+
+			resp.setResponseCode(Constantes.CURSO_IMPOSIBLE_DE_ELIMINAR_CODE);
+
+			resp.setResponseDescription(Constantes.CURSO_IMPOSIBLE_DE_ELIMINAR_DESC);
+
+			redirectAttributes.addFlashAttribute("mensaje8", resp.getResponseDescription()).addFlashAttribute("clase",
+					"success");
+
+		} else {
+
+			resp = cursoservice.eliminarCurso(idCurso);
+
+			if (resp.getResponseCode() == Constantes.CURSO_ELIMINADO_CODE) {
+				redirectAttributes.addFlashAttribute("mensaje7", resp.getResponseDescription())
+						.addFlashAttribute("clase", "success");
+			}
+		}
+		return "redirect:/app/listarcursos";
+	}
+
+	@GetMapping(path = "/editacurso/{idCurso}")
+	public String editacurso(@PathVariable(value = "idCurso") Long idCurso, Model model) {
+
+		CursoDTO cursoDTO = cursoservice.consultarCursoPorId(idCurso);
+		model.addAttribute("annioescolar", cursoservice.consultarAnnioEscolar());
+		// model.addAttribute("annios",cursoservice.consultarannios());
+		model.addAttribute("secciones", cursoservice.consultarsecciones());
+		model.addAttribute("turnos", cursoservice.consultarturnos());
+		model.addAttribute("cursoDTO", cursoDTO);
+
+		return "cursos/editacurso";
+	}
+
+	@PostMapping(path = "/modificarcurso")
+	public String modificarcurso(CursoDTO cursoDTO, RedirectAttributes redirectAttributes) {
+
+		Responses resp = new Responses();
+		guardarCurso = false;
+
+		resp = cursoservice.guardarCurso(cursoDTO, guardarCurso);
+
+		if (resp.getResponseCode() == Constantes.CURSO_MODIFICADO_CODE) {
+			redirectAttributes.addFlashAttribute("mensaje6", resp.getResponseDescription()).addFlashAttribute("clase",
+					"success");
+		}
+
+		return "redirect:listarcursos?success";
+
+	}
+
 	@GetMapping(path = "/registroalumno")
 	public String registroalumno(Model model) {
 		AlumnoDTO alumnoDTO = new AlumnoDTO();
 		List<CursoDTO> cursos = new ArrayList<>();
-		AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolarPorAnnioEscolar();
+		AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
 		cursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
 		model.addAttribute("Cursos", cursos);
 		model.addAttribute("alumnoDTO", alumnoDTO);
@@ -98,49 +204,50 @@ public class escuelavirtualController {
 	public String editaralumno(@PathVariable(value = "idAl") Long idAl, Model model) {
 		AlumnoDTO alumnoDTO = new AlumnoDTO(alumnoservice.consultarAlumnoPorId(idAl));
 		List<CursoDTO> cursos = new ArrayList<>();
-		AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolarPorAnnioEscolar();
+		AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
 		cursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
 		model.addAttribute("Cursos", cursos);
 		model.addAttribute("alumnoDTO", alumnoDTO);
 		return "alumnos/editaralumno";
 	}
-	
-	/*@PutMapping(path = "/eliminaralumno/{idAl}")
-	public Responses eliminaralumno(@PathVariable(value = "idAl") Long idAl) {
-		
-		return alumnoservice.RetirarAlumno(idAl);
-	}*/
-	
-	@PostMapping(path="/modificaralumno")
-		public String modificaralumno(AlumnoDTO alumnoDTO) {
-		
-		guardar=false;
-		
+
+	/*
+	 * @PutMapping(path = "/eliminaralumno/{idAl}") public Responses
+	 * eliminaralumno(@PathVariable(value = "idAl") Long idAl) {
+	 * 
+	 * return alumnoservice.RetirarAlumno(idAl); }
+	 */
+
+	@PostMapping(path = "/modificaralumno")
+	public String modificaralumno(AlumnoDTO alumnoDTO, RedirectAttributes redirectAttributes) {
+
+		guardar = false;
+
+		Responses resp = new Responses();
+
 		Representante rep1;
-		
+
 		Representante rep2;
-		
+
 		String tipoDocRpr;
-		
+
 		String numDocRpr;
-		
-		
-		Alumno alumnoguardado=alumnoservice.consultarAlumnoPorId(alumnoDTO.getIdAl());
-		
-		
-		Alumno alumnoActualizar=new Alumno(alumnoDTO);
-		
+
+		Alumno alumnoguardado = alumnoservice.consultarAlumnoPorId(alumnoDTO.getIdAl());
+
+		Alumno alumnoActualizar = new Alumno(alumnoDTO);
+
 		alumnoActualizar.setIdAl(alumnoguardado.getIdAl());
-		
-		if(alumnoguardado.getIdAl()!=null) {
+
+		if (alumnoguardado.getIdAl() != null) {
 			alumnoActualizar.setFechaCreacion(alumnoguardado.getFechaCreacion());
 		}
-		
+
 		Curso curso = new Curso();
 
-		AnnioDTO annioDTO = cursoservice.consultarAnnioPorAnnio(alumnoDTO.getAnnio());
+		AnnioDTO annioDTO = cursoservice.consultarAnnioPorAnnioYnivel(alumnoDTO.getAnnio(), alumnoDTO.getNivel());
 
-		AnnioEscolarDTO annioescolarDTO = cursoservice.consultarAnnioEscolarPorAnnioEscolar();
+		AnnioEscolarDTO annioescolarDTO = cursoservice.consultarAnnioEscolar();
 
 		SeccionDTO seccionDTO = cursoservice.consultarSeccionPorSeccion(alumnoDTO.getSeccion());
 
@@ -162,37 +269,41 @@ public class escuelavirtualController {
 		curso.setIdCurso(cursoDTO.getIdCurso());
 
 		alumnoActualizar.setIdCurso(curso);
-		if(alumnoDTO.getTipoDocRep1()!=null && alumnoDTO.getNumDocRep1()!=null) {
+		if (alumnoDTO.getTipoDocRep1() != null && alumnoDTO.getNumDocRep1() != null) {
 			tipoDocRpr = alumnoDTO.getTipoDocRep1();
-			
+
 			numDocRpr = alumnoDTO.getNumDocRep1();
-			
-			 rep1 = representanteservice.consultarepresentanteporcedula(tipoDocRpr, numDocRpr);
-		}else {
-			 rep1=alumnoguardado.getIdRpr1();
+
+			rep1 = representanteservice.consultarepresentanteporcedula(tipoDocRpr, numDocRpr);
+		} else {
+			rep1 = alumnoguardado.getIdRpr1();
 		}
-		
+
 		alumnoActualizar.setIdRpr1(rep1);
-		
-		if(alumnoDTO.getTipoDocRep2()!=null && alumnoDTO.getNumDocRep2()!=null) {
-			
+
+		if (alumnoDTO.getTipoDocRep2() != null && alumnoDTO.getNumDocRep2() != null) {
+
 			tipoDocRpr = alumnoDTO.getTipoDocRep2();
-			
+
 			numDocRpr = alumnoDTO.getNumDocRep2();
-			
+
 			rep2 = representanteservice.consultarepresentanteporcedula(tipoDocRpr, numDocRpr);
-		}else {
-			rep2=alumnoguardado.getIdRpr2();
+		} else {
+			rep2 = alumnoguardado.getIdRpr2();
 		}
-		
-		
+
 		alumnoActualizar.setIdRpr2(rep2);
-		
-		alumnoservice.guardaAlumno(alumnoActualizar,guardar);
-		
+
+		resp = alumnoservice.guardaAlumno(alumnoActualizar, guardar);
+
+		if (resp.getResponseCode() == Constantes.ALUMNO_MODIFICADO_CODE) {
+			redirectAttributes.addFlashAttribute("mensaje5", resp.getResponseDescription()).addFlashAttribute("clase",
+					"success");
+
+		}
+
 		return "redirect:listaralumnos?success";
 	}
-	
 
 	// CONSULTA DE ALUMNO POR CEDULA
 	@GetMapping(path = "/consultaralumnoporcedula/{inputTipoDoc}/{inputNumeroDeCedula}", produces = "application/json")
@@ -240,7 +351,7 @@ public class escuelavirtualController {
 		if (result.hasErrors()) {
 			model.addAttribute("alumnoDTO", alumnoDTO);
 			List<CursoDTO> cursos = new ArrayList<>();
-			AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolarPorAnnioEscolar();
+			AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
 			cursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
 			model.addAttribute("Cursos", cursos);
 			return "alumnos/registroalumno";
@@ -248,17 +359,15 @@ public class escuelavirtualController {
 
 		if (alumnoservice.consultarAlumnoPorCedula(alumnoDTO.getTipoDocAl(), alumnoDTO.getNumDocAl()) != null) {
 
-			redirectAttributes
-					.addFlashAttribute("mensaje1",
-							"El alumno con este numero de cédula ya se encuentra registrado en el sistema")
-					.addFlashAttribute("clase", "danger");
+			redirectAttributes.addFlashAttribute("mensaje1", Constantes.ALUMNO_EXISTE_DESC).addFlashAttribute("clase",
+					"danger");
 
 			return "alumnos/registroalumno";
 		}
 
 		// model.addAttribute("alumnoDTO", new AlumnoDTO());
-		
-		guardar=true;
+
+		guardar = true;
 
 		Responses resp = new Responses();
 
@@ -266,14 +375,14 @@ public class escuelavirtualController {
 
 		Curso curso = new Curso();
 
-		AnnioDTO annioDTO = cursoservice.consultarAnnioPorAnnio(alumnoDTO.getAnnio());
+		AnnioDTO annioDTO = cursoservice.consultarAnnioPorAnnioYnivel(alumnoDTO.getAnnio(), alumnoDTO.getNivel());
 
-		//CONSULTA EL AÑO ESCOLAR VIGENTE Y QUE ESTE CON STATUS ACTIVO
-		AnnioEscolarDTO annioescolarDTO = cursoservice.consultarAnnioEscolarPorAnnioEscolar();
+		// CONSULTA EL AÑO ESCOLAR VIGENTE Y QUE ESTE CON STATUS ACTIVO
+		AnnioEscolarDTO annioescolarDTO = cursoservice.consultarAnnioEscolar();
 
 		SeccionDTO seccionDTO = cursoservice.consultarSeccionPorSeccion(alumnoDTO.getSeccion());
-		
-		TurnoDTO turnoDTO=cursoservice.consultarTurnoPorTurno(alumnoDTO.getTurno());
+
+		TurnoDTO turnoDTO = cursoservice.consultarTurnoPorTurno(alumnoDTO.getTurno());
 
 		CursoDTO cursoDTO = cursoservice.consultarcursoporparametros(annioDTO.getIdAnnio(),
 				annioescolarDTO.getIdAnnioEsc(), seccionDTO.getIdSec());
@@ -283,15 +392,15 @@ public class escuelavirtualController {
 		AnnioEscolar annioescolar = new AnnioEscolar(annioescolarDTO);
 
 		Seccion seccion = new Seccion(seccionDTO);
-		
-		Turno turno=new Turno(turnoDTO);
+
+		Turno turno = new Turno(turnoDTO);
 
 		curso.setIdAnnio(annio);
 
 		curso.setIdAnnioEsc(annioescolar);
 
 		curso.setIdSec(seccion);
-		
+
 		curso.setIdTurno(turno);
 
 		curso.setIdCurso(cursoDTO.getIdCurso());
@@ -328,12 +437,10 @@ public class escuelavirtualController {
 			alumno.setIdRpr2(rep1);
 		}
 
-		resp = alumnoservice.guardaAlumno(alumno,guardar);
+		resp = alumnoservice.guardaAlumno(alumno, guardar);
 		if (resp.getResponseCode() == Constantes.ALUMNO_REGISTRADO_CODE) {
-			redirectAttributes
-					.addFlashAttribute("mensaje2",
-							"El alumno y su(s) representante(s)han sido registrado exitosamente en el sistema")
-					.addFlashAttribute("clase", "success");
+			redirectAttributes.addFlashAttribute("mensaje2", resp.getResponseDescription()).addFlashAttribute("clase",
+					"success");
 		}
 		return "redirect:listaralumnos?success";
 

@@ -29,6 +29,7 @@ public interface IAlumnoService {
 
     public Responses guardaAlumno(Alumno alumno,Boolean guardar);
     
-   // public Responses RetirarAlumno(Long idAl);
+    public Long[] consultarAlumnoPorIdCurso(Long idcurso);
+    
 
 }

@@ -57,19 +57,9 @@ public class CursoDTO {
         this.nivel = nivel;
         this.especialidad = especialidad;
     }
-
-   
-     
-     
-
-  
-
-    
-  
     
    
-    
-    
+   
     public CursoDTO(Curso curso) {
         
         this.idCurso=curso.getIdCurso();

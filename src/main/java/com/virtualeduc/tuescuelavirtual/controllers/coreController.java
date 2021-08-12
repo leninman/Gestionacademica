@@ -76,7 +76,7 @@ public class coreController {
     public @ResponseBody
     List<CursoDTO> consultarlistacursosporperiodo() {
         
-        AnnioEscolarDTO annioEscolar=cursoservice.consultarAnnioEscolarPorAnnioEscolar();
+        AnnioEscolarDTO annioEscolar=cursoservice.consultarAnnioEscolar();
         
         return cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
     }

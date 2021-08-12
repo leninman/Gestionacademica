@@ -20,6 +20,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlTransient;
 
+import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
+
 /**
  *
  * @author Lenin
@@ -35,12 +37,15 @@ public class Curso implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID_CURSO")
     private Long idCurso;
+    
     @JoinColumn(name = "ID_ANNIO", referencedColumnName = "ID_ANNIO")
     @ManyToOne(optional = false)
     private Annio idAnnio;
+    
     @JoinColumn(name = "ID_ANNIO_ESC", referencedColumnName = "ID_ANNIO_ESC")
     @ManyToOne(optional = false)
     private AnnioEscolar idAnnioEsc;
+    
     @JoinColumn(name = "ID_SEC", referencedColumnName = "ID_SEC")
     @ManyToOne(optional = false)
     private Seccion idSec;
@@ -58,8 +63,24 @@ public class Curso implements Serializable {
     public Curso(Long idCurso) {
         this.idCurso = idCurso;
     }
+    
+    
 
-    public Long getIdCurso() {
+    public Curso(Annio idAnnio, AnnioEscolar idAnnioEsc, Seccion idSec, Turno idTurno) {
+		super();
+		this.idAnnio = idAnnio;
+		this.idAnnioEsc = idAnnioEsc;
+		this.idSec = idSec;
+		this.idTurno = idTurno;
+		
+	}
+    
+    
+    
+    
+    
+
+	public Long getIdCurso() {
         return idCurso;
     }
 

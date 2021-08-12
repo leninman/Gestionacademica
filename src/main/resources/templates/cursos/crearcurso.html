@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" type="text/css" href="/css/curso/Estilos.css" />
+  </head>
+  <header></header>
+  <body>
+    <div
+    th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+    th:if="${mensaje4 != null}"
+    th:text="${mensaje4}"
+    class="alert"
+  ></div>
+
+    <br />
+    <br />
+    <div class="row">
+      <div class="form-group col-md-4">
+        <h5>
+          <b>FORMULARIO DE CREACIÓN DE CURSO</b>
+        </h5>
+      </div>
+    </div>
+
+    <div class="container my-5">
+      <div class="card">
+        <div class="card-header">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link"
+                  th:href="@{/app/inicio}"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Ir al inicio"
+                  ><i class="bi bi-house"></i
+                >Home </a>
+                &nbsp; &nbsp;
+                <li class="nav-item active">
+                  <a
+                    class="nav-link"
+                    th:href="@{/app/nuevocurso}"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Limpiar pantalla"
+                    ><i class="bi bi-eraser"></i
+                  >Limpiar</a>
+                </li>
+                &nbsp; &nbsp;
+                <li class="nav-item active">
+                  <a
+                    class="nav-link my-2 my-sm-0"
+                    th:href="@{/app/listarcursos}"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Salir"
+                    ><i class="bi bi-x"></i
+                  >Salir</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+
+        <div class="card-body">
+          <form
+            class="form-horizontal"
+            th:action="@{/app/agregarcurso}"
+            th:object="${cursoDTO}"
+            id="formCurso"
+            name="formCurso"
+            method="post"
+          >
+            <div class="row">
+              <b
+                ><label for="intAnnioEsc" class="col-form-label"
+                  >Año Escolar:&nbsp;&nbsp;</label
+                ></b
+              >
+              <select id="intAnnioEsc" th:field="*{intAnnioEsc}">
+                 <option
+                  th:each="annioescolar:${annioescolar}"
+                  th:value="${annioescolar.intAnnioEsc}"
+                  th:text="${annioescolar.intAnnioEsc}"
+                ></option>
+              </select>
+            </div>
+            <br />
+
+            <div class="row">
+              <b
+                ><label for="Annio" class="col-form-label"
+                  >Año:&nbsp;&nbsp;</label
+                ></b
+              >
+              <select id="Annio" th:field="*{annio}">
+                <option value="1°">1°
+                </option>
+                <option value="2°">2°
+                </option>
+                <option value="3°">3°
+                </option>
+                <option value="4°">4°
+                </option>
+                <option value="5°">5°
+                </option>
+                <!--<option
+                  th:each="annio:${annios}"
+                  th:value="${annio.annio}"
+                  th:text="${annio.annio}"
+                ></option>-->
+              </select>
+            </div>
+            <br />
+
+            <div class="row">
+              <b
+                ><label for="Nivel" class="col-form-label"
+                  >Nivel:&nbsp;&nbsp;</label
+                ></b
+              >
+              <select id="Nivel" th:field="*{nivel}">
+                <option value="MEDIA GENERAL">MEDIA GENERAL
+                </option>
+                <option value="PRIMARIA">PRIMARIA
+                </option>
+                <!--<option
+                  th:each="annio:${annios}"
+                  th:value="${annio.nivel}"
+                  th:text="${annio.nivel}"
+                ></option>-->
+              </select>
+            </div>
+            <br />
+
+            <div class="row">
+              <b
+                ><label for="Turno" class="col-form-label"
+                  >Turno:&nbsp;&nbsp;</label
+                ></b
+              >
+              <select id="Turno" th:field="*{turno}">
+                <option
+                  th:each="turno:${turnos}"
+                  th:value="${turno.turno}"
+                  th:text="${turno.turno}"
+                ></option>
+              </select>
+            </div>
+            <br />
+
+            <div class="row">
+              <b
+                ><label for="Seccion" class="col-form-label"
+                  >Sección:&nbsp;&nbsp;</label
+                ></b
+              >
+              <select id="Seccion" th:field="*{seccion}">
+                <option
+                  th:each="seccion:${secciones}"
+                  th:value="${seccion.seccion}"
+                  th:text="${seccion.seccion}"
+                ></option>
+              </select>
+            </div>
+            <br />
+            <div class="row">
+              <input
+                type="submit"
+                class="input-buttons"
+                name="submit"
+                value="Crear Curso"
+                style="margin: 0 auto"
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="/js/nuevocurso.js"></script>
+  </body>
+</html>

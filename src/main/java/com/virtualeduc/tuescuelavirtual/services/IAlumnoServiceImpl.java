@@ -84,6 +84,8 @@ public class IAlumnoServiceImpl implements IAlumnoService {
 	
 		
 	}else {
+		resp.setResponseCode(Constantes.ALUMNO_MODIFICADO_CODE);
+		resp.setResponseDescription(Constantes.ALUMNO_MODIFICADO_DESC);
 		this.alumnoactualizado = alumnorepo.save(alumno);
 		this.alumnoDTO=new AlumnoDTO(alumnoactualizado);
 		resp.setAlumno(this.alumnoDTO);
@@ -157,6 +159,16 @@ public class IAlumnoServiceImpl implements IAlumnoService {
 		}
 
 		return alumnosDTO;
+	}
+
+	@Override
+	public Long[] consultarAlumnoPorIdCurso(Long idcurso) {
+		// TODO Auto-generated method stub
+		Long[] listaIdAlumnos=null;
+		
+		listaIdAlumnos=alumnorepo.findAlumnoByIdCurso(idcurso);
+		
+		return listaIdAlumnos;
 	}
 
 	/*@Override

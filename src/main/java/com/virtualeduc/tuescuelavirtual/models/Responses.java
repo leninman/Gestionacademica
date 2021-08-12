@@ -6,6 +6,8 @@
 package com.virtualeduc.tuescuelavirtual.models;
 
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
+
 import java.io.Serializable;
 
 /**
@@ -25,6 +27,8 @@ public class Responses implements Serializable {
     
     private AlumnoDTO alumno;
     
+    private CursoDTO curso;
+    
 //    private Representante representante;
 //    
 //    private Curso curso;
@@ -36,6 +40,8 @@ public class Responses implements Serializable {
     public void setAlumno(AlumnoDTO alumno) {
         this.alumno = alumno;
     }
+    
+    
 
    
 
@@ -56,15 +62,23 @@ public class Responses implements Serializable {
 //    }
     
     
-    public Responses() {
+    public CursoDTO getCurso() {
+		return curso;
+	}
+
+	public void setCurso(CursoDTO curso) {
+		this.curso = curso;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public Responses() {
         
     }
 
-    public Responses(int responseCode, String responseDescription, AlumnoDTO alumno) {
-        this.responseCode = responseCode;
-        this.responseDescription = responseDescription;
-        this.alumno = alumno;
-    }
+  
 
   
 
@@ -77,7 +91,15 @@ public class Responses implements Serializable {
     
     
 
-    public int getResponseCode() {
+    public Responses(int responseCode, String responseDescription, AlumnoDTO alumno, CursoDTO curso) {
+		super();
+		this.responseCode = responseCode;
+		this.responseDescription = responseDescription;
+		this.alumno = alumno;
+		this.curso = curso;
+	}
+
+	public int getResponseCode() {
         return responseCode;
     }
 

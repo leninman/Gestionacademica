@@ -16,6 +16,6 @@ import org.springframework.data.jpa.repository.Query;
 public interface IAnnioRepo extends JpaRepository<Annio, Long>{
     
     @Query(value="SELECT * from annios a "
-                    + "WHERE a.ANNIO=:annio",nativeQuery = true)
-    public Annio consultarAnnioByAnnio(String annio); 
+                    + "WHERE a.ANNIO=?1 and a.NIVEL=?2",nativeQuery = true)
+    public Annio consultarAnnioByAnnioAndNivel(String annio,String nivel); 
 }

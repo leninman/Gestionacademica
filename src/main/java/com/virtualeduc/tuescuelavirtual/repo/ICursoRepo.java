@@ -42,7 +42,10 @@ public interface ICursoRepo extends JpaRepository<Curso, Long> {
             + " where a.id_curso=?1",nativeQuery = true)
     public Curso consultarCursoById(Long idcurso);
     
-    
+    @Query(value="Select a.id_curso,a.id_annio,a.id_sec,a.id_annio_esc,a.id_turno from cursos a "
+            + "WHERE a.ID_ANNIO=?1 and a.ID_ANNIO_ESC=?2 and a.ID_SEC=?3 and a.ID_TURNO=?4",nativeQuery = true)
+public Curso consultarCursoPorParametros(Long idannio,Long idannioesc,Long idseccion,Long idturno);
+
 
     
 }
