@@ -31,5 +31,7 @@ public interface IAlumnoService {
     
     public Long[] consultarAlumnoPorIdCurso(Long idcurso);
     
+    public String consultarCedulasDeAlumnos(String tipoDocAl, String numDocAl);
+    
 
 }

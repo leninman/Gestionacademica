@@ -53,6 +53,12 @@
   <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje5 != null}"
   th:text="${mensaje5}" class="alert">
 </div>
+ <div
+      th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+      th:if="${mensaje1 != null}"
+      th:text="${mensaje1}"
+      class="alert"
+    ></div>
   <br>
   <br>
   <div class="row">

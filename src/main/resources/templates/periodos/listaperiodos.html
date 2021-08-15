@@ -11,7 +11,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
     />
-    <link rel="stylesheet" type="text/css" href="/css/curso/Estilos.css" />
+    <link rel="stylesheet" type="text/css" href="/css/periodos/Estilos.css" />
     <link
       rel="stylesheet"
       type="text/css"
@@ -30,41 +30,11 @@
   <header></header>
   <body>
     <div
-      th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
-      th:if="${mensaje3 != null}"
-      th:text="${mensaje3}"
-      class="alert"
-    ></div>
-    <div
-      th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
-      th:if="${mensaje6 != null}"
-      th:text="${mensaje6}"
-      class="alert"
-    ></div>
-    <div
-      th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
-      th:if="${mensaje7 != null}"
-      th:text="${mensaje7}"
-      class="alert"
-    ></div>
-    <div
-      th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
-      th:if="${mensaje8 != null}"
-      th:text="${mensaje8}"
-      class="alert"
-    ></div>
-    <div
     th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
-    th:if="${mensaje9 != null}"
-    th:text="${mensaje9}"
+    th:if="${mensaje10 != null}"
+    th:text="${mensaje10}"
     class="alert"
   ></div>
-  <div
-  th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
-  th:if="${mensaje4 != null}"
-  th:text="${mensaje4}"
-  class="alert"
-></div>
 
     <div class="container my-5">
       <div class="card" style="width: 100%; border-color: #337ab7">
@@ -75,10 +45,10 @@
                 <li class="nav-item active">
                   <a
                     class="nav-link"
-                    th:href="@{/app/nuevocurso}"
+                    th:href="@{/app/nuevoperiodo}"
                     data-toggle="tooltip"
                     data-placement="top"
-                    title="Registrar Nuevo Curso"
+                    title="Registrar Nuevo Periodo"
                     ><i></i>Nuevo <span class="sr-only">(current)</span></a
                   >
                 </li>
@@ -101,38 +71,35 @@
                   <div class="col-sm-4">&nbsp;</div>
                   <div class="form-group col-md-8">
                     <h5>
-                      <b>Información del curso</b>
+                      <b>Información de Periodos Escolares</b>
                     </h5>
                   </div>
                 </div>
                 <br />
-                <div class="row" id="rowtablecursos">
+                <div class="row" id="rowtableperiodos">
                   <table
-                    id="tablecursos"
+                    id="tableperiodos"
                     class="table table-striped table-hover"
                   >
                     <thead>
                       <tr>
-                        <th>NUMERO DEL CURSO</th>
-                        <th>AÑO</th>
-                        <th>SECCION</th>
-                        <th>TURNO</th>
-                        <th>NIVEL</th>
-                        <th>ESPECIALIDAD</th>
+                        <th>NUMERO DEL PERIODO</th>
                         <th>PERIODO</th>
+                        <th>FECHA DE INICIO</th>
+                        <th>FECHA DE FINALIZACION</th>
+                        <th>ESTADO</th>
                         <th></th>
                         <th></th>
+                    
                       </tr>
                     </thead>
                     <tbody>
-                      <tr th:each="curso:${Cursos}">
-                        <td th:text="${curso.idCurso}"></td>
-                        <td th:text="${curso.annio}"></td>
-                        <td th:text="${curso.seccion}"></td>
-                        <td th:text="${curso.turno}"></td>
-                        <td th:text="${curso.nivel}"></td>
-                        <td th:text="${curso.especialidad}"></td>
-                        <td th:text="${curso.intAnnioEsc}"></td>
+                      <tr th:each="periodo:${Periodos}">
+                        <td th:text="${periodo.idAnnioEsc}"></td>
+                        <td th:text="${periodo.intAnnioEsc}"></td>
+                        <td th:text="${periodo.fechaI}"></td>
+                        <td th:text="${periodo.fechaF}"></td>
+                        <td th:text="${periodo.status}"></td>
                         <td>
                           <a
                             type="button"
@@ -141,7 +108,7 @@
                             data-placement="top"
                             title="Editar"
                             id="btnEditar"
-                            th:href="@{/app/editacurso/}+${curso.idCurso}"
+                            href="#"
                             ><i class="bi bi-pencil-fill"></i
                           ></a>
                         </td>
@@ -153,7 +120,7 @@
                             data-placement="top"
                             title="Eliminar"
                             id="btnEliminar"
-                            th:href="@{/app/eliminacurso/}+${curso.idCurso}"
+                            href="#"
                             ><i class="bi bi-trash"></i
                           ></a>
                         </td>
@@ -173,6 +140,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <script src="/js/listacurso.js"></script>
+    <script src="/js/listaperiodos.js"></script>
   </body>
 </html>

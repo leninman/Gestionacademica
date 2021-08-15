@@ -360,31 +360,29 @@ public class ICursoServiceImpl implements ICursoService {
 			resp.setResponseDescription(Constantes.CURSO_MODIFICADO_DESC);
 		}
 
-	
+		/*
+		 * cursoaguardardto.setIdAnnio(idAnnio);
+		 * 
+		 * cursoaguardardto.setIdSec(idSeccion);
+		 * 
+		 * cursoaguardardto.setIdAnnioEsc(idAnnioescolar);
+		 * 
+		 * cursoaguardardto.setIdTurno(idTurno);
+		 * 
+		 * cursoaguardardto.setAnnio(annio.getAnnio());
+		 * 
+		 * cursoaguardardto.setIntAnnioEsc(annioEscolar.getIntAnnioEsc());
+		 * 
+		 * cursoaguardardto.setSeccion(seccion.getSeccion());
+		 * 
+		 * cursoaguardardto.setTurno(turno.getTurno());
+		 * 
+		 * cursoaguardardto.setNivel(annio.getNivel());
+		 * 
+		 * cursoaguardardto.setEspecialidad(annio.getEspecialidad());
+		 */
 
-	/*
-	 * cursoaguardardto.setIdAnnio(idAnnio);
-	 * 
-	 * cursoaguardardto.setIdSec(idSeccion);
-	 * 
-	 * cursoaguardardto.setIdAnnioEsc(idAnnioescolar);
-	 * 
-	 * cursoaguardardto.setIdTurno(idTurno);
-	 * 
-	 * cursoaguardardto.setAnnio(annio.getAnnio());
-	 * 
-	 * cursoaguardardto.setIntAnnioEsc(annioEscolar.getIntAnnioEsc());
-	 * 
-	 * cursoaguardardto.setSeccion(seccion.getSeccion());
-	 * 
-	 * cursoaguardardto.setTurno(turno.getTurno());
-	 * 
-	 * cursoaguardardto.setNivel(annio.getNivel());
-	 * 
-	 * cursoaguardardto.setEspecialidad(annio.getEspecialidad());
-	 */
-
-	return resp;
+		return resp;
 
 	}
 
@@ -410,14 +408,86 @@ public class ICursoServiceImpl implements ICursoService {
 	@Override
 	public Responses eliminarCurso(Long idcurso) {
 		// TODO Auto-generated method stub
-		Responses resp=new Responses();
-		
+		Responses resp = new Responses();
+
 		cursorepo.deleteById(idcurso);
-		
+
 		resp.setResponseCode(Constantes.CURSO_ELIMINADO_CODE);
 		resp.setResponseDescription(Constantes.CURSO_ELIMINADO_DESC);
-		
+
 		return resp;
+	}
+
+	@Override
+	public List<AnnioEscolarDTO> consultarPeriodos() {
+		// TODO Auto-generated method stub
+
+		List<AnnioEscolarDTO> periodosDTO = new ArrayList<>();
+
+		List<AnnioEscolar> periodos = new ArrayList<>();
+
+		AnnioEscolarDTO annioescolar;
+
+		periodos = annioescolarrepo.consultarPeriodosEscolares();
+
+		for (int j = 0; j < periodos.size(); j++) {
+			annioescolar = new AnnioEscolarDTO(periodos.get(j));
+			periodosDTO.add(annioescolar);
+		}
+
+		return periodosDTO;
+	}
+
+	@Override
+	public Responses guardarPeriodo(AnnioEscolarDTO annioescolarDTO, boolean guardarPeriodo) {
+		// TODO Auto-generated method stub
+		Responses resp = new Responses();
+
+		if (guardarPeriodo) {
+			
+			DesactivarPeriodoVigente();
+
+			AnnioEscolar annioEscolarAguardar = new AnnioEscolar(annioescolarDTO);
+			
+		
+			AnnioEscolar annioEscolarGuardado=new AnnioEscolar();
+			
+			
+			annioEscolarGuardado=this.annioescolarrepo.save(annioEscolarAguardar);
+			
+
+			resp.setAnnioescolar(new AnnioEscolarDTO(annioEscolarGuardado));
+			
+			resp.setResponseCode(Constantes.ANNIO_ESCOLAR_REGISTRADO_CODE);
+
+			resp.setResponseDescription(Constantes.ANNIO_ESCOLAR_REGISTRADO_DESC);
+		}
+
+		return resp;
+	}
+
+	@Override
+	public void DesactivarPeriodoVigente() {
+		// TODO Auto-generated method stub
+
+		// Consulta el periodo vigente
+		Long IdPeriodoVigente;
+
+		AnnioEscolarDTO periodovigente = new AnnioEscolarDTO(annioescolarrepo.consultarAnnioEscolarVigente());
+
+		if (periodovigente != null) {
+
+			IdPeriodoVigente = periodovigente.getIdAnnioEsc();
+
+			periodovigente.setStatus("I");
+
+			AnnioEscolar periodo = new AnnioEscolar(periodovigente);
+
+			periodo.setIdAnnioEsc(IdPeriodoVigente);
+
+			this.annioescolarrepo.save(periodo);
+		}
+
 	}
 
 }

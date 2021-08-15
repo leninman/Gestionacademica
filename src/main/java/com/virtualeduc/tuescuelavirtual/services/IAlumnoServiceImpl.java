@@ -44,6 +44,8 @@ public class IAlumnoServiceImpl implements IAlumnoService {
 	
 	
 	Alumno alumnoactualizado;
+	
+	String cedula;
 
 	@Override
 	@Transactional
@@ -169,6 +171,19 @@ public class IAlumnoServiceImpl implements IAlumnoService {
 		listaIdAlumnos=alumnorepo.findAlumnoByIdCurso(idcurso);
 		
 		return listaIdAlumnos;
+	}
+
+	@Override
+	public String consultarCedulasDeAlumnos(String tipoDocAl, String numDocAl) {
+		// TODO Auto-generated method stub
+		
+		Alumno alumno=new Alumno();
+		alumno=alumnorepo.findCedulasAlumnos(tipoDocAl, numDocAl);
+	
+			cedula=alumno.getTipoDocAl().concat(alumno.getNumDocAl());
+			
+		
+		return cedula;
 	}
 
 	/*@Override

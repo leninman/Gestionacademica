@@ -40,6 +40,8 @@ public interface ICursoService {
       
       public AnnioEscolarDTO consultarAnnioEscolar();
       
+      public List<AnnioEscolarDTO> consultarPeriodos();
+      
       public SeccionDTO consultarSeccionPorSeccion(String seccion);
       
       public TurnoDTO consultarTurnoPorTurno(String turno);
@@ -52,7 +54,9 @@ public interface ICursoService {
       
       public Responses eliminarCurso(Long idcurso);
       
+      public Responses  guardarPeriodo(AnnioEscolarDTO annioescolar,boolean guardarPeriodo);
       
+      public void DesactivarPeriodoVigente();
       
       
       

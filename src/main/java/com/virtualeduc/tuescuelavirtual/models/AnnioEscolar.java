@@ -7,6 +7,7 @@ package com.virtualeduc.tuescuelavirtual.models;
 
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -36,6 +37,16 @@ public class AnnioEscolar implements Serializable {
     @Basic(optional = false)
     @Column(name = "INT_ANNIO_ESC")
     private String intAnnioEsc;
+    
+    @Column(name = "FECHA_I")
+    private Date fechaI;
+    
+    @Column(name = "FECHA_F")
+    private Date fechaF;
+    
+    @Column(name = "STATUS")
+    private String status;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAnnioEsc")
     private Collection<Curso> cursoCollection;
 
@@ -46,15 +57,26 @@ public class AnnioEscolar implements Serializable {
         this.idAnnioEsc = idAnnioEsc;
     }
 
-    public AnnioEscolar(Long idAnnioEsc, String intAnnioEsc) {
-        this.idAnnioEsc = idAnnioEsc;
-        this.intAnnioEsc = intAnnioEsc;
-    }
+ 
     
     
-     public AnnioEscolar(AnnioEscolarDTO annioescolarDTO) {
+     public AnnioEscolar(Long idAnnioEsc, String intAnnioEsc, Date fechaI, Date fechaF,
+			String status,Collection<Curso> cursoCollection) {
+		super();
+		this.idAnnioEsc = idAnnioEsc;
+		this.intAnnioEsc = intAnnioEsc;
+		this.fechaI = fechaI;
+		this.fechaF = fechaF;
+		this.status=status;
+		this.cursoCollection = cursoCollection;
+	}
+
+	public AnnioEscolar(AnnioEscolarDTO annioescolarDTO) {
         this.idAnnioEsc = annioescolarDTO.getIdAnnioEsc();
         this.intAnnioEsc = annioescolarDTO.getIntAnnioEsc();
+        this.fechaI=annioescolarDTO.getFechaI();
+        this.fechaF=annioescolarDTO.getFechaF();
+        this.status=annioescolarDTO.getStatus();
     }
 
     public Long getIdAnnioEsc() {
@@ -72,8 +94,40 @@ public class AnnioEscolar implements Serializable {
     public void setIntAnnioEsc(String intAnnioEsc) {
         this.intAnnioEsc = intAnnioEsc;
     }
+    
+    
 
-    @XmlTransient
+    public Date getFechaI() {
+		return fechaI;
+	}
+
+	public void setFechaI(Date fechaI) {
+		this.fechaI = fechaI;
+	}
+
+	public Date getFechaF() {
+		return fechaF;
+	}
+
+	public void setFechaF(Date fechaF) {
+		this.fechaF = fechaF;
+	}
+	
+	
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@XmlTransient
     public Collection<Curso> getCursoCollection() {
         return cursoCollection;
     }

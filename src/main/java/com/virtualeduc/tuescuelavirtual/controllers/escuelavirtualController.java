@@ -25,6 +25,7 @@ import com.virtualeduc.tuescuelavirtual.services.IAlumnoService;
 import com.virtualeduc.tuescuelavirtual.services.ICursoService;
 import com.virtualeduc.tuescuelavirtual.services.IRepresentanteService;
 import com.virtualeduc.tuescuelavirtual.utils.Constantes;
+import com.virtualeduc.tuescuelavirtual.utils.Utils;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -63,7 +64,8 @@ public class escuelavirtualController {
 
 	@Autowired
 	ICursoService cursoservice;
-
+	
+	
 	Representante representante;
 
 	boolean buscarAlumno = false;
@@ -71,6 +73,8 @@ public class escuelavirtualController {
 	boolean guardar;
 
 	boolean guardarCurso;
+	
+	boolean guardarPeriodo;
 
 	// METODO PARA LA PAGINA DE INICIO
 	@GetMapping(path = "/inicio")
@@ -176,17 +180,34 @@ public class escuelavirtualController {
 	public String modificarcurso(CursoDTO cursoDTO, RedirectAttributes redirectAttributes) {
 
 		Responses resp = new Responses();
-		guardarCurso = false;
 
-		resp = cursoservice.guardarCurso(cursoDTO, guardarCurso);
+		if (alumnoservice.consultarAlumnoPorIdCurso(cursoDTO.getIdCurso()).length != 0) {
+			resp.setResponseCode(Constantes.CURSO_IMPOSIBLE_DE_MODIFICAR_CODE);
 
-		if (resp.getResponseCode() == Constantes.CURSO_MODIFICADO_CODE) {
-			redirectAttributes.addFlashAttribute("mensaje6", resp.getResponseDescription()).addFlashAttribute("clase",
+			resp.setResponseDescription(Constantes.CURSO_IMPOSIBLE_DE_MODIFICAR_DESC);
+
+			redirectAttributes.addFlashAttribute("mensaje9", resp.getResponseDescription()).addFlashAttribute("clase",
 					"success");
+		} else {
+
+			if (cursoservice.cursoporcurso(cursoDTO) != null) {
+
+				redirectAttributes.addFlashAttribute("mensaje4", Constantes.CURSO_EXISTE_DESC)
+						.addFlashAttribute("clase", "danger");
+
+				// return "redirect:nuevocurso";
+			} else {
+				guardarCurso = false;
+
+				resp = cursoservice.guardarCurso(cursoDTO, guardarCurso);
+
+				if (resp.getResponseCode() == Constantes.CURSO_MODIFICADO_CODE) {
+					redirectAttributes.addFlashAttribute("mensaje6", resp.getResponseDescription())
+							.addFlashAttribute("clase", "success");
+				}
+			}
 		}
-
 		return "redirect:listarcursos?success";
-
 	}
 
 	@GetMapping(path = "/registroalumno")
@@ -221,6 +242,32 @@ public class escuelavirtualController {
 	@PostMapping(path = "/modificaralumno")
 	public String modificaralumno(AlumnoDTO alumnoDTO, RedirectAttributes redirectAttributes) {
 
+		/*Alumno alumnog = alumnoservice.consultarAlumnoPorCedula(alumnoDTO.getTipoDocAl(), alumnoDTO.getNumDocAl());
+
+		if (alumnog != null) {  //cedula existe
+
+			String cedulaGuardada = alumnog.getTipoDocAl().concat(alumnog.getNumDocAl());
+
+			String cedulaAguardar = alumnoDTO.getTipoDocAl().concat(alumnoDTO.getNumDocAl());
+
+			if (!cedulaAguardar.equals(cedulaGuardada)) {
+
+				String cedula = alumnoservice.consultarCedulasDeAlumnos(alumnoDTO.getTipoDocAl(),
+						alumnoDTO.getNumDocAl());
+
+			
+					if (cedulaAguardar.equals(cedula)) {
+						redirectAttributes.addFlashAttribute("mensaje1", Constantes.ALUMNO_EXISTE_DESC)
+								.addFlashAttribute("clase", "danger");
+
+						return "redirect:listaralumnos";
+					}
+				
+
+			}
+		}*/
+		
+		//cedula no existe
 		guardar = false;
 
 		Responses resp = new Responses();
@@ -301,8 +348,8 @@ public class escuelavirtualController {
 					"success");
 
 		}
-
 		return "redirect:listaralumnos?success";
+
 	}
 
 	// CONSULTA DE ALUMNO POR CEDULA
@@ -445,5 +492,46 @@ public class escuelavirtualController {
 		return "redirect:listaralumnos?success";
 
 	}
+	
+	@GetMapping("/periodosescolares")
+	public String periodos(Model model) {
+		
+		model.addAttribute("Periodos",cursoservice.consultarPeriodos());
+		
+		return "periodos/listaperiodos";
+	}
+	
+	@GetMapping("/nuevoperiodo")
+	public String nuevoperiodo(Model model){
+		
+		AnnioEscolarDTO annioescolarDTO=new AnnioEscolarDTO();
+		
+		model.addAttribute("annioescolarDTO",annioescolarDTO);
+		
+		return "periodos/crearperiodo";
+	}
+	
+	@PostMapping("/guardarperiodo")
+	public String guardarperiodo(@Valid AnnioEscolarDTO annioescolarDTO, BindingResult result, Model model,
+			RedirectAttributes redirectAttributes) {
+		
+		this.guardarPeriodo=true;
+		
+		Responses resp=new Responses();
+		
+		annioescolarDTO.setIntAnnioEsc(Utils.extraePeriodoEscolar(annioescolarDTO.getFechaI(), annioescolarDTO.getFechaF()));
+		
+		annioescolarDTO.setStatus("A");
+		
+		resp=cursoservice.guardarPeriodo(annioescolarDTO, guardarPeriodo);
+		
+		if(resp.getResponseCode()==Constantes.ANNIO_ESCOLAR_REGISTRADO_CODE) {
+			redirectAttributes.addFlashAttribute("mensaje10", resp.getResponseDescription()).addFlashAttribute("clase",
+					"success");
+		}
+		
+		return "redirect:periodosescolares?success";
+	}
+
 
 }
