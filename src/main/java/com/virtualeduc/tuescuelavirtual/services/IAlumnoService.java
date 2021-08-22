@@ -29,9 +29,12 @@ public interface IAlumnoService {
 
     public Responses guardaAlumno(Alumno alumno,Boolean guardar);
     
-    public Long[] consultarAlumnoPorIdCurso(Long idcurso);
+    public Long[] consultarIdAlumnoPorIdCurso(Long idcurso);
     
     public String consultarCedulasDeAlumnos(String tipoDocAl, String numDocAl);
+    
+    public Responses consultarAlumnosPorCurso(Long idcurso);
+    
     
 
 }

@@ -122,6 +122,7 @@
                         <th>PERIODO</th>
                         <th></th>
                         <th></th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -133,6 +134,16 @@
                         <td th:text="${curso.nivel}"></td>
                         <td th:text="${curso.especialidad}"></td>
                         <td th:text="${curso.intAnnioEsc}"></td>
+                        <td>
+                          <a type="button" 
+                          class="btn btn-secondary" 
+                          data-toggle="tooltip" 
+                          data-placement="top" 
+                          title="Ver"
+                          id="btnVer" 
+                          th:href="@{/app/vercurso/}+${curso.idCurso}"
+                          ><i class="bi bi-eye"></i><a>
+                        </td>
                         <td>
                           <a
                             type="button"

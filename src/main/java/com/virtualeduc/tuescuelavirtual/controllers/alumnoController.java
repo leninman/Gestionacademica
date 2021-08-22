@@ -10,7 +10,7 @@ import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.RepresentanteDTO;
+
 import com.virtualeduc.tuescuelavirtual.models.DTOS.SeccionDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.TurnoDTO;
 import com.virtualeduc.tuescuelavirtual.models.Alumno;
@@ -25,9 +25,9 @@ import com.virtualeduc.tuescuelavirtual.services.IAlumnoService;
 import com.virtualeduc.tuescuelavirtual.services.ICursoService;
 import com.virtualeduc.tuescuelavirtual.services.IRepresentanteService;
 import com.virtualeduc.tuescuelavirtual.utils.Constantes;
-import com.virtualeduc.tuescuelavirtual.utils.Utils;
 
-import java.sql.Timestamp;
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,12 +40,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -54,7 +49,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 @Controller
 @RequestMapping("/app")
-public class escuelavirtualController {
+public class alumnoController {
 
 	@Autowired
 	IAlumnoService alumnoservice;
@@ -90,126 +85,6 @@ public class escuelavirtualController {
 		return "alumnos/listaralumnos";
 	}
 
-	@GetMapping(path = "/listarcursos")
-	public String listarcursos(Model model) {
-		List<CursoDTO> listacursos = new ArrayList<>();
-		AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
-		listacursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
-		model.addAttribute("Cursos", listacursos);
-		return "cursos/listacursos";
-	}
-
-	@GetMapping(path = "/nuevocurso")
-	public String nuevocurso(Model model) {
-		CursoDTO cursoDTO = new CursoDTO();
-		model.addAttribute("annioescolar", cursoservice.consultarAnnioEscolar());
-		model.addAttribute("annios", cursoservice.consultarannios());
-		model.addAttribute("secciones", cursoservice.consultarsecciones());
-		model.addAttribute("turnos", cursoservice.consultarturnos());
-		model.addAttribute("cursoDTO", cursoDTO);
-		return "cursos/crearcurso";
-	}
-
-	@PostMapping(path = "/agregarcurso")
-	public String registrarcurso(@Valid CursoDTO cursoDTO, BindingResult result, Model model,
-			RedirectAttributes redirectAttributes) {
-
-		guardarCurso = true;
-
-		Responses resp = new Responses();
-
-		if (cursoservice.cursoporcurso(cursoDTO) != null) {
-
-			redirectAttributes.addFlashAttribute("mensaje4", Constantes.CURSO_EXISTE_DESC).addFlashAttribute("clase",
-					"danger");
-
-			return "redirect:nuevocurso";
-		}
-
-		resp = cursoservice.guardarCurso(cursoDTO, guardarCurso);
-
-		if (resp.getResponseCode() == Constantes.CURSO_REGISTRADO_CODE) {
-			redirectAttributes.addFlashAttribute("mensaje3", Constantes.CURSO_REGISTRADO_DESC)
-					.addFlashAttribute("clase", "success");
-		}
-
-		return "redirect:listarcursos?success";
-	}
-
-	@GetMapping(path = "/eliminacurso/{idCurso}")
-	public String eliminacurso(@PathVariable(value = "idCurso") Long idCurso, Model model,
-			RedirectAttributes redirectAttributes) {
-
-		Responses resp = new Responses();
-
-		if (alumnoservice.consultarAlumnoPorIdCurso(idCurso).length != 0) {
-
-			resp.setResponseCode(Constantes.CURSO_IMPOSIBLE_DE_ELIMINAR_CODE);
-
-			resp.setResponseDescription(Constantes.CURSO_IMPOSIBLE_DE_ELIMINAR_DESC);
-
-			redirectAttributes.addFlashAttribute("mensaje8", resp.getResponseDescription()).addFlashAttribute("clase",
-					"success");
-
-		} else {
-
-			resp = cursoservice.eliminarCurso(idCurso);
-
-			if (resp.getResponseCode() == Constantes.CURSO_ELIMINADO_CODE) {
-				redirectAttributes.addFlashAttribute("mensaje7", resp.getResponseDescription())
-						.addFlashAttribute("clase", "success");
-			}
-		}
-		return "redirect:/app/listarcursos";
-	}
-
-	@GetMapping(path = "/editacurso/{idCurso}")
-	public String editacurso(@PathVariable(value = "idCurso") Long idCurso, Model model) {
-
-		CursoDTO cursoDTO = cursoservice.consultarCursoPorId(idCurso);
-		model.addAttribute("annioescolar", cursoservice.consultarAnnioEscolar());
-		// model.addAttribute("annios",cursoservice.consultarannios());
-		model.addAttribute("secciones", cursoservice.consultarsecciones());
-		model.addAttribute("turnos", cursoservice.consultarturnos());
-		model.addAttribute("cursoDTO", cursoDTO);
-
-		return "cursos/editacurso";
-	}
-
-	@PostMapping(path = "/modificarcurso")
-	public String modificarcurso(CursoDTO cursoDTO, RedirectAttributes redirectAttributes) {
-
-		Responses resp = new Responses();
-
-		if (alumnoservice.consultarAlumnoPorIdCurso(cursoDTO.getIdCurso()).length != 0) {
-			resp.setResponseCode(Constantes.CURSO_IMPOSIBLE_DE_MODIFICAR_CODE);
-
-			resp.setResponseDescription(Constantes.CURSO_IMPOSIBLE_DE_MODIFICAR_DESC);
-
-			redirectAttributes.addFlashAttribute("mensaje9", resp.getResponseDescription()).addFlashAttribute("clase",
-					"success");
-		} else {
-
-			if (cursoservice.cursoporcurso(cursoDTO) != null) {
-
-				redirectAttributes.addFlashAttribute("mensaje4", Constantes.CURSO_EXISTE_DESC)
-						.addFlashAttribute("clase", "danger");
-
-				// return "redirect:nuevocurso";
-			} else {
-				guardarCurso = false;
-
-				resp = cursoservice.guardarCurso(cursoDTO, guardarCurso);
-
-				if (resp.getResponseCode() == Constantes.CURSO_MODIFICADO_CODE) {
-					redirectAttributes.addFlashAttribute("mensaje6", resp.getResponseDescription())
-							.addFlashAttribute("clase", "success");
-				}
-			}
-		}
-		return "redirect:listarcursos?success";
-	}
-
 	@GetMapping(path = "/registroalumno")
 	public String registroalumno(Model model) {
 		AlumnoDTO alumnoDTO = new AlumnoDTO();
@@ -232,12 +107,7 @@ public class escuelavirtualController {
 		return "alumnos/editaralumno";
 	}
 
-	/*
-	 * @PutMapping(path = "/eliminaralumno/{idAl}") public Responses
-	 * eliminaralumno(@PathVariable(value = "idAl") Long idAl) {
-	 * 
-	 * return alumnoservice.RetirarAlumno(idAl); }
-	 */
+	
 
 	@PostMapping(path = "/modificaralumno")
 	public String modificaralumno(AlumnoDTO alumnoDTO, RedirectAttributes redirectAttributes) {
@@ -491,47 +361,6 @@ public class escuelavirtualController {
 		}
 		return "redirect:listaralumnos?success";
 
-	}
-	
-	@GetMapping("/periodosescolares")
-	public String periodos(Model model) {
-		
-		model.addAttribute("Periodos",cursoservice.consultarPeriodos());
-		
-		return "periodos/listaperiodos";
-	}
-	
-	@GetMapping("/nuevoperiodo")
-	public String nuevoperiodo(Model model){
-		
-		AnnioEscolarDTO annioescolarDTO=new AnnioEscolarDTO();
-		
-		model.addAttribute("annioescolarDTO",annioescolarDTO);
-		
-		return "periodos/crearperiodo";
-	}
-	
-	@PostMapping("/guardarperiodo")
-	public String guardarperiodo(@Valid AnnioEscolarDTO annioescolarDTO, BindingResult result, Model model,
-			RedirectAttributes redirectAttributes) {
-		
-		this.guardarPeriodo=true;
-		
-		Responses resp=new Responses();
-		
-		annioescolarDTO.setIntAnnioEsc(Utils.extraePeriodoEscolar(annioescolarDTO.getFechaI(), annioescolarDTO.getFechaF()));
-		
-		annioescolarDTO.setStatus("A");
-		
-		resp=cursoservice.guardarPeriodo(annioescolarDTO, guardarPeriodo);
-		
-		if(resp.getResponseCode()==Constantes.ANNIO_ESCOLAR_REGISTRADO_CODE) {
-			redirectAttributes.addFlashAttribute("mensaje10", resp.getResponseDescription()).addFlashAttribute("clase",
-					"success");
-		}
-		
-		return "redirect:periodosescolares?success";
-	}
-
+	}	 
 
 }

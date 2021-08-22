@@ -55,6 +55,32 @@
 }
 
 
+#periodo,#Annios,#Niveles,#Turnos,#Secciones{
+  border: none;
+  width: 300px;
+  align-items: center;
+  text-align: center;
+  
+}
+
+#rowtablealumnosinscritos {
+  text-align: center;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+#tablealumnosinscritos th {
+  background-color: #337ab7 !important;
+  color: white;
+  font-size: small;
+}
+
+#tablealumnosinscritos>tbody>tr>td {
+  vertical-align: middle !important;
+  text-align: center;
+  font-size: small;
+}
+
 
 
 

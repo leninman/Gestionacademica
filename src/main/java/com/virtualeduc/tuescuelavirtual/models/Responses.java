@@ -10,6 +10,7 @@ import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -32,6 +33,7 @@ public class Responses implements Serializable {
     
     private AnnioEscolarDTO annioescolar;
     
+    private List<AlumnoDTO> listadeAlumnos;
 //    private Representante representante;
 //    
 //    private Curso curso;
@@ -82,6 +84,16 @@ public class Responses implements Serializable {
 	public void setAnnioescolar(AnnioEscolarDTO annioescolar) {
 		this.annioescolar = annioescolar;
 	}
+	
+	
+
+	public List<AlumnoDTO> getListadeAlumnos() {
+		return listadeAlumnos;
+	}
+
+	public void setListadeAlumnos(List<AlumnoDTO> listadeAlumnos) {
+		this.listadeAlumnos = listadeAlumnos;
+	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -104,12 +116,17 @@ public class Responses implements Serializable {
     
     
 
-    public Responses(int responseCode, String responseDescription, AlumnoDTO alumno, CursoDTO curso) {
+ 
+
+	public Responses(int responseCode, String responseDescription, AlumnoDTO alumno, CursoDTO curso,
+			AnnioEscolarDTO annioescolar, List<AlumnoDTO> listadeAlumnos) {
 		super();
 		this.responseCode = responseCode;
 		this.responseDescription = responseDescription;
 		this.alumno = alumno;
 		this.curso = curso;
+		this.annioescolar = annioescolar;
+		this.listadeAlumnos = listadeAlumnos;
 	}
 
 	public int getResponseCode() {

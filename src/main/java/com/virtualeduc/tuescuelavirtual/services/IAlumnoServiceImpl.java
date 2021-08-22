@@ -39,62 +39,57 @@ public class IAlumnoServiceImpl implements IAlumnoService {
 	Alumno alumnoconsultado;;
 
 	AlumnoDTO alumnoDTO;
-	
+
 	Alumno alumnoguardado;
-	
-	
+
 	Alumno alumnoactualizado;
-	
+
 	String cedula;
 
 	@Override
 	@Transactional
 	@ResponseStatus(HttpStatus.CREATED)
-	public Responses guardaAlumno(Alumno alumno,Boolean guardar) {
+	public Responses guardaAlumno(Alumno alumno, Boolean guardar) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 		// String tipoDocAl = alumno.getTipoDocAl();
 		// String numDocAl = alumno.getNumDocAl();
 		Responses resp = new Responses();
-		if(guardar) {
-		
-		
-		
-		
-		alumnoguardado=new Alumno();
-		
-		alumnoactualizado=new Alumno();
-		
-		alumnoconsultado=new Alumno();
-		
-		alumnoconsultado=this.consultarAlumnoPorCedula(alumno.getTipoDocAl(), alumno.getNumDocAl());
+		if (guardar) {
 
-		// CONSULTA SI EL ALUMNO YA EXISTE, SI EXISTE RETORNA EL ALUMNO, SI NO LO GUARDA
-		if (alumnoconsultado==null) {
-			alumno.setFechaCreacion(new Date());
-			alumnoguardado = alumnorepo.save(alumno);
-			resp.setResponseCode(Constantes.ALUMNO_REGISTRADO_CODE);
-			resp.setResponseDescription(Constantes.ALUMNO_REGISTRADO_DESC);
-			alumnoDTO=new AlumnoDTO(alumnoguardado);
-			
+			alumnoguardado = new Alumno();
+
+			alumnoactualizado = new Alumno();
+
+			alumnoconsultado = new Alumno();
+
+			alumnoconsultado = this.consultarAlumnoPorCedula(alumno.getTipoDocAl(), alumno.getNumDocAl());
+
+			// CONSULTA SI EL ALUMNO YA EXISTE, SI EXISTE RETORNA EL ALUMNO, SI NO LO GUARDA
+			if (alumnoconsultado == null) {
+				alumno.setFechaCreacion(new Date());
+				alumnoguardado = alumnorepo.save(alumno);
+				resp.setResponseCode(Constantes.ALUMNO_REGISTRADO_CODE);
+				resp.setResponseDescription(Constantes.ALUMNO_REGISTRADO_DESC);
+				alumnoDTO = new AlumnoDTO(alumnoguardado);
+
+			} else {
+				resp.setResponseCode(Constantes.ALUMNO_EXISTE_CODE);
+				resp.setResponseDescription(Constantes.ALUMNO_EXISTE_DESC);
+				alumnoDTO = new AlumnoDTO(alumnoconsultado);
+				// alumno.setIdAl(this.alumnoDTO.getIdAl());
+			}
+			resp.setAlumno(this.alumnoDTO);
+
 		} else {
-			resp.setResponseCode(Constantes.ALUMNO_EXISTE_CODE);
-			resp.setResponseDescription(Constantes.ALUMNO_EXISTE_DESC);
-			alumnoDTO=new AlumnoDTO(alumnoconsultado);
-			//alumno.setIdAl(this.alumnoDTO.getIdAl());
+			resp.setResponseCode(Constantes.ALUMNO_MODIFICADO_CODE);
+			resp.setResponseDescription(Constantes.ALUMNO_MODIFICADO_DESC);
+			this.alumnoactualizado = alumnorepo.save(alumno);
+			this.alumnoDTO = new AlumnoDTO(alumnoactualizado);
+			resp.setAlumno(this.alumnoDTO);
 		}
-		resp.setAlumno(this.alumnoDTO);
-	
-		
-	}else {
-		resp.setResponseCode(Constantes.ALUMNO_MODIFICADO_CODE);
-		resp.setResponseDescription(Constantes.ALUMNO_MODIFICADO_DESC);
-		this.alumnoactualizado = alumnorepo.save(alumno);
-		this.alumnoDTO=new AlumnoDTO(alumnoactualizado);
-		resp.setAlumno(this.alumnoDTO);
-	}
-		
+
 		return resp;
-		
+
 	}
 
 	/**
@@ -164,43 +159,72 @@ public class IAlumnoServiceImpl implements IAlumnoService {
 	}
 
 	@Override
-	public Long[] consultarAlumnoPorIdCurso(Long idcurso) {
+	public Long[] consultarIdAlumnoPorIdCurso(Long idcurso) {
 		// TODO Auto-generated method stub
-		Long[] listaIdAlumnos=null;
-		
-		listaIdAlumnos=alumnorepo.findAlumnoByIdCurso(idcurso);
-		
+		Long[] listaIdAlumnos = null;
+
+		listaIdAlumnos = alumnorepo.findAlumnoByIdCurso(idcurso);
+
 		return listaIdAlumnos;
 	}
 
 	@Override
 	public String consultarCedulasDeAlumnos(String tipoDocAl, String numDocAl) {
 		// TODO Auto-generated method stub
-		
-		Alumno alumno=new Alumno();
-		alumno=alumnorepo.findCedulasAlumnos(tipoDocAl, numDocAl);
-	
-			cedula=alumno.getTipoDocAl().concat(alumno.getNumDocAl());
-			
-		
+
+		Alumno alumno = new Alumno();
+		alumno = alumnorepo.findCedulasAlumnos(tipoDocAl, numDocAl);
+
+		cedula = alumno.getTipoDocAl().concat(alumno.getNumDocAl());
+
 		return cedula;
 	}
 
-	/*@Override
-	public Responses RetirarAlumno(Long idAl) {
+	@Override
+	public Responses consultarAlumnosPorCurso(Long idcurso) {
 		// TODO Auto-generated method stub
-		Responses response=new Responses();
-		Alumno alumnoAmodificar=new Alumno();
-		Alumno alumnoModificado=new Alumno();
-		alumnoAmodificar=alumnorepo.findById(idAl).orElse(null);
-		alumnoAmodificar.setStatus("RETIRADO");
-		alumnoModificado=alumnorepo.save(alumnoAmodificar);
-		response.setResponseCode(Constantes.ALUMNO_RETIRADO_CODE);
-		response.setResponseDescription(Constantes.ALUMNO_RETIRADO_DESC);
-		response.setAlumno(new AlumnoDTO(alumnoModificado));
-		return response;
-		
-		
-	}*/
+
+		Responses resp = new Responses();
+
+		List<AlumnoDTO> alumnosdto = new ArrayList<>();
+
+		List<Alumno> alumnos = new ArrayList<>();
+
+		alumnos = alumnorepo.findAlumnosByCurso(idcurso);
+
+		if (alumnos != null) {
+
+			for (int i = 0; i < alumnos.size(); i++) {
+				Alumno alumno = new Alumno();
+				alumno = alumnos.get(i);
+				AlumnoDTO alumnodto = new AlumnoDTO(alumno);
+				alumnosdto.add(alumnodto);
+			}
+			
+			resp.setListadeAlumnos(alumnosdto);
+			
+
+		}else {
+			resp.setResponseCode(Constantes.CURSO_SIN_INSCRITOS_CODE);
+			resp.setResponseDescription(Constantes.CURSO_SIN_INSCRITOS_DESC);
+		}
+
+		return resp;
+	}
+
+	/*
+	 * @Override public Responses RetirarAlumno(Long idAl) { // TODO Auto-generated
+	 * method stub Responses response=new Responses(); Alumno alumnoAmodificar=new
+	 * Alumno(); Alumno alumnoModificado=new Alumno();
+	 * alumnoAmodificar=alumnorepo.findById(idAl).orElse(null);
+	 * alumnoAmodificar.setStatus("RETIRADO");
+	 * alumnoModificado=alumnorepo.save(alumnoAmodificar);
+	 * response.setResponseCode(Constantes.ALUMNO_RETIRADO_CODE);
+	 * response.setResponseDescription(Constantes.ALUMNO_RETIRADO_DESC);
+	 * response.setAlumno(new AlumnoDTO(alumnoModificado)); return response;
+	 * 
+	 * 
+	 * }
+	 */
 
 }

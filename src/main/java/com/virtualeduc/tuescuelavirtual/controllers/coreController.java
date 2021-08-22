@@ -5,38 +5,22 @@
  */
 package com.virtualeduc.tuescuelavirtual.controllers;
 
-import com.virtualeduc.tuescuelavirtual.models.Alumno;
-import com.virtualeduc.tuescuelavirtual.models.Annio;
-import com.virtualeduc.tuescuelavirtual.models.AnnioEscolar;
-import com.virtualeduc.tuescuelavirtual.models.Curso;
+
 
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoCursoDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioDTO;
+
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.RepresentanteDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.SeccionDTO;
 import com.virtualeduc.tuescuelavirtual.models.Representante;
-import com.virtualeduc.tuescuelavirtual.models.Responses;
-import com.virtualeduc.tuescuelavirtual.models.Seccion;
-
 import com.virtualeduc.tuescuelavirtual.services.IAlumnoService;
 import com.virtualeduc.tuescuelavirtual.services.ICursoService;
 import com.virtualeduc.tuescuelavirtual.services.IRepresentanteService;
 import java.util.List;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -61,6 +45,13 @@ public class coreController {
 
     Representante representante;
 
+    
+  //CONSULTA DE REPRESENTANTE POR CEDULA
+     @GetMapping(path = "/consultarepresentante",
+            produces = "application/json")
+     public @ResponseBody RepresentanteDTO consultarepresentante(@RequestParam("tdoc") String tdoc,@RequestParam("ndoc") String ndoc){
+            return representanteservice.obtenerRepresentantePorCedula(tdoc, ndoc);
+     }
 
 //CONSULTA LA LISTA DE ALUMNOS ACTIVOS
     @GetMapping(path = "/consultaralumnos",
@@ -91,7 +82,7 @@ public class coreController {
      
 
 //CONSULTA DE ALUMNO POR CEDULA
-     @GetMapping(path = "/consultaralumno",
+    /* @GetMapping(path = "/consultaralumno",
             produces = "application/json")
      public @ResponseBody AlumnoDTO consultaralumno(@RequestParam("tdoc") String tdoc,@RequestParam("ndoc") String ndoc){
          
@@ -104,16 +95,8 @@ public class coreController {
          alumnoDTO=new AlumnoDTO(alumno);
          
          return alumnoDTO;
-     }
+     }*/
     
-     
-//CONSULTA DE REPRESENTANTE POR CEDULA
-     @GetMapping(path = "/consultarepresentante",
-            produces = "application/json")
-     public @ResponseBody RepresentanteDTO consultarepresentante(@RequestParam("tdoc") String tdoc,@RequestParam("ndoc") String ndoc){
-            return representanteservice.obtenerRepresentantePorCedula(tdoc, ndoc);
-     }
-
 //REGISTRA ALUMNO Y SUS REPRESENTANTES EN EL SISTEMA  
     /*@PostMapping(path = "/registraralumno",consumes = "application/json", produces = "application/json")
     public @ResponseBody Responses registraralumno(@RequestBody AlumnoDTO alumnoDTO,Model model) {

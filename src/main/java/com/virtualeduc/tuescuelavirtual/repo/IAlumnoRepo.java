@@ -41,6 +41,12 @@ public interface IAlumnoRepo extends JpaRepository<Alumno, Long> {
     		+ "WHERE a.STATUS='ACTIVO' and a.TIPO_DOC_AL=?1 and a.NUM_DOC_AL=?2",nativeQuery = true)
     public Alumno findCedulasAlumnos(String tipo,String valor);
     
+    
+    @Query(value="SELECT * FROM alumnos a "
+    		+ "LEFT JOIN cursos b ON a.ID_CURSO=b.ID_CURSO "
+    		+ "WHERE a.STATUS='ACTIVO' and a.ID_CURSO=?1",nativeQuery = true)
+    public List<Alumno> findAlumnosByCurso(Long idcurso);
+    
     /*@Modifying
     @Query(value="UPDATE alumnos a "
     		+ "SET a.STATUS='RETIRADO' "
