@@ -6,9 +6,11 @@
 package com.virtualeduc.tuescuelavirtual.services;
 
 import com.virtualeduc.tuescuelavirtual.models.Alumno;
+import com.virtualeduc.tuescuelavirtual.models.Curso;
 import com.virtualeduc.tuescuelavirtual.models.Responses;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoCursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
 import com.virtualeduc.tuescuelavirtual.repo.IAlumnoRepo;
 import com.virtualeduc.tuescuelavirtual.utils.Constantes;
 import java.util.ArrayList;
@@ -211,6 +213,22 @@ public class IAlumnoServiceImpl implements IAlumnoService {
 
 		return resp;
 	}
+
+	@Override
+	public void ActualizarIdAlumno(Long idCurso, String[] Cedulas) {
+		// TODO Auto-generated method stub
+		Curso curso=new Curso();
+		
+		CursoDTO cursoDTO=new CursoDTO();
+		
+		cursoDTO=this.cursoservice.consultarCursoPorId(idCurso);
+		
+		
+		
+		
+		
+	}
+
 
 	/*
 	 * @Override public Responses RetirarAlumno(Long idAl) { // TODO Auto-generated

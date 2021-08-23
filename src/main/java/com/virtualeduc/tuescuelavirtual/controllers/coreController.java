@@ -8,11 +8,13 @@ package com.virtualeduc.tuescuelavirtual.controllers;
 
 
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoCursoDTO;
-
+import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.RepresentanteDTO;
+import com.virtualeduc.tuescuelavirtual.models.Alumno;
 import com.virtualeduc.tuescuelavirtual.models.Representante;
+import com.virtualeduc.tuescuelavirtual.models.Responses;
 import com.virtualeduc.tuescuelavirtual.services.IAlumnoService;
 import com.virtualeduc.tuescuelavirtual.services.ICursoService;
 import com.virtualeduc.tuescuelavirtual.services.IRepresentanteService;
@@ -20,6 +22,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -52,6 +55,17 @@ public class coreController {
      public @ResponseBody RepresentanteDTO consultarepresentante(@RequestParam("tdoc") String tdoc,@RequestParam("ndoc") String ndoc){
             return representanteservice.obtenerRepresentantePorCedula(tdoc, ndoc);
      }
+     
+     
+     //CONSULTA DE ALUMNO POR CEDULA
+     @GetMapping(path = "/consultaAlumno",
+            produces = "application/json")
+     public @ResponseBody AlumnoDTO consultaAlumno(@RequestParam("tdoc") String tdoc,@RequestParam("ndoc") String ndoc){
+         AlumnoDTO alumnoDTO;
+         Alumno alumno=this.alumnoservice.consultarAlumnoPorCedula(tdoc, ndoc);
+         alumnoDTO=new AlumnoDTO(alumno);
+    	 return alumnoDTO;
+     }
 
 //CONSULTA LA LISTA DE ALUMNOS ACTIVOS
     @GetMapping(path = "/consultaralumnos",
@@ -79,6 +93,18 @@ public class coreController {
          
         return cursoservice.consultarCursoPorId(idcurso);
     }
+ 
+     //PARA ACTUALIZAR LOS ID DE CURSO DE LOS ALUMNOS
+     @PostMapping(path = "/actualizaridalumnos")
+    public void actualizarIdAlumnos(@RequestParam(name="idcurso") Long idcurso,@RequestParam(name="cedulasAlumnos[]") String[] cedulasAlumnos) {
+        Responses resp=new Responses();
+        String[] cedulas=cedulasAlumnos;
+        Long curso=idcurso;
+        
+        
+    }
+     
+     
      
 
 //CONSULTA DE ALUMNO POR CEDULA

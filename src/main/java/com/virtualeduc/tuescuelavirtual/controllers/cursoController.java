@@ -201,6 +201,16 @@ public class cursoController {
 		}
 		return "redirect:listarcursos?success";
 	}
+	
+	@GetMapping(path = "cargarcurso")
+	public String cargarcurso(Model model) {
+
+		List<CursoDTO> cursos = new ArrayList<>();
+		AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
+		cursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
+		model.addAttribute("Cursos", cursos);
+		return "cursos/cargarcurso";
+	}
 
 
 }
