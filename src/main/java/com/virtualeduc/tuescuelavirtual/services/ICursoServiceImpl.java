@@ -490,4 +490,10 @@ public class ICursoServiceImpl implements ICursoService {
 
 	}
 
+	@Override
+	public Curso consultarCursoPorIdCurso(Long idCurso) {
+		// TODO Auto-generated method stub
+		return cursorepo.findById(idCurso).orElse(null);
+	}
+
 }

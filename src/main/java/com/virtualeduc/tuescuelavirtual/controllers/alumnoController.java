@@ -186,6 +186,7 @@ public class alumnoController {
 		curso.setIdCurso(cursoDTO.getIdCurso());
 
 		alumnoActualizar.setIdCurso(curso);
+		
 		if (alumnoDTO.getTipoDocRep1() != null && alumnoDTO.getNumDocRep1() != null) {
 			tipoDocRpr = alumnoDTO.getTipoDocRep1();
 

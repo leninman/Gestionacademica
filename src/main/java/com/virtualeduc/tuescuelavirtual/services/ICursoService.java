@@ -34,7 +34,7 @@ public interface ICursoService {
       
       public CursoDTO consultarcursoporparametros(Long idannio,Long idannioesc,Long idseccion);
       
-       public List<CursoDTO> consultarcursosporperiodo(Long idannioesc);
+      public List<CursoDTO> consultarcursosporperiodo(Long idannioesc);
      
       public AnnioDTO consultarAnnioPorAnnioYnivel(String annio,String nivel);
       
@@ -57,6 +57,8 @@ public interface ICursoService {
       public Responses  guardarPeriodo(AnnioEscolarDTO annioescolar,boolean guardarPeriodo);
       
       public void DesactivarPeriodoVigente();
+      
+      public Curso consultarCursoPorIdCurso(Long idCurso);
       
       
       

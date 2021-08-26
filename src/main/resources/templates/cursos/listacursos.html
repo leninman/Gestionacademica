@@ -65,6 +65,12 @@
   th:text="${mensaje4}"
   class="alert"
 ></div>
+<div
+      th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+      th:if="${mensaje12 != null}"
+      th:text="${mensaje12}"
+      class="alert"
+></div>
 
     <div class="container my-5">
       <div class="card" style="width: 100%; border-color: #337ab7">
