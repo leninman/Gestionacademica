@@ -16,6 +16,7 @@ import com.virtualeduc.tuescuelavirtual.utils.Constantes;
 import com.virtualeduc.tuescuelavirtual.utils.Utils;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -40,6 +41,9 @@ public class periodoController {
 
 	@Autowired
 	ICursoService cursoservice;
+	
+	 @Value("${dir.base}")
+	 String direccionbase;
 	
 	
 	Representante representante;

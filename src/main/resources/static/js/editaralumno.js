@@ -1,3 +1,5 @@
+let direccionbase;
+
 $(document).ready(function () {
   $("#botonCambiarRep").show();
   $("#botonBuscRep").hide();
@@ -36,12 +38,14 @@ $("#botonCambiarRep2").click(function () {
  
  
  $("#botonBuscRep").click(function () {
+  direccionbase=$("#direccionbase").val();
+  url=direccionbase+"/consultarepresentante";
   $.ajax({
       data: {
         tdoc: $("select[name=tipoDocRep1]").val(),
         ndoc: $("input:text[name=numDocRep1]").val(),
       },
-      url: "http://localhost:8080/app/consultarepresentante",
+      url: url,
       dataType: "json", //tipo de datos retornados
       type: "GET",
     })
@@ -83,12 +87,14 @@ $("#botonCambiarRep2").click(function () {
 //Para llamar al servicio que consulta si el representante 2 ya esta registrado
 //y mostrar los datos del representante en caso de que ya este registrado
 $("#botonBuscRep2").click(function () {
+  direccionbase=$("#direccionbase").val();
+  url=direccionbase+"/consultarepresentante";
   $.ajax({
       data: {
         tdoc: $("select[name=tipoDocRep2]").val(),
         ndoc: $("input:text[name=numDocRep2]").val(),
       },
-      url: "http://localhost:8080/app/consultarepresentante",
+      url: url,
       dataType: "json", //tipo de datos retornados
       type: "GET",
     })
@@ -129,11 +135,13 @@ $("#botonBuscRep2").click(function () {
 
 //Servicio que consulta un curso por su Id
 $("#idCurso").change(function () {
+  direccionbase=$("#direccionbase").val();
+  url=direccionbase+"/consultarcursoporid";
   $.ajax({
       data: {
       idcurso: $("select[name=idCurso]").val(),
       },
-      url: "http://localhost:8080/app/consultarcursoporid",
+      url: url,
       dataType: "json", //tipo de datos retornados
       type: "GET",
     })

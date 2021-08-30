@@ -1,5 +1,6 @@
 let cedulas=[];
 let idCurso=0;
+let direccionbase;
 
 $(document).ready(function () {
     $("#idCurso").val("");
@@ -7,11 +8,13 @@ $(document).ready(function () {
 });
 
 $("#idCurso").change(function () {
+  direccionbase=$("#direccionbase").val();
+  url=direccionbase+"/consultarcursoporid";	
     $.ajax({
         data: {
         idcurso: $("select[name=idCurso]").val(),
         },
-        url: "http://localhost:8080/app/consultarcursoporid",
+        url: url,
         dataType: "json", //tipo de datos retornados
         type: "GET",
       })
@@ -31,12 +34,14 @@ $("#idCurso").change(function () {
   });
 
   $("#botonBuscAl").click(function () {
+    direccionbase=$("#direccionbase").val();
+    url=direccionbase+"/consultaAlumno";	
     $.ajax({
         data: {
           tdoc: $("select[name=tipoDocAl]").val(),
           ndoc: $("input:text[name=numDocAl]").val(),
         },
-        url: "http://localhost:8080/app/consultaAlumno",
+        url: url,
         dataType: "json", //tipo de datos retornados
         type: "GET",
       })
@@ -79,13 +84,14 @@ $(document).on('click', '#btnEliminar', function (event) {
 });
 
 $("#guardar").click(function () {
-    
+  direccionbase=$("#direccionbase").val();
+  url=direccionbase+"/actualizaridalumnos";
     $.ajax({
         data: {
             idcurso: idCurso,  
             cedulasAlumnos: cedulas,
         },
-        url: "http://localhost:8080/app/actualizaridalumnos",
+        url: url,
         dataType: "json", //tipo de datos retornados
         type: "POST",
       })

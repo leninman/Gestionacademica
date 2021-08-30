@@ -24,6 +24,7 @@ import com.virtualeduc.tuescuelavirtual.utils.Constantes;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,9 +40,10 @@ import com.virtualeduc.tuescuelavirtual.utils.Constantes;
  *
  * @author Personal
  */
+
 @RestController
 @RequestMapping("/app")
-@CrossOrigin(origins = {"http://localhost:8080"})
+//@CrossOrigin(origins = {"http://localhost:8080"})
 public class coreController {
 
     @Autowired
@@ -49,6 +51,9 @@ public class coreController {
 
     @Autowired
     IRepresentanteService representanteservice;
+    
+    @Value("${dir.base}")
+    String direccionbase;
 
     @Autowired
     ICursoService cursoservice;
@@ -59,6 +64,7 @@ public class coreController {
 
     
   //CONSULTA DE REPRESENTANTE POR CEDULA
+    @CrossOrigin(origins = {"direccionbase/consultarepresentante"})
      @GetMapping(path = "/consultarepresentante",
             produces = "application/json")
      public @ResponseBody RepresentanteDTO consultarepresentante(@RequestParam("tdoc") String tdoc,@RequestParam("ndoc") String ndoc){
@@ -67,6 +73,7 @@ public class coreController {
      
      
      //CONSULTA DE ALUMNO POR CEDULA
+    @CrossOrigin(origins = {"direccionbase/consultaAlumno"})
      @GetMapping(path = "/consultaAlumno",
             produces = "application/json")
      public @ResponseBody AlumnoDTO consultaAlumno(@RequestParam("tdoc") String tdoc,@RequestParam("ndoc") String ndoc){
@@ -77,6 +84,7 @@ public class coreController {
      }
 
 //CONSULTA LA LISTA DE ALUMNOS ACTIVOS
+    @CrossOrigin(origins = {"direccionbase/consultaralumnos"}) 
     @GetMapping(path = "/consultaralumnos",
             produces = "application/json")
     public @ResponseBody
@@ -85,6 +93,7 @@ public class coreController {
     }
     
 //CONSULTA LA LISTA DE CURSOS DEL PERIODO ACUAL VIGENTE QUE ESTE ACTIVO
+    @CrossOrigin(origins = {"direccionbase/consultarcursosporperiodo"}) 
      @GetMapping(path = "/consultarcursosporperiodo",
             produces = "application/json")
     public @ResponseBody
@@ -97,6 +106,7 @@ public class coreController {
      
  
    //CONSULTA CURSO POR ID DEL CURSO
+     @CrossOrigin(origins = {"direccionbase/consultarcursoporid"})
      @GetMapping(path = "/consultarcursoporid")
     public CursoDTO consultarcursoporid(@RequestParam(name="idcurso") Long idcurso) {
          
@@ -104,6 +114,7 @@ public class coreController {
     }
  
      //PARA ACTUALIZAR LOS ID DE CURSO DE LOS ALUMNOS
+     @CrossOrigin(origins = {"direccionbase/actualizaridalumnos"})
      @PostMapping(path = "/actualizaridalumnos")
     public void actualizarIdAlumnos(@RequestParam(name="idcurso") Long idcurso,
     		@RequestParam(name="cedulasAlumnos[]") String[] cedulasAlumnos,

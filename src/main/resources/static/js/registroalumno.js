@@ -1,7 +1,7 @@
 var rep1encontrado;
 var rep2encontrado;
 var cursoasignado;
-
+var direccionbase;
 function mostrarrepresentante2() {
   element = document.getElementById("datosRepSec");
   if (element.style.display == "none") {
@@ -47,7 +47,7 @@ function mostrarcursoelegido() {
   }
 }
 
-//Setea los combos a blanco, oculta los texty establece estilos
+//Setea los combos a blanco, oculta los textos establece estilos
 $(document).ready(function () {
   $("#tipoDocAl").val("");
   $("#sexoAl").val("");
@@ -124,6 +124,7 @@ $(document).ready(function () {
   rep1encontrado = 0;
   rep2encontrado = 0;
   cursoasignado = false;
+  
   //console.log(flag);
 
  // $("#txtTipoDocAl").hide();
@@ -158,12 +159,16 @@ $("#parentescoRpr1").change(function () {
 //Para llamar al servicio que consulta si el representante 1 ya esta registrado
 //y mostrar los datos del representante en caso de que ya este registrado
 $("#botonBuscRep").click(function () {
+  direccionbase=$("#direccionbase").val();
+  url=direccionbase+"/consultarepresentante";	
   $.ajax({
       data: {
         tdoc: $("select[name=tipoDocRep1]").val(),
         ndoc: $("input:text[name=numDocRep1]").val(),
+        
+
       },
-      url: "http://localhost:8080/app/consultarepresentante",
+      url:url,
       dataType: "json", //tipo de datos retornados
       type: "GET",
     })
@@ -205,12 +210,14 @@ $("#botonBuscRep").click(function () {
 //Para llamar al servicio que consulta si el representante 2 ya esta registrado
 //y mostrar los datos del representante en caso de que ya este registrado
 $("#botonBuscRep2").click(function () {
-  $.ajax({
+	direccionbase=$("#direccionbase").val();
+	url=direccionbase+"/consultarepresentante";
+  $.ajax({	
       data: {
         tdoc: $("select[name=tipoDocRep2]").val(),
         ndoc: $("input:text[name=numDocRep2]").val(),
       },
-      url: "http://localhost:8080/app/consultarepresentante",
+      url: url,
       dataType: "json", //tipo de datos retornados
       type: "GET",
     })
