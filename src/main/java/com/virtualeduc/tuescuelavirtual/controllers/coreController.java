@@ -116,7 +116,7 @@ public class coreController {
      //PARA ACTUALIZAR LOS ID DE CURSO DE LOS ALUMNOS
      @CrossOrigin(origins = {"direccionbase/actualizaridalumnos"})
      @PostMapping(path = "/actualizaridalumnos")
-    public void actualizarIdAlumnos(@RequestParam(name="idcurso") Long idcurso,
+    public String actualizarIdAlumnos(@RequestParam(name="idcurso") Long idcurso,
     		@RequestParam(name="cedulasAlumnos[]") String[] cedulasAlumnos,
     		RedirectAttributes redirectAttributes) {
     	 
@@ -160,7 +160,8 @@ public class coreController {
 					"success");
 		}
         
-     
+        
+        return "redirect:listarcursos?success";
 
         
     }
