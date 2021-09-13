@@ -496,4 +496,14 @@ public class ICursoServiceImpl implements ICursoService {
 		return cursorepo.findById(idCurso).orElse(null);
 	}
 
+	@Override
+	public AnnioDTO consultarAnnioPorAnnioYnivelYespecialidad(String annio, String nivel, String especialidad) {
+		// TODO Auto-generated method stub
+		Annio an = anniorepo.consultarAnnioByAnnioAndNivelAndEspecialidad(annio, nivel, especialidad);
+
+		AnnioDTO annioDTO = new AnnioDTO(an);
+
+		return annioDTO;
+	}
+
 }

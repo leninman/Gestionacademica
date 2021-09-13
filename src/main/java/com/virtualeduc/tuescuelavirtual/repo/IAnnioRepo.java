@@ -18,4 +18,8 @@ public interface IAnnioRepo extends JpaRepository<Annio, Long>{
     @Query(value="SELECT * from annios a "
                     + "WHERE a.ANNIO=?1 and a.NIVEL=?2",nativeQuery = true)
     public Annio consultarAnnioByAnnioAndNivel(String annio,String nivel); 
+    
+    @Query(value="SELECT * from annios a "
+            + "WHERE a.ANNIO=?1 and a.NIVEL=?2 and a.ESPECIALIDAD=?3",nativeQuery = true)
+public Annio consultarAnnioByAnnioAndNivelAndEspecialidad(String annio,String nivel, String especialidad); 
 }

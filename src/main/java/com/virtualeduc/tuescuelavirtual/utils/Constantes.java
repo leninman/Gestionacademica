@@ -37,6 +37,14 @@ public class Constantes {
 	
 	public static int CURSO_ACTUALIZADO_CODE=112;
 	
+	public static int MATERIA_REGISTRADA_CODE=113;
+	
+	public static int MATERIA_EXISTE_CODE=114;
+	
+	public static int MATERIA_MODIFICADA_CODE=115;
+	
+	public static int MATERIA_DESACTIVADA_CODE=116;
+	
     //mensaje2    	
 	public static String ALUMNO_REGISTRADO_DESC="EL ALUMNO HA SIDO REGISTRADO CORRECTAMENTE EN EL SISTEMA";
 	
@@ -74,6 +82,20 @@ public class Constantes {
 	
 	//mensaje12
 	public static String CURSO_ACTUALIZADO_DESC="LOS ALUMNOS HAN SIDO CORRECTAMENTE INSCRITOS EN EL CURSO";
+	
+	//mensaje13
+	public static String MATERIA_REGSTRADA_DESC="LA MATERIA HA SIDO REGISTRADA EN EL SISTEMA";
+	
+	//mensaje14
+	public static String MATERIA_EXISTE_DESC="LA MATERIA YA EXISTE EN EL SISTEMA";
+	
+	//mensaje15
+	public static String MATERIA_MODIFICADA_DESC="LA MATERIA HA SIDO MODIFICADA EN EL SISTEMA";
+	
+	//mensaje16
+	public static String MATERIA_DESACTIVADA_DESC="LA MATERIA HA SIDO DESACTIVADA EN EL SISTEMA";
+	
+	
 
 
 	

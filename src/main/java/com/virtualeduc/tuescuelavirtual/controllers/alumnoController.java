@@ -49,7 +49,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @author Personal
  */
 @Controller
-@RequestMapping("/app")
+@RequestMapping(path="/app")
 public class alumnoController {
 
 	@Autowired
@@ -75,11 +75,7 @@ public class alumnoController {
 	
 	boolean guardarPeriodo;
 
-	// METODO PARA LA PAGINA DE INICIO
-	@GetMapping(path = "/inicio")
-	public String inicio(Model model) {
-		return "inicio";
-	}
+	
 
 	@GetMapping(path = "/listaralumnos")
 	public String listaralumnos(Model model) {

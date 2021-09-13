@@ -5,9 +5,10 @@
  */
 package com.virtualeduc.tuescuelavirtual.controllers;
 
-
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
+import com.virtualeduc.tuescuelavirtual.models.Alumno;
+import com.virtualeduc.tuescuelavirtual.models.Curso;
 import com.virtualeduc.tuescuelavirtual.models.Representante;
 import com.virtualeduc.tuescuelavirtual.models.Responses;
 import com.virtualeduc.tuescuelavirtual.services.IAlumnoService;
@@ -22,10 +23,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -44,10 +47,10 @@ public class cursoController {
 
 	@Autowired
 	ICursoService cursoservice;
-	
-	 @Value("${dir.base}")
-	 String direccionbase;
-	
+
+	@Value("${dir.base}")
+	String direccionbase;
+
 	Representante representante;
 
 	boolean buscarAlumno = false;
@@ -55,12 +58,8 @@ public class cursoController {
 	boolean guardar;
 
 	boolean guardarCurso;
-	
+
 	boolean guardarPeriodo;
-
-
-
-	
 
 	@GetMapping(path = "/listarcursos")
 	public String listarcursos(Model model) {
@@ -147,26 +146,24 @@ public class cursoController {
 
 		return "cursos/editacurso";
 	}
-	
+
 	@GetMapping(path = "/vercurso/{idCurso}")
 	public String vercurso(@PathVariable(value = "idCurso") Long idCurso, Model model,
 			RedirectAttributes redirectAttributes) {
 
-		Responses resp=new Responses();
-		
-		resp=alumnoservice.consultarAlumnosPorCurso(idCurso);
-		
-		if(resp.getResponseCode()==Constantes.CURSO_SIN_INSCRITOS_CODE) {
-			redirectAttributes.addFlashAttribute("mensaje11", resp.getResponseDescription())
-			.addFlashAttribute("clase", "danger");
-		}else {
-			
+		Responses resp = new Responses();
+
+		resp = alumnoservice.consultarAlumnosPorCurso(idCurso);
+
+		if (resp.getResponseCode() == Constantes.CURSO_SIN_INSCRITOS_CODE) {
+			redirectAttributes.addFlashAttribute("mensaje11", resp.getResponseDescription()).addFlashAttribute("clase",
+					"danger");
+		} else {
+
 			CursoDTO cursoDTO = cursoservice.consultarCursoPorId(idCurso);
-			model.addAttribute("Alumnosinscritos",resp.getListadeAlumnos());
+			model.addAttribute("Alumnosinscritos", resp.getListadeAlumnos());
 			model.addAttribute("cursoDTO", cursoDTO);
 		}
-		
-		
 
 		return "cursos/vercurso";
 	}
@@ -204,7 +201,7 @@ public class cursoController {
 		}
 		return "redirect:listarcursos?success";
 	}
-	
+
 	@GetMapping(path = "cargarcurso")
 	public String cargarcurso(Model model) {
 
@@ -212,9 +209,8 @@ public class cursoController {
 		AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
 		cursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
 		model.addAttribute("Cursos", cursos);
-		model.addAttribute("direccionbase",direccionbase);
+		model.addAttribute("direccionbase", direccionbase);
 		return "cursos/cargarcurso";
 	}
-
 
 }

@@ -94,16 +94,19 @@ $("#guardar").click(function () {
         url: url,
         dataType: "json", //tipo de datos retornados
         type: "POST",
+		success:
+			alert("EL CURSO HA SIDO CARGADO CORRECTAMENTE")
       })
-      .done(function (data) {
+      .done(function () {
         
-      
+      		alert("EL CURSO HA SIDO CARGADO CORRECTAMENTE");
        
       })
       .fail(function (data) {
          
       });
 });
+
 
 
 

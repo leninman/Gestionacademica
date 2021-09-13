@@ -38,6 +38,8 @@ public interface ICursoService {
      
       public AnnioDTO consultarAnnioPorAnnioYnivel(String annio,String nivel);
       
+      public AnnioDTO consultarAnnioPorAnnioYnivelYespecialidad(String annio,String nivel,String especialidad);
+      
       public AnnioEscolarDTO consultarAnnioEscolar();
       
       public List<AnnioEscolarDTO> consultarPeriodos();

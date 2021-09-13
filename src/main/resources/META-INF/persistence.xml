@@ -9,6 +9,7 @@
     <class>com.virtualeduc.tuescuelavirtual.models.Representante</class>
     <class>com.virtualeduc.tuescuelavirtual.models.Seccion</class>
     <class>com.virtualeduc.tuescuelavirtual.models.Turno</class>
+    <class>com.virtualeduc.tuescuelavirtual.models.Materia</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sistgestacad?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

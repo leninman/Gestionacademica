@@ -116,7 +116,7 @@ public class coreController {
      //PARA ACTUALIZAR LOS ID DE CURSO DE LOS ALUMNOS
      @CrossOrigin(origins = {"direccionbase/actualizaridalumnos"})
      @PostMapping(path = "/actualizaridalumnos")
-    public String actualizarIdAlumnos(@RequestParam(name="idcurso") Long idcurso,
+    public Responses actualizarIdAlumnos(@RequestParam(name="idcurso") Long idcurso,
     		@RequestParam(name="cedulasAlumnos[]") String[] cedulasAlumnos,
     		RedirectAttributes redirectAttributes) {
     	 
@@ -151,114 +151,10 @@ public class coreController {
         	
         	resp=this.alumnoservice.guardaAlumno(alumnoaguardar, guardarAlumno);
         	
-        	
         }
-        
-        
-        if (resp.getResponseCode()==Constantes.CURSO_ACTUALIZADO_CODE) {
-			redirectAttributes.addFlashAttribute("mensaje12", resp.getResponseDescription()).addFlashAttribute("clase",
-					"success");
-		}
-        
-        
-        return "redirect:listarcursos?success";
-
-        
-    }
-     
-     
-     
-
-//CONSULTA DE ALUMNO POR CEDULA
-    /* @GetMapping(path = "/consultaralumno",
-            produces = "application/json")
-     public @ResponseBody AlumnoDTO consultaralumno(@RequestParam("tdoc") String tdoc,@RequestParam("ndoc") String ndoc){
-         
-    	 AlumnoDTO alumnoDTO;
-         
-         Alumno alumno=new Alumno();
-    	 
-         alumno= alumnoservice.consultarAlumnoPorCedula(tdoc, ndoc);
-         
-         alumnoDTO=new AlumnoDTO(alumno);
-         
-         return alumnoDTO;
-     }*/
-    
-//REGISTRA ALUMNO Y SUS REPRESENTANTES EN EL SISTEMA  
-    /*@PostMapping(path = "/registraralumno",consumes = "application/json", produces = "application/json")
-    public @ResponseBody Responses registraralumno(@RequestBody AlumnoDTO alumnoDTO,Model model) {
-
-        String tipoDocRpr;
-
-        String numDocRpr;
-        
-        model.addAttribute("alumnoDTO", new AlumnoDTO());
-                  
-        Responses resp = new Responses();
-        
-        Alumno alumno = new Alumno(alumnoDTO);
-
-        Curso curso = new Curso();
-
-        AnnioDTO annioDTO = cursoservice.consultarAnnioPorAnnio(alumnoDTO.getAnnio());
-
-        AnnioEscolarDTO annioescolarDTO = cursoservice.consultarAnnioEscolarPorAnnioEscolar();
-
-        SeccionDTO seccionDTO = cursoservice.consultarSeccionPorSeccion(alumnoDTO.getSeccion());
-
-        CursoDTO cursoDTO = cursoservice.consultarcursoporparametros(annioDTO.getIdAnnio(), annioescolarDTO.getIdAnnioEsc(), seccionDTO.getIdSec());
-
-        Annio annio = new Annio(annioDTO);
-
-        AnnioEscolar annioescolar = new AnnioEscolar(annioescolarDTO);
-
-        Seccion seccion = new Seccion(seccionDTO);
-
-        curso.setIdAnnio(annio);
-
-        curso.setIdAnnioEsc(annioescolar);
-
-        curso.setIdSec(seccion);
-
-        curso.setIdCurso(cursoDTO.getIdCurso());
-
-        alumno.setIdCurso(curso);
-
-        //CONSULTA POR EL NUMERO DE CEDULA SI EL REPRESENTANTE ESTE REGISTRADO
-        //SI NO ESTA REGISTRADO LO GUARDA Y SI YA EXISTE TOMA ESE REPRESENTANTE COMO EL
-        //REPRESENTANTE DEL ALUMNO QUE SE VA A REGISTRAR
-        tipoDocRpr = alumnoDTO.getTipoDocRep1();
-        numDocRpr = alumnoDTO.getNumDocRep1();
-        Representante rep1 = representanteservice.consultarepresentanteporcedula(tipoDocRpr, numDocRpr);
-        if (rep1 == null) {
-            Representante rep = new Representante();
-            rep1 = rep.setRepresentante1(alumnoDTO);
-            alumno.setIdRpr1(representanteservice.guardarRepresentante(rep1));
-        } else {
-            alumno.setIdRpr1(rep1);
-        }
-
-        if (alumnoDTO.getTipoDocRep2() != null && alumnoDTO.getNumDocRep2() != null) {
-            tipoDocRpr = alumnoDTO.getTipoDocRep2();
-            numDocRpr = alumnoDTO.getNumDocRep2();
-            Representante rep2 = representanteservice.consultarepresentanteporcedula(tipoDocRpr, numDocRpr);
-            if (rep2 == null) {
-                Representante rep = new Representante();
-                rep2 = rep.setRepresentante2(alumnoDTO);
-                alumno.setIdRpr2(representanteservice.guardarRepresentante(rep2));
-            } else {
-                alumno.setIdRpr2(rep2);
-            }
-
-        }else {
-        	alumno.setIdRpr2(rep1);
-        }
-
-        resp=alumnoservice.guardaAlumno(alumno);
-        
+        resp.setResponseCode(Constantes.CURSO_ACTUALIZADO_CODE);
+        resp.setResponseDescription(Constantes.CURSO_ACTUALIZADO_DESC);
         return resp;
-
-    }*/
-   
+         
+    }
 }
