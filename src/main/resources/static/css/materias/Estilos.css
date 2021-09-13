@@ -1,0 +1,111 @@
+#tablematerias th {
+	background-color: #337ab7 !important;
+	color: white;
+	font-size: small;
+}
+
+#tablematerias>tbody>tr>td {
+	vertical-align: middle !important;
+	text-align: center;
+	font-size: small;
+}
+
+#rowtablematerias {
+	text-align: center;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.card {
+	margin-right: auto;
+	margin-left: auto;
+	width: 80%;
+	border-color: #337ab7;
+}
+
+.card-body {
+	width: 80%;
+	margin-right: auto;
+	margin-left: auto;
+	justify-content: center;
+}
+
+.input-buttons {
+	border-radius: 100px;
+	border: 1px solid #337ab7;
+	background-color: #337ab7;
+	font-style: normal;
+	color: white;
+	width: 130px;
+}
+
+.input-codigomat {
+	width: 100px;
+	border-radius: 100px;
+	border: 1px solid #337ab7;
+}
+
+.input-nombremat {
+	width: 400px;
+	border-radius: 100px;
+	border: 1px solid #337ab7;
+}
+
+.input-descripcionMat {
+	width: 635px;
+	border-radius: 100px;
+	border: 1px solid #337ab7;
+}
+
+#annio {
+	border-radius: 100px;
+	border: 1px solid #337ab7;
+	width: 80px;
+	align-items: center;
+	text-align: center;
+}
+
+#nivel {
+	border-radius: 100px;
+	border: 1px solid #337ab7;
+	width: 130px;
+	align-items: center;
+	text-align: center;
+}
+
+#especialidad {
+	border-radius: 100px;
+	border: 1px solid #337ab7;
+	width: 120px;
+	align-items: center;
+	text-align: center;
+}
+
+
+
+
+#cmbannio {
+	border-radius: 100px;
+	border: 1px solid #337ab7;
+	width: 80px;
+	align-items: center;
+	text-align: center;
+}
+
+#cmbnivel {
+	border-radius: 100px;
+	border: 1px solid #337ab7;
+	width: 130px;
+	align-items: center;
+	text-align: center;
+}
+
+#cmbespecialidad {
+	border-radius: 100px;
+	border: 1px solid #337ab7;
+	width: 120px;
+	align-items: center;
+	text-align: center;
+}
+
+
