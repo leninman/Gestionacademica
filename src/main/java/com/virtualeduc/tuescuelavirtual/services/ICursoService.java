@@ -44,6 +44,10 @@ public interface ICursoService {
       
       public List<AnnioEscolarDTO> consultarPeriodos();
       
+      public AnnioEscolarDTO consultarAnnioEscolarPorId(Long idAnnioEscolar);
+      
+      public Responses eliminarPeriodo(Long idAnnioEsc);
+      
       public SeccionDTO consultarSeccionPorSeccion(String seccion);
       
       public TurnoDTO consultarTurnoPorTurno(String turno);

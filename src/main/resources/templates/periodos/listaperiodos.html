@@ -11,7 +11,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
     />
-    <link rel="stylesheet" type="text/css" href="/css/periodos/Estilos.css" />
+    <link rel="stylesheet" type="text/css" href="/css/estilosPeriodos.css" />
     <link
       rel="stylesheet"
       type="text/css"
@@ -33,6 +33,18 @@
     th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
     th:if="${mensaje10 != null}"
     th:text="${mensaje10}"
+    class="alert"
+  ></div>
+    <div
+    th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+    th:if="${mensaje17 != null}"
+    th:text="${mensaje17}"
+    class="alert"
+  ></div>
+  <div
+    th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+    th:if="${mensaje18 != null}"
+    th:text="${mensaje18}"
     class="alert"
   ></div>
 
@@ -108,7 +120,7 @@
                             data-placement="top"
                             title="Editar"
                             id="btnEditar"
-                            href="#"
+                            th:href="@{/app/editarperiodo/}+${periodo.idAnnioEsc}"
                             ><i class="bi bi-pencil-fill"></i
                           ></a>
                         </td>
@@ -120,7 +132,7 @@
                             data-placement="top"
                             title="Eliminar"
                             id="btnEliminar"
-                            href="#"
+                            th:href="@{/app/eliminarperiodo/}+${periodo.idAnnioEsc}"
                             ><i class="bi bi-trash"></i
                           ></a>
                         </td>

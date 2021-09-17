@@ -1,6 +1,8 @@
 package com.virtualeduc.tuescuelavirtual.models;
 
 import java.io.Serializable;
+import java.util.Collection;
+
 import javax.persistence.*;
 
 import com.virtualeduc.tuescuelavirtual.models.DTOS.MateriaDTO;
@@ -42,6 +44,8 @@ public class Materia implements Serializable {
 	@Basic(optional = false)
 	@Column(name="STATUS")
 	private String status;
+	
+	
 
 	public Materia() {
 	}

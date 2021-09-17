@@ -44,7 +44,7 @@
   background-color: #337ab7;
   font-style: normal;
   color: white;
-  width: 100px;
+  width: 160px;
 }
 
 
@@ -54,7 +54,11 @@
   width: 255px;
 }
 
-
+#FechaIedit,#FechaFedit {
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  width: 200px;
+}
 
 
 

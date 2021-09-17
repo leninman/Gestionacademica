@@ -22,6 +22,7 @@ import com.virtualeduc.tuescuelavirtual.repo.ICursoRepo;
 import com.virtualeduc.tuescuelavirtual.repo.ISeccionRepo;
 import com.virtualeduc.tuescuelavirtual.repo.ITurnoRepo;
 import com.virtualeduc.tuescuelavirtual.utils.Constantes;
+import com.virtualeduc.tuescuelavirtual.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +54,8 @@ public class ICursoServiceImpl implements ICursoService {
 	private CursoDTO cursoaguardar;
 
 	private Curso cursoguardado;
+	
+
 
 	@Override
 	public AnnioDTO consultarAnnioPorAnnioYnivel(String annio, String nivel) {
@@ -442,25 +445,37 @@ public class ICursoServiceImpl implements ICursoService {
 	public Responses guardarPeriodo(AnnioEscolarDTO annioescolarDTO, boolean guardarPeriodo) {
 		// TODO Auto-generated method stub
 		Responses resp = new Responses();
+		
+		AnnioEscolar annioEscolarAguardar = new AnnioEscolar(annioescolarDTO);
 
 		if (guardarPeriodo) {
 			
 			DesactivarPeriodoVigente();
-
-			AnnioEscolar annioEscolarAguardar = new AnnioEscolar(annioescolarDTO);
 			
-		
-			AnnioEscolar annioEscolarGuardado=new AnnioEscolar();
+			AnnioEscolar annioEscolarGuardado=this.annioescolarrepo.save(annioEscolarAguardar);
 			
-			
-			annioEscolarGuardado=this.annioescolarrepo.save(annioEscolarAguardar);
-			
-
 			resp.setAnnioescolar(new AnnioEscolarDTO(annioEscolarGuardado));
 			
 			resp.setResponseCode(Constantes.ANNIO_ESCOLAR_REGISTRADO_CODE);
 
 			resp.setResponseDescription(Constantes.ANNIO_ESCOLAR_REGISTRADO_DESC);
+			
+			
+		}else {
+			
+			Long idAnnioEsc=annioescolarDTO.getIdAnnioEsc();
+			
+			annioEscolarAguardar.setIdAnnioEsc(idAnnioEsc);
+			
+			annioEscolarAguardar.setIntAnnioEsc(Utils.extraePeriodoEscolar(annioescolarDTO.getFechaI(), annioescolarDTO.getFechaF()));
+			
+			AnnioEscolar annioEscolarGuardado=this.annioescolarrepo.save(annioEscolarAguardar);
+		   
+			resp.setAnnioescolar(new AnnioEscolarDTO(annioEscolarGuardado));
+			
+			resp.setResponseCode(Constantes.ANNIO_ESCOLAR_MODIFICADO_CODE);
+
+			resp.setResponseDescription(Constantes.ANNIO_ESCOLAR_MODIFICADO_DESC);
 		}
 
 		return resp;
@@ -504,6 +519,28 @@ public class ICursoServiceImpl implements ICursoService {
 		AnnioDTO annioDTO = new AnnioDTO(an);
 
 		return annioDTO;
+	}
+
+	@Override
+	public AnnioEscolarDTO consultarAnnioEscolarPorId(Long idAnnioEscolar) {
+		// TODO Auto-generated method stub
+		AnnioEscolar annioescolar=annioescolarrepo.findById(idAnnioEscolar).orElse(null);
+		AnnioEscolarDTO annioescolardto=new AnnioEscolarDTO(annioescolar);
+		return annioescolardto;
+	}
+
+	@Override
+	public Responses eliminarPeriodo(Long idAnnioEsc) {
+		// TODO Auto-generated method stub
+		Responses resp=new Responses();
+		
+		annioescolarrepo.deleteById(idAnnioEsc);
+		
+		resp.setResponseCode(Constantes.CURSO_ELIMINADO_CODE);
+		
+		resp.setResponseDescription(Constantes.CURSO_ELIMINADO_DESC);
+		
+		return resp;
 	}
 
 }

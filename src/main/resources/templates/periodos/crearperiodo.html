@@ -1,147 +1,147 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-    />
-    <link rel="stylesheet" type="text/css" href="/css/periodos/Estilos.css" />
-  </head>
-  <header></header>
-  <body>
-    <div
-    th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
-    th:if="${mensaje4 != null}"
-    th:text="${mensaje4}"
-    class="alert"
-  ></div>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+<link rel="stylesheet" type="text/css" href="/css/estilosPeriodos.css" />
+</head>
+<header></header>
+<body>
+	<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+		th:if="${mensaje4 != null}" th:text="${mensaje4}" class="alert"></div>
 
-    <br />
-    <br />
-    <div class="row">
-      <div class="form-group col-md-6">
-        &nbsp; &nbsp;
-        <h5>
-          <b>FORMULARIO DE CREACIÓN DE PERIODO ESCOLAR</b>
-        </h5>
-      </div>
-    </div>
-
-    <div class="container my-5">
-      <div class="card">
-        <div class="card-header">
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link"
-                  th:href="@{/app/inicio}"
-                  data-toggle="tooltip"
-                  data-placement="top"
-                  title="Ir al inicio"
-                  ><i class="bi bi-house"></i
-                >Home </a>
-                &nbsp; &nbsp;
-                <li class="nav-item active">
-                  <a
-                    class="nav-link"
-                    th:href="@{/app/nuevoperiodo}"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Limpiar pantalla"
-                    ><i class="bi bi-eraser"></i
-                  >Limpiar</a>
-                </li>
-                &nbsp; &nbsp;
-                <li class="nav-item active">
-                  <a
-                    class="nav-link my-2 my-sm-0"
-                    th:href="@{/app/periodosescolares}"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Salir"
-                    ><i class="bi bi-x"></i
-                  >Salir</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-
-        <div class="card-body">
-          <form
-            class="form-horizontal"
-            th:action="@{/app/guardarperiodo}"
-            th:object="${annioescolarDTO}"
-            id="formPeriodo"
-            name="formPeriodo"
-            method="post"
-          >
-          <input type="hidden" th:field="*{intAnnioEsc}">
-          <input type="hidden" th:field="*{status}">
-            <div class="row">
-              <div class="col-md-6">
-                <label for="FechaI" class="col-form-label"
-                  >Fecha de inicio*</label
-                >
-                <input
-                  type="date"
-                  class="input-fecha"
-                  id="FechaI"
-                  th:field="*{FechaI}"
-                />
-                <div
-                  th:if="${#fields.hasErrors('FechaI')}"
-                  th:errors="*{FechaI}"
-                  class="error"
-                ></div>
-              </div>
+	<br />
+	<br />
 
 
-              <div class="col-md-6">
-                <label for="FechaF" class="col-form-label"
-                  >Fecha de fin*</label
-                >
-                <input
-                  type="date"
-                  class="input-fecha"
-                  id="FechaF"
-                  th:field="*{FechaF}"
-                />
-                <div
-                  th:if="${#fields.hasErrors('FechaF')}"
-                  th:errors="*{FechaF}"
-                  class="error"
-                ></div>
-              </div>
-            </div>
-            <br />
-            <br />
-            <div class="row">
-              <input
-                type="submit"
-                class="input-buttons"
-                name="submit"
-                value="Crear Periodo"
-                style="margin: 0 auto"
-              />
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+	<div class="container my-5">
+		<div class="card">
+			<div class="card-header">
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item active"><a class="nav-link"
+								th:href="@{/app/inicio}" data-toggle="tooltip"
+								data-placement="top" title="Ir al inicio"><i
+									class="bi bi-house"></i>Home </a> &nbsp; &nbsp;
+							<li class="nav-item active"><a class="nav-link"
+								th:href="@{/app/nuevoperiodo}" data-toggle="tooltip"
+								data-placement="top" title="Limpiar pantalla"><i
+									class="bi bi-eraser"></i>Limpiar</a></li> &nbsp; &nbsp;
+							<li class="nav-item active"><a class="nav-link my-2 my-sm-0"
+								th:href="@{/app/periodosescolares}" data-toggle="tooltip"
+								data-placement="top" title="Salir"><i class="bi bi-x"></i>Salir</a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <script src="/js/nuevocurso.js"></script>
-  </body>
+			<div class="card-body">
+				<div th:if="${crear}" class="row">
+					<form class="form-horizontal" th:action="@{/app/guardarperiodo}"
+						th:object="${annioescolarDTO}" id="formPeriodo" name="formPeriodo"
+						method="post">
+						<div class="row">
+							<div class="form-group col-md-12">
+								&nbsp; &nbsp;
+								<h5>
+									<b>CREACIÓN DE PERIODO ESCOLAR</b>
+								</h5>
+							</div>
+						</div>
+						<br>
+						<br>
+						
+						<input type="hidden" th:field="*{intAnnioEsc}"> 
+						<input type="hidden" th:field="*{status}">
+						<div class="row">
+							<div class="col-md-6">
+								<label for="FechaI" class="col-form-label">Fecha de
+									inicio*</label> <input type="date" class="input-fecha" id="FechaI"
+									th:field="*{FechaI}" />
+								<div th:if="${#fields.hasErrors('FechaI')}"
+									th:errors="*{FechaI}" class="error"></div>
+							</div>
+
+
+							<div class="col-md-6">
+								<label for="FechaF" class="col-form-label">Fecha de fin*</label>
+								<input type="date" class="input-fecha" id="FechaF"
+									th:field="*{FechaF}" />
+								<div th:if="${#fields.hasErrors('FechaF')}"
+									th:errors="*{FechaF}" class="error"></div>
+							</div>
+						</div>
+						<br /> <br />
+						<div class="row">
+							<input type="submit" class="input-buttons" name="submit"
+								value="Crear Periodo" style="margin: 0 auto" />
+						</div>
+					</form>
+				</div>
+
+
+				<div class="card-body">
+					<div th:if="${!crear}" class="row">
+						<form class="form-horizontal" th:action="@{/app/modificarperiodo}"
+							th:object="${annioescolarDTO}" id="formPeriodo"
+							name="formPeriodo" method="post">
+							<div class="row">
+								<div class="form-group col-md-12">
+									&nbsp; &nbsp;
+									<h5>
+										<b>MODIFICACION DE PERIODO ESCOLAR</b>
+									</h5>
+								</div>
+							</div>
+							<br>
+							<br>
+							<input type="hidden" th:field="*{intAnnioEsc}"> 
+							<input type="hidden" th:field="*{status}">
+							<input type="hidden" th:field="*{idAnnioEsc}">
+							<div class="row">
+								<div class="col-md-6">
+									<label for="FechaI" class="col-form-label">Fecha de
+										inicio*</label> <input type="date" id="FechaIedit"
+										th:field="*{FechaI}" />
+									<div th:if="${#fields.hasErrors('FechaI')}"
+										th:errors="*{FechaI}" class="error"></div>
+								</div>
+
+
+								<div class="col-md-6">
+									<label for="FechaF" class="col-form-label">Fecha de
+										fin*</label> <input type="date" id="FechaFedit" th:field="*{FechaF}" />
+									<div th:if="${#fields.hasErrors('FechaF')}"
+										th:errors="*{FechaF}" class="error"></div>
+								</div>
+							</div>
+							<br /> <br />
+							<div class="row">
+								<input type="submit" class="input-buttons" name="submit"
+									value="Modificar Periodo" style="margin: 0 auto" />
+							</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+	<script src="/js/nuevocurso.js"></script>
+</body>
 </html>
