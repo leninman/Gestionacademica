@@ -1,0 +1,213 @@
+.input-nombre-apellido {
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  width: 300px;
+  
+}
+
+.input-nombre-apellido-view {
+
+  width: 110px;
+  border: none;
+  enable-background:0;
+  
+}
+.input-buttons {
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  background-color: #337ab7;
+  font-style: normal;
+  color: white;
+  width: 100px;
+}
+
+span > i {
+  color: white;
+}
+span > #guardarAlumno {
+  background-color: #337ab7;
+  color: white;
+
+  width: 100px;
+}
+.input-cedula {
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  width: 200px;
+}
+
+.input-cedula-view {
+  enable-background:0;
+  width: 100px;
+}
+.input-cmb-cedula {
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  width: 60px;
+  text-align: center;
+}
+
+.input-fech-nac {
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  width: 255px;
+}
+
+
+.input-fech-nac-view {
+ 
+  width: 150px;
+  border: none;
+}
+
+.input-fech-nac-rep {
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  width: 150px;
+}
+.input-fech-ing {
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  width: 220px;
+}
+.input-fech-ing-view {
+ 
+  border: none;
+  width: 150px;
+}
+.input-edad {
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  width: 120px;
+}
+.input-edad-view {
+ 
+  border: none;
+  width: 50px;
+}
+.input-sexo {
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  width: 120px;
+}
+
+.input-sexo-view {
+  border:none;
+  width: 100px;
+}
+
+.input-parentesco {
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  width: 110px;
+}
+
+.input-parentesco-view {
+  border: none;
+  width: 110px;
+}
+
+
+.input-ed-civ {
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  width: 120px;
+}
+
+.input-ed-civ-view {
+  border: none;
+  width: 105px;
+}
+.input-est-acad {
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  width: 120px;
+}
+
+.input-est-acad-view {
+  
+  border: none;
+  width: 100px;
+}
+.input-txtDireccion {
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  width: 92%;
+  
+}
+
+.input-txtDireccion-view {
+ 
+  border:none;
+  width: 92%;
+  
+}
+.input-estado {
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  width: 120px;
+}
+.input-cod-operadora {
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  width: 80px;
+}
+
+.input-num-tlf {
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  width: 200px;
+}
+
+.input-num-tlf-view {
+  border: none;
+  width: 200px;
+}
+
+.input-email {
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  width: 400px;
+}
+
+.input-email-view {
+  
+  border: none;
+  width: 400px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*estilos para la tabla*/
+#tablaProfesores th {
+  background-color: #337ab7 !important;
+  color: white;
+  font-size: small;
+}
+#tablaProfesores>tbody>tr>td {
+  vertical-align: middle !important;
+  text-align: center;
+  font-size: small;
+}
+
+.btn-group, .btn-group-vertical {
+  position: absolute !important;
+}
+
+
+
+
+.error {
+  color: red;
+  font-size: 0.8em;
+}
+
+
