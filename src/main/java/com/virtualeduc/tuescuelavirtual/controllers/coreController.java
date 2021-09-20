@@ -15,11 +15,13 @@ import com.virtualeduc.tuescuelavirtual.models.DTOS.RepresentanteDTO;
 import com.virtualeduc.tuescuelavirtual.models.Alumno;
 import com.virtualeduc.tuescuelavirtual.models.Annio;
 import com.virtualeduc.tuescuelavirtual.models.Curso;
+import com.virtualeduc.tuescuelavirtual.models.Profesion;
 import com.virtualeduc.tuescuelavirtual.models.Representante;
 import com.virtualeduc.tuescuelavirtual.models.Responses;
 import com.virtualeduc.tuescuelavirtual.services.IAlumnoService;
 import com.virtualeduc.tuescuelavirtual.services.ICursoService;
 import com.virtualeduc.tuescuelavirtual.services.IRepresentanteService;
+import com.virtualeduc.tuescuelavirtual.services.IVariosService;
 import com.virtualeduc.tuescuelavirtual.utils.Constantes;
 
 import java.util.List;
@@ -51,6 +53,8 @@ public class coreController {
 
     @Autowired
     IRepresentanteService representanteservice;
+    
+  
     
     @Value("${dir.base}")
     String direccionbase;
@@ -157,4 +161,8 @@ public class coreController {
         return resp;
          
     }
+     
+  
+    
+     
 }

@@ -144,4 +144,10 @@ public class IMateriaServiceImpl implements IMateriaService{
 		return resp;
 	}
 
+	@Override
+	public List<String> nombresmaterias() {
+		// TODO Auto-generated method stub
+		return materiaRepo.nombresMaterias();
+	}
+
 }

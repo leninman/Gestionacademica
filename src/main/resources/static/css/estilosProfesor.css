@@ -5,6 +5,20 @@
   
 }
 
+.annios-serv {
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  width: 100px;
+  
+}
+
+.categoria {
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  width: 200px;
+  
+}
+
 .input-nombre-apellido-view {
 
   width: 110px;
@@ -12,6 +26,13 @@
   enable-background:0;
   
 }
+
+#rowtablematerias {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .input-buttons {
   border-radius: 100px;
   border: 1px solid #337ab7;

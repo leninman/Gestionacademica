@@ -66,7 +66,11 @@ public interface ICursoService {
       
       public Curso consultarCursoPorIdCurso(Long idCurso);
       
+      public List<String> annios();
       
+      public List<String> niveles();
+      
+      public List<String> especialidades();
       
       
       

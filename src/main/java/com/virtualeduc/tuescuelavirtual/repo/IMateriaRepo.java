@@ -22,4 +22,9 @@ public interface IMateriaRepo extends JpaRepository<Materia,Long> {
 	 		+ "from Materias a "
 	 		+ "where a.CODIGO_MAT=?1",nativeQuery = true)
 	 public Materia buscarMateriaPorCodigo(String codigoMateria);
+	
+	
+	@Query(value="Select distinct(a.NOMBRE_MAT) "
+	 		+ "from Materias a",nativeQuery = true)
+	 public List<String> nombresMaterias();
 }

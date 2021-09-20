@@ -18,6 +18,9 @@ public interface IMateriaService {
     
     public Responses desactivarMateria(Long idMat);
     
+    public List<String> nombresmaterias();
+    
+    
     
     
 

@@ -10,13 +10,12 @@ import java.util.Date;
  * 
  */
 @Entity
-@NamedQuery(name="Profesores.findAll", query="SELECT p FROM Profesor p")
 public class Profesor implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="ID_PRF")
-	private String idPrf;
+	private Long idPrf;
 
 	@Column(name="ANIOS_SERV_PRF")
 	private int aniosServPrf;
@@ -39,8 +38,7 @@ public class Profesor implements Serializable {
 	@Column(name="EMAIL_PRF")
 	private String emailPrf;
 
-	@Column(name="ESPECIALIDAD_PRF")
-	private String especialidadPrf;
+	
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="FECH_NAC_PRF")
@@ -48,13 +46,30 @@ public class Profesor implements Serializable {
 
 	private String graduado;
 
-	@Column(name="NIVEL_EDUCATIVO")
-	private String nivelEducativo;
+	
+	
+	private String pregrado1;
+	
+	private String pregrado2;
+	
+	private String postgrado1;
+	
+	private String postgrado2;
+	
+	
+	
+	private String curso1;
+	
+	private String curso2;
+	
+	private String curso3;
+	
+	private String curso4;
 
 	@Column(name="NUM_DOC_PRF")
 	private String numDocPrf;
 
-	private String ocupacion;
+	
 
 	@Column(name="PRIM_APELL_PRF")
 	private String primApellPrf;
@@ -62,8 +77,7 @@ public class Profesor implements Serializable {
 	@Column(name="PRIM_NOMB_PRF")
 	private String primNombPrf;
 
-	@Column(name="PROFESION_PRF")
-	private String profesionPrf;
+	
 
 	@Column(name="SEG_APELL_PRF")
 	private String segApellPrf;
@@ -91,12 +105,14 @@ public class Profesor implements Serializable {
 
 	public Profesor() {
 	}
+	
+	
 
-	public String getIdPrf() {
+	public Long getIdPrf() {
 		return this.idPrf;
 	}
 
-	public void setIdPrf(String idPrf) {
+	public void setIdPrf(Long idPrf) {
 		this.idPrf = idPrf;
 	}
 
@@ -164,13 +180,9 @@ public class Profesor implements Serializable {
 		this.emailPrf = emailPrf;
 	}
 
-	public String getEspecialidadPrf() {
-		return this.especialidadPrf;
-	}
+	
 
-	public void setEspecialidadPrf(String especialidadPrf) {
-		this.especialidadPrf = especialidadPrf;
-	}
+	
 
 	public Date getFechNacPrf() {
 		return this.fechNacPrf;
@@ -188,12 +200,84 @@ public class Profesor implements Serializable {
 		this.graduado = graduado;
 	}
 
-	public String getNivelEducativo() {
-		return this.nivelEducativo;
+	
+	
+	
+
+	public String getPregrado1() {
+		return pregrado1;
 	}
 
-	public void setNivelEducativo(String nivelEducativo) {
-		this.nivelEducativo = nivelEducativo;
+	public void setPregrado1(String pregrado1) {
+		this.pregrado1 = pregrado1;
+	}
+
+	public String getPregrado2() {
+		return pregrado2;
+	}
+
+	public void setPregrado2(String pregrado2) {
+		this.pregrado2 = pregrado2;
+	}
+
+	public String getPostgrado1() {
+		return postgrado1;
+	}
+
+	public void setPostgrado1(String postgrado1) {
+		this.postgrado1 = postgrado1;
+	}
+
+	public String getPostgrado2() {
+		return postgrado2;
+	}
+
+	public void setPostgrado2(String postgrado2) {
+		this.postgrado2 = postgrado2;
+	}
+
+	
+
+	public String getCurso1() {
+		return curso1;
+	}
+
+	public void setCurso1(String curso1) {
+		this.curso1 = curso1;
+	}
+
+	public String getCurso2() {
+		return curso2;
+	}
+
+	public void setCurso2(String curso2) {
+		this.curso2 = curso2;
+	}
+
+	public String getCurso3() {
+		return curso3;
+	}
+
+	public void setCurso3(String curso3) {
+		this.curso3 = curso3;
+	}
+	
+	
+
+	public String getCurso4() {
+		return curso4;
+	}
+
+	public void setCurso4(String curso4) {
+		this.curso4 = curso4;
+	}
+
+	public String getSegApellPrf() {
+		return segApellPrf;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	public String getNumDocPrf() {
@@ -204,13 +288,7 @@ public class Profesor implements Serializable {
 		this.numDocPrf = numDocPrf;
 	}
 
-	public String getOcupacion() {
-		return this.ocupacion;
-	}
-
-	public void setOcupacion(String ocupacion) {
-		this.ocupacion = ocupacion;
-	}
+	
 
 	public String getPrimApellPrf() {
 		return this.primApellPrf;
@@ -228,17 +306,7 @@ public class Profesor implements Serializable {
 		this.primNombPrf = primNombPrf;
 	}
 
-	public String getProfesionPrf() {
-		return this.profesionPrf;
-	}
-
-	public void setProfesionPrf(String profesionPrf) {
-		this.profesionPrf = profesionPrf;
-	}
-
-	public String getSegApellPrf() {
-		return this.segApellPrf;
-	}
+	
 
 	public void setSegApellPrf(String segApellPrf) {
 		this.segApellPrf = segApellPrf;

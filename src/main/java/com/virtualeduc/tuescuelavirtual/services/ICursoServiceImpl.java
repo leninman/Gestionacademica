@@ -543,4 +543,22 @@ public class ICursoServiceImpl implements ICursoService {
 		return resp;
 	}
 
+	@Override
+	public List<String> annios() {
+		// TODO Auto-generated method stub
+		return anniorepo.annios();
+	}
+
+	@Override
+	public List<String> niveles() {
+		// TODO Auto-generated method stub
+		return anniorepo.niveles();
+	}
+
+	@Override
+	public List<String> especialidades() {
+		// TODO Auto-generated method stub
+		return anniorepo.especialidades();
+	}
+
 }
