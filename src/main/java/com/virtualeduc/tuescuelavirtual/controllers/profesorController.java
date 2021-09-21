@@ -76,10 +76,5 @@ public class profesorController {
 		return "profesores/registroprofesor";
 	}
 	
-	@PostMapping(path = "/agregarprofesor")
-	public String registrarprofesor(@Valid Profesor profesor, BindingResult result, Model model,
-			RedirectAttributes redirectAttributes) {
-		
-		return "redirect:listarprofesores?success";
-	}
+	
 }

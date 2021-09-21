@@ -27,4 +27,14 @@ public interface IMateriaRepo extends JpaRepository<Materia,Long> {
 	@Query(value="Select distinct(a.NOMBRE_MAT) "
 	 		+ "from Materias a",nativeQuery = true)
 	 public List<String> nombresMaterias();
+	
+	
+	@Query(value="SELECT a.ID_MAT "
+			+ "FROM materias a INNER JOIN annios b "
+	 		+ "ON a.ID_ANNIO=b.ID_ANNIO "
+	 		+ "WHERE a.NOMBRE_MAT=?1 "
+	 		+ "and b.ANNIO=?2 "
+	 		+ "and b.NIVEL=?3 "
+	 		+ "and b.ESPECIALIDAD=?4",nativeQuery = true)
+	 public Long consultarIdMaterias(String materia,String annio,String nivel,String especialidad);
 }

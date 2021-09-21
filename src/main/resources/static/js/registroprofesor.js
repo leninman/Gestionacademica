@@ -1,50 +1,110 @@
-var IdMateriaAsignada=[];
+var IdMateriaAsignada = [];
 var direccionbase;
 var materia;
 var id;
 var annio;
 var nivel;
 var especialidad;
+var idmateria;
+var Profesor=[];
 
 
 
 
 $("#botonAsignar").click(function () {
-  materia= $("#materia").val();
-  annio= $("#annio").val();
-  nivel= $("#nivel").val();
-  especialidad= $("#especialidad").val();
- /* table = document.getElementById("tablematerias");
-  rows = table.getElementsByTagName("tr");
-  for (i = 1; i < rows.length; i++) {
-    row = table.rows[i];
-    row.onclick = function () {
-      var cell = this.getElementsByTagName("td")[0];
-      id=cell.innerHTML;
-      var cell = this.getElementsByTagName("td")[2];
-      materia=cell.innerHTML;
-      var cell = this.getElementsByTagName("td")[3];
-      annio=cell.innerHTML;
-      var cell = this.getElementsByTagName("td")[4];
-      nivel=cell.innerHTML;
-      var cell = this.getElementsByTagName("td")[5];
-      especialidad=cell.innerHTML;
-    }
-  }*/
+  materia = $("#materia").val();
+  annio = $("#annio").val();
+  nivel = $("#nivel").val();
+  especialidad = $("#especialidad").val();
+  direccionbase = $("#direccionbase").val();
+  url = direccionbase + "/validarmateria";
+  $.ajax({
+      data: {
+        materia: $("select[name=materia]").val(),
+        annio: $("select[name=annio]").val(),
+        nivel: $("select[name=nivel]").val(),
+        especialidad: $("select[name=especialidad]").val(),
+      },
+      url: url,
+      type: "GET",
+    })
+    .done(function (response) {
+      if (response != '') {
+        let htmlTags = '<tr>' +
+          '<td>' + materia + '</td>' +
+          '<td>' + annio + '</td>' +
+          '<td>' + nivel + '</td>' +
+          '<td>' + especialidad + '</td>' +
+          '<td><a type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"title="Eliminar" id="btnEliminar"><i class="bi bi-trash"></i></a></td>' +
+          '</tr>';
+        $('#tablemateriasasignadas tbody').append(htmlTags);
+        IdMateriaAsignada.push(id);
+      } else {
+        alert('NO EXISTE MATERIA CON ESTOS PARÁMETROS');
+      }
+    });
+});
 
-  let htmlTags = '<tr>'+
-      '<td>' + materia + '</td>'+
-      '<td>' + annio + '</td>'+
-      '<td>' + nivel + '</td>'+
-      '<td>' + especialidad + '</td>'+
-      '<td><a type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"title="Eliminar" id="btnEliminar"><i class="bi bi-trash"></i></a></td>'+
-    '</tr>';
-    $('#tablemateriasasignadas tbody').append(htmlTags);  
+$("#registrarprofesor").click(function () {
+  direccionbase = $("#direccionbase").val();
+  url = direccionbase + "/agregarprofesor";
+// Get form
+var form = $('#formProfesor')[0];
+console.log(form);
+ // FormData object 
+ //var data = new FormData(form);
+//var profe=data.get(profesor);
+//console.log(profe);
+ //data.append('idMat',IdMateriaAsignada);
+
+ /*$.ajax({
+  type: "POST",
+  enctype: 'multipart/form-data',
+  url: url,
+  data: {
+    profesor:profe,
+    idMat:IdMateriaAsignada,
+  },
+  processData: false,
+  contentType: false,
+  cache: false,
+  timeout: 800000,
+  success: function (data) {
     
+      console.log("SUCCESS : ", data);
+     
+  },
+  error: function (e) {
+    
+      console.log("ERROR : ", e);
+     
+  }
+});*/
+
+
+
+
+  /*direccionbase = $("#direccionbase").val();
+  url = direccionbase + "/agregarprofesor";
+  Profesor=new FormData(document.getElementById('formProfesor'));
+  console.log(Profesor);
+  $.ajax({
+    data: {
+      profesor:Profesor,
+      idMat:IdMateriaAsignada,
+    },
   
-    //IdMateriaAsignada.push(id);
+    url:url,
+    dataType: "json", //tipo de datos retornados
+    type: "POST",
+
+  })
+  .done(function (response) {
+
+  });*/
   
-}); 
+
+});
 
 //Setea los combos a blanco, oculta los textos establece estilos
 $(document).ready(function () {
@@ -66,54 +126,11 @@ $(document).ready(function () {
   $("#codoperadorappalprf").val("");
   $("#codoperadorasecprf").val("");
   $("#pregrado1").val("");
-   $("#pregrado2").val("");
-   $("#materia").val("");
-   $("#annio").val("");
-   $("#nivel").val("");
-   $("#especialidad").val("");
-   
-   
-      /* $('#tablematerias').DataTable({        
-        language: {
-                "lengthMenu": "Mostrar _MENU_ registros",
-                "zeroRecords": "No se encontraron resultados",
-                "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-                "sSearch": "Buscar:",
-                "oPaginate": {
-                    "sFirst": "Primero",
-                    "sLast":"Último",
-                    "sNext":"Siguiente",
-                    "sPrevious": "Anterior"
-			     },
-			     "sProcessing":"Procesando...",
-            },
-        para usar los botones   
-        responsive: "true",
-        dom: 'Bfrtilp',       
-        buttons:[ 
-			{
-				extend:    'excelHtml5',
-				text:      '<i class="fas fa-file-excel"></i> ',
-				titleAttr: 'Exportar a Excel',
-				className: 'btn btn-success'
-			},
-			{
-				extend:    'pdfHtml5',
-				text:      '<i class="fas fa-file-pdf"></i> ',
-				titleAttr: 'Exportar a PDF',
-				className: 'btn btn-danger'
-			},
-			{
-				extend:    'print',
-				text:      '<i class="fa fa-print"></i> ',
-				titleAttr: 'Imprimir',
-				className: 'btn btn-info'
-			},
-		]	        
-    }); */
-
+  $("#pregrado2").val("");
+  $("#materia").val("");
+  $("#annio").val("");
+  $("#nivel").val("");
+  $("#especialidad").val("");
 });
 
 $(document).on('click', '#btnEliminar', function (event) {

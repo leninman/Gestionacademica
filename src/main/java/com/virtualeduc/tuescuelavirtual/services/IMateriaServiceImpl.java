@@ -150,4 +150,10 @@ public class IMateriaServiceImpl implements IMateriaService{
 		return materiaRepo.nombresMaterias();
 	}
 
+	@Override
+	public Long consultarIdMaterias(String materia, String annio, String nivel, String especialidad) {
+		// TODO Auto-generated method stub
+		return materiaRepo.consultarIdMaterias(materia, annio, nivel, especialidad);
+	}
+
 }

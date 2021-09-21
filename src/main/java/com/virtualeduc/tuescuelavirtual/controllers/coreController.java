@@ -16,17 +16,24 @@ import com.virtualeduc.tuescuelavirtual.models.Alumno;
 import com.virtualeduc.tuescuelavirtual.models.Annio;
 import com.virtualeduc.tuescuelavirtual.models.Curso;
 import com.virtualeduc.tuescuelavirtual.models.Profesion;
+import com.virtualeduc.tuescuelavirtual.models.Profesor;
 import com.virtualeduc.tuescuelavirtual.models.Representante;
 import com.virtualeduc.tuescuelavirtual.models.Responses;
 import com.virtualeduc.tuescuelavirtual.services.IAlumnoService;
 import com.virtualeduc.tuescuelavirtual.services.ICursoService;
+import com.virtualeduc.tuescuelavirtual.services.IMateriaService;
 import com.virtualeduc.tuescuelavirtual.services.IRepresentanteService;
 import com.virtualeduc.tuescuelavirtual.services.IVariosService;
 import com.virtualeduc.tuescuelavirtual.utils.Constantes;
 
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,6 +60,9 @@ public class coreController {
 
     @Autowired
     IRepresentanteService representanteservice;
+    
+    @Autowired
+    IMateriaService materiaservice;
     
   
     
@@ -161,6 +171,29 @@ public class coreController {
         return resp;
          
     }
+     
+     @CrossOrigin(origins = {"direccionbase/validarmateria"})
+     @GetMapping(path = "/validarmateria")
+    public Long validarmateria(@RequestParam(name="materia") String materia,
+    		@RequestParam(name="annio") String annio,@RequestParam(name="nivel") String nivel,
+    		@RequestParam(name="especialidad") String especialidad) {
+    	
+    		 return materiaservice.consultarIdMaterias(materia, annio, nivel, especialidad);  
+    	 
+    		 
+    	
+    	
+     }
+     @CrossOrigin(origins = {"direccionbase/agregarprofesor"})
+     @PostMapping(path = "/agregarprofesor",consumes = "application/json",
+     produces = "application/json")
+ 	public String registrarprofesor(@Valid Profesor profesor, @RequestParam(name="idMat") Long[] idMat,BindingResult result, Model model,
+ 			RedirectAttributes redirectAttributes) {
+ 		
+ 		return "redirect:listarprofesores?success";
+ 	}
+     
+     
      
   
     

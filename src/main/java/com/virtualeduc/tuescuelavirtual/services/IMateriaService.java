@@ -20,6 +20,8 @@ public interface IMateriaService {
     
     public List<String> nombresmaterias();
     
+    public Long consultarIdMaterias(String materia,String annio,String nivel,String especialidad);
+    
     
     
     
