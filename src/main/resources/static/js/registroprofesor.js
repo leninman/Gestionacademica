@@ -1,15 +1,10 @@
-var IdMateriaAsignada = [];
 var direccionbase;
 var materia;
 var id;
 var annio;
 var nivel;
 var especialidad;
-var idmateria;
-var Profesor=[];
-
-
-
+var Ids=[];
 
 $("#botonAsignar").click(function () {
   materia = $("#materia").val();
@@ -18,6 +13,7 @@ $("#botonAsignar").click(function () {
   especialidad = $("#especialidad").val();
   direccionbase = $("#direccionbase").val();
   url = direccionbase + "/validarmateria";
+  
   $.ajax({
       data: {
         materia: $("select[name=materia]").val(),
@@ -38,73 +34,22 @@ $("#botonAsignar").click(function () {
           '<td><a type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"title="Eliminar" id="btnEliminar"><i class="bi bi-trash"></i></a></td>' +
           '</tr>';
         $('#tablemateriasasignadas tbody').append(htmlTags);
-        IdMateriaAsignada.push(id);
+        Ids.push(response);
       } else {
         alert('NO EXISTE MATERIA CON ESTOS PARÁMETROS');
       }
     });
+ 
 });
-
-$("#registrarprofesor").click(function () {
-  direccionbase = $("#direccionbase").val();
-  url = direccionbase + "/agregarprofesor";
-// Get form
-var form = $('#formProfesor')[0];
-console.log(form);
- // FormData object 
- //var data = new FormData(form);
-//var profe=data.get(profesor);
-//console.log(profe);
- //data.append('idMat',IdMateriaAsignada);
-
- /*$.ajax({
-  type: "POST",
-  enctype: 'multipart/form-data',
-  url: url,
-  data: {
-    profesor:profe,
-    idMat:IdMateriaAsignada,
-  },
-  processData: false,
-  contentType: false,
-  cache: false,
-  timeout: 800000,
-  success: function (data) {
-    
-      console.log("SUCCESS : ", data);
-     
-  },
-  error: function (e) {
-    
-      console.log("ERROR : ", e);
-     
+/*function mostrardatosacademicospostgrados() {
+  element = document.getElementById("datosAcademicosPostgrados");
+  if (element.style.display == "none") {
+    element.style.display = "block";
+  } else {
+    element.style.display = "none";
   }
-});*/
+}*/
 
-
-
-
-  /*direccionbase = $("#direccionbase").val();
-  url = direccionbase + "/agregarprofesor";
-  Profesor=new FormData(document.getElementById('formProfesor'));
-  console.log(Profesor);
-  $.ajax({
-    data: {
-      profesor:Profesor,
-      idMat:IdMateriaAsignada,
-    },
-  
-    url:url,
-    dataType: "json", //tipo de datos retornados
-    type: "POST",
-
-  })
-  .done(function (response) {
-
-  });*/
-  
-
-});
 
 //Setea los combos a blanco, oculta los textos establece estilos
 $(document).ready(function () {

@@ -184,14 +184,7 @@ public class coreController {
     	
     	
      }
-     @CrossOrigin(origins = {"direccionbase/agregarprofesor"})
-     @PostMapping(path = "/agregarprofesor",consumes = "application/json",
-     produces = "application/json")
- 	public String registrarprofesor(@Valid Profesor profesor, @RequestParam(name="idMat") Long[] idMat,BindingResult result, Model model,
- 			RedirectAttributes redirectAttributes) {
- 		
- 		return "redirect:listarprofesores?success";
- 	}
+    
      
      
      

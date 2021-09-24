@@ -9,6 +9,7 @@ import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.MateriaDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.ProfesorDTO;
 
 import java.io.Serializable;
 import java.util.List;
@@ -37,22 +38,14 @@ public class Responses implements Serializable {
 	private List<AlumnoDTO> listadeAlumnos;
 
 	private MateriaDTO materia;
+	
+	public ProfesorDTO profesor;
 
 	public Responses() {
 
 	}
 
-	public Responses(int responseCode, String responseDescription, AlumnoDTO alumno, CursoDTO curso,
-			AnnioEscolarDTO annioescolar, List<AlumnoDTO> listadeAlumnos, MateriaDTO materia) {
 	
-		this.responseCode = responseCode;
-		this.responseDescription = responseDescription;
-		this.alumno = alumno;
-		this.curso = curso;
-		this.annioescolar = annioescolar;
-		this.listadeAlumnos = listadeAlumnos;
-		this.materia = materia;
-	}
 	
 	public AlumnoDTO getAlumno() {
 		return alumno;
@@ -97,6 +90,20 @@ public class Responses implements Serializable {
 	public void setMateria(MateriaDTO materia) {
 		this.materia = materia;
 	}
+	
+	
+
+	public ProfesorDTO getProfesor() {
+		return profesor;
+	}
+
+
+
+	public void setProfesor(ProfesorDTO profesor) {
+		this.profesor = profesor;
+	}
+
+
 
 	public int getResponseCode() {
 		return responseCode;
