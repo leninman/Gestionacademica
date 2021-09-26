@@ -51,7 +51,7 @@ public class ProfesorDTO implements Serializable {
 	private String edoCivilPrf;
 
 	private String emailPrf;
-	
+
 	@NotNull(message = "Requerido")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechNacPrf;
@@ -122,9 +122,14 @@ public class ProfesorDTO implements Serializable {
 		String[] arrOfStrTlfSecPrf = strTlfSecPrf.split("-");
 		String strPregrado1 = profesor.getPregrado1();
 		String[] arrOfStrPregrado1 = strPregrado1.split("con especialidad en ");
-		String strPregrado2 = profesor.getPregrado2();
-		String[] arrOfStrPregrado2 = strPregrado2.split("con especialidad en ");
-
+		String strPregrado2;
+		String[] arrOfStrPregrado2 = null;
+		if (!profesor.getPregrado2().equals("")) {
+			strPregrado2 = profesor.getPregrado2();
+			arrOfStrPregrado2 = strPregrado2.split("con especialidad en ");
+		} else {
+			strPregrado2 = "";
+		}
 		this.idPrf = profesor.getIdPrf();
 		this.aniosServPrf = profesor.getAniosServPrf();
 		this.catPrf = profesor.getCatPrf();
@@ -146,9 +151,14 @@ public class ProfesorDTO implements Serializable {
 		this.fechNacPrf = profesor.getFechNacPrf();
 		this.graduado = profesor.getGraduado();
 		this.pregrado1 = arrOfStrPregrado1[0];
-		this.especialidad1=arrOfStrPregrado1[1];
-		this.pregrado2=arrOfStrPregrado2[0];
-		this.especialidad2=arrOfStrPregrado2[1];
+		this.especialidad1 = arrOfStrPregrado1[1];
+		if (!strPregrado2.equals("") ) {
+			this.pregrado2 = arrOfStrPregrado2[0];
+			this.especialidad2 = arrOfStrPregrado2[1];
+		}else {
+			this.pregrado2 = "";
+			this.especialidad2 = "";
+		}
 		this.pregrado2 = profesor.getPregrado2();
 		this.postgrado1 = profesor.getPostgrado1();
 		this.postgrado2 = profesor.getPostgrado2();

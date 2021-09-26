@@ -8,7 +8,7 @@ import com.virtualeduc.tuescuelavirtual.models.DTOS.ProfesorDTO;
 
 public interface IProfesoresService {
 	
-	public List<Profesor> consultarProfesores();
+	public List<ProfesorDTO> consultarProfesores();
 	
 	public Profesor consultarProfesorPorId(Long idProfesor);
 	

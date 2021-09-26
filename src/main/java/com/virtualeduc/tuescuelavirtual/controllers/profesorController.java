@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,7 +55,7 @@ public class profesorController {
 	@GetMapping(path = "/listarprofesores")
 	public String listarprofesores(Model model) {
 		
-		List<Profesor> listaProfesores = new ArrayList<>();
+		List<ProfesorDTO> listaProfesores = new ArrayList<>();
 		listaProfesores = profesoresService.consultarProfesores();
 		model.addAttribute("Profesores", listaProfesores);
 		return "profesores/listarprofesores";
@@ -100,6 +101,14 @@ public class profesorController {
  		
  		return "redirect:listarprofesores?success";
  	}
+     
+     @GetMapping(path = "/verprofesor/{idPrf}")
+ 	public String verprofesor(@PathVariable(name="idPrf") Long idPrf,Model model) {
+    	 
+    	 
+    	
+    	 return null;
+     }
 	
 	
 }

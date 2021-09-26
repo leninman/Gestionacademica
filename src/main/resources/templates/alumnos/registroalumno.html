@@ -12,10 +12,14 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
     />
     <link rel="stylesheet" type="text/css" href="/css/estilosAlumno.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
   </head>
   <header>
   </header>
   <body>
+    <th:block th:replace="partes/header :: header" />
+  <th:block th:replace="partes/menu :: menuSuperior" />
     <div
       th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
       th:if="${mensaje1 != null}"
@@ -23,19 +27,11 @@
       class="alert"
     ></div>
     
-    <br>
-    <br>
-    <div class="row">
-      <div class="col-sm-4">&nbsp;</div>
-      <div class="form-group col-md-4">
-        <h5>
-          <b>FORMULARIO DE REGISTRO DE ALUMNO</b>
-        </h5>
-      </div>
-    </div>
-    <div class="container my-5">
-      <div class="card" style="width: 100%; border-color: #337ab7">
-        <div class="card-header">
+   
+    
+    <!--<div class="container my-5">-->
+      <div class="card" style="width: 100%;border-color:#cccccc;margin-left: auto;margin-right: auto;">
+        <div class="card-header" style="width: 100%;border-color:#cccccc;margin-left: auto;margin-right: auto;">
           <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
@@ -75,9 +71,10 @@
             </div>
           </nav>
         </div>
-        <div class="card-body" style="text-align: left; width: 100%">
+        <div class="card-body" style="width: 90%;border-color:#b5b5b5;margin-left: auto;margin-right: auto;">
           <div class="container">
             <div class="col-md-20">
+            
               <form
                 class="form-horizontal"
                 th:action="@{/app/agregaralumno}"
@@ -90,16 +87,12 @@
 
                 <!--************************ALUMNO*********************************-->
                 <div class="row">
-                  <div class="col-sm-4">&nbsp;</div>
-                  <div class="form-group col-md-4">
-                    <h5>
-                      <b>Información básica del alumno</b>
-                    </h5>
-                  </div>
+                  <div class="col-md-5">&nbsp;</div>
+                 <p id="titulo2">&nbsp;&nbsp;&nbsp;&nbsp;Datos básicos</p>
                 </div>
 
                 <br />
-                <br />
+             
                 <div class="row">
                   <input type="hidden" id="direccionbase" th:name="direccionbase" th:value="${direccionbase}">	
                   <div class="col-md-6">
@@ -567,12 +560,8 @@
 
                 <!--************************REPRESENTANTE PRINCIPAL*********************************-->
                 <div class="row">
-                  <div class="col-sm-4">&nbsp;</div>
-                  <div class="form-group col-md-8">
-                    <h5>
-                      <b>Información básica del representante principal</b>
-                    </h5>
-                  </div>
+                  <div class="col-md-4">&nbsp;</div>
+                 <p id="titulo3">&nbsp;&nbsp;&nbsp;&nbsp;Datos del representante principal</p>
                 </div>
                 <br />
                 <br />
@@ -1153,12 +1142,8 @@
                 <!--************************ REPRESENTANTE SECUNDARIO*********************************-->
                 <div id="datosRepSec" style="display: none">
                   <div class="row">
-                    <div class="col-sm-4">&nbsp;</div>
-                    <div class="form-group col-md-8">
-                      <h5>
-                        <b>Información básica del representante secundario</b>
-                      </h5>
-                    </div>
+                    <div class="col-md-4">&nbsp;</div>
+                   <p id="titulo3">&nbsp;&nbsp;&nbsp;&nbsp;Datos del representante secundario</p>
                   </div>
                   <br />
                   <br />
@@ -1586,12 +1571,8 @@
 
                 <!--************************CURSO*********************************-->
                 <div class="row">
-                  <div class="col-sm-4">&nbsp;</div>
-                  <div class="form-group col-md-8">
-                    <h5>
-                      <b>Información del curso</b>
-                    </h5>
-                  </div>
+                  <div class="col-md-4">&nbsp;</div>
+                 <p id="titulo3">&nbsp;&nbsp;&nbsp;&nbsp;Datos del curso</p>
                 </div>
                 <br />
                 <div class="row" id="rowtablecursos">
@@ -1643,6 +1624,8 @@
                       class="form-control"
                       name="annio"
                       id="annio"
+                      style="border-radius: 100px;
+                      border: 1px solid #b5b5b5;"
                     />
                   </div>
                   <div class="col-sm-1">
@@ -1652,6 +1635,8 @@
                       class="form-control"
                       name="seccion"
                       id="seccion"
+                      style="border-radius: 100px;
+                      border: 1px solid #b5b5b5;"
                     />
                   </div>
                   <div class="col-sm-2">
@@ -1661,6 +1646,8 @@
                       class="form-control"
                       name="turno"
                       id="turno"
+                      style="border-radius: 100px;
+                      border: 1px solid #b5b5b5;"
                     />
                   </div>
                   <div class="col-sm-3">
@@ -1670,6 +1657,8 @@
                       class="form-control"
                       name="nivel"
                       id="nivel"
+                      style="border-radius: 100px;
+                      border: 1px solid #b5b5b5;"
                     />
                   </div>
                   <div class="col-sm-2">
@@ -1679,6 +1668,8 @@
                       class="form-control"
                       name="especialidad"
                       id="especialidad"
+                      style="border-radius: 100px;
+                      border: 1px solid #b5b5b5;"
                     />
                   </div>
                 </div>
@@ -1699,11 +1690,12 @@
           </div>
         </div>
       </div>
-    </div>
+    <!--</div>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <!--<script src="/js/Swalert.js"></script>-->
     <script src="/js/registroalumno.js"></script>
     <!--   <script>

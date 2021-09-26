@@ -24,7 +24,18 @@ h2 {
     font-style: italic;
     font-weight: bold;
     font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
-    font-size: x-large;
+    font-size: large;
+    color: white;
+    width:50%;
+}
+
+
+h5 {
+    font-style: italic;
+    font-weight: bold;
+    align-content:center;
+    font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
+    font-size: xxx-large;
     color: white;
 }
 

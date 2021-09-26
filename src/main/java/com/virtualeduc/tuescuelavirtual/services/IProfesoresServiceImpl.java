@@ -1,5 +1,6 @@
 package com.virtualeduc.tuescuelavirtual.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,21 @@ public class IProfesoresServiceImpl implements IProfesoresService {
 	IProfesorRepo profesoresRepo;
 
 	@Override
-	public List<Profesor> consultarProfesores() {
+	public List<ProfesorDTO> consultarProfesores() {
 		// TODO Auto-generated method stub
-		return profesoresRepo.findListProfesores();
+		List<ProfesorDTO> profesoresdto=new ArrayList<>();
+		
+		List<Profesor> profesores=new ArrayList<>();
+		
+		 profesores=profesoresRepo.findListProfesores();
+		 
+		 for(Profesor profesor:profesores) {
+			 ProfesorDTO profesordto=new ProfesorDTO(profesor);
+			 
+			 profesoresdto.add(profesordto);
+		 }
+		 
+		 return profesoresdto;
 	}
 
 	@Override
