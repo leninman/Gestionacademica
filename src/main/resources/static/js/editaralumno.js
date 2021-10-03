@@ -23,6 +23,8 @@ $("#botonCambiarRep").click(function () {
 });
 
 
+
+
 $("#botonCambiarRep2").click(function () {
   $("#botonCambiarRep2").hide();
   $("#botonBuscRep2").show();
@@ -30,6 +32,34 @@ $("#botonCambiarRep2").click(function () {
   $("#tipoDocRep2").prop('disabled',false);
 
   $("#numDocRep2").prop('disabled',false);
+
+  
+
+
+});
+
+
+$("#botonEditarAlumno").click(function () {
+
+  $("#primNombAl").prop('disabled',false);
+  
+
+
+
+
+
+
+  $("#botonCambiarRep").prop('disabled',false);
+  $("#botonCambiarRep2").prop('disabled',false);
+  $("#guardar").prop('disabled',false);
+
+  
+ /* $("#botonCambiarRep").hide();
+  $("#botonBuscRep").show();
+
+  $("#tipoDocRep1").prop('disabled',false);
+
+  $("#numDocRep1").prop('disabled',false);*/
 
   
 

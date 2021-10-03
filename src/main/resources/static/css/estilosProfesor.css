@@ -209,18 +209,20 @@ span > #guardarAlumno {
 
 /*estilos para la tabla*/
 #tablaProfesores th {
-  background-color: #337ab7 !important;
-  color: white;
+  background-color: #cccccc;
+  color: black;
   font-size: small;
+  text-align: center;
 }
+
 #tablaProfesores>tbody>tr>td {
-  vertical-align: middle !important;
+  vertical-align: middle;
   text-align: center;
   font-size: small;
 }
 
 .btn-group, .btn-group-vertical {
-  position: absolute !important;
+  position: absolute;
 }
 
 
@@ -229,6 +231,17 @@ span > #guardarAlumno {
 .error {
   color: red;
   font-size: 0.8em;
+}
+
+
+#titulo1{
+
+  font-weight: bold;
+  align-content:center;
+  font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
+  font-size: large;
+  color: black;
+  font-size: 16px;
 }
 
 

@@ -74,6 +74,8 @@ public class alumnoController {
 	boolean guardarCurso;
 	
 	boolean guardarPeriodo;
+	
+	
 
 	
 
@@ -97,8 +99,8 @@ public class alumnoController {
 		return "alumnos/registroalumno";
 	}
 
-	@GetMapping(path = "/editaralumno/{idAl}")
-	public String editaralumno(@PathVariable(value = "idAl") Long idAl, Model model) {
+	@GetMapping(path = "/verAlumno/{idAl}")
+	public String verAlumno(@PathVariable(value = "idAl") Long idAl, Model model) {
 		AlumnoDTO alumnoDTO = new AlumnoDTO(alumnoservice.consultarAlumnoPorId(idAl));
 		List<CursoDTO> cursos = new ArrayList<>();
 		AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();

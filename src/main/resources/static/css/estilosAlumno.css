@@ -189,16 +189,47 @@ span > #guardarAlumno {
 }*/
 
 #tablecursos th {
-  background-color: #cccccc !important;
-  color: white;
+  background-color: #cccccc;
+  color: black;
+  font-size: small;
+  text-align: center;
+ 
  
 }
 
 #tablecursos>tbody>tr>td {
-  vertical-align: middle !important;
+  vertical-align: middle;
   text-align: center;
+  font-size: small;
  
 }
+
+
+
+#tablecursosver th {
+  background-color: #cccccc;
+  color: black;
+  text-align: center;
+  align-items:center;
+
+  
+ 
+ 
+}
+
+#tablecursosver>tbody>tr>td {
+  
+  vertical-align: middle;
+  text-align: center;
+  font-size: small;
+  
+  
+ 
+}
+
+
+
+
 
 
 
@@ -206,34 +237,38 @@ span > #guardarAlumno {
 
 /*estilos para la tabla*/
 #tablaAlumnos th {
-  background-color: #cccccc !important;
-  color: white;
+  background-color: #cccccc;
+  color: black;
   font-size: small;
   text-align: center;
 }
 #tablaAlumnos>tbody>tr>td {
-  vertical-align: middle !important;
+  vertical-align: middle;
   text-align: center;
   font-size: small;
 }
 
-.btn-group, .btn-group-vertical {
-  position: absolute !important;
-}
-
 
 #rowtablecursos {
-  text-align: center;
-  margin-left: 0px;
-  margin-right: 0px;
+  width: 100%;
+  align-items: center;
+
+  
 }
+
+.btn-group, .btn-group-vertical {
+  position: absolute;
+}
+
+
+
 
 .error {
   color: red;
   font-size: 0.8em;
 }
 
-#titulo1,#titulo2,#titulo3{
+#titulo1,#titulo2,#titulo3,#titulo4{
 
   font-weight: bold;
   align-content:center;

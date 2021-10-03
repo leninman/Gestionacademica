@@ -37,9 +37,8 @@ function mostrarcursoelegido() {
         document.getElementById("seccion").setAttribute("value", seccion);
         document.getElementById("turno").setAttribute("value", turno);
         document.getElementById("nivel").setAttribute("value", nivel);
-        document
-          .getElementById("especialidad")
-          .setAttribute("value", especialidad);
+        document.getElementById("especialidad").setAttribute("value", especialidad);
+        
       }
       y.style.display = "none";
       cursoasignado = true;

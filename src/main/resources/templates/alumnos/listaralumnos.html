@@ -153,7 +153,7 @@
   <!--</div>-->
   <!-- <div class="card-body" style="border: none;">-->
 
-  <div class="card" style="width: 100%;border-color:#cccccc;margin-left: auto;margin-right: auto;">
+  <div class="card" style="width: 100%;height: 100%;border-color:#cccccc;margin-left: auto;margin-right: auto;">
     <div class="card-header" style="width: 100%;border-color:#cccccc;margin-left: auto;margin-right: auto;">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -180,7 +180,7 @@
 
     </div>
     <br>
-    <div class="card-body" style="border: none;">
+    <div class="card-body" style="border: none;height: 100%;">
       <div class="row" id="containertitulo">
         <div class="col-md-5">&nbsp;</div>
        <p id="titulo1">Listado de alumnos activos</p>
@@ -188,13 +188,13 @@
       <table class="table table-striped table-hover" id="tablaAlumnos">
         <thead>
           <tr>
-            <th>N° ALUMNO</th>
-            <th>CEDULA</th>
-            <th>NOMBRE Y APELLIDO</th>
-            <th>AÑO QUE CURSA</th>
-            <th>SECCION</th>
+            <th>N° Alumno</th>
+            <th>Cédula</th>
+            <th>Nombre y Apellido</th>
+            <th>Año que cursa</th>
+            <th>Sección</th>
             <th></th>
-            <th></th>
+            <!--<th></th>-->
             <!--<th></th>-->
           </tr>
         </thead>
@@ -218,12 +218,12 @@
 
             <td>
               <a type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Ver"
-                id="btnVer" th:href="@{/app/consultaralumnoporid/}+${alumno.IdAl}"><i class="bi bi-eye"></i><a>
+                id="btnVer" th:href="@{/app/verAlumno/}+${alumno.IdAl}"><i class="bi bi-eye"></i><a>
             </td>
-            <td>
+            <!--<td>
               <a type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Editar"
                 id="btnEditar" th:href="@{/app/editaralumno/}+${alumno.IdAl}"><i class="bi bi-pencil-fill"></i></a>
-            </td>
+            </td>-->
             <!--<td>
                   <a type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
                       title="Eliminar" id="btnEliminar" th:href="@{/app/eliminaralumno/}+${alumno.IdAl}"><i class="bi bi-trash"></i></a>
@@ -234,8 +234,7 @@
 
     </div>
   </div>
-  <br>
-  <br>
+ 
 
   <!--</div>-->
   <!--</div>-->
@@ -276,6 +275,7 @@
     });
     }
     </script>-->
+    <th:block th:replace="partes/footer :: footer" />
 </body>
 
 </html>
