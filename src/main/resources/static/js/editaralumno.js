@@ -41,28 +41,19 @@ $("#botonCambiarRep2").click(function () {
 
 $("#botonEditarAlumno").click(function () {
 
-  $("#primNombAl").prop('disabled',false);
-  
+  $('form input[type="text"]').prop("disabled", false);
 
+  $('form select').prop("disabled", false);
 
+  $('form input[type="email"]').prop("disabled", false);
 
-
-
+  $('form input[type="date"]').prop("disabled", false);
 
   $("#botonCambiarRep").prop('disabled',false);
+
   $("#botonCambiarRep2").prop('disabled',false);
+
   $("#guardar").prop('disabled',false);
-
-  
- /* $("#botonCambiarRep").hide();
-  $("#botonBuscRep").show();
-
-  $("#tipoDocRep1").prop('disabled',false);
-
-  $("#numDocRep1").prop('disabled',false);*/
-
-  
-
 
 });
  

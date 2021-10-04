@@ -25,34 +25,41 @@
   <div class="card" style="width: 100%;border-color:#cccccc;margin-left: auto;margin-right: auto;">
     <div class="card-header" style="width: 100%;border-color:#cccccc;margin-left: auto;margin-right: auto;">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container" style="justify-content:flex-start">
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li>
-              <a 
-                type="button"
-                class="btn btn-secondary"
-                th:href="@{/app/inicio}" data-toggle="tooltip" data-placement="top"
-                title="Ir al inicio"><i class="bi bi-house"></i></a>
+              <a type="button" class="btn btn-secondary" th:href="@{/app/inicio}" data-toggle="tooltip"
+                data-placement="top" title="Ir al inicio"><i class="bi bi-house"></i></a>
             </li>
-            &nbsp; &nbsp;
+            &nbsp;
             <li>
-              <a 
-              type="button"
-              class="btn btn-secondary" 
-              th:href="@{/app/listaralumnos}" data-toggle="tooltip"
-              data-placement="top" title="Salir"><i class="bi bi-x"></i></a>
+              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Editar"
+                id="botonEditarAlumno"><i class="bi bi-pencil-fill"></i>
+              </button>
             </li>
+            &nbsp;
+            <li>
+              <a type="button" class="btn btn-secondary" th:href="@{/app/listaralumnos}" data-toggle="tooltip"
+                data-placement="top" title="Salir"><i class="bi bi-x"></i></a>
+            </li>
+
           </ul>
-        </div>
+          <div class="container" style="display: flex;
+          justify-content: left;">
+
+            <div class="col-md-3"></div>
+            <p style="font-weight: bold;
+        font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
+        font-size: large;
+        color: black;
+        font-size: 20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ficha de datos del alumno</p>
+          </div>
         </div>
 
 
-        <div class="container" style="justify-content: end;">
-          <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Editar"
-            id="botonEditarAlumno"><i class="bi bi-pencil-fill"></i>
-          </button>
-        </div>
+
+     
       </nav>
     </div>
     <div class="card-body" style="width: 100%;border-color:#b5b5b5;margin-left: auto;margin-right: auto;">
@@ -64,17 +71,17 @@
             <input type="hidden" th:field="*{idAl}">
             <br />
 
-                <!--************************ALUMNO*********************************-->
-                <div class="row">
-                  <div class="col-md-5">&nbsp;</div>
-                 <p id="titulo2">&nbsp;&nbsp;&nbsp;&nbsp;Datos básicos</p>
-                </div>
+            <!--************************ALUMNO*********************************-->
+            <div class="row">
+              <div class="col-md-5">&nbsp;</div>
+              <p id="titulo2">&nbsp;&nbsp;&nbsp;&nbsp;Datos básicos</p>
+            </div>
 
-                <br />
+            <br />
             <div class="row">
               <input type="hidden" id="direccionbase" th:name="direccionbase" th:value="${direccionbase}">
               <div class="col-md-6">
-              
+
                 <label for="primNombAl" class="col-form-label">Primer Nombre</label>
                 <input type="text" class="input-nombre-apellido" id="primNombAl" th:field="*{primNombAl}" disabled />
               </div>
@@ -297,7 +304,7 @@
             <!--************************ALUMNO*********************************-->
             <div class="row">
               <div class="col-md-5">&nbsp;</div>
-             <p id="titulo3">&nbsp;&nbsp;&nbsp;&nbsp;Representante principal</p>
+              <p id="titulo3">&nbsp;&nbsp;&nbsp;&nbsp;Representante principal</p>
             </div>
 
             <br />
@@ -313,7 +320,7 @@
                 </select>
                 <input name="numDocRep1" id="numDocRep1" class="input-cedula" th:field="*{numDocRep1}"
                   onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="8" disabled />
-                <input type="button" class="input-buttons" id="botonCambiarRep" value="Cambiar" disabled/>
+                <input type="button" class="input-buttons" id="botonCambiarRep" value="Cambiar" disabled />
                 <input type="button" class="input-buttons" id="botonBuscRep" value="Buscar" />
               </div>
             </div>
@@ -549,7 +556,7 @@
               <br />
               <div class="row">
                 <div class="col-md-5">&nbsp;</div>
-               <p id="titulo3">&nbsp;&nbsp;&nbsp;&nbsp;Representante secundario</p>
+                <p id="titulo3">&nbsp;&nbsp;&nbsp;&nbsp;Representante secundario</p>
               </div>
 
               <br />
@@ -569,7 +576,7 @@
                     onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="8"
                     th:field="*{numDocRep2}" disabled />
                   <input type="button" class="input-buttons" id="botonBuscRep2" value="Buscar" />
-                  <input type="button" class="input-buttons" id="botonCambiarRep2" value="Cambiar" disabled/>
+                  <input type="button" class="input-buttons" id="botonCambiarRep2" value="Cambiar" disabled />
                 </div>
               </div>
               <br />
@@ -806,7 +813,7 @@
             <!--************************CURSO*********************************-->
             <div class="row">
               <div class="col-md-5">&nbsp;</div>
-             <p id="titulo3">&nbsp;&nbsp;&nbsp;&nbsp;Datos del curso asignado</p>
+              <p id="titulo3">&nbsp;&nbsp;&nbsp;&nbsp;Datos del curso asignado</p>
             </div>
             <br />
             <div class="row" id="rowtablecursos">
@@ -826,10 +833,9 @@
                 <tbody>
                   <tr>
                     <td>
-                      <select th:field="*{idCurso}" class="form-control" id="idCurso"
-                      style="border-radius: 100px;border: 1px solid #b5b5b5;text-align: center;
+                      <select th:field="*{idCurso}" class="form-control" id="idCurso" style="border-radius: 100px;border: 1px solid #b5b5b5;text-align: center;
                       width:80px;" disabled>
-                      
+
                         <option th:each="curso:${Cursos}" th:value="${curso.idCurso}" th:text="${curso.idCurso}">
                         </option>
                       </select>
@@ -837,47 +843,44 @@
 
                     <td>
                       <input type="text" th:field="*{annioescolar}" class="form-control" id="annioescolar"
-                      style="border-radius: 100px;border: 1px solid #b5b5b5;text-align: center;width:100px;" disabled>
-                      
+                        style="border-radius: 100px;border: 1px solid #b5b5b5;text-align: center;width:100px;" disabled>
+
 
                     </td>
 
                     <td>
                       <input type="text" th:field="*{annio}" class="form-control" id="annio"
-                      style="border-radius: 100px;border: 1px solid #b5b5b5;text-align: center;width:60px;" disabled>
-                      
+                        style="border-radius: 100px;border: 1px solid #b5b5b5;text-align: center;width:60px;" disabled>
+
 
                     </td>
 
                     <td>
                       <input type="text" th:field="*{seccion}" class="form-control" id="seccion"
-                      style="border-radius: 100px;border: 1px solid #b5b5b5;text-align: center;width:60px;" disabled>
+                        style="border-radius: 100px;border: 1px solid #b5b5b5;text-align: center;width:60px;" disabled>
 
                     </td>
 
 
                     <td>
-                      <input type="text" th:field="*{turno}" class="form-control" id="turno"
-                      style="border-radius: 100px;border: 1px solid #b5b5b5;text-align: center;
+                      <input type="text" th:field="*{turno}" class="form-control" id="turno" style="border-radius: 100px;border: 1px solid #b5b5b5;text-align: center;
                       width:110px;" disabled>
-                      
+
 
                     </td>
 
 
                     <td>
-                      <input type="text" th:field="*{nivel}" class="form-control" id="nivel"
-                      style="border-radius: 100px;border: 1px solid #b5b5b5;text-align: center;
+                      <input type="text" th:field="*{nivel}" class="form-control" id="nivel" style="border-radius: 100px;border: 1px solid #b5b5b5;text-align: center;
                       width:160px;" disabled>
-                      
+
                     </td>
 
 
                     <td>
-                      <input type="text" th:field="*{especialidad}" class="form-control" id="especialidad"
-                      style="border-radius: 100px;border: 1px solid #b5b5b5;text-align: center;
+                      <input type="text" th:field="*{especialidad}" class="form-control" id="especialidad" style="border-radius: 100px;border: 1px solid #b5b5b5;text-align: center;
                       width:100px;" disabled>
-                      
+
 
                     </td>
 
@@ -891,8 +894,8 @@
         <br />
         <br />
         <div class="row">
-          <input type="submit" class="input-buttons" name="submit" value="Guardar" style="margin: 0 auto"
-            disabled id="guardar" />
+          <input type="submit" class="input-buttons" name="submit" value="Guardar" style="margin: 0 auto" disabled
+            id="guardar" />
         </div>
         </form>
       </div>
