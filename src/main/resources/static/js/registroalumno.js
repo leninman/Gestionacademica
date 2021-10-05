@@ -48,57 +48,9 @@ function mostrarcursoelegido() {
 
 //Setea los combos a blanco, oculta los textos establece estilos
 $(document).ready(function () {
-  $("#tipoDocAl").val("");
-  $("#sexoAl").val("");
-  $("#status").val("");
-  $("#estadodirppalest").val("");
-  $("#municipiodirppalest").val("");
-  $("#ciudaddirppalest").val("");
-  $("#parroquiadirppalest").val("");
-  $("#codpostaldirppalest").val("");
-  $("#estadodirsecest").val("");
-  $("#municipiodirsecest").val("");
-  $("#ciudaddirsecest").val("");
-  $("#parroquiadirsecest").val("");
-  $("#codpostaldirsecest").val("");
-  $("#codoperadorappalest").val("");
-  $("#codoperadorasecest").val("");
-  $("#tipoDocRep1").val("");
-  $("#sexoRpr1").val("");
-  $("#parentescoRpr1").val("");
-  $("#edoCivRpr1").val("");
-  $("#estadodirppalrep1").val("");
-  $("#municipiodirppalrep1").val("");
-  $("#ciudaddirppalrep1").val("");
-  $("#parroquiadirppalrep1").val("");
-  $("#codpostaldirppalrep1").val("");
-  $("#estadodirsecrep1").val("");
-  $("#municipiodirsecrep1").val("");
-  $("#ciudaddirsecrep1").val("");
-  $("#parroquiadirsecrep1").val("");
-  $("#codpostaldirsecrep1").val("");
-  $("#codoperadorappalrep1").val("");
-  $("#codoperadorasecrep1").val("");
-  $("#txtCodoperadorappalrep1").val("");
-  $("#estadodirppalrep1").val("");
-  $("#tipoDocRep2").val("");
-  $("#sexoRpr2").val("");
-  $("#parentescoRpr2").val("");
-  $("#edoCivRpr2").val("");
-  $("#estadodirppalrep2").val("");
-  $("#municipiodirppalrep2").val("");
-  $("#ciudaddirppalrep2").val("");
-  $("#parroquiadirppalrep2").val("");
-  $("#codpostaldirppalrep2").val("");
-  $("#estadodirsecrep2").val("");
-  $("#municipiodirsecrep2").val("");
-  $("#ciudaddirsecrep2").val("");
-  $("#parroquiadirsecrep2").val("");
-  $("#codpostaldirsecrep2").val("");
-  $("#codoperadorappalrep2").val("");
-  $("#codoperadorasecrep2").val("");
-  $("#txtCodoperadorappalrep2").val("");
-  $("#estadodirppalrep2").val("");
+	
+  $('form select').val("");
+  	 
   $("#txtSexoRpr1").hide();
   $("#txtParentescoRpr1").hide();
   $("#txtOtroParentescoRpr1").hide();

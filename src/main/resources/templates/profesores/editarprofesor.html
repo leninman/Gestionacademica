@@ -41,8 +41,9 @@
               </li>
               &nbsp; &nbsp;
               <li>
-                <a type="button" class="btn btn-secondary" th:href="@{/app/registroprofesor}" data-toggle="tooltip" data-placement="top"
-                  title="Limpiar pantalla"><i class="bi bi-eraser"></i></a>
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Editar"
+                  id="botonEditarProfesor"><i class="bi bi-pencil-fill"></i>
+                </button>
               </li>
               &nbsp; &nbsp;
               <li>
@@ -58,7 +59,7 @@
           font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
           font-size: large;
           color: black;
-          font-size: 20px;">&nbsp;&nbsp;&nbsp;Formulario de registro del profesor</p>
+          font-size: 20px;">&nbsp;&nbsp;&nbsp;Ficha de datos del profesor</p>
       </div>
           </div>
         </nav>
@@ -85,7 +86,7 @@
               <div class="row">
                 <input type="hidden" id="direccionbase" th:name="direccionbase" th:value="${direccionbase}">
                 <div class="col-md-6">
-                  <label for="primNombPrf" class="col-form-label">Primer Nombre*</label>
+                  <label for="primNombPrf" class="col-form-label">Primer Nombre</label>
                   <input type="text" class="input-nombre-apellido" id="primNombPrf" th:field="*{primNombPrf}" />
                   <div class="error" th:if="${#fields.hasErrors('primNombPrf')}"
                       th:errors="*{primNombPrf}"
@@ -107,7 +108,7 @@
                 <div class="row">
                   <div class="col-md-6">
                     <label for="primApellPrf" class="col-form-label"
-                      >Primer apellido*</label
+                      >Primer apellido</label
                     >
                     <input
                       type="text"
@@ -136,7 +137,7 @@
                 <br />
                 <div class="row">
                   <div class="col-md-6">
-                    <label for="numDocPrf" class="col-form-label">Cédula*</label>
+                    <label for="numDocPrf" class="col-form-label">Cédula</label>
                     <select
                       class="input-cmb-cedula"
                       id="tipoDocPrf"
@@ -167,7 +168,7 @@
                   </div>
                   <div class="col-md-6">
                     <label for="fechNacPrf" class="col-form-label"
-                      >Fecha de nacimiento*</label
+                      >Fecha de nacimiento</label
                     >
                     <input
                       type="date"
@@ -185,7 +186,7 @@
                 <br />
                 <div class="row">
                   <div class="col-sm-1">
-                    <label for="edadPrf" class="col-form-label">Edad*</label>
+                    <label for="edadPrf" class="col-form-label">Edad</label>
                     <input
                       type="text"
                       class="input-edad"
@@ -201,7 +202,7 @@
                     ></div>
                   </div>
                   <div class="col-sm-1">
-                    <label for="sexoPrf" class="col-form-label">Sexo*</label>
+                    <label for="sexoPrf" class="col-form-label">Sexo</label>
                     <select class="input-sexo" id="sexoPrf" th:field="*{sexoPrf}">
                       <option value="FEMENINO">FEMENINO</option>
                       <option value="MASCULINO">MASCULINO</option>
@@ -216,7 +217,7 @@
 
                   <div class="col-sm-2">
                     <label for="edoCivilPrf" class="col-form-label"
-                      >Estado Civil*</label
+                      >Estado Civil</label
                     >
                     <select
                       class="input-ed-civ"
@@ -236,7 +237,7 @@
                   </div>
                   <div class="col-sm-2">
                     <label for="status" class="col-form-label"
-                      >Estatus*</label
+                      >Estatus</label
                     >
                     <select
                       class="input-est-acad"
@@ -254,7 +255,7 @@
                   </div>
                   <div class="col-md-2">
                     <label for="fechIngPrf" class="col-form-label"
-                      >Fecha de ingreso*</label
+                      >Fecha de ingreso</label
                     >
                     <input
                       type="date"
@@ -273,13 +274,13 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <label for="textoDirPpalPrf" class="col-form-label"
-                      >Dirección principal de domicilio*</label
+                      >Dirección principal de domicilio</label
                     >
                     <input
                       type="text"
                       class="input-txtDireccion"
                       id="textoDirPpalPrf"
-                      name="textoDirPpalPrf"
+                      th:field="*{textoDirPpalPrf}"
                     />
                    
                   </div>
@@ -288,24 +289,24 @@
                 <div class="row">
                   <div class="col-md-2">
                     <label for="estadodirppalprf" class="col-form-label"
-                      >Estado*</label
+                      >Estado</label
                     >
                     <select
                       class="input-estado"
                       id="estadodirppalprf"
-                      name="estadodirppalprf"
+                      th:field="*{estadodirppalprf}"
                     >
                       <option value="MIRANDA">MIRANDA</option>
                     </select>
                   </div>
                   <div class="col-md-2">
                     <label for="municipiodirppalprf" class="col-form-label"
-                      >Municipio*</label
+                      >Municipio</label
                     >
                     <select
                       class="input-estado"
                       id="municipiodirppalprf"
-                      name="municipiodirppalprf"
+                      th:field="*{municipiodirppalprf}"
                     >
                       <option value="PLAZA">PLAZA</option>
                       <option value="ZAMORA">ZAMORA</option>
@@ -313,12 +314,13 @@
                   </div>
                   <div class="col-md-2">
                     <label for="ciudaddirppalprf" class="col-form-label"
-                      >Ciudad*</label
+                      >Ciudad</label
                     >
                     <select
                       class="input-estado"
                       id="ciudaddirppalprf"
                       name="ciudaddirppalprf"
+                      th:field="*{ciudaddirppalprf}"
                     >
                       <option value="GUARENAS">GUARENAS</option>
                       <option value="GUATIRE">GUATIRE</option>
@@ -326,12 +328,12 @@
                   </div>
                   <div class="col-md-2">
                     <label for="parroquiadirppalprf" class="col-form-label"
-                      >Parroquia*</label
+                      >Parroquia</label
                     >
                     <select
                       class="input-estado"
                       id="parroquiadirppalprf"
-                      name="parroquiadirppalprf"
+                      th:field="*{parroquiadirppalprf}"
                     >
                       <option value="GUARENAS">GUARENAS</option>
                       <option value="GUATIRE">GUATIRE</option>
@@ -339,12 +341,12 @@
                   </div>
                   <div class="col-md-2">
                     <label for="codpostaldirppalprf" class="col-form-label"
-                      >Cod. Postal*</label
+                      >Cod. Postal</label
                     >
                     <select
                       class="input-estado"
                       id="codpostaldirppalprf"
-                      name="codpostaldirppalprf"
+                      th:field="*{codpostaldirppalprf}"
                     >
                       <option value="1220">1220</option>
                       <option value="1221">1221</option>
@@ -360,8 +362,8 @@
                     <input
                       type="text"
                       class="input-txtDireccion"
-                      name="textoDirSecPrf"
                       id="textoDirSecPrf"
+                      th:field="*{textoDirSecPrf}"
                     />
                   </div>
                 </div>
@@ -373,8 +375,8 @@
                     >
                     <select
                       class="input-estado"
-                      name="estadodirsecprf"
                       id="estadodirsecprf"
+                      th:field="*{estadodirsecprf}"
                     >
                       <option value="MIRANDA">MIRANDA</option>
                     </select>
@@ -385,8 +387,9 @@
                     >
                     <select
                       class="input-estado"
-                      name="municipiodirsecprf"
                       id="municipiodirsecprf"
+                      th:field="*{municipiodirsecprf}"
+                      
                     >
                       <option value="PLAZA">PLAZA</option>
                       <option value="ZAMORA">ZAMORA</option>
@@ -398,8 +401,8 @@
                     >
                     <select
                       class="input-estado"
-                      name="ciudaddirsecprf"
                       id="ciudaddirsecprf"
+                      th:field="*{ciudaddirsecprf}"
                     >
                       <option value="GUARENAS">GUARENAS</option>
                       <option value="GUATIRE">GUATIRE</option>
@@ -411,8 +414,9 @@
                     >
                     <select
                       class="input-estado"
-                      name="parroquiadirsecprf"
                       id="parroquiadirsecprf"
+                      th:field="*{parroquiadirsecprf}"
+
                     >
                       <option value="GUARENAS">GUARENAS</option>
                       <option value="GUATIRE">GUATIRE</option>
@@ -424,8 +428,8 @@
                     >
                     <select
                       class="input-estado"
-                      name="codpostaldirsecprf"
                       id="codpostaldirsecprf"
+                      th:field="*{codpostaldirsecprf}"
                     >
                       <option value="1220">1220</option>
                       <option value="1221">1221</option>
@@ -436,7 +440,7 @@
                 <div class="row">
                   <div class="col-sm-4">
                     <label class="col-form-label"
-                      >Telefono Principal*</label
+                      >Teléfono Principal</label
                     >
                   </div>
                   <div class="col-sm-1">
@@ -453,7 +457,8 @@
                     <select
                       class="input-cod-operadora"
                       id="codoperadorappalprf"
-                      name=codoperadorappalprf
+                      th:field="*{codoperadorappalprf}"
+                      
                     >
                       <option value="0212">0212</option>
                       <option value="0412">0412</option>
@@ -468,11 +473,11 @@
                     <input
                       type="text"
                       class="input-num-tlf"
-                     
+                      placeholder="Numero de telefono"
                       onkeypress="return event.charCode >= 48 && event.charCode <= 57"
                       maxlength="7"
                       id="textoTlfPpalPrf"
-                      name="textoTlfPpalPrf"
+                      th:field="*{textoTlfPpalPrf}"
                     />
                    
                   </div>
@@ -481,7 +486,7 @@
                     <input
                       type="email"
                       class="input-email"
-                    
+                      placeholder="Correo electronico"
                       id="emailPrf"
                       th:field="*{emailPrf}"
                     />
@@ -499,8 +504,8 @@
                   <div class="col-sm-1">
                     <select
                       class="input-cod-operadora"
-                      name="codoperadorasecprf"
                       id="codoperadorasecprf"
+                      th:field="*{codoperadorasecprf}"
                     >
                       <option value="0212">0212</option>
                       <option value="0412">0412</option>
@@ -513,11 +518,11 @@
                   <div class="col-sm-2">
                     <input
                       type="text"
-                
+                      placeholder="Numero de telefono"
                       class="input-num-tlf"
                       onkeypress="return event.charCode >= 48 && event.charCode <= 57"
                       maxlength="7"
-                      name="textoTlfSecPrf"
+                      th:field="*{textoTlfSecPrf}"
                     />
                   </div>
                 </div>
@@ -550,16 +555,17 @@
                     <input
                     type="radio"
                     id="si"
-                    name="graduado"
-                    value="Si">
+                    value="Si"
+                    th:field="*{graduado}">
                     <label for="si">Si</label>
                   </div> 
                   <div class="col-sm-1">
                     <input
                     type="radio"
                     id="no"
-                    name="graduado"
-                    value="No">
+                    value="No"
+                    th:field="*{graduado}">
+                   
                     <label for="no">No</label>
                   </div>
                   
@@ -571,7 +577,7 @@
                 
                   <div class="col-md-6">
                     <label for="pregrado1" class="col-form-label"
-                      >Profesión 1*</label
+                      >Profesión 1</label
                     >
                     <select
                       class="input-nombre-apellido"
@@ -588,7 +594,7 @@
 
                   <div class="col-md-6">
                     <label for="especialidad1" class="col-form-label"
-                      >Especialidad*</label
+                      >Especialidad</label
                     >
                     <input
                       type="text"
@@ -782,38 +788,26 @@
 <!--************************FIN INFORMACION PROFESIONAL*********************************-->
                 <br>
                 <br>
-              
-
-
-
-
-
-
-              
-
-              
-          <br />
-          <br />
-        
-
-
-            
-
             
                 <div class="row">
                   <input
                     type="submit"
                     class="input-buttons"
                     name="submit"
-                    value="Registrar"
+                    value="Guardar"
                     style="margin: 0 auto"
+                    id="guardar"
                   />
+            
                 </div>
               </form>
+              <br>
+              <br>
             </div>
           </div>
         </div>
       </div>
+     
       <th:block th:replace="partes/footer :: footer" />
    <!-- </div>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -822,7 +816,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <!--<script src="/js/Swalert.js"></script>-->
-    <script src="/js/registroprofesor.js"></script>
+    <script src="/js/editarprofesor.js"></script>
     <!--   <script>
    			if ('${flagExisteAl}' == 'showAlertExisteAl') {
            		 Swal.fire({

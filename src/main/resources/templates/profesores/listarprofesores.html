@@ -63,8 +63,8 @@
               <th>Nombre y apellido</th>
               <th>Especialidad</th>
               <th></th>
-              <th></th>
-              <th></th>
+              <!--<th></th>
+              <th></th>-->
             </tr>
           </thead>
           <tbody>
@@ -76,23 +76,23 @@
               
               <td>
                 <a type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Ver"
-                id="btnVer" th:href="@{/app/consultarprofesorporid/}+${profesor.idPrf}"><i class="bi bi-eye"></i><a>
+                id="btnVer" th:href="@{/app/verprofesor/}+${profesor.idPrf}"><i class="bi bi-eye"></i><a>
               </td>
-              <td>
+              <!--<td>
                 <a type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
                     title="Editar" id="btnEditar" th:href="@{/app/editarprofesor/}+${profesor.idPrf}"><i class="bi bi-pencil-fill"></i></a>
-              </td>
-              <td>
+              </td>-->
+              <!--<td>
                 <a type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
                     title="Eliminar" id="btnEliminar" th:href="@{/app/eliminarprofesor/}+${profesor.idPrf}"><i class="bi bi-trash"></i></a>
-              </td>
+              </td>-->
             </tr>
           </tbody>
         </table>
       </div>
     </div>
   
-
+    <th:block th:replace="partes/footer :: footer" />
 
 
 

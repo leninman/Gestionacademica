@@ -53,29 +53,9 @@ $("#botonAsignar").click(function () {
 
 //Setea los combos a blanco, oculta los textos establece estilos
 $(document).ready(function () {
-  $("#tipoDocPrf").val("");
-  $("#sexoPrf").val("");
-  $("#status").val("");
-  $("#estadodirppalprf").val("");
-  $("#edadPrf").val("");
-  $("#edoCivilPrf").val("");
-  $("#municipiodirppalprf").val("");
-  $("#ciudaddirppalprf").val("");
-  $("#parroquiadirppalprf").val("");
-  $("#codpostaldirppalprf").val("");
-  $("#estadodirsecprf").val("");
-  $("#municipiodirsecprf").val("");
-  $("#ciudaddirsecprf").val("");
-  $("#parroquiadirsecprf").val("");
-  $("#codpostaldirsecprf").val("");
-  $("#codoperadorappalprf").val("");
-  $("#codoperadorasecprf").val("");
-  $("#pregrado1").val("");
-  $("#pregrado2").val("");
-  $("#materia").val("");
-  $("#annio").val("");
-  $("#nivel").val("");
-  $("#especialidad").val("");
+	
+  $('form select').val("");
+
 });
 
 $(document).on('click', '#btnEliminar', function (event) {

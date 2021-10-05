@@ -33,82 +33,92 @@ import com.virtualeduc.tuescuelavirtual.services.IVariosService;
 import com.virtualeduc.tuescuelavirtual.utils.Constantes;
 
 @Controller
-@RequestMapping(path="/app")
+@RequestMapping(path = "/app")
 public class profesorController {
 	@Autowired
 	IProfesoresService profesoresService;
-	
+
 	@Autowired
 	IMateriaService materiasService;
-	
-	  @Autowired
-	  IVariosService variosservice;
-	  
-	  @Autowired
-	  ICursoService cursoservice;
-	
-	 @Value("${dir.base}")
-	 String direccionbase;
-	 
-	 boolean guardar;
-	
+
+	@Autowired
+	IVariosService variosservice;
+
+	@Autowired
+	ICursoService cursoservice;
+
+	@Value("${dir.base}")
+	String direccionbase;
+
+	boolean guardar;
+
 	@GetMapping(path = "/listarprofesores")
 	public String listarprofesores(Model model) {
-		
+
 		List<ProfesorDTO> listaProfesores = new ArrayList<>();
 		listaProfesores = profesoresService.consultarProfesores();
 		model.addAttribute("Profesores", listaProfesores);
 		return "profesores/listarprofesores";
 	}
-	
+
 	@GetMapping(path = "/registroprofesor")
 	public String registroprofesor(Model model) {
 		ProfesorDTO profesor = new ProfesorDTO();
-		List<Profesion> profesiones=new ArrayList<>();
-		List<String> materias=new ArrayList<>();
-		List<String> annios=new ArrayList<>();
-		List<String> niveles=new ArrayList<>();
-		List<String> especialidades=new ArrayList<>();
-		materias=materiasService.nombresmaterias();
-		annios=cursoservice.annios();
-		niveles=cursoservice.niveles();
-		especialidades=cursoservice.especialidades();
-		profesiones=variosservice.consultarProfesiones();
+		List<Profesion> profesiones = new ArrayList<>();
+		List<String> materias = new ArrayList<>();
+		List<String> annios = new ArrayList<>();
+		List<String> niveles = new ArrayList<>();
+		List<String> especialidades = new ArrayList<>();
+		materias = materiasService.nombresmaterias();
+		annios = cursoservice.annios();
+		niveles = cursoservice.niveles();
+		especialidades = cursoservice.especialidades();
+		profesiones = variosservice.consultarProfesiones();
 		model.addAttribute("profesor", profesor);
 		model.addAttribute("profesiones", profesiones);
 		model.addAttribute("materias", materias);
 		model.addAttribute("annios", annios);
 		model.addAttribute("niveles", niveles);
 		model.addAttribute("especialidades", especialidades);
-		model.addAttribute("direccionbase",direccionbase);
+		model.addAttribute("direccionbase", direccionbase);
 		return "profesores/registroprofesor";
 	}
-	
-	
-     @PostMapping(path = "/agregarprofesor")
- 	public String registrarprofesor(@Valid ProfesorDTO profesor,BindingResult result, Model model,
- 			RedirectAttributes redirectAttributes) {
-    
- 		guardar=true;
- 		
- 		
- 		Responses resp=profesoresService.guardarProfesor(profesor, guardar);
- 		
- 		if(resp.getResponseCode()==Constantes.PROFESOR_REGISTRADO_CODE) {
- 			redirectAttributes.addFlashAttribute("mensaje19", resp.getResponseDescription()).addFlashAttribute("clase",
+
+	@GetMapping(path = "/verprofesor/{idPrf}")
+	public String verprofesor(@PathVariable(name = "idPrf") Long idPrf, Model model) {
+		
+		Profesor profesor=profesoresService.consultarProfesorPorId(idPrf);
+		
+		ProfesorDTO profesordto=new ProfesorDTO(profesor);
+		
+		List<Profesion> profesiones = new ArrayList<>();
+		
+		profesiones = variosservice.consultarProfesiones();
+		
+		model.addAttribute("profesiones", profesiones);
+		
+		model.addAttribute("profesor", profesordto);
+				
+		
+		
+
+		return "profesores/editarprofesor";
+	}
+
+	@PostMapping(path = "/agregarprofesor")
+	public String registrarprofesor(@Valid ProfesorDTO profesor, BindingResult result, Model model,
+			RedirectAttributes redirectAttributes) {
+
+		guardar = true;
+
+		Responses resp = profesoresService.guardarProfesor(profesor, guardar);
+
+		if (resp.getResponseCode() == Constantes.PROFESOR_REGISTRADO_CODE) {
+			redirectAttributes.addFlashAttribute("mensaje19", resp.getResponseDescription()).addFlashAttribute("clase",
 					"success");
- 		}
- 		
- 		return "redirect:listarprofesores?success";
- 	}
-     
-     @GetMapping(path = "/verprofesor/{idPrf}")
- 	public String verprofesor(@PathVariable(name="idPrf") Long idPrf,Model model) {
-    	 
-    	 
-    	
-    	 return null;
-     }
-	
-	
+		}
+
+		return "redirect:listarprofesores?success";
+	}
+
 }
