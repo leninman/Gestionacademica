@@ -26,6 +26,13 @@
       th:text="${mensaje19}"
       class="alert"
     ></div>
+
+    <div
+    th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+    th:if="${mensaje21 != null}"
+    th:text="${mensaje21}"
+    class="alert"
+  ></div>
     <th:block th:replace="partes/header :: header" />
     <th:block th:replace="partes/menu :: menuSuperior" />
 
@@ -38,10 +45,14 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link" th:href="@{/app/registroprofesor}" data-toggle="tooltip" data-placement="top" title="Registrar Nuevo Profesor"><i class="bi bi-person-plus"></i>Nuevo <span class="sr-only">(current)</span></a>
+                <a type="button" class="btn btn-secondary"
+                 th:href="@{/app/registroprofesor}" data-toggle="tooltip" 
+                 data-placement="top" title="Registrar Nuevo Profesor"><i class="bi bi-person-plus"></i> <span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item active">
-                <a class="nav-link" th:href="@{/app/inicio}"><i class="bi bi-x"></i>Salir<span class="sr-only">(current)</span></a>
+              &nbsp;
+              <li class="nav-item active" data-toggle="tooltip"
+              data-placement="top" title="Salir">
+                <a type="button" class="btn btn-secondary" th:href="@{/app/inicio}"><i class="bi bi-x"></i><span class="sr-only">(current)</span></a>
               </li>
             </ul>
             

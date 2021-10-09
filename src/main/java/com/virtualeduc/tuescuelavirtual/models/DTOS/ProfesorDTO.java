@@ -159,7 +159,7 @@ public class ProfesorDTO implements Serializable {
 			this.pregrado2 = "";
 			this.especialidad2 = "";
 		}
-		this.pregrado2 = profesor.getPregrado2();
+		//this.pregrado2 = profesor.getPregrado2();
 		this.postgrado1 = profesor.getPostgrado1();
 		this.postgrado2 = profesor.getPostgrado2();
 		this.curso1 = profesor.getCurso1();

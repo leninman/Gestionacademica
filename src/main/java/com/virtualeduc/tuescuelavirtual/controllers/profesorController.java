@@ -99,9 +99,6 @@ public class profesorController {
 		
 		model.addAttribute("profesor", profesordto);
 				
-		
-		
-
 		return "profesores/editarprofesor";
 	}
 
@@ -120,5 +117,28 @@ public class profesorController {
 
 		return "redirect:listarprofesores?success";
 	}
+	
+	
+	@PostMapping(path = "/actualizarprofesor")
+	public String actualizarprofesor(@Valid ProfesorDTO profesor, BindingResult result, Model model,
+			RedirectAttributes redirectAttributes) {
+
+		guardar = false;
+		
+		Responses resp = profesoresService.guardarProfesor(profesor, guardar);
+		
+		
+
+
+
+		if (resp.getResponseCode() == Constantes.PROFESOR_MODIFICADO_CODE) {
+			redirectAttributes.addFlashAttribute("mensaje21", resp.getResponseDescription()).addFlashAttribute("clase",
+					"success");
+		}
+
+		return "redirect:listarprofesores?success";
+	}
+	
+	
 
 }

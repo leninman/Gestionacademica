@@ -72,8 +72,11 @@
     ">
         <div class="container">
           <div class="col-md-20">
-            <form class="form-horizontal" th:action="@{/app/agregarprofesor}" th:object="${profesor}" id="formProfesor"
+            <form class="form-horizontal" th:action="@{/app/actualizarprofesor}" th:object="${profesor}" id="formProfesor"
               name="formProfesor" method="post">
+              <div>
+                <input type="hidden" id="idPrf" th:field="*{idPrf}">
+              </div>
             <br/>
 
               <!--************************PROFESOR*********************************-->
@@ -101,6 +104,7 @@
                       class="input-nombre-apellido"
                       name="segNombPrf"
                       id="segNombPrf"
+                      th:field="*{segNombPrf}"
                     />
                   </div>
                 </div>
@@ -131,6 +135,7 @@
                       class="input-nombre-apellido"
                       name="segApellPrf"
                       id="segApellPrf"
+                      th:field="*{segApellPrf}"
                     />
                   </div>
                 </div>
@@ -235,7 +240,7 @@
                       class="error"
                     ></div>
                   </div>
-                  <div class="col-sm-2">
+                  <div class="col-sm-1">
                     <label for="status" class="col-form-label"
                       >Estatus</label
                     >
@@ -253,6 +258,8 @@
                       class="error"
                     ></div>
                   </div>
+                  <div class="col-sm-1"></div>
+
                   <div class="col-md-2">
                     <label for="fechIngPrf" class="col-form-label"
                       >Fecha de ingreso</label
@@ -580,15 +587,18 @@
                       >Profesión 1</label
                     >
                     <select
+                      type="hidden"
                       class="input-nombre-apellido"
                       id="pregrado1"
                       th:field="*{pregrado1}"
-                    />
+                      
+                    >
                     <option th:each="profesion:${profesiones}"
                                     th:value="${profesion.profesion}"
                                     th:text="${profesion.profesion}"
                              ></option>
                   </select>
+
                    
                   </div>
 
@@ -612,7 +622,9 @@
 
                
                 <div class="row">
-                  
+                  <div>
+                    <input type="hidden" id="valorpregrado2" th:name="valorpregrado2" th:value="${profesor.pregrado2}">
+                  </div>
 
                   <div class="col-md-6">
                     <label for="pregrado2" class="col-form-label"
@@ -622,7 +634,7 @@
                       class="input-nombre-apellido"
                       id="pregrado2"
                       th:field="*{pregrado2}"
-                    />
+                    >
                     <option th:each="profesion:${profesiones}"
                     th:value="${profesion.profesion}"
                     th:text="${profesion.profesion}"
@@ -630,6 +642,7 @@
                   </select>
                   
                   </div>
+
                   <div class="col-md-6">
                     <label for="especialidad2" class="col-form-label"
                       >Especialidad</label

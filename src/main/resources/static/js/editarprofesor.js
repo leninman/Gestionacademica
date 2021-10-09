@@ -12,6 +12,14 @@ $(document).ready(function () {
   $('form input[type="date"]').prop("disabled", true);
 
   $("#guardar").prop('disabled',true);
+  
+  
+  if($("#valorpregrado2").val()==""){
+	$("#pregrado2").val("");
+  }else{
+	pregr2=$("#valorpregrado2").val();
+	$("#pregrado2").val(pregr2);
+  }
 	
 	
 });

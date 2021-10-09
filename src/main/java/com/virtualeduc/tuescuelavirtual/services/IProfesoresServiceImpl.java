@@ -44,15 +44,18 @@ public class IProfesoresServiceImpl implements IProfesoresService {
 
 		try {
 
-			Profesor profesor = new Profesor(profesorDTO);
-
-			String tipoDocPrf = profesorDTO.getTipoDocPrf();
-
-			String numDocPrf = profesorDTO.getNumDocPrf();
-
-			Profesor profesorGuardado = profesoresRepo.consultarProfesorPorCedula(tipoDocPrf, numDocPrf);
+			
 
 			if (guardar) {
+				
+				Profesor profesor = new Profesor(profesorDTO);
+
+				String tipoDocPrf = profesorDTO.getTipoDocPrf();
+
+				String numDocPrf = profesorDTO.getNumDocPrf();
+
+				Profesor profesorGuardado = profesoresRepo.consultarProfesorPorCedula(tipoDocPrf, numDocPrf);
+				
 				if (profesorGuardado == null) {
 					profesorGuardado = profesoresRepo.save(profesor);
 					ProfesorDTO profesorGuardadoDto = new ProfesorDTO(profesorGuardado);
@@ -66,17 +69,15 @@ public class IProfesoresServiceImpl implements IProfesoresService {
 				}
 
 			} else {
-				if (profesorGuardado != null) {
+			
 					Profesor profesorAguardar=new Profesor(profesorDTO);
-					Long id = profesorGuardado.getIdPrf();
-					profesorAguardar.setIdPrf(id);
-					profesorGuardado=profesoresRepo.save(profesorAguardar);
-					ProfesorDTO profesorGuardadodTO=new ProfesorDTO(profesorGuardado);
+					Profesor profesorGuardado=profesoresRepo.save(profesorAguardar);
+					ProfesorDTO profesorGuardadodto=new ProfesorDTO(profesorGuardado);
 					resp.setResponseCode(Constantes.PROFESOR_MODIFICADO_CODE);
 					resp.setResponseDescription(Constantes.PROFESOR_MODIFICADO_DESC);
-					resp.setProfesor(profesorGuardadodTO);
+					resp.setProfesor(profesorGuardadodto);
 
-				}
+				
 
 			}
 		} catch (Exception e) {
