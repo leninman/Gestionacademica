@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+<link rel="stylesheet" type="text/css" href="/css/estilosMaterias.css" />
+</head>
+<header></header>
+<body>
+
+
+
+
+
+	<div class="container my-5">
+		<div class="card" style="width: 100%; border-color: #337ab7">
+			<div class="card-header">
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item active"><a class="nav-link"
+								th:href="@{/app/inicio}" data-toggle="tooltip"
+								data-placement="top" title="Ir al inicio"><i
+									class="bi bi-house"></i>Home </a> &nbsp; &nbsp;
+							<li class="nav-item active"><a class="nav-link"
+								th:href="@{/app/nuevamateria}" data-toggle="tooltip"
+								data-placement="top" title="Limpiar pantalla"><i
+									class="bi bi-eraser"></i>Limpiar</a></li> &nbsp; &nbsp;
+							<li class="nav-item active"><a class="nav-link my-2 my-sm-0"
+								th:href="@{/app/listarmaterias}" data-toggle="tooltip"
+								data-placement="top" title="Salir"><i class="bi bi-x"></i>Salir</a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			
+			<div class="card-body">
+				<div th:if="${crear}" class="row">
+					<form class="form-horizontal" th:action="@{/app/agregarmateria}"
+						th:object="${materiaDTO}" id="formMateria" name="formMateria"
+						method="post">
+				
+						<div class="row">
+							<div class="col-sm-4">&nbsp;</div>
+							<div class="form-group col-md-8">
+								<h5>
+									<b>Formulario de creación de materia</b>
+								</h5>
+							</div>
+						</div>
+						<br /> <br />
+						<div class="row">
+							<div class="col-md-4">
+								<label for="codigoMat" class="col-form-label">Codigo*</label> <input
+									type="text" class="input-codigomat" id="codigoMat"
+									th:field="*{codigoMat}" />
+								<div th:if="${#fields.hasErrors('codigoMat')}"
+									th:errors="*{codigoMat}" class="error"></div>
+							</div>
+
+
+							<div class="col-md-8">
+								<label for="nombreMat" class="col-form-label">Nombre*</label> <input
+									type="text" class="input-nombremat" id="nombreMat"
+									th:field="*{nombreMat}" />
+								<div th:if="${#fields.hasErrors('nombreMat')}"
+									th:errors="*{nombreMat}" class="error"></div>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-sm-12">
+								<label for="descripcionMat" class="col-form-label">Descripción*</label>
+								<input type="text" class="input-descripcionMat"
+									id="descripcionMat" th:field="*{descripcionMat}" />
+								<div th:if="${#fields.hasErrors('descripcionMat')}"
+									th:errors="descripcionMat" class="error"></div>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-md-3">
+								<label for="annio" class="col-form-label">Año
+									:&nbsp;&nbsp;</label> <select id="annio" th:field="*{annio}">
+									<option value="1°">1°</option>
+									<option value="2°">2°</option>
+									<option value="3°">3°</option>
+									<option value="4°">4°</option>
+									<option value="5°">5°</option>
+									<option value="6°">6°</option>
+								</select>
+							</div>
+							<div class="col-md-4">
+								<label for="nivel" class="col-form-label">Nivel
+									:&nbsp;&nbsp;</label> <select id="nivel" th:field="*{nivel}">
+									<option value="Media general">Media general</option>
+									<option value="Primaria">Primaria</option>
+								</select>
+							</div>
+							<div class="col-md-5">
+								<label for="especialidad" class="col-form-label">Especialidad
+									:&nbsp;&nbsp;</label> <select id="especialidad"
+									th:field="*{especialidad}">
+									<option value="Media">Media</option>
+									<option value="Ciencias">Ciencias</option>
+									<option value="Primaria">Primaria</option>
+								</select>
+							</div>
+						</div>
+
+						<br /> <br />
+						<div class="row">
+							<input type="submit" class="input-buttons" name="submit"
+								value="Crear Materia" style="margin: 0 auto" />
+						</div>
+					</form>
+				</div>
+			</div>
+
+
+
+			<div class="card-body">
+				<div th:if="${!crear}" class="row">
+					<form class="form-horizontal" th:action="@{/app/modificarmateria}"
+						th:object="${materiaDTO}" id="formMateria" name="formMateria"
+						method="post">
+					   
+						<div class="row">
+							<div class="col-sm-4">&nbsp;</div>
+							<div class="form-group col-md-8">
+								<h5>
+									<b>Formulario de modificación de materia</b>
+								</h5>
+							</div>
+						</div>
+						<br /> <br />
+						<div class="row">
+							<input type="hidden" th:field="*{idMat}">
+							<input type="hidden" th:field="*{status}">
+							<div class="col-md-4">
+								<label for="txtcodigoMat" class="col-form-label">Codigo*</label>
+								<input type="text" class="input-codigomat" id="txtcodigoMat"
+									th:field="*{codigoMat}" />
+								<div th:if="${#fields.hasErrors('codigoMat')}"
+									th:errors="*{codigoMat}" class="error"></div>
+							</div>
+
+
+							<div class="col-md-8">
+								<label for="txtnombreMat" class="col-form-label">Nombre*</label>
+								<input type="text" class="input-nombremat" id="txtnombreMat"
+									th:field="*{nombreMat}" />
+								<div th:if="${#fields.hasErrors('nombreMat')}"
+									th:errors="*{nombreMat}" class="error"></div>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-sm-12">
+								<label for="txtdescripcionMat" class="col-form-label">Descripción*</label>
+								<input type="text" class="input-descripcionMat"
+									id="txtdescripcionMat" th:field="*{descripcionMat}" />
+								<div th:if="${#fields.hasErrors('descripcionMat')}"
+									th:errors="descripcionMat" class="error"></div>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-md-3">
+								<label for="cmbannio" class="col-form-label">Año
+									:&nbsp;&nbsp;</label> <select id="cmbannio" th:field="*{annio}">
+									<option value="1°">1°</option>
+									<option value="2°">2°</option>
+									<option value="3°">3°</option>
+									<option value="4°">4°</option>
+									<option value="5°">5°</option>
+									<option value="6°">6°</option>
+								</select>
+							</div>
+							<div class="col-md-4">
+								<label for="cmbnivel" class="col-form-label">Nivel
+									:&nbsp;&nbsp;</label> <select id="cmbnivel" th:field="*{nivel}">
+									<option value="Media general">Media general</option>
+									<option value="Primaria">Primaria</option>
+								</select>
+							</div>
+							<div class="col-md-5">
+								<label for="cmbespecialidad" class="col-form-label">Especialidad
+									:&nbsp;&nbsp;</label> <select id="cmbespecialidad"
+									th:field="*{especialidad}">
+									<option value="Media">Media</option>
+									<option value="Ciencias">Ciencias</option>
+									<option value="Primaria">Primaria</option>
+								</select>
+							</div>
+						</div>
+
+						<br /> <br />
+						<div class="row">
+							<input type="submit" class="input-buttons" name="submit"
+								value="Modificar Materia" style="margin: 0 auto" />
+						</div>
+					</form>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+	<script src="/js/nuevamateria.js"></script>
+</body>
+</html>

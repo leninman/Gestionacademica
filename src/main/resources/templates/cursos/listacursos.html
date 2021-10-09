@@ -11,7 +11,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
     />
-    <link rel="stylesheet" type="text/css" href="/css/curso/Estilos.css" />
+    <link rel="stylesheet" type="text/css" href="/css/estilosCurso.css" />
     <link
       rel="stylesheet"
       type="text/css"
@@ -53,6 +53,24 @@
       th:text="${mensaje8}"
       class="alert"
     ></div>
+    <div
+    th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+    th:if="${mensaje9 != null}"
+    th:text="${mensaje9}"
+    class="alert"
+  ></div>
+  <div
+  th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+  th:if="${mensaje4 != null}"
+  th:text="${mensaje4}"
+  class="alert"
+></div>
+<div
+      th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+      th:if="${mensaje12 != null}"
+      th:text="${mensaje12}"
+      class="alert"
+></div>
 
     <div class="container my-5">
       <div class="card" style="width: 100%; border-color: #337ab7">
@@ -60,25 +78,6 @@
           <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown nav-item active">
-                  <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Año Escolar
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Ingresar nuevo año escolar</a>
-                    <!--<a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>-->
-                  </div>
-                </li>
                 <li class="nav-item active">
                   <a
                     class="nav-link"
@@ -87,6 +86,16 @@
                     data-placement="top"
                     title="Registrar Nuevo Curso"
                     ><i></i>Nuevo <span class="sr-only">(current)</span></a
+                  >
+                </li>
+                <li class="nav-item active">
+                  <a
+                    class="nav-link"
+                    th:href="@{/app/cargarcurso}"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Cargar Curso"
+                    ><i></i>Cargar Curso <span class="sr-only">(current)</span></a
                   >
                 </li>
                 <li class="nav-item active">
@@ -108,7 +117,7 @@
                   <div class="col-sm-4">&nbsp;</div>
                   <div class="form-group col-md-8">
                     <h5>
-                      <b>Información del curso</b>
+                      <b>Listado de cursos activos</b>
                     </h5>
                   </div>
                 </div>
@@ -126,6 +135,8 @@
                         <th>TURNO</th>
                         <th>NIVEL</th>
                         <th>ESPECIALIDAD</th>
+                        <th>PERIODO</th>
+                        <th></th>
                         <th></th>
                         <th></th>
                       </tr>
@@ -138,6 +149,17 @@
                         <td th:text="${curso.turno}"></td>
                         <td th:text="${curso.nivel}"></td>
                         <td th:text="${curso.especialidad}"></td>
+                        <td th:text="${curso.intAnnioEsc}"></td>
+                        <td>
+                          <a type="button" 
+                          class="btn btn-secondary" 
+                          data-toggle="tooltip" 
+                          data-placement="top" 
+                          title="Ver"
+                          id="btnVer" 
+                          th:href="@{/app/vercurso/}+${curso.idCurso}"
+                          ><i class="bi bi-eye"></i><a>
+                        </td>
                         <td>
                           <a
                             type="button"

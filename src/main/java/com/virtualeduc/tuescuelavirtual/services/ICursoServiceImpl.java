@@ -22,6 +22,7 @@ import com.virtualeduc.tuescuelavirtual.repo.ICursoRepo;
 import com.virtualeduc.tuescuelavirtual.repo.ISeccionRepo;
 import com.virtualeduc.tuescuelavirtual.repo.ITurnoRepo;
 import com.virtualeduc.tuescuelavirtual.utils.Constantes;
+import com.virtualeduc.tuescuelavirtual.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +54,8 @@ public class ICursoServiceImpl implements ICursoService {
 	private CursoDTO cursoaguardar;
 
 	private Curso cursoguardado;
+	
+
 
 	@Override
 	public AnnioDTO consultarAnnioPorAnnioYnivel(String annio, String nivel) {
@@ -360,31 +363,29 @@ public class ICursoServiceImpl implements ICursoService {
 			resp.setResponseDescription(Constantes.CURSO_MODIFICADO_DESC);
 		}
 
-	
+		/*
+		 * cursoaguardardto.setIdAnnio(idAnnio);
+		 * 
+		 * cursoaguardardto.setIdSec(idSeccion);
+		 * 
+		 * cursoaguardardto.setIdAnnioEsc(idAnnioescolar);
+		 * 
+		 * cursoaguardardto.setIdTurno(idTurno);
+		 * 
+		 * cursoaguardardto.setAnnio(annio.getAnnio());
+		 * 
+		 * cursoaguardardto.setIntAnnioEsc(annioEscolar.getIntAnnioEsc());
+		 * 
+		 * cursoaguardardto.setSeccion(seccion.getSeccion());
+		 * 
+		 * cursoaguardardto.setTurno(turno.getTurno());
+		 * 
+		 * cursoaguardardto.setNivel(annio.getNivel());
+		 * 
+		 * cursoaguardardto.setEspecialidad(annio.getEspecialidad());
+		 */
 
-	/*
-	 * cursoaguardardto.setIdAnnio(idAnnio);
-	 * 
-	 * cursoaguardardto.setIdSec(idSeccion);
-	 * 
-	 * cursoaguardardto.setIdAnnioEsc(idAnnioescolar);
-	 * 
-	 * cursoaguardardto.setIdTurno(idTurno);
-	 * 
-	 * cursoaguardardto.setAnnio(annio.getAnnio());
-	 * 
-	 * cursoaguardardto.setIntAnnioEsc(annioEscolar.getIntAnnioEsc());
-	 * 
-	 * cursoaguardardto.setSeccion(seccion.getSeccion());
-	 * 
-	 * cursoaguardardto.setTurno(turno.getTurno());
-	 * 
-	 * cursoaguardardto.setNivel(annio.getNivel());
-	 * 
-	 * cursoaguardardto.setEspecialidad(annio.getEspecialidad());
-	 */
-
-	return resp;
+		return resp;
 
 	}
 
@@ -410,14 +411,154 @@ public class ICursoServiceImpl implements ICursoService {
 	@Override
 	public Responses eliminarCurso(Long idcurso) {
 		// TODO Auto-generated method stub
+		Responses resp = new Responses();
+
+		cursorepo.deleteById(idcurso);
+
+		resp.setResponseCode(Constantes.CURSO_ELIMINADO_CODE);
+		resp.setResponseDescription(Constantes.CURSO_ELIMINADO_DESC);
+
+		return resp;
+	}
+
+	@Override
+	public List<AnnioEscolarDTO> consultarPeriodos() {
+		// TODO Auto-generated method stub
+
+		List<AnnioEscolarDTO> periodosDTO = new ArrayList<>();
+
+		List<AnnioEscolar> periodos = new ArrayList<>();
+
+		AnnioEscolarDTO annioescolar;
+
+		periodos = annioescolarrepo.consultarPeriodosEscolares();
+
+		for (int j = 0; j < periodos.size(); j++) {
+			annioescolar = new AnnioEscolarDTO(periodos.get(j));
+			periodosDTO.add(annioescolar);
+		}
+
+		return periodosDTO;
+	}
+
+	@Override
+	public Responses guardarPeriodo(AnnioEscolarDTO annioescolarDTO, boolean guardarPeriodo) {
+		// TODO Auto-generated method stub
+		Responses resp = new Responses();
+		
+		AnnioEscolar annioEscolarAguardar = new AnnioEscolar(annioescolarDTO);
+
+		if (guardarPeriodo) {
+			
+			DesactivarPeriodoVigente();
+			
+			AnnioEscolar annioEscolarGuardado=this.annioescolarrepo.save(annioEscolarAguardar);
+			
+			resp.setAnnioescolar(new AnnioEscolarDTO(annioEscolarGuardado));
+			
+			resp.setResponseCode(Constantes.ANNIO_ESCOLAR_REGISTRADO_CODE);
+
+			resp.setResponseDescription(Constantes.ANNIO_ESCOLAR_REGISTRADO_DESC);
+			
+			
+		}else {
+			
+			Long idAnnioEsc=annioescolarDTO.getIdAnnioEsc();
+			
+			annioEscolarAguardar.setIdAnnioEsc(idAnnioEsc);
+			
+			annioEscolarAguardar.setIntAnnioEsc(Utils.extraePeriodoEscolar(annioescolarDTO.getFechaI(), annioescolarDTO.getFechaF()));
+			
+			AnnioEscolar annioEscolarGuardado=this.annioescolarrepo.save(annioEscolarAguardar);
+		   
+			resp.setAnnioescolar(new AnnioEscolarDTO(annioEscolarGuardado));
+			
+			resp.setResponseCode(Constantes.ANNIO_ESCOLAR_MODIFICADO_CODE);
+
+			resp.setResponseDescription(Constantes.ANNIO_ESCOLAR_MODIFICADO_DESC);
+		}
+
+		return resp;
+	}
+
+	@Override
+	public void DesactivarPeriodoVigente() {
+		// TODO Auto-generated method stub
+
+		// Consulta el periodo vigente
+		Long IdPeriodoVigente;
+
+		AnnioEscolarDTO periodovigente = new AnnioEscolarDTO(annioescolarrepo.consultarAnnioEscolarVigente());
+
+		if (periodovigente != null) {
+
+			IdPeriodoVigente = periodovigente.getIdAnnioEsc();
+
+			periodovigente.setStatus("I");
+
+			AnnioEscolar periodo = new AnnioEscolar(periodovigente);
+
+			periodo.setIdAnnioEsc(IdPeriodoVigente);
+
+			this.annioescolarrepo.save(periodo);
+		}
+
+	}
+
+	@Override
+	public Curso consultarCursoPorIdCurso(Long idCurso) {
+		// TODO Auto-generated method stub
+		return cursorepo.findById(idCurso).orElse(null);
+	}
+
+	@Override
+	public AnnioDTO consultarAnnioPorAnnioYnivelYespecialidad(String annio, String nivel, String especialidad) {
+		// TODO Auto-generated method stub
+		Annio an = anniorepo.consultarAnnioByAnnioAndNivelAndEspecialidad(annio, nivel, especialidad);
+
+		AnnioDTO annioDTO = new AnnioDTO(an);
+
+		return annioDTO;
+	}
+
+	@Override
+	public AnnioEscolarDTO consultarAnnioEscolarPorId(Long idAnnioEscolar) {
+		// TODO Auto-generated method stub
+		AnnioEscolar annioescolar=annioescolarrepo.findById(idAnnioEscolar).orElse(null);
+		AnnioEscolarDTO annioescolardto=new AnnioEscolarDTO(annioescolar);
+		return annioescolardto;
+	}
+
+	@Override
+	public Responses eliminarPeriodo(Long idAnnioEsc) {
+		// TODO Auto-generated method stub
 		Responses resp=new Responses();
 		
-		cursorepo.deleteById(idcurso);
+		annioescolarrepo.deleteById(idAnnioEsc);
 		
 		resp.setResponseCode(Constantes.CURSO_ELIMINADO_CODE);
+		
 		resp.setResponseDescription(Constantes.CURSO_ELIMINADO_DESC);
 		
 		return resp;
+	}
+
+	@Override
+	public List<String> annios() {
+		// TODO Auto-generated method stub
+		return anniorepo.annios();
+	}
+
+	@Override
+	public List<String> niveles() {
+		// TODO Auto-generated method stub
+		return anniorepo.niveles();
+	}
+
+	@Override
+	public List<String> especialidades() {
+		// TODO Auto-generated method stub
+		return anniorepo.especialidades();
 	}
 
 }

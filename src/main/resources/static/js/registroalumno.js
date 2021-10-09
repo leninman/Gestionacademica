@@ -1,7 +1,7 @@
 var rep1encontrado;
 var rep2encontrado;
 var cursoasignado;
-
+var direccionbase;
 function mostrarrepresentante2() {
   element = document.getElementById("datosRepSec");
   if (element.style.display == "none") {
@@ -37,9 +37,8 @@ function mostrarcursoelegido() {
         document.getElementById("seccion").setAttribute("value", seccion);
         document.getElementById("turno").setAttribute("value", turno);
         document.getElementById("nivel").setAttribute("value", nivel);
-        document
-          .getElementById("especialidad")
-          .setAttribute("value", especialidad);
+        document.getElementById("especialidad").setAttribute("value", especialidad);
+        
       }
       y.style.display = "none";
       cursoasignado = true;
@@ -47,59 +46,11 @@ function mostrarcursoelegido() {
   }
 }
 
-//Setea los combos a blanco, oculta los texty establece estilos
+//Setea los combos a blanco, oculta los textos establece estilos
 $(document).ready(function () {
-  $("#tipoDocAl").val("");
-  $("#sexoAl").val("");
-  $("#status").val("");
-  $("#estadodirppalest").val("");
-  $("#municipiodirppalest").val("");
-  $("#ciudaddirppalest").val("");
-  $("#parroquiadirppalest").val("");
-  $("#codpostaldirppalest").val("");
-  $("#estadodirsecest").val("");
-  $("#municipiodirsecest").val("");
-  $("#ciudaddirsecest").val("");
-  $("#parroquiadirsecest").val("");
-  $("#codpostaldirsecest").val("");
-  $("#codoperadorappalest").val("");
-  $("#codoperadorasecest").val("");
-  $("#tipoDocRep1").val("");
-  $("#sexoRpr1").val("");
-  $("#parentescoRpr1").val("");
-  $("#edoCivRpr1").val("");
-  $("#estadodirppalrep1").val("");
-  $("#municipiodirppalrep1").val("");
-  $("#ciudaddirppalrep1").val("");
-  $("#parroquiadirppalrep1").val("");
-  $("#codpostaldirppalrep1").val("");
-  $("#estadodirsecrep1").val("");
-  $("#municipiodirsecrep1").val("");
-  $("#ciudaddirsecrep1").val("");
-  $("#parroquiadirsecrep1").val("");
-  $("#codpostaldirsecrep1").val("");
-  $("#codoperadorappalrep1").val("");
-  $("#codoperadorasecrep1").val("");
-  $("#txtCodoperadorappalrep1").val("");
-  $("#estadodirppalrep1").val("");
-  $("#tipoDocRep2").val("");
-  $("#sexoRpr2").val("");
-  $("#parentescoRpr2").val("");
-  $("#edoCivRpr2").val("");
-  $("#estadodirppalrep2").val("");
-  $("#municipiodirppalrep2").val("");
-  $("#ciudaddirppalrep2").val("");
-  $("#parroquiadirppalrep2").val("");
-  $("#codpostaldirppalrep2").val("");
-  $("#estadodirsecrep2").val("");
-  $("#municipiodirsecrep2").val("");
-  $("#ciudaddirsecrep2").val("");
-  $("#parroquiadirsecrep2").val("");
-  $("#codpostaldirsecrep2").val("");
-  $("#codoperadorappalrep2").val("");
-  $("#codoperadorasecrep2").val("");
-  $("#txtCodoperadorappalrep2").val("");
-  $("#estadodirppalrep2").val("");
+	
+  $('form select').val("");
+  	 
   $("#txtSexoRpr1").hide();
   $("#txtParentescoRpr1").hide();
   $("#txtOtroParentescoRpr1").hide();
@@ -124,6 +75,51 @@ $(document).ready(function () {
   rep1encontrado = 0;
   rep2encontrado = 0;
   cursoasignado = false;
+  
+  
+    $('#tablecursos').DataTable({
+       
+        language: {
+                "lengthMenu": "",
+                "zeroRecords": "No se encontraron resultados",
+                "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sSearch": "Buscar:",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast":"Último",
+                    "sNext":"Siguiente",
+                    "sPrevious": "Anterior"
+			     },
+			     "sProcessing":"Procesando...",
+            },
+        //para usar los botones   
+        responsive: "true",
+        dom: 'Bfrtilp',       
+        /*buttons:[ 
+			{
+				extend:    'excelHtml5',
+				text:      '<i class="fas fa-file-excel"></i> ',
+				titleAttr: 'Exportar a Excel',
+				className: 'btn btn-success'
+			},
+			{
+				extend:    'pdfHtml5',
+				text:      '<i class="fas fa-file-pdf"></i> ',
+				titleAttr: 'Exportar a PDF',
+				className: 'btn btn-danger'
+			},
+			{
+				extend:    'print',
+				text:      '<i class="fa fa-print"></i> ',
+				titleAttr: 'Imprimir',
+				className: 'btn btn-info'
+			},
+		]*/	        
+    });   
+
+  
   //console.log(flag);
 
  // $("#txtTipoDocAl").hide();
@@ -158,12 +154,16 @@ $("#parentescoRpr1").change(function () {
 //Para llamar al servicio que consulta si el representante 1 ya esta registrado
 //y mostrar los datos del representante en caso de que ya este registrado
 $("#botonBuscRep").click(function () {
+  direccionbase=$("#direccionbase").val();
+  url=direccionbase+"/consultarepresentante";	
   $.ajax({
       data: {
         tdoc: $("select[name=tipoDocRep1]").val(),
         ndoc: $("input:text[name=numDocRep1]").val(),
+        
+
       },
-      url: "http://localhost:8080/app/consultarepresentante",
+      url:url,
       dataType: "json", //tipo de datos retornados
       type: "GET",
     })
@@ -205,12 +205,14 @@ $("#botonBuscRep").click(function () {
 //Para llamar al servicio que consulta si el representante 2 ya esta registrado
 //y mostrar los datos del representante en caso de que ya este registrado
 $("#botonBuscRep2").click(function () {
-  $.ajax({
+	direccionbase=$("#direccionbase").val();
+	url=direccionbase+"/consultarepresentante";
+  $.ajax({	
       data: {
         tdoc: $("select[name=tipoDocRep2]").val(),
         ndoc: $("input:text[name=numDocRep2]").val(),
       },
-      url: "http://localhost:8080/app/consultarepresentante",
+      url: url,
       dataType: "json", //tipo de datos retornados
       type: "GET",
     })

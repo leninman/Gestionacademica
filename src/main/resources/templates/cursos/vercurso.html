@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" type="text/css" href="/css/estilosCurso.css" />
+  </head>
+  <header></header>
+  <body>
+    <div
+      th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+      th:if="${mensaje11 != null}"
+      th:text="${mensaje11}"
+      class="alert"
+    ></div>
+
+    <br />
+    <br />
+    <div class="row">
+      <div class="form-group col-md-4">
+        <h5>
+          <b>DETALLE DEL CURSO</b>
+        </h5>
+      </div>
+    </div>
+
+    <div class="container my-5">
+      <div class="card">
+        <div class="card-header">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a
+                    class="nav-link"
+                    th:href="@{/app/inicio}"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Ir al inicio"
+                    ><i class="bi bi-house"></i>Home
+                  </a>
+                  &nbsp; &nbsp;
+                </li>
+
+                <li class="nav-item active">
+                  <a
+                    class="nav-link my-2 my-sm-0"
+                    th:href="@{/app/listarcursos}"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Salir"
+                    ><i class="bi bi-x"></i>Salir</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+
+        <div class="card-body">
+          <form class="form-horizontal" id="formCurso" name="formCurso">
+            <div class="row">
+              <b
+                ><label for="periodo" class="col-form-label"
+                  >Año Escolar:&nbsp;&nbsp;</label
+                ></b
+              >
+              <input
+                type="text"
+                id="periodo"
+                th:value="${cursoDTO.intAnnioEsc}"
+                disabled
+              />
+            </div>
+            <br />
+
+            <div class="row">
+              <b
+                ><label for="Annios" class="col-form-label"
+                  >Año:&nbsp;&nbsp;</label
+                ></b
+              >
+              <input
+                type="text"
+                id="Annios"
+                th:value="${cursoDTO.annio}"
+                disabled
+              />
+            </div>
+            <br />
+
+            <div class="row">
+              <b
+                ><label for="Niveles" class="col-form-label"
+                  >Nivel:&nbsp;&nbsp;</label
+                ></b
+              >
+              <input
+                type="text"
+                id="Niveles"
+                th:value="${cursoDTO.nivel}"
+                disabled
+              />
+            </div>
+            <br />
+
+            <div class="row">
+              <b
+                ><label for="Turnos" class="col-form-label"
+                  >Turno:&nbsp;&nbsp;</label
+                ></b
+              >
+              <input type="text" id="Turnos" th:value="${cursoDTO.turno}" disabled/>
+            </div>
+            <br />
+
+            <div class="row">
+              <b
+                ><label for="Secciones" class="col-form-label"
+                  >Sección:&nbsp;&nbsp;</label
+                ></b
+              >
+              <input
+                type="text"
+                id="Secciones"
+                th:value="${cursoDTO.seccion}"
+                disabled
+              />
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="row">
+            
+            <div class="form-group col-md-4">
+              <h5>
+                <b>Alumnos Inscritos</b>
+              </h5>
+            </div>
+            </div>
+            
+            
+            
+
+            <!--AQUI VA LA TABLA-->
+            <div class="row" id="rowtablealumnosinscritos">
+              <table
+                id="tablealumnosinscritos"
+                class="table table-striped table-hover"
+              >
+                <thead>
+                  <tr>
+                    <th>CEDULA</th>
+                    <th>NOMBRE Y APELLIDO</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="alumnoinscrito:${Alumnosinscritos}">
+                    <td th:text="${alumnoinscrito.tipoDocAl}+${alumnoinscrito.numDocAl}"></td>
+                    <td th:text="${alumnoinscrito.primNombAl}+' '+${alumnoinscrito.primApellAl}"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="/js/vercurso.js"></script>
+  </body>
+</html>

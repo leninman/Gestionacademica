@@ -34,11 +34,19 @@ public interface ICursoService {
       
       public CursoDTO consultarcursoporparametros(Long idannio,Long idannioesc,Long idseccion);
       
-       public List<CursoDTO> consultarcursosporperiodo(Long idannioesc);
+      public List<CursoDTO> consultarcursosporperiodo(Long idannioesc);
      
       public AnnioDTO consultarAnnioPorAnnioYnivel(String annio,String nivel);
       
+      public AnnioDTO consultarAnnioPorAnnioYnivelYespecialidad(String annio,String nivel,String especialidad);
+      
       public AnnioEscolarDTO consultarAnnioEscolar();
+      
+      public List<AnnioEscolarDTO> consultarPeriodos();
+      
+      public AnnioEscolarDTO consultarAnnioEscolarPorId(Long idAnnioEscolar);
+      
+      public Responses eliminarPeriodo(Long idAnnioEsc);
       
       public SeccionDTO consultarSeccionPorSeccion(String seccion);
       
@@ -52,9 +60,17 @@ public interface ICursoService {
       
       public Responses eliminarCurso(Long idcurso);
       
+      public Responses  guardarPeriodo(AnnioEscolarDTO annioescolar,boolean guardarPeriodo);
       
+      public void DesactivarPeriodoVigente();
       
+      public Curso consultarCursoPorIdCurso(Long idCurso);
       
+      public List<String> annios();
+      
+      public List<String> niveles();
+      
+      public List<String> especialidades();
       
       
       

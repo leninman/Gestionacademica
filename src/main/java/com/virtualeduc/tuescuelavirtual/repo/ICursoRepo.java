@@ -46,6 +46,6 @@ public interface ICursoRepo extends JpaRepository<Curso, Long> {
             + "WHERE a.ID_ANNIO=?1 and a.ID_ANNIO_ESC=?2 and a.ID_SEC=?3 and a.ID_TURNO=?4",nativeQuery = true)
 public Curso consultarCursoPorParametros(Long idannio,Long idannioesc,Long idseccion,Long idturno);
 
-
+  
     
 }

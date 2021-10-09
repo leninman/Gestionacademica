@@ -6,9 +6,13 @@
 package com.virtualeduc.tuescuelavirtual.models;
 
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.MateriaDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.ProfesorDTO;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -16,108 +20,105 @@ import java.io.Serializable;
  */
 public class Responses implements Serializable {
 
-    /**
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	private int responseCode;
 
-    private String responseDescription;
-    
-    private AlumnoDTO alumno;
-    
-    private CursoDTO curso;
-    
-//    private Representante representante;
-//    
-//    private Curso curso;
+	private String responseDescription;
 
-    public AlumnoDTO getAlumno() {
-        return alumno;
-    }
+	private AlumnoDTO alumno;
 
-    public void setAlumno(AlumnoDTO alumno) {
-        this.alumno = alumno;
-    }
-    
-    
+	private CursoDTO curso;
 
-   
+	private AnnioEscolarDTO annioescolar;
 
-//    public Representante getRepresentante() {
-//        return representante;
-//    }
-//
-//    public void setRepresentante(Representante representante) {
-//        this.representante = representante;
-//    }
-//
-//    public Curso getCurso() {
-//        return curso;
-//    }
-//
-//    public void setCurso(Curso curso) {
-//        this.curso = curso;
-//    }
-    
-    
-    public CursoDTO getCurso() {
-		return curso;
+	private List<AlumnoDTO> listadeAlumnos;
+
+	private MateriaDTO materia;
+	
+	public ProfesorDTO profesor;
+
+	public Responses() {
+
+	}
+
+	
+	
+	public AlumnoDTO getAlumno() {
+		return alumno;
+	}
+
+	public void setAlumno(AlumnoDTO alumno) {
+		this.alumno = alumno;
 	}
 
 	public void setCurso(CursoDTO curso) {
 		this.curso = curso;
 	}
 
+	public CursoDTO getCurso() {
+		return curso;
+	}
+
+	public AnnioEscolarDTO getAnnioescolar() {
+		return annioescolar;
+	}
+
+	public void setAnnioescolar(AnnioEscolarDTO annioescolar) {
+		this.annioescolar = annioescolar;
+	}
+
+	public List<AlumnoDTO> getListadeAlumnos() {
+		return listadeAlumnos;
+	}
+
+	public void setListadeAlumnos(List<AlumnoDTO> listadeAlumnos) {
+		this.listadeAlumnos = listadeAlumnos;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
-	public Responses() {
-        
-    }
-
-  
-
-  
-
-   
-    
-    
-    
-    
-    
-    
-    
-
-    public Responses(int responseCode, String responseDescription, AlumnoDTO alumno, CursoDTO curso) {
-		super();
-		this.responseCode = responseCode;
-		this.responseDescription = responseDescription;
-		this.alumno = alumno;
-		this.curso = curso;
+	public MateriaDTO getMateria() {
+		return materia;
 	}
 
+	public void setMateria(MateriaDTO materia) {
+		this.materia = materia;
+	}
+	
+	
+
+	public ProfesorDTO getProfesor() {
+		return profesor;
+	}
+
+
+
+	public void setProfesor(ProfesorDTO profesor) {
+		this.profesor = profesor;
+	}
+
+
+
 	public int getResponseCode() {
-        return responseCode;
-    }
+		return responseCode;
+	}
 
-    public void setResponseCode(int responseCode) {
-        this.responseCode = responseCode;
-    }
+	public void setResponseCode(int responseCode) {
+		this.responseCode = responseCode;
+	}
 
-    public String getResponseDescription() {
-        return responseDescription;
-    }
+	public String getResponseDescription() {
+		return responseDescription;
+	}
 
-    public void setResponseDescription(String responseDescription) {
-        this.responseDescription = responseDescription;
-    }
-    
-    
-    
-    
+	public void setResponseDescription(String responseDescription) {
+		this.responseDescription = responseDescription;
+	}
 
-    
 }

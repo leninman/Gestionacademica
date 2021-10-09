@@ -1,1594 +1,946 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-    />
-    <link rel="stylesheet" type="text/css" href="/css/alumno/Estilos.css" />
-  </head>
-  <header></header>
-  <body>
-    <div
-      th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
-      th:if="${mensaje1 != null}"
-      th:text="${mensaje1}"
-      class="alert"
-    ></div>
-    <br />
-    <br />
-    <div class="row">
-      <div class="col-sm-4">&nbsp;</div>
-      <div class="form-group col-md-4">
-        <h5>
-          <b>FORMULARIO DEL ALUMNO</b>
-        </h5>
-      </div>
-    </div>
-    <div class="container my-5">
-      <div class="card" style="width: 100%; border-color: #337ab7">
-        <div class="card-header">
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a
-                    class="nav-link"
-                    th:href="@{/app/inicio}"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Ir al inicio"
-                    ><i class="bi bi-house"></i>Home</a
-                  >
-                </li>
-                &nbsp; &nbsp;
-                <li class="nav-item active">
-                  <a
-                    class="nav-link"
-                    th:href="@{/app/registroalumno}"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Limpiar pantalla"
-                    ><i class="bi bi-eraser"></i>Limpiar</a
-                  >
-                </li>
-                &nbsp; &nbsp;
-                <li class="nav-item active">
-                  <a
-                    class="nav-link my-2 my-sm-0"
-                    th:href="@{/app/listaralumnos}"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Salir"
-                    ><i class="bi bi-x"></i>Salir</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-        <div class="card-body" style="text-align: left; width: 100%">
-          <div class="container">
-            <div class="col-md-20">
-              <form
-                class="form-horizontal"
-                th:action="@{/app/modificaralumno}"
-                th:object="${alumnoDTO}"
-                id="formAlumno"
-                name="formAlumno"
-                method="post"
-              >
-                <br />
 
-                <!--************************ALUMNO*********************************-->
-                <div class="row">
-                  <div class="col-sm-4">&nbsp;</div>
-                  <div class="form-group col-md-4">
-                    <h5>
-                      <b>Información básica del alumno</b>
-                    </h5>
-                  </div>
-                </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+  <link rel="stylesheet" type="text/css" href="/css/estilosAlumno.css" />
+</head>
+<header></header>
 
-                <br />
-                <br />
-               <input type="hidden" th:field="*{idAl}">
-                <div class="row">
-                  <div class="col-md-6">
-                    <label for="primNombAl" class="col-form-label"
-                      >Primer Nombre</label
-                    >
-                    <input
-                      type="text"
-                      class="input-nombre-apellido"
-                      id="primNombAl"
-                      th:field="*{primNombAl}"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="segNombAl" class="col-form-label"
-                      >Segundo nombre</label
-                    >
-                    <input
-                      type="text"
-                      class="input-nombre-apellido"
-                      id="segNombAl"
-                      th:field="*{segNombAl}"
-                    />
-                  </div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col-md-6">
-                    <label for="primApellAl" class="col-form-label"
-                      >Primer apellido</label
-                    >
-                    <input
-                      type="text"
-                      class="input-nombre-apellido"
-                      id="primApellAl"
-                      th:field="*{primApellAl}"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="segApellAl" class="col-form-label"
-                      >Segundo apellido</label
-                    >
-                    <input
-                      type="text"
-                      class="input-nombre-apellido"
-                      id="segApellAl"
-                      th:field="*{segApellAl}"
-                    />
-                  </div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col-md-6">
-                    <label for="numDocAl" class="col-form-label">Cédula</label>
-                    <select
-                      class="input-cmb-cedula"
-                      id="tipoDocAl"
-                      th:field="*{tipoDocAl}"
-                      readonly
-                    >
-                      <option value="V">V</option>
-                      <option value="E">E</option>
-                      <option value="P">P</option>
-                    </select>
+<body>
 
-                    <input
-                      type="text"
-                      class="input-cedula"
-                      onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                      maxlength="8"
-                      id="numDocAl"
-                      th:field="*{numDocAl}"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="fechNacAl" class="col-form-label"
-                      >Fecha de nacimiento</label
-                    >
-                    <input
-                      type="date"
-                      class="input-fech-nac"
-                      id="fechNacAl"
-                      th:field="*{fechNacAl}"
-                    />
-                  </div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col-sm-2">
-                    <label for="edadAl" class="col-form-label">Edad</label>
-                    <input
-                      type="text"
-                      class="input-edad"
-                      onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                      maxlength="2"
-                      id="edadAl"
-                      th:field="*{edadAl}"
-                    />
-                  </div>
-                  <div class="col-sm-2">
-                    <label for="sexoAl" class="col-form-label">Sexo</label>
-                    <select class="input-sexo" id="sexoAl" th:field="*{sexoAl}">
-                      <option value="FEMENINO">FEMENINO</option>
-                      <option value="MASCULINO">MASCULINO</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-3">
-                    <label for="status" class="col-form-label"
-                      >Est Académico</label
-                    >
-                    <select
-                      class="input-est-acad"
-                      id="status"
-                      th:field="*{status}"
-                    >
-                      <option value="ACTIVO">ACTIVO</option>
-                      <option value="RETIRADO">RETIRADO</option>
-                    </select>
-                  </div>
-                  <div class="col-md-5">
-                    <label for="fechIngAl" class="col-form-label"
-                      >Fecha de ingreso</label
-                    >
-                    <input
-                      type="date"
-                      class="input-fech-ing"
-                      id="fechIngAl"
-                      th:field="*{fechIngAl}"
-                    />
-                  </div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col-sm-12">
-                    <label for="textoDirPpalAl" class="col-form-label"
-                      >Dirección principal de domicilio</label
-                    >
-                    <input
-                      type="text"
-                      class="input-txtDireccion"
-                      id="textoDirPpalAl"
-                      th:field="*{textoDirPpalAl}"
-                    />
-                  </div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col-md-2">
-                    <label for="estadodirppalest" class="col-form-label"
-                      >Estado</label
-                    >
-                    <select
-                      class="input-estado"
-                      id="estadodirppalest"
-                      th:field="*{estadodirppalest}"
-                    >
-                      <option value="MIRANDA">MIRANDA</option>
-                    </select>
-                  </div>
-                  <div class="col-md-2">
-                    <label for="municipiodirppalest" class="col-form-label"
-                      >Municipio</label
-                    >
-                    <select
-                      class="input-estado"
-                      id="municipiodirppalest"
-                      th:field="*{municipiodirppalest}"
-                    >
-                      <option value="PLAZA">PLAZA</option>
-                      <option value="ZAMORA">ZAMORA</option>
-                    </select>
-                  </div>
-                  <div class="col-md-2">
-                    <label for="ciudaddirppalest" class="col-form-label"
-                      >Ciudad</label
-                    >
-                    <select
-                      class="input-estado"
-                      id="ciudaddirppalest"
-                      th:field="*{ciudaddirppalest}"
-                    >
-                      <option value="GUARENAS">GUARENAS</option>
-                      <option value="GUATIRE">GUATIRE</option>
-                    </select>
-                  </div>
-                  <div class="col-md-2">
-                    <label for="parroquiadirppalest" class="col-form-label"
-                      >Parroquia</label
-                    >
-                    <select
-                      class="input-estado"
-                      id="parroquiadirppalest"
-                      th:field="*{parroquiadirppalest}"
-                    >
-                      <option value="GUARENAS">GUARENAS</option>
-                      <option value="GUATIRE">GUATIRE</option>
-                    </select>
-                  </div>
-                  <div class="col-md-2">
-                    <label for="codpostaldirppalest" class="col-form-label"
-                      >Cod. Postal</label
-                    >
-                    <select
-                      class="input-estado"
-                      id="codpostaldirppalest"
-                      th:field="*{codpostaldirppalest}"
-                    >
-                      <option value="1220">1220</option>
-                      <option value="1221">1221</option>
-                    </select>
-                  </div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col-sm-12">
-                    <label class="col-form-label"
-                      >Direccion secundaria de domicilio</label
-                    >
-                    <input
-                      type="text"
-                      class="input-txtDireccion"
-                      name="textoDirSecAl"
-                      id="textoDirSecAl"
-                      th:field="*{textoDirSecAl}"
-                    />
-                  </div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col-sm-2">
-                    <label for="estadodirsecest" class="col-form-label"
-                      >Estado</label
-                    >
-                    <select
-                      class="input-estado"
-                      name="estadodirsecest"
-                      id="estadodirsecest"
-                      th:field="*{estadodirsecest}"
-                    >
-                      <option value="MIRANDA">MIRANDA</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-2">
-                    <label for="municipiodirsecest" class="col-form-label"
-                      >Municipio</label
-                    >
-                    <select
-                      class="input-estado"
-                      name="municipiodirsecest"
-                      id="municipiodirsecest"
-                      th:field="*{municipiodirsecest}"
-                    >
-                      <option value="PLAZA">PLAZA</option>
-                      <option value="ZAMORA">ZAMORA</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-2">
-                    <label for="ciudaddirsecest" class="col-form-label"
-                      >Ciudad</label
-                    >
-                    <select
-                      class="input-estado"
-                      name="ciudaddirsecest"
-                      id="ciudaddirsecest"
-                      th:field="*{ciudaddirsecest}"
-                    >
-                      <option value="GUARENAS">GUARENAS</option>
-                      <option value="GUATIRE">GUATIRE</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-2">
-                    <label for="parroquiadirsecest" class="col-form-label"
-                      >Parroquia</label
-                    >
-                    <select
-                      class="input-estado"
-                      name="parroquiadirsecest"
-                      id="parroquiadirsecest"
-                      th:field="*{parroquiadirsecest}"
-                    >
-                      <option value="GUARENAS">GUARENAS</option>
-                      <option value="GUATIRE">GUATIRE</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-2">
-                    <label for="codpostaldirsecest" class="col-form-label"
-                      >Cod. Postal</label
-                    >
-                    <select
-                      class="input-estado"
-                      name="codpostaldirsecest"
-                      id="codpostaldirsecest"
-                      th:field="*{codpostaldirsecest}"
-                    >
-                      <option value="1220">1220</option>
-                      <option value="1221">1221</option>
-                    </select>
-                  </div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col-sm-12">
-                    <label class="col-form-label"
-                      >Información de Contacto Principal</label
-                    >
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-1">
-                    <select
-                      class="input-cod-operadora"
-                      id="codoperadorappalest"
-                      th:field="*{codoperadorappalest}"
-                    >
-                      <option value="0212">0212</option>
-                      <option value="0412">0412</option>
-                      <option value="0414">0414</option>
-                      <option value="0416">0416</option>
-                      <option value="0424">0424</option>
-                      <option value="0426">0426</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-2">
-                    <input
-                      type="text"
-                      class="input-num-tlf"
-                      placeholder="Numero de telefono"
-                      onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                      maxlength="7"
-                      id="textoTlfPpalAl"
-                      th:field="*{textoTlfPpalAl}"
-                    />
-                  </div>
-                  <div class="col-sm-2">&nbsp;</div>
-                  <div class="col-sm-6">
-                    Email
-                    <input
-                      type="email"
-                      class="input-email"
-                      placeholder="Correo electronico"
-                      id="emailAl"
-                      th:field="*{emailAl}"
-                    />
-                  </div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col-sm-12">
-                    <label class="col-form-label"
-                      >Información de Contacto Secundario</label
-                    >
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-1">
-                    <select
-                      class="input-cod-operadora"
-                      name="codoperadorasecest"
-                      id="codoperadorasecest"
-                      th:field="*{codoperadorasecest}"
-                    >
-                      <option value="0212">0212</option>
-                      <option value="0412">0412</option>
-                      <option value="0414">0414</option>
-                      <option value="0416">0416</option>
-                      <option value="0424">0424</option>
-                      <option value="0426">0426</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-2">
-                    <input
-                      type="text"
-                      placeholder="Numero de telefono"
-                      class="input-num-tlf"
-                      onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                      maxlength="7"
-                      name="textoTlfSecAl"
-                      th:field="*{textoTlfSecAl}"
-                    />
-                  </div>
-                </div>
-                <br />
-                <br />
-                <br />
-                <!--************************FIN ALUMNO*********************************-->
+  <th:block th:replace="partes/header :: header" />
+  <th:block th:replace="partes/menu :: menuSuperior" />
 
-                <!--************************REPRESENTANTE PRINCIPAL*********************************-->
-                <div class="row">
-                  <div class="col-sm-4">&nbsp;</div>
-                  <div class="form-group col-md-8">
-                    <h5>
-                      <b>Información básica del representante principal</b>
-                    </h5>
-                  </div>
-                </div>
-                <br />
-                <br />
-                <div class="row">
-                  <div class="col-md-8">
-                    <label for="numDocRep1" class="col-form-label"
-                      >Numero de Cédula</label
-                    >
-                    <select
-                      class="input-cmb-cedula"
-                      id="tipoDocRep1"
-                      th:field="*{tipoDocRep1}"
-                      disabled
-                    >
-                      <option value="V">V</option>
-                      <option value="E">E</option>
-                      <option value="P">P</option>
-                    </select>
-                    <input
-                      name="numDocRep1"
-                      id="numDocRep1"
-                      class="input-cedula"
-                      th:field="*{numDocRep1}"
-                      onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                      maxlength="8"
-                      disabled
-                    />
-                    <input
-                      type="button"
-                      class="input-buttons"
-                      id="botonCambiarRep"
-                      value="Cambiar"
-                    />
-                    <input
-                      type="button"
-                      class="input-buttons"
-                      id="botonBuscRep"
-                      value="Buscar"
-                    />
-                  </div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col-md-6">
-                    <label for="primNombRpr1" class="col-form-label"
-                      >Primer nombre</label
-                    >
-                    <input
-                      type="text"
-                      class="input-nombre-apellido"
-                      id="primNombRpr1"
-                      th:field="*{primNombRpr1}"
-                      disabled
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="segNombRpr1" class="col-form-label"
-                      >Segundo nombre</label
-                    >
-                    <input
-                      type="text"
-                      class="input-nombre-apellido"
-                      name="segNombRpr1"
-                      id="segNombRpr1"
-                      th:field="*{segNombRpr1}"
-                      disabled
-                    />
-                  </div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col-md-6">
-                    <label for="primApellRpr1" class="col-form-label"
-                      >Primer apellido</label
-                    >
-                    <input
-                      type="text"
-                      class="input-nombre-apellido"
-                      id="primApellRpr1"
-                      th:field="*{primApellRpr1}"
-                      disabled
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="segApellRpr1" class="col-form-label"
-                      >Segundo apellido</label
-                    >
-                    <input
-                      type="text"
-                      class="input-nombre-apellido"
-                      name="segApellRpr1"
-                      id="segApellRpr1"
-                      th:field="*{segApellRpr1}"
-                      disabled
-                    />
-                  </div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col-sm-3">
-                    <label for="fechNacRpr1" class="col-form-label"
-                      >Fec nac</label
-                    >
-                    <input
-                      type="date"
-                      class="input-fech-nac-rep"
-                      id="fechNacRpr1"
-                      th:field="*{fechNacRpr1}"
-                      disabled
-                    />
-                  </div>
-                  <div class="col-sm-2">
-                    <label for="edadRpr1" class="col-form-label">Edad</label>
-                    <input
-                      type="text"
-                      class="input-edad"
-                      id="edadRpr1"
-                      th:field="*{edadRpr1}"
-                      onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                      maxlength="2"
-                      disabled
-                    />
-                  </div>
-                  <div class="col-sm-2">
-                    <label for="sexoRpr1" class="col-form-label">Sexo</label>
-                    <select
-                      class="input-sexo"
-                      id="sexoRpr1"
-                      th:field="*{sexoRpr1}"
-                      disabled
-                    >
-                      <option value="FEMENINO">FEMENINO</option>
-                      <option value="MASCULINO">MASCULINO</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-2">
-                    <label for="parentescoRpr1" class="col-form-label"
-                      >Pco</label
-                    >
-                    <select
-                      class="input-parentesco"
-                      id="parentescoRpr1"
-                      th:field="*{parentescoRpr1}"
-                      disabled
-                    >
-                      <option value="MADRE">MADRE</option>
-                      <option value="PADRE">PADRE</option>
-                      <option value="OTRO">OTRO</option>
-                    </select>
-                   
-                  </div>
-                  <div class="col-sm-3">
-                    <label for="edoCivRpr1" class="col-form-label"
-                      >Edo Civ</label
-                    >
-                    <select
-                      class="input-ed-civ"
-                      id="edoCivRpr1"
-                      th:field="*{edoCivRpr1}"
-                      disabled
-                    >
-                      <option value="CASADO">CASADO</option>
-                      <option value="SOLTERO">SOLTERO</option>
-                      <option value="VIUDO">VIUDO</option>
-                      <option value="DIVORCIADO">DIVORCIADO</option>
-                    </select>
-                  </div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col-sm-12">
-                    <label class="col-form-label"
-                      >Direccion principal de domicilio</label
-                    >
-                    <input
-                      type="text"
-                      class="input-txtDireccion"
-                      id="textoDirPpalRpr1"
-                      th:field="*{textoDirPpalRpr1}"
-                      disabled
-                    />
-                  </div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col-sm-2">
-                    <label
-                      for="estadodirppalrep1"
-                      id="lblEstadodirppalrep1"
-                      class="col-form-label"
-                      >Estado</label
-                    >
-                    <select
-                      class="input-estado"
-                      id="estadodirppalrep1"
-                      th:field="*{estadodirppalrep1}"
-                      disabled
-                    >
-                      <option value="MIRANDA">MIRANDA</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-2">
-                    <label
-                      for="municipiodirppalrep1"
-                      id="lblMunicipiodirppalrep1"
-                      class="col-form-label"
-                      >Municipio</label
-                    >
-                    <select
-                      class="input-estado"
-                      id="municipiodirppalrep1"
-                      th:field="*{municipiodirppalrep1}"
-                      disabled
-                    >
-                      <option value="PLAZA">PLAZA</option>
-                      <option value="ZAMORA">ZAMORA</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-2">
-                    <label
-                      for="ciudaddirppalrep1"
-                      id="lblCiudaddirppalrep1"
-                      class="col-form-label"
-                      >Ciudad</label
-                    >
-                    <select
-                      class="input-estado"
-                      id="ciudaddirppalrep1"
-                      th:field="*{ciudaddirppalrep1}"
-                      disabled
-                    >
-                      <option value="GUARENAS">GUARENAS</option>
-                      <option value="GUATIRE">GUATIRE</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-2">
-                    <label
-                      for="parroquiadirppalrep1"
-                      id="lblParroquiadirppalrep1"
-                      class="col-form-label"
-                      >Parroquia</label
-                    >
-                    <select
-                      class="input-estado"
-                      id="parroquiadirppalrep1"
-                      th:field="*{parroquiadirppalrep1}"
-                      disabled
-                    >
-                      <option value="GUARENAS">GUARENAS</option>
-                      <option value="GUATIRE">GUATIRE</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-2">
-                    <label
-                      for="codpostaldirppalrep1"
-                      id="lblCodpostaldirppalrep1"
-                      class="col-form-label"
-                      >Código postal</label
-                    >
-                    <select
-                      class="input-estado"
-                      id="codpostaldirppalrep1"
-                      th:field="*{codpostaldirppalrep1}"
-                      disabled
-                    >
-                      <option value="1220">1220</option>
-                      <option value="1221">1221</option>
-                    </select>
-                  </div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col-sm-12">
-                    <label class="col-form-label"
-                      >Direccion secundaria de domicilio</label
-                    >
-                    <input
-                      type="text"
-                      class="input-txtDireccion"
-                      name="textoDirSecRpr1"
-                      id="textoDirSecRpr1"
-                      th:field="*{textoDirSecRpr1}"
-                      disabled
-                    />
-                  </div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col-sm-2">
-                    <label
-                      for="estadodirsecrep1"
-                      id="lblEstadodirsecrep1"
-                      class="col-form-label"
-                      >Estado</label
-                    >
-                    <select
-                      class="input-estado"
-                      name="estadodirsecrep1"
-                      id="estadodirsecrep1"
-                      th:field="*{estadodirsecrep1}"
-                      disabled
-                    >
-                      <option value="MIRANDA">MIRANDA</option>
-                    </select>
-                    
-                  </div>
-                  <div class="col-sm-2">
-                    <label
-                      for="municipiodirsecrep1"
-                      id="lblMunicipiodirsecrep1"
-                      class="col-form-label"
-                      >Municipio</label
-                    >
-                    <select
-                      class="input-estado"
-                      name="municipiodirsecrep1"
-                      id="municipiodirsecrep1"
-                      th:field="*{municipiodirsecrep1}"
-                      disabled
-                    >
-                      <option value="PLAZA">PLAZA</option>
-                      <option value="ZAMORA">ZAMORA</option>
-                    </select>
-                    
-                  </div>
-                  <div class="col-sm-2">
-                    <label
-                      for="ciudaddirsecrep1"
-                      id="lblCiudaddirsecrep1"
-                      class="col-form-label"
-                      >Ciudad</label
-                    >
-                    <select
-                      class="input-estado"
-                      name="ciudaddirsecrep1"
-                      id="ciudaddirsecrep1"
-                      th:field="*{ciudaddirsecrep1}"
-                      disabled
-                    >
-                      <option value="GUARENAS">GUARENAS</option>
-                      <option value="GUATIRE">GUATIRE</option>
-                    </select>
-      
-                  </div>
-                  <div class="col-sm-2">
-                    <label
-                      for="parroquiadirsecrep1"
-                      id="lblParroquiadirsecrep1"
-                      class="col-form-label"
-                      >Parroquia</label
-                    >
-                    <select
-                      class="input-estado"
-                      name="parroquiadirsecrep1"
-                      id="parroquiadirsecrep1"
-                      th:field="*{parroquiadirsecrep1}"
-                      disabled
-                    >
-                      <option value="GUARENAS">GUARENAS</option>
-                      <option value="GUATIRE">GUATIRE</option>
-                    </select>
-                    
-                  </div>
-                  <div class="col-sm-2">
-                    <label
-                      for="codpostaldirsecrep1"
-                      id="lblCodpostaldirsecrep1"
-                      class="col-form-label"
-                      >Código postal</label
-                    >
-                    <select
-                      class="input-estado"
-                      name="codpostaldirsecrep1"
-                      id="codpostaldirsecrep1"
-                      th:field="*{codpostaldirsecrep1}"
-                      disabled
-                    >
-                      <option value="1220">1220</option>
-                      <option value="1221">1221</option>
-                    </select>
-                    
-                  </div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col">
-                    <label class="col-form-label"
-                      >Información de Contacto Principal</label
-                    >
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-1">
-                    <select
-                      class="input-cod-operadora"
-                      id="codoperadorappalrep1"
-                      th:field="*{codoperadorappalrep1}"
-                      disabled
-                    >
-                      <option value="0212">0212</option>
-                      <option value="0412">0412</option>
-                      <option value="0414">0414</option>
-                      <option value="0416">0416</option>
-                      <option value="0424">0424</option>
-                      <option value="0426">0426</option>
-                    </select>
-                   
-                  </div>
-                  <div class="col-sm-2">
-                    <input
-                      type="text"
-                      placeholder="Numero de telefono"
-                      class="input-num-tlf"
-                      id="textoTlfPpalRpr1"
-                      th:field="*{textoTlfPpalRpr1}"
-                      onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                      maxlength="7"
-                      disabled
-                    />
-                  </div>
-                  <div class="col-sm-2">&nbsp;</div>
-                  <div class="col-sm-6">
-                    Email
-                    <input
-                      type="email"
-                      placeholder="Correo electronico"
-                      class="input-email"
-                      id="emailRpr1"
-                      th:field="*{emailRpr1}"
-                      disabled
-                    />
-                  </div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col">
-                    <label class="col-form-label"
-                      >Información de Contacto Secundario</label
-                    >
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-1">
-                    <select
-                      class="input-cod-operadora"
-                      name="codoperadorasecrep1"
-                      id="codoperadorasecrep1"
-                      th:field="*{codoperadorasecrep1}"
-                      disabled
-                    >
-                      <option value="0212">0212</option>
-                      <option value="0412">0412</option>
-                      <option value="0414">0414</option>
-                      <option value="0416">0416</option>
-                      <option value="0424">0424</option>
-                      <option value="0426">0426</option>
-                    </select>
-                   
-                  </div>
-                  <div class="col-sm-2">
-                    <input
-                      type="text"
-                      placeholder="Numero de telefono"
-                      class="input-num-tlf"
-                      name="textoTlfSecRpr1"
-                      id="textoTlfSecRpr1"
-                      onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                      maxlength="7"
-                      th:field="*{textoTlfSecRpr1}"
-                      disabled
-                    />
-                  </div>
-                </div>
-                <br />
-                <br />
-                <br />
-                <br />
-                <!--************************FIN REPRESENTANTE PRINCIPAL*********************************-->
-
-                <!--************************ REPRESENTANTE SECUNDARIO*********************************-->
-                <div id="datosRepSec">
-                  <div class="row">
-                    <div class="col-sm-4">&nbsp;</div>
-                    <div class="form-group col-md-8">
-                      <h5>
-                        <b>Información básica del representante secundario</b>
-                      </h5>
-                    </div>
-                  </div>
-                  <br />
-                  <br />
-
-                  <div class="row">
-                    <div class="col-md-8">
-                      <label for="numDocRep2" class="col-form-label"
-                        >Numero de Cédula</label
-                      >
-                      <select
-                        class="input-cmb-cedula"
-                        id="tipoDocRep2"
-                        name="tipoDocRep2"
-                        th:field="*{tipoDocRep2}"
-                        disabled
-                      >
-                        <option value="V">V</option>
-                        <option value="E">E</option>
-                        <option value="P">P</option>
-                      </select>
-                      <input
-                        id="numDocRep2"
-                        class="input-cedula"
-                        name="numDocRep2"
-                        onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                        maxlength="8"
-                        th:field="*{numDocRep2}"
-                        disabled
-                      />
-                      <input
-                      type="button"
-                      class="input-buttons"
-                      id="botonBuscRep2"
-                      value="Buscar"
-                    />
-                    <input
-                      type="button"
-                      class="input-buttons"
-                      id="botonCambiarRep2"
-                      value="Cambiar"
-                    />
-                    </div>
-                  </div>
-                  <br />
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label for="primNombRpr2" class="col-form-label"
-                        >Primer nombre</label
-                      >
-                      <input
-                        type="text"
-                        class="input-nombre-apellido"
-                        id="primNombRpr2"
-                        name="primNombRpr2"
-                        th:field="*{primNombRpr2}"
-                        disabled
-                      />
-                    </div>
-                    <div class="col-md-6">
-                      <label for="segNombRpr2" class="col-form-label"
-                        >Segundo nombre</label
-                      >
-                      <input
-                        type="text"
-                        class="input-nombre-apellido"
-                        name="segNombRpr2"
-                        id="segNombRpr2"
-                        th:field="*{segNombRpr2}"
-                        disabled
-                      />
-                    </div>
-                  </div>
-                  <br />
-
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label for="primApellRpr2" class="col-form-label"
-                        >Primer apellido</label
-                      >
-                      <input
-                        type="text"
-                        class="input-nombre-apellido"
-                        id="primApellRpr2"
-                        name="primApellRpr2"
-                        th:field="*{primApellRpr2}"
-                        disabled
-                      />
-                    </div>
-                    <div class="col-md-6">
-                      <label for="segApellRpr2" class="col-form-label"
-                        >Segundo apellido</label
-                      >
-                      <input
-                        type="text"
-                        class="input-nombre-apellido"
-                        name="segApellRpr2"
-                        id="segApellRpr2"
-                        th:field="*{segApellRpr2}"
-                        disabled
-                      />
-                    </div>
-                  </div>
-                  <br />
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <label for="fechNacRpr2" class="col-form-label"
-                        >Fec nac</label
-                      >
-                      <input
-                        type="date"
-                        class="input-fech-nac-rep"
-                        id="fechNacRpr2"
-                        name="fechNacRpr2"
-                        th:field="*{fechNacRpr2}"
-                        disabled
-                      />
-                    </div>
-                    <div class="col-sm-2">
-                      <label for="edadRpr2" class="col-form-label">Edad</label>
-                      <input
-                        type="text"
-                        class="input-edad"
-                        id="edadRpr2"
-                        name="edadRpr2"
-                        onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                        maxlength="2"
-                        th:field="*{edadRpr2}"
-                        disabled
-                      />
-                    </div>
-                    <div class="col-sm-2">
-                      <label for="sexoRpr2" class="col-form-label">Sexo</label>
-                      <select class="input-sexo" 
-                              id="sexoRpr2" 
-                              name="sexoRpr2" 
-                              th:field="*{sexoRpr2}"
-                              disabled>
-                        <option value="FEMENINO">FEMENINO</option>
-                        <option value="MASCULINO">MASCULINO</option>
-                      </select>
-                    </div>
-                    <div class="col-sm-2">
-                      <label for="parentescoRpr2" class="col-form-label"
-                        >Pco</label
-                      >
-                      <select
-                        class="input-parentesco"
-                        id="parentescoRpr2"
-                        name="parentescoRpr2"
-                        th:field="*{parentescoRpr2}"
-                        disabled
-                      >
-                        <option value="MADRE">MADRE</option>
-                        <option value="PADRE">PADRE</option>
-                        <option value="OTRO">OTRO</option>
-                      </select>
-                    </div>
-                    <div class="col-sm-3">
-                      <label for="edoCivRpr2" class="col-form-label"
-                        >Edo Civ</label
-                      >
-                      <select
-                        class="input-ed-civ"
-                        id="edoCivRpr2"
-                        name="edoCivRpr2"
-                        th:field="*{edoCivRpr2}"
-                        disabled
-                      >
-                        <option value="CASADO">CASADO</option>
-                        <option value="SOLTERO">SOLTERO</option>
-                        <option value="VIUDO">VIUDO</option>
-                        <option value="DIVORCIADO">DIVORCIADO</option>
-                      </select>
-                    </div>
-                  </div>
-                  <br />
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <label class="col-form-label"
-                        >Direccion principal de domicilio</label
-                      >
-                      <input
-                        type="text"
-                        class="input-txtDireccion"
-                        id="textoDirPpalRpr2"
-                        name="textoDirPpalRpr2"
-                        th:field="*{textoDirPpalRpr2}"
-                        disabled
-                      />
-                    </div>
-                  </div>
-                  <br />
-
-                  <div class="row">
-                    <div class="col-sm-2">
-                      <label
-                        for="estadodirppalrep2"
-                        id="lblEstadodirppalrep2"
-                        class="col-form-label"
-                        >Estado</label
-                      >
-                      <select
-                        class="input-estado"
-                        id="estadodirppalrep2"
-                        name="estadodirppalrep2"
-                        th:field="*{estadodirppalrep2}"
-                        disabled
-                      >
-                        <option value="MIRANDA">MIRANDA</option>
-                      </select>
-                    </div>
-                    <div class="col-sm-2">
-                      <label
-                        for="municipiodirppalrep2"
-                        id="lblMunicipiodirppalrep2"
-                        class="col-form-label"
-                        >Municipio</label
-                      >
-                      <select
-                        class="input-estado"
-                        id="municipiodirppalrep2"
-                        name="municipiodirppalrep2"
-                        th:field="*{municipiodirppalrep2}"
-                        disabled
-                      >
-                        <option value="PLAZA">PLAZA</option>
-                        <option value="ZAMORA">ZAMORA</option>
-                      </select>
-                    </div>
-                    <div class="col-sm-2">
-                      <label
-                        for="ciudaddirppalrep2"
-                        id="lblCiudaddirppalrep2"
-                        class="col-form-label"
-                        >Ciudad</label
-                      >
-                      <select
-                        class="input-estado"
-                        id="ciudaddirppalrep2"
-                        name="ciudaddirppalrep2"
-                        th:field="*{ciudaddirppalrep2}"
-                        disabled
-                      >
-                        <option value="GUARENAS">GUARENAS</option>
-                        <option value="GUATIRE">GUATIRE</option>
-                      </select>
-                    </div>
-                    <div class="col-sm-2">
-                      <label
-                        for="parroquiadirppalrep2"
-                        id="lblParroquiadirppalrep2"
-                        class="col-form-label"
-                        >Parroquia</label
-                      >
-                      <select
-                        class="input-estado"
-                        id="parroquiadirppalrep2"
-                        name="parroquiadirppalrep2"
-                        th:field="*{parroquiadirppalrep2}"
-                        disabled
-                      >
-                        <option value="GUARENAS">GUARENAS</option>
-                        <option value="GUATIRE">GUATIRE</option>
-                      </select>
-                    </div>
-                    <div class="col-sm-2">
-                      <label
-                        for="codpostaldirppalrep2"
-                        id="lblCodpostaldirppalrep2"
-                        class="col-form-label"
-                        >Código postal</label
-                      >
-                      <select
-                        class="input-estado"
-                        id="codpostaldirppalrep2"
-                        name="codpostaldirppalrep2"
-                        th:field="*{codpostaldirppalrep2}"
-                        disabled
-                      >
-                        <option value="1220">1220</option>
-                        <option value="1221">1221</option>
-                      </select>
-                    </div>
-                  </div>
-                  <br />
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <label class="col-form-label"
-                        >Dirección secundaria de domicilio</label
-                      >
-                      <input
-                        type="text"
-                        class="input-txtDireccion"
-                        name="textoDirSecRpr2"
-                        id="textoDirSecRpr2"
-                        th:field="*{textoDirSecRpr2}"
-                        disabled
-                      />
-                    </div>
-                  </div>
-                  <br />
-
-                  <div class="row">
-                    <div class="col-sm-2">
-                      <label
-                        for="estadodirsecrep2"
-                        id="lblEstadodirsecrep2"
-                        class="col-form-label"
-                        >Estado</label
-                      >
-                      <select
-                        class="input-estado"
-                        name="estadodirsecrep2"
-                        id="estadodirsecrep2"
-                        th:field="*{estadodirsecrep2}"
-                        disabled
-                      >
-                        <option value="MIRANDA">MIRANDA</option>
-                      </select>
-                    </div>
-                    <div class="col-sm-2">
-                      <label
-                        for="municipiodirsecrep2"
-                        id="lblMunicipiodirsecrep2"
-                        class="col-form-label"
-                        >Municipio</label
-                      >
-                      <select
-                        class="input-estado"
-                        name="municipiodirsecrep2"
-                        id="municipiodirsecrep2"
-                        th:field="*{municipiodirsecrep2}"
-                        disabled
-                      >
-                        <option value="PLAZA">PLAZA</option>
-                        <option value="ZAMORA">ZAMORA</option>
-                      </select>
-                    </div>
-                    <div class="col-sm-2">
-                      <label
-                        for="ciudaddirsecrep2"
-                        id="lblCiudaddirsecrep2"
-                        class="col-form-label"
-                        >Ciudad</label
-                      >
-                      <select
-                        class="input-estado"
-                        name="ciudaddirsecrep2"
-                        id="ciudaddirsecrep2"
-                        th:field="*{ciudaddirsecrep2}"
-                        disabled
-                      >
-                        <option value="GUARENAS">GUARENAS</option>
-                        <option value="GUATIRE">GUATIRE</option>
-                      </select>
-                    </div>
-                    <div class="col-sm-2">
-                      <label
-                        for="parroquiadirsecrep2"
-                        id="lblParroquiadirsecrep2"
-                        class="col-form-label"
-                        >Parroquia</label
-                      >
-                      <select
-                        class="input-estado"
-                        name="parroquiadirsecrep2"
-                        id="parroquiadirsecrep2"
-                        th:field="*{parroquiadirsecrep2}"
-                        disabled
-                      >
-                        <option value="GUARENAS">GUARENAS</option>
-                        <option value="GUATIRE">GUATIRE</option>
-                      </select>
-                    </div>
-                    <div class="col-sm-2">
-                      <label
-                        for="codpostaldirsecrep2"
-                        id="lblCodpostaldirsecrep2"
-                        class="col-form-label"
-                        >Código postal</label
-                      >
-                      <select
-                        class="input-estado"
-                        name="codpostaldirsecrep2"
-                        id="codpostaldirsecrep2"
-                        th:field="*{codpostaldirsecrep2}"
-                        disabled
-                      >
-                        <option value="1220">1220</option>
-                        <option value="1221">1221</option>
-                      </select>
-                    </div>
-                  </div>
-                  <br />
-                  <div class="row">
-                    <div class="col">
-                      <label class="col-form-label"
-                        >Información de Contacto Principal*</label
-                      >
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-1">
-                      <select
-                        class="input-cod-operadora"
-                        id="codoperadorappalrep2"
-                        name="codoperadorappalrep2"
-                        th:field="*{codoperadorappalrep2}"
-                        disabled
-                      >
-                        <option value="0212">0212</option>
-                        <option value="0412">0412</option>
-                        <option value="0414">0414</option>
-                        <option value="0416">0416</option>
-                        <option value="0424">0424</option>
-                        <option value="0426">0426</option>
-                      </select>
-                    </div>
-                    <div class="col-sm-2">
-                      <input
-                        type="text"
-                        placeholder="Numero de telefono"
-                        class="input-num-tlf"
-                        id="textoTlfPpalRpr2"
-                        name="textoTlfPpalRpr2"
-                        onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                        maxlength="7"
-                        th:field="*{textoTlfPpalRpr2}"
-                        disabled
-                      />
-                    </div>
-                    <div class="col-sm-2">&nbsp;</div>
-                    <div class="col-sm-6">
-                      <input
-                        type="email"
-                        placeholder="Correo electronico"
-                        class="input-email"
-                        id="emailRpr2"
-                        name="emailRpr2"
-                        th:field="*{emailRpr2}"
-                        disabled
-                      />
-                    </div>
-                  </div>
-                  <br />
-                  <div class="row">
-                    <div class="col">
-                      <label class="col-form-label"
-                        >Información de Contacto Secundario</label
-                      >
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-1">
-                      <select
-                        class="input-cod-operadora"
-                        name="codoperadorasecrep2"
-                        id="codoperadorasecrep2"
-                        th:field="*{codoperadorasecrep2}"
-                        disabled
-                      >
-                        <option value="0212">0212</option>
-                        <option value="0412">0412</option>
-                        <option value="0414">0414</option>
-                        <option value="0416">0416</option>
-                        <option value="0424">0424</option>
-                        <option value="0426">0426</option>
-                      </select>
-                    </div>
-                    <div class="col-sm-2">
-                      <input
-                        type="text"
-                        placeholder="Numero de telefono"
-                        class="input-num-tlf"
-                        name="textoTlfSecRpr2"
-                        id="textoTlfSecRpr2"
-                        onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-                        maxlength="7"
-                        th:field="*{textoTlfSecRpr2}"
-                        disabled
-                      />
-                    </div>
-                  </div>
-                </div>
-                <br />
-                <br />
-                <br />
-                <!--************************FIN REPRESENTANTE SECUNDARIO*********************************-->
-
-                <!--************************CURSO*********************************-->
-                <div class="row">
-                  <div class="col-sm-4">&nbsp;</div>
-                  <div class="form-group col-md-8">
-                    <h5>
-                      <b>Información del curso</b>
-                    </h5>
-                  </div>
-                </div>
-                <br />
-                <div class="row" id="rowtablecursos">
-                  <table
-                    id="tablecursos"
-                    class="table table-striped table-hover"
-                  >
-                    <thead>
-                      <tr>
-                        <th>NUMERO DEL CURSO</th>
-                        <th>AÑO ESCOLAR</th>
-                        <th>AÑO</th>
-                        <th>SECCION</th>
-                        <th>TURNO</th>
-                        <th>NIVEL</th>
-                        <th>ESPECIALIDAD</th>
-                       
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <select th:field="*{idCurso}"
-                          class="form-control"
-                          id="idCurso">
-                            <option th:each="curso:${Cursos}"
-                                    th:value="${curso.idCurso}"
-                                    th:text="${curso.idCurso}"
-                             ></option>
-                          </select> 
-                        </td>
-
-                        <td>
-                          <input type="text" th:field="*{annioescolar}"
-                          class="form-control"
-                          id="annioescolar">
-                         
-                        </td>
-
-                        <td>
-                          <input type="text" th:field="*{annio}"
-                          class="form-control"
-                          id="annio">
-                         
-                        </td>
-
-                        <td>
-                          <input type="text" th:field="*{seccion}"
-                          class="form-control"
-                          id="seccion">
-                            
-                        </td>
+  <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje1 != null}"
+    th:text="${mensaje1}" class="alert"></div>
 
 
-                        <td>
-                          <input type="text" th:field="*{turno}"
-                          class="form-control"
-                          id="turno">
-                           
-                        </td>
 
 
-                        <td>
-                          <input type="text" th:field="*{nivel}"
-                          class="form-control"
-                          id="nivel">
-                        </td>
 
+  <div class="card" style="width: 100%;border-color:#cccccc;margin-left: auto;margin-right: auto;">
+    <div class="card-header" style="width: 100%;border-color:#cccccc;margin-left: auto;margin-right: auto;">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-                        <td>
-                          <input type="text" th:field="*{especialidad}"
-                          class="form-control"
-                          id="especialidad">
-                          
-                        </td>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li>
+              <a type="button" class="btn btn-secondary" th:href="@{/app/inicio}" data-toggle="tooltip"
+                data-placement="top" title="Ir al inicio"><i class="bi bi-house"></i></a>
+            </li>
+            &nbsp;
+            <li>
+              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Editar"
+                id="botonEditarAlumno"><i class="bi bi-pencil-fill"></i>
+              </button>
+            </li>
+            &nbsp;
+            <li>
+              <a type="button" class="btn btn-secondary" th:href="@{/app/listaralumnos}" data-toggle="tooltip"
+                data-placement="top" title="Salir"><i class="bi bi-x"></i></a>
+            </li>
 
+          </ul>
+          <div class="container" style="display: flex;
+          justify-content: left;">
 
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                </div>
-                
-                <br />
-                <br />
-                <div class="row">
-                  <input
-                    type="submit"
-                    class="input-buttons"
-                    name="submit"
-                    value="Modificar"
-                    style="margin: 0 auto"
-                  />
-                </div>
-              </form>
-            </div>
+            <div class="col-md-3"></div>
+            <p style="font-weight: bold;
+        font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
+        font-size: large;
+        color: black;
+        font-size: 20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ficha de datos del alumno</p>
           </div>
         </div>
+
+
+
+     
+      </nav>
+    </div>
+    <div class="card-body" style="width: 100%;border-color:#b5b5b5;margin-left: auto;margin-right: auto;">
+      <div class="container">
+        <div class="col-md-20">
+          <form class="form-horizontal" th:action="@{/app/modificaralumno}" th:object="${alumnoDTO}" id="formAlumno"
+            name="formAlumno" method="post">
+            <!--************************ALUMNO*********************************-->
+            <input type="hidden" th:field="*{idAl}">
+            <br />
+
+            <!--************************ALUMNO*********************************-->
+            <div class="row">
+              <div class="col-md-5">&nbsp;</div>
+              <p id="titulo2">&nbsp;&nbsp;&nbsp;&nbsp;Datos básicos</p>
+            </div>
+
+            <br />
+            <div class="row">
+              <input type="hidden" id="direccionbase" th:name="direccionbase" th:value="${direccionbase}">
+              <div class="col-md-6">
+
+                <label for="primNombAl" class="col-form-label">Primer Nombre</label>
+                <input type="text" class="input-nombre-apellido" id="primNombAl" th:field="*{primNombAl}" disabled />
+              </div>
+              <div class="col-md-6">
+                <label for="segNombAl" class="col-form-label">Segundo nombre</label>
+                <input type="text" class="input-nombre-apellido" id="segNombAl" th:field="*{segNombAl}" disabled />
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-md-6">
+                <label for="primApellAl" class="col-form-label">Primer apellido</label>
+                <input type="text" class="input-nombre-apellido" id="primApellAl" th:field="*{primApellAl}" disabled />
+              </div>
+              <div class="col-md-6">
+                <label for="segApellAl" class="col-form-label">Segundo apellido</label>
+                <input type="text" class="input-nombre-apellido" id="segApellAl" th:field="*{segApellAl}" disabled />
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-md-6">
+                <label for="numDocAl" class="col-form-label">Cédula</label>
+                <select class="input-cmb-cedula" id="tipoDocAl" th:field="*{tipoDocAl}" readonly disabled>
+                  <option value="V">V</option>
+                  <option value="E">E</option>
+                  <option value="P">P</option>
+                </select>
+
+                <input type="text" class="input-cedula" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                  maxlength="8" id="numDocAl" th:field="*{numDocAl}" disabled />
+              </div>
+              <div class="col-md-6">
+                <label for="fechNacAl" class="col-form-label">Fecha de nacimiento</label>
+                <input type="date" class="input-fech-nac" id="fechNacAl" th:field="*{fechNacAl}" disabled />
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-sm-2">
+                <label for="edadAl" class="col-form-label">Edad</label>
+                <input type="text" class="input-edad" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                  maxlength="2" id="edadAl" th:field="*{edadAl}" disabled />
+              </div>
+              <div class="col-sm-2">
+                <label for="sexoAl" class="col-form-label">Sexo</label>
+                <select class="input-sexo" id="sexoAl" th:field="*{sexoAl}" disabled>
+                  <option value="FEMENINO">FEMENINO</option>
+                  <option value="MASCULINO">MASCULINO</option>
+                </select>
+              </div>
+              <div class="col-sm-3">
+                <label for="status" class="col-form-label">Est Académico</label>
+                <select class="input-est-acad" id="status" th:field="*{status}" disabled>
+                  <option value="ACTIVO">ACTIVO</option>
+                  <option value="RETIRADO">RETIRADO</option>
+                </select>
+              </div>
+              <div class="col-md-5">
+                <label for="fechIngAl" class="col-form-label">Fecha de ingreso</label>
+                <input type="date" class="input-fech-ing" id="fechIngAl" th:field="*{fechIngAl}" disabled />
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-sm-12">
+                <label for="textoDirPpalAl" class="col-form-label">Dirección principal de domicilio</label>
+                <input type="text" class="input-txtDireccion" id="textoDirPpalAl" th:field="*{textoDirPpalAl}"
+                  disabled />
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-md-2">
+                <label for="estadodirppalest" class="col-form-label">Estado</label>
+                <select class="input-estado" id="estadodirppalest" th:field="*{estadodirppalest}" disabled>
+                  <option value="MIRANDA">MIRANDA</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label for="municipiodirppalest" class="col-form-label">Municipio</label>
+                <select class="input-estado" id="municipiodirppalest" th:field="*{municipiodirppalest}" disabled>
+                  <option value="PLAZA">PLAZA</option>
+                  <option value="ZAMORA">ZAMORA</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label for="ciudaddirppalest" class="col-form-label">Ciudad</label>
+                <select class="input-estado" id="ciudaddirppalest" th:field="*{ciudaddirppalest}" disabled>
+                  <option value="GUARENAS">GUARENAS</option>
+                  <option value="GUATIRE">GUATIRE</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label for="parroquiadirppalest" class="col-form-label">Parroquia</label>
+                <select class="input-estado" id="parroquiadirppalest" th:field="*{parroquiadirppalest}" disabled>
+                  <option value="GUARENAS">GUARENAS</option>
+                  <option value="GUATIRE">GUATIRE</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label for="codpostaldirppalest" class="col-form-label">Cod. Postal</label>
+                <select class="input-estado" id="codpostaldirppalest" th:field="*{codpostaldirppalest}" disabled>
+                  <option value="1220">1220</option>
+                  <option value="1221">1221</option>
+                </select>
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-sm-12">
+                <label class="col-form-label">Direccion secundaria de domicilio</label>
+                <input type="text" class="input-txtDireccion" name="textoDirSecAl" id="textoDirSecAl"
+                  th:field="*{textoDirSecAl}" disabled />
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-md-2">
+                <label for="estadodirsecest" class="col-form-label">Estado</label>
+                <select class="input-estado" name="estadodirsecest" id="estadodirsecest" th:field="*{estadodirsecest}"
+                  disabled>
+                  <option value="MIRANDA">MIRANDA</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label for="municipiodirsecest" class="col-form-label">Municipio</label>
+                <select class="input-estado" name="municipiodirsecest" id="municipiodirsecest"
+                  th:field="*{municipiodirsecest}" disabled>
+                  <option value="PLAZA">PLAZA</option>
+                  <option value="ZAMORA">ZAMORA</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label for="ciudaddirsecest" class="col-form-label">Ciudad</label>
+                <select class="input-estado" name="ciudaddirsecest" id="ciudaddirsecest" th:field="*{ciudaddirsecest}"
+                  disabled>
+                  <option value="GUARENAS">GUARENAS</option>
+                  <option value="GUATIRE">GUATIRE</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label for="parroquiadirsecest" class="col-form-label">Parroquia</label>
+                <select class="input-estado" name="parroquiadirsecest" id="parroquiadirsecest"
+                  th:field="*{parroquiadirsecest}" disabled>
+                  <option value="GUARENAS">GUARENAS</option>
+                  <option value="GUATIRE">GUATIRE</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label for="codpostaldirsecest" class="col-form-label">Cod. Postal</label>
+                <select class="input-estado" name="codpostaldirsecest" id="codpostaldirsecest"
+                  th:field="*{codpostaldirsecest}" disabled>
+                  <option value="1220">1220</option>
+                  <option value="1221">1221</option>
+                </select>
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="col-form-label">Información de Contacto Principal</label>
+              </div>
+              <div class="col-sm-1">
+                  
+              </div>
+              <div class="col-sm-4">
+                <label class="col-form-label"
+                  >Correo electrónico</label
+                >
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-1">
+                <select class="input-cod-operadora" id="codoperadorappalest" th:field="*{codoperadorappalest}" disabled>
+                  <option value="0212">0212</option>
+                  <option value="0412">0412</option>
+                  <option value="0414">0414</option>
+                  <option value="0416">0416</option>
+                  <option value="0424">0424</option>
+                  <option value="0426">0426</option>
+                </select>
+              </div>
+              <div class="col-sm-2">
+                <input type="text" class="input-num-tlf" placeholder="Numero de telefono"
+                  onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="7" id="textoTlfPpalAl"
+                  th:field="*{textoTlfPpalAl}" disabled />
+              </div>
+              <div class="col-sm-2">&nbsp;</div>
+              <div class="col-sm-6">
+                <input type="email" class="input-email" placeholder="Correo electronico" id="emailAl"
+                  th:field="*{emailAl}" disabled />
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-sm-12">
+                <label class="col-form-label">Información de Contacto Secundario</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-1">
+                <select class="input-cod-operadora" name="codoperadorasecest" id="codoperadorasecest"
+                  th:field="*{codoperadorasecest}" disabled>
+                  <option value="0212">0212</option>
+                  <option value="0412">0412</option>
+                  <option value="0414">0414</option>
+                  <option value="0416">0416</option>
+                  <option value="0424">0424</option>
+                  <option value="0426">0426</option>
+                </select>
+              </div>
+              <div class="col-sm-2">
+                <input type="text" placeholder="Numero de telefono" class="input-num-tlf"
+                  onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="7" name="textoTlfSecAl"
+                  th:field="*{textoTlfSecAl}" disabled />
+              </div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <!--************************FIN ALUMNO*********************************-->
+
+            <!--************************REPRESENTANTE PRINCIPAL*********************************-->
+            <br />
+
+            <!--************************ALUMNO*********************************-->
+            <div class="row">
+              <div class="col-md-5">&nbsp;</div>
+              <p id="titulo3">&nbsp;&nbsp;&nbsp;&nbsp;Representante principal</p>
+            </div>
+
+            <br />
+            <br />
+            <br />
+            <div class="row">
+              <div class="col-md-8">
+                <label for="numDocRep1" class="col-form-label">Numero de Cédula</label>
+                <select class="input-cmb-cedula" id="tipoDocRep1" th:field="*{tipoDocRep1}" disabled>
+                  <option value="V">V</option>
+                  <option value="E">E</option>
+                  <option value="P">P</option>
+                </select>
+                <input name="numDocRep1" id="numDocRep1" class="input-cedula" th:field="*{numDocRep1}"
+                  onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="8" disabled />
+                <input type="button" class="input-buttons" id="botonCambiarRep" value="Cambiar" disabled />
+                <input type="button" class="input-buttons" id="botonBuscRep" value="Buscar" />
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-md-6">
+                <label for="primNombRpr1" class="col-form-label">Primer nombre</label>
+                <input type="text" class="input-nombre-apellido" id="primNombRpr1" th:field="*{primNombRpr1}"
+                  disabled />
+              </div>
+              <div class="col-md-6">
+                <label for="segNombRpr1" class="col-form-label">Segundo nombre</label>
+                <input type="text" class="input-nombre-apellido" name="segNombRpr1" id="segNombRpr1"
+                  th:field="*{segNombRpr1}" disabled />
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-md-6">
+                <label for="primApellRpr1" class="col-form-label">Primer apellido</label>
+                <input type="text" class="input-nombre-apellido" id="primApellRpr1" th:field="*{primApellRpr1}"
+                  disabled />
+              </div>
+              <div class="col-md-6">
+                <label for="segApellRpr1" class="col-form-label">Segundo apellido</label>
+                <input type="text" class="input-nombre-apellido" name="segApellRpr1" id="segApellRpr1"
+                  th:field="*{segApellRpr1}" disabled />
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-sm-3">
+                <label for="fechNacRpr1" class="col-form-label">Fec nac</label>
+                <input type="date" class="input-fech-nac-rep" id="fechNacRpr1" th:field="*{fechNacRpr1}" disabled />
+              </div>
+              <div class="col-sm-2">
+                <label for="edadRpr1" class="col-form-label">Edad</label>
+                <input type="text" class="input-edad" id="edadRpr1" th:field="*{edadRpr1}"
+                  onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="2" disabled />
+              </div>
+              <div class="col-sm-2">
+                <label for="sexoRpr1" class="col-form-label">Sexo</label>
+                <select class="input-sexo" id="sexoRpr1" th:field="*{sexoRpr1}" disabled>
+                  <option value="FEMENINO">FEMENINO</option>
+                  <option value="MASCULINO">MASCULINO</option>
+                </select>
+              </div>
+              <div class="col-sm-2">
+                <label for="parentescoRpr1" class="col-form-label">Pco</label>
+                <select class="input-parentesco" id="parentescoRpr1" th:field="*{parentescoRpr1}" disabled>
+                  <option value="MADRE">MADRE</option>
+                  <option value="PADRE">PADRE</option>
+                  <option value="OTRO">OTRO</option>
+                </select>
+
+              </div>
+              <div class="col-sm-3">
+                <label for="edoCivRpr1" class="col-form-label">Edo Civ</label>
+                <select class="input-ed-civ" id="edoCivRpr1" th:field="*{edoCivRpr1}" disabled>
+                  <option value="CASADO">CASADO</option>
+                  <option value="SOLTERO">SOLTERO</option>
+                  <option value="VIUDO">VIUDO</option>
+                  <option value="DIVORCIADO">DIVORCIADO</option>
+                </select>
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-sm-12">
+                <label class="col-form-label">Direccion principal de domicilio</label>
+                <input type="text" class="input-txtDireccion" id="textoDirPpalRpr1" th:field="*{textoDirPpalRpr1}"
+                  disabled />
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-sm-2">
+                <label for="estadodirppalrep1" id="lblEstadodirppalrep1" class="col-form-label">Estado</label>
+                <select class="input-estado" id="estadodirppalrep1" th:field="*{estadodirppalrep1}" disabled>
+                  <option value="MIRANDA">MIRANDA</option>
+                </select>
+              </div>
+              <div class="col-sm-2">
+                <label for="municipiodirppalrep1" id="lblMunicipiodirppalrep1" class="col-form-label">Municipio</label>
+                <select class="input-estado" id="municipiodirppalrep1" th:field="*{municipiodirppalrep1}" disabled>
+                  <option value="PLAZA">PLAZA</option>
+                  <option value="ZAMORA">ZAMORA</option>
+                </select>
+              </div>
+              <div class="col-sm-2">
+                <label for="ciudaddirppalrep1" id="lblCiudaddirppalrep1" class="col-form-label">Ciudad</label>
+                <select class="input-estado" id="ciudaddirppalrep1" th:field="*{ciudaddirppalrep1}" disabled>
+                  <option value="GUARENAS">GUARENAS</option>
+                  <option value="GUATIRE">GUATIRE</option>
+                </select>
+              </div>
+              <div class="col-sm-2">
+                <label for="parroquiadirppalrep1" id="lblParroquiadirppalrep1" class="col-form-label">Parroquia</label>
+                <select class="input-estado" id="parroquiadirppalrep1" th:field="*{parroquiadirppalrep1}" disabled>
+                  <option value="GUARENAS">GUARENAS</option>
+                  <option value="GUATIRE">GUATIRE</option>
+                </select>
+              </div>
+              <div class="col-sm-2">
+                <label for="codpostaldirppalrep1" id="lblCodpostaldirppalrep1" class="col-form-label">Código
+                  postal</label>
+                <select class="input-estado" id="codpostaldirppalrep1" th:field="*{codpostaldirppalrep1}" disabled>
+                  <option value="1220">1220</option>
+                  <option value="1221">1221</option>
+                </select>
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-sm-12">
+                <label class="col-form-label">Direccion secundaria de domicilio</label>
+                <input type="text" class="input-txtDireccion" name="textoDirSecRpr1" id="textoDirSecRpr1"
+                  th:field="*{textoDirSecRpr1}" disabled />
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-sm-2">
+                <label for="estadodirsecrep1" id="lblEstadodirsecrep1" class="col-form-label">Estado</label>
+                <select class="input-estado" name="estadodirsecrep1" id="estadodirsecrep1"
+                  th:field="*{estadodirsecrep1}" disabled>
+                  <option value="MIRANDA">MIRANDA</option>
+                </select>
+
+              </div>
+              <div class="col-sm-2">
+                <label for="municipiodirsecrep1" id="lblMunicipiodirsecrep1" class="col-form-label">Municipio</label>
+                <select class="input-estado" name="municipiodirsecrep1" id="municipiodirsecrep1"
+                  th:field="*{municipiodirsecrep1}" disabled>
+                  <option value="PLAZA">PLAZA</option>
+                  <option value="ZAMORA">ZAMORA</option>
+                </select>
+
+              </div>
+              <div class="col-sm-2">
+                <label for="ciudaddirsecrep1" id="lblCiudaddirsecrep1" class="col-form-label">Ciudad</label>
+                <select class="input-estado" name="ciudaddirsecrep1" id="ciudaddirsecrep1"
+                  th:field="*{ciudaddirsecrep1}" disabled>
+                  <option value="GUARENAS">GUARENAS</option>
+                  <option value="GUATIRE">GUATIRE</option>
+                </select>
+
+              </div>
+              <div class="col-sm-2">
+                <label for="parroquiadirsecrep1" id="lblParroquiadirsecrep1" class="col-form-label">Parroquia</label>
+                <select class="input-estado" name="parroquiadirsecrep1" id="parroquiadirsecrep1"
+                  th:field="*{parroquiadirsecrep1}" disabled>
+                  <option value="GUARENAS">GUARENAS</option>
+                  <option value="GUATIRE">GUATIRE</option>
+                </select>
+
+              </div>
+              <div class="col-sm-2">
+                <label for="codpostaldirsecrep1" id="lblCodpostaldirsecrep1" class="col-form-label">Código
+                  postal</label>
+                <select class="input-estado" name="codpostaldirsecrep1" id="codpostaldirsecrep1"
+                  th:field="*{codpostaldirsecrep1}" disabled>
+                  <option value="1220">1220</option>
+                  <option value="1221">1221</option>
+                </select>
+
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="col-form-label">Teleéfono principal</label>
+              </div>
+              <div class="col-sm-1">
+                  
+              </div>
+              <div class="col-sm-4">
+                <label class="col-form-label"
+                  >Correo electrónico</label
+                >
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-1">
+                <select class="input-cod-operadora" id="codoperadorappalrep1" th:field="*{codoperadorappalrep1}"
+                  disabled>
+                  <option value="0212">0212</option>
+                  <option value="0412">0412</option>
+                  <option value="0414">0414</option>
+                  <option value="0416">0416</option>
+                  <option value="0424">0424</option>
+                  <option value="0426">0426</option>
+                </select>
+
+              </div>
+              <div class="col-sm-2">
+                <input type="text" placeholder="Numero de telefono" class="input-num-tlf" id="textoTlfPpalRpr1"
+                  th:field="*{textoTlfPpalRpr1}" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                  maxlength="7" disabled />
+              </div>
+              <div class="col-sm-2">&nbsp;</div>
+              <div class="col-sm-6">
+                
+                <input type="email" placeholder="Correo electronico" class="input-email" id="emailRpr1"
+                  th:field="*{emailRpr1}" disabled />
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col">
+                <label class="col-form-label">Teléfono secundario</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-1">
+                <select class="input-cod-operadora" name="codoperadorasecrep1" id="codoperadorasecrep1"
+                  th:field="*{codoperadorasecrep1}" disabled>
+                  <option value="0212">0212</option>
+                  <option value="0412">0412</option>
+                  <option value="0414">0414</option>
+                  <option value="0416">0416</option>
+                  <option value="0424">0424</option>
+                  <option value="0426">0426</option>
+                </select>
+
+              </div>
+              <div class="col-sm-2">
+                <input type="text" placeholder="Numero de telefono" class="input-num-tlf" name="textoTlfSecRpr1"
+                  id="textoTlfSecRpr1" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="7"
+                  th:field="*{textoTlfSecRpr1}" disabled />
+              </div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <!--************************FIN REPRESENTANTE PRINCIPAL*********************************-->
+
+            <!--************************ REPRESENTANTE SECUNDARIO*********************************-->
+            <div id="datosRepSec">
+              <br />
+              <div class="row">
+                <div class="col-md-5">&nbsp;</div>
+                <p id="titulo3">&nbsp;&nbsp;&nbsp;&nbsp;Representante secundario</p>
+              </div>
+
+              <br />
+              <br />
+              <br />
+
+              <div class="row">
+                <div class="col-md-8">
+                  <label for="numDocRep2" class="col-form-label">Numero de Cédula</label>
+                  <select class="input-cmb-cedula" id="tipoDocRep2" name="tipoDocRep2" th:field="*{tipoDocRep2}"
+                    disabled>
+                    <option value="V">V</option>
+                    <option value="E">E</option>
+                    <option value="P">P</option>
+                  </select>
+                  <input id="numDocRep2" class="input-cedula" name="numDocRep2"
+                    onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="8"
+                    th:field="*{numDocRep2}" disabled />
+                  <input type="button" class="input-buttons" id="botonBuscRep2" value="Buscar" />
+                  <input type="button" class="input-buttons" id="botonCambiarRep2" value="Cambiar" disabled />
+                </div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="primNombRpr2" class="col-form-label">Primer nombre</label>
+                  <input type="text" class="input-nombre-apellido" id="primNombRpr2" name="primNombRpr2"
+                    th:field="*{primNombRpr2}" disabled />
+                </div>
+                <div class="col-md-6">
+                  <label for="segNombRpr2" class="col-form-label">Segundo nombre</label>
+                  <input type="text" class="input-nombre-apellido" name="segNombRpr2" id="segNombRpr2"
+                    th:field="*{segNombRpr2}" disabled />
+                </div>
+              </div>
+              <br />
+
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="primApellRpr2" class="col-form-label">Primer apellido</label>
+                  <input type="text" class="input-nombre-apellido" id="primApellRpr2" name="primApellRpr2"
+                    th:field="*{primApellRpr2}" disabled />
+                </div>
+                <div class="col-md-6">
+                  <label for="segApellRpr2" class="col-form-label">Segundo apellido</label>
+                  <input type="text" class="input-nombre-apellido" name="segApellRpr2" id="segApellRpr2"
+                    th:field="*{segApellRpr2}" disabled />
+                </div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col-sm-3">
+                  <label for="fechNacRpr2" class="col-form-label">Fec nac</label>
+                  <input type="date" class="input-fech-nac-rep" id="fechNacRpr2" name="fechNacRpr2"
+                    th:field="*{fechNacRpr2}" disabled />
+                </div>
+                <div class="col-sm-2">
+                  <label for="edadRpr2" class="col-form-label">Edad</label>
+                  <input type="text" class="input-edad" id="edadRpr2" name="edadRpr2"
+                    onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="2"
+                    th:field="*{edadRpr2}" disabled />
+                </div>
+                <div class="col-sm-2">
+                  <label for="sexoRpr2" class="col-form-label">Sexo</label>
+                  <select class="input-sexo" id="sexoRpr2" name="sexoRpr2" th:field="*{sexoRpr2}" disabled>
+                    <option value="FEMENINO">FEMENINO</option>
+                    <option value="MASCULINO">MASCULINO</option>
+                  </select>
+                </div>
+                <div class="col-sm-2">
+                  <label for="parentescoRpr2" class="col-form-label">Pco</label>
+                  <select class="input-parentesco" id="parentescoRpr2" name="parentescoRpr2"
+                    th:field="*{parentescoRpr2}" disabled>
+                    <option value="MADRE">MADRE</option>
+                    <option value="PADRE">PADRE</option>
+                    <option value="OTRO">OTRO</option>
+                  </select>
+                </div>
+                <div class="col-sm-3">
+                  <label for="edoCivRpr2" class="col-form-label">Edo Civ</label>
+                  <select class="input-ed-civ" id="edoCivRpr2" name="edoCivRpr2" th:field="*{edoCivRpr2}" disabled>
+                    <option value="CASADO">CASADO</option>
+                    <option value="SOLTERO">SOLTERO</option>
+                    <option value="VIUDO">VIUDO</option>
+                    <option value="DIVORCIADO">DIVORCIADO</option>
+                  </select>
+                </div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col-sm-12">
+                  <label class="col-form-label">Direccion principal de domicilio</label>
+                  <input type="text" class="input-txtDireccion" id="textoDirPpalRpr2" name="textoDirPpalRpr2"
+                    th:field="*{textoDirPpalRpr2}" disabled />
+                </div>
+              </div>
+              <br />
+
+              <div class="row">
+                <div class="col-sm-2">
+                  <label for="estadodirppalrep2" id="lblEstadodirppalrep2" class="col-form-label">Estado</label>
+                  <select class="input-estado" id="estadodirppalrep2" name="estadodirppalrep2"
+                    th:field="*{estadodirppalrep2}" disabled>
+                    <option value="MIRANDA">MIRANDA</option>
+                  </select>
+                </div>
+                <div class="col-sm-2">
+                  <label for="municipiodirppalrep2" id="lblMunicipiodirppalrep2"
+                    class="col-form-label">Municipio</label>
+                  <select class="input-estado" id="municipiodirppalrep2" name="municipiodirppalrep2"
+                    th:field="*{municipiodirppalrep2}" disabled>
+                    <option value="PLAZA">PLAZA</option>
+                    <option value="ZAMORA">ZAMORA</option>
+                  </select>
+                </div>
+                <div class="col-sm-2">
+                  <label for="ciudaddirppalrep2" id="lblCiudaddirppalrep2" class="col-form-label">Ciudad</label>
+                  <select class="input-estado" id="ciudaddirppalrep2" name="ciudaddirppalrep2"
+                    th:field="*{ciudaddirppalrep2}" disabled>
+                    <option value="GUARENAS">GUARENAS</option>
+                    <option value="GUATIRE">GUATIRE</option>
+                  </select>
+                </div>
+                <div class="col-sm-2">
+                  <label for="parroquiadirppalrep2" id="lblParroquiadirppalrep2"
+                    class="col-form-label">Parroquia</label>
+                  <select class="input-estado" id="parroquiadirppalrep2" name="parroquiadirppalrep2"
+                    th:field="*{parroquiadirppalrep2}" disabled>
+                    <option value="GUARENAS">GUARENAS</option>
+                    <option value="GUATIRE">GUATIRE</option>
+                  </select>
+                </div>
+                <div class="col-sm-2">
+                  <label for="codpostaldirppalrep2" id="lblCodpostaldirppalrep2" class="col-form-label">Código
+                    postal</label>
+                  <select class="input-estado" id="codpostaldirppalrep2" name="codpostaldirppalrep2"
+                    th:field="*{codpostaldirppalrep2}" disabled>
+                    <option value="1220">1220</option>
+                    <option value="1221">1221</option>
+                  </select>
+                </div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col-sm-12">
+                  <label class="col-form-label">Dirección secundaria de domicilio</label>
+                  <input type="text" class="input-txtDireccion" name="textoDirSecRpr2" id="textoDirSecRpr2"
+                    th:field="*{textoDirSecRpr2}" disabled />
+                </div>
+              </div>
+              <br />
+
+              <div class="row">
+                <div class="col-sm-2">
+                  <label for="estadodirsecrep2" id="lblEstadodirsecrep2" class="col-form-label">Estado</label>
+                  <select class="input-estado" name="estadodirsecrep2" id="estadodirsecrep2"
+                    th:field="*{estadodirsecrep2}" disabled>
+                    <option value="MIRANDA">MIRANDA</option>
+                  </select>
+                </div>
+                <div class="col-sm-2">
+                  <label for="municipiodirsecrep2" id="lblMunicipiodirsecrep2" class="col-form-label">Municipio</label>
+                  <select class="input-estado" name="municipiodirsecrep2" id="municipiodirsecrep2"
+                    th:field="*{municipiodirsecrep2}" disabled>
+                    <option value="PLAZA">PLAZA</option>
+                    <option value="ZAMORA">ZAMORA</option>
+                  </select>
+                </div>
+                <div class="col-sm-2">
+                  <label for="ciudaddirsecrep2" id="lblCiudaddirsecrep2" class="col-form-label">Ciudad</label>
+                  <select class="input-estado" name="ciudaddirsecrep2" id="ciudaddirsecrep2"
+                    th:field="*{ciudaddirsecrep2}" disabled>
+                    <option value="GUARENAS">GUARENAS</option>
+                    <option value="GUATIRE">GUATIRE</option>
+                  </select>
+                </div>
+                <div class="col-sm-2">
+                  <label for="parroquiadirsecrep2" id="lblParroquiadirsecrep2" class="col-form-label">Parroquia</label>
+                  <select class="input-estado" name="parroquiadirsecrep2" id="parroquiadirsecrep2"
+                    th:field="*{parroquiadirsecrep2}" disabled>
+                    <option value="GUARENAS">GUARENAS</option>
+                    <option value="GUATIRE">GUATIRE</option>
+                  </select>
+                </div>
+                <div class="col-sm-2">
+                  <label for="codpostaldirsecrep2" id="lblCodpostaldirsecrep2" class="col-form-label">Código
+                    postal</label>
+                  <select class="input-estado" name="codpostaldirsecrep2" id="codpostaldirsecrep2"
+                    th:field="*{codpostaldirsecrep2}" disabled>
+                    <option value="1220">1220</option>
+                    <option value="1221">1221</option>
+                  </select>
+                </div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col-sm-4">
+                  <label class="col-form-label">Telefono principal</label>
+                </div>
+                <div class="col-sm-1">
+                  
+                </div>
+                <div class="col-sm-4">
+                  <label class="col-form-label"
+                    >Correo electrónico</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-1">
+                  <select class="input-cod-operadora" id="codoperadorappalrep2" name="codoperadorappalrep2"
+                    th:field="*{codoperadorappalrep2}" disabled>
+                    <option value="0212">0212</option>
+                    <option value="0412">0412</option>
+                    <option value="0414">0414</option>
+                    <option value="0416">0416</option>
+                    <option value="0424">0424</option>
+                    <option value="0426">0426</option>
+                  </select>
+                </div>
+                <div class="col-sm-2">
+                  <input type="text" placeholder="Numero de telefono" class="input-num-tlf" id="textoTlfPpalRpr2"
+                    name="textoTlfPpalRpr2" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                    maxlength="7" th:field="*{textoTlfPpalRpr2}" disabled />
+                </div>
+                <div class="col-sm-2">&nbsp;</div>
+                <div class="col-sm-6">
+                  <input type="email" placeholder="Correo electronico" class="input-email" id="emailRpr2"
+                    name="emailRpr2" th:field="*{emailRpr2}" disabled />
+                </div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col">
+                  <label class="col-form-label">Teléfono Secundario</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-1">
+                  <select class="input-cod-operadora" name="codoperadorasecrep2" id="codoperadorasecrep2"
+                    th:field="*{codoperadorasecrep2}" disabled>
+                    <option value="0212">0212</option>
+                    <option value="0412">0412</option>
+                    <option value="0414">0414</option>
+                    <option value="0416">0416</option>
+                    <option value="0424">0424</option>
+                    <option value="0426">0426</option>
+                  </select>
+                </div>
+                <div class="col-sm-2">
+                  <input type="text" placeholder="Numero de telefono" class="input-num-tlf" name="textoTlfSecRpr2"
+                    id="textoTlfSecRpr2" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="7"
+                    th:field="*{textoTlfSecRpr2}" disabled />
+                </div>
+              </div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <!--************************FIN REPRESENTANTE SECUNDARIO*********************************-->
+
+            <!--************************CURSO*********************************-->
+            <div class="row">
+              <div class="col-md-5">&nbsp;</div>
+              <p id="titulo3">&nbsp;&nbsp;&nbsp;&nbsp;Datos del curso asignado</p>
+            </div>
+            <br />
+            <div class="row" id="rowtablecursos">
+              <table id="tablecursosver" class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>N° del curso</th>
+                    <th>Año escolar</th>
+                    <th>Año</th>
+                    <th>Sección</th>
+                    <th>Turno</th>
+                    <th>Nivel</th>
+                    <th>Especialidad</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <select th:field="*{idCurso}" class="form-control" id="idCurso" style="border-radius: 100px;border: 1px solid #b5b5b5;text-align: center;
+                      width:80px;" disabled>
+
+                        <option th:each="curso:${Cursos}" th:value="${curso.idCurso}" th:text="${curso.idCurso}">
+                        </option>
+                      </select>
+                    </td>
+
+                    <td>
+                      <input type="text" th:field="*{annioescolar}" class="form-control" id="annioescolar"
+                        style="border-radius: 100px;border: 1px solid #b5b5b5;text-align: center;width:100px;" disabled>
+
+
+                    </td>
+
+                    <td>
+                      <input type="text" th:field="*{annio}" class="form-control" id="annio"
+                        style="border-radius: 100px;border: 1px solid #b5b5b5;text-align: center;width:60px;" disabled>
+
+
+                    </td>
+
+                    <td>
+                      <input type="text" th:field="*{seccion}" class="form-control" id="seccion"
+                        style="border-radius: 100px;border: 1px solid #b5b5b5;text-align: center;width:60px;" disabled>
+
+                    </td>
+
+
+                    <td>
+                      <input type="text" th:field="*{turno}" class="form-control" id="turno" style="border-radius: 100px;border: 1px solid #b5b5b5;text-align: center;
+                      width:110px;" disabled>
+
+
+                    </td>
+
+
+                    <td>
+                      <input type="text" th:field="*{nivel}" class="form-control" id="nivel" style="border-radius: 100px;border: 1px solid #b5b5b5;text-align: center;
+                      width:160px;" disabled>
+
+                    </td>
+
+
+                    <td>
+                      <input type="text" th:field="*{especialidad}" class="form-control" id="especialidad" style="border-radius: 100px;border: 1px solid #b5b5b5;text-align: center;
+                      width:100px;" disabled>
+
+
+                    </td>
+
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+
+        <br />
+        <br />
+        <div class="row">
+          <input type="submit" class="input-buttons" name="submit" value="Guardar" style="margin: 0 auto" disabled
+            id="guardar" />
+        </div>
+        </form>
+        <br>
+        <br>
       </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!--<script src="/js/Swalert.js"></script>-->
-    <script src="/js/editaralumno.js"></script>
-    <!--   <script>
+  </div>
+  <th:block th:replace="partes/footer :: footer" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!--<script src="/js/Swalert.js"></script>-->
+  <script src="/js/editaralumno.js"></script>
+  <!--   <script>
    			if ('${flagExisteAl}' == 'showAlertExisteAl') {
            		 Swal.fire({
             	title: "El alumno ya existe"
     			});
     		}
       </script>-->
-  </body>
+</body>
+
 </html>

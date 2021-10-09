@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+<link rel="stylesheet" type="text/css" href="/css/estilosCurso.css" />
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<header></header>
+<body>
+
+
+	<br />
+	<br />
+	
+
+	<div class="container my-5">
+		<div class="card">
+			<div class="card-header">
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item active"><a class="nav-link"
+								th:href="@{/app/inicio}" data-toggle="tooltip"
+								data-placement="top" title="Ir al inicio"><i
+									class="bi bi-house"></i>Home </a> &nbsp; &nbsp;</li>
+
+							<li class="nav-item active"><a class="nav-link my-2 my-sm-0"
+								th:href="@{/app/listarcursos}" data-toggle="tooltip"
+								data-placement="top" title="Salir"><i
+									class="bi bi-x"></i>Salir</a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+
+			<div class="card-body" style="text-align: left; width: 100%">
+				<!------------------------------------------INICIO DEL FORMULARIO DEL CURSO--------------------->
+				<form class="form-horizontal" id="formCurso" name="formCurso">
+					<input type="hidden" id="direccionbase" name="direccionbase"
+						th:value="${direccionbase}" />
+						<br>
+					<div class="row">
+						<div class="col-sm-4">&nbsp;</div>
+						<div class="form-group col-md-8">
+							<h5>
+								<b>Formulario de carga de curso</b>
+							</h5>
+						</div>
+					</div>
+					<br />
+					<br />
+					<div class="row">
+						<b><label for="annioescolar" class="col-form-label">Año
+								escolar:</label></b>
+						<div class="col-sm-6">
+
+
+							<input type="text" class="form-control" id="annioescolar" />
+						</div>
+					</div>
+					<br> <br>
+					<div class="row" id="rowtablecurso">
+						<table id="tablecurso" class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th style="width: 90px;">Curso</th>
+									<th style="width: 80px;">Año</th>
+									<th>Sección</th>
+									<th>Turno</th>
+									<th style="width: 200px;">Nivel</th>
+									<th>Eepecialidad</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><select class="form-control" id="idCurso"
+										name="idCurso">
+											<option th:each="curso:${Cursos}" th:value="${curso.idCurso}"
+												th:text="${curso.idCurso}"></option>
+									</select></td>
+									<td><input type="text" class="form-control" id="annio" />
+									</td>
+
+									<td><input type="text" class="form-control" id="seccion" />
+									</td>
+
+									<td><input type="text" class="form-control" id="turno" />
+									</td>
+
+									<td><input type="text" class="form-control" id="nivel" />
+									</td>
+
+									<td><input type="text" class="form-control"
+										id="especialidad" /></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</form>
+				<!------------------------------------------FIN DEL FORMULARIO DEL CURSO---------------------->
+
+				<br /> <br />
+
+				<!------------------------------------------INICIO DEL FORMULARIO DEL ALUMNO--------------------->
+				<form class="form-horizontal" id="formAlumno" name="formAlumno">
+
+					<div class="row" id="rowtablealumno">
+						<input type="hidden" id="idAlumno" />
+						<table id="tablealumno" class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th style="width: 90px;">Tipo</th>
+									<th style="width: 200px;">N° de cédula</th>
+									<th style="width: 80px;"></th>
+									<th>Nombre y apellido</th>
+									<th></th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><select class="form-control" id="tipoDocAl"
+										name="tipoDocAl">
+											<option value="V">V</option>
+											<option value="E">E</option>
+											<option value="P">P</option>
+									</select></td>
+									<td><input type="text" class="form-control" id="numDocAl"
+										name="numDocAl" /></td>
+									<td><input type="button" class="input-buttons"
+										id="botonBuscAl" value="Buscar" /></td>
+									<td><input type="text" class="form-control" id="nombre" />
+									</td>
+									<td><input type="button" class="input-buttons"
+										id="botonAsignar" value="Asignar" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</form>
+
+				<br /> <br />
+
+				<!------------------INICIO DEL FORMULARIO DE LA LISTA DE ALUMOS--------------------->
+				<form class="form-horizontal" id="formListaAlumnos"
+					name="formListaAlumnos">
+					<!--AQUI VA LA TABLA-->
+					<div class="row" id="rowtablealumnosinscritos">
+						<table id="tablealumnosinscritos"
+							class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th>N° del alumno</th>
+									<th>Cédula</th>
+									<th>Nombre y apellido</th>
+									<th>Acción</th>
+								</tr>
+							</thead>
+							<tbody>
+
+
+
+							</tbody>
+						</table>
+					</div>
+					<br>
+					<div class="row">
+						<input type="button" class="input-buttons" name="guardar"
+							id="guardar" value="Guardar" style="margin: 0 auto" />
+					</div>
+				</form>
+				<!------------------FIN DEL FORMULARIO DE LA LISTA DE ALUMOS--------------------->
+			</div>
+		</div>
+	</div>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+	<script src="/js/cargacurso.js"></script>
+</body>
+</html>

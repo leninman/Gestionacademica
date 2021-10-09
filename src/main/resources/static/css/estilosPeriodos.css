@@ -1,16 +1,16 @@
-#tablecursos th {
+#tableperiodos th {
   background-color: #337ab7 !important;
   color: white;
   font-size: small;
 }
 
-#tablecursos>tbody>tr>td {
+#tableperiodos>tbody>tr>td {
   vertical-align: middle !important;
   text-align: center;
   font-size: small;
 }
 
-#rowtablecursos {
+#rowtableperiodos {
   text-align: center;
   margin-left: 0px;
   margin-right: 0px;
@@ -36,14 +36,7 @@
   justify-content: center;
 }
 
-#Annio,#Turno,#Seccion,#Nivel,#intAnnioEsc{
-  border-radius: 100px;
-  border: 1px solid #337ab7;
-  width: 300px;
-  align-items: center;
-  text-align: center;
-  
-}
+
 
 .input-buttons {
   border-radius: 100px;
@@ -51,11 +44,21 @@
   background-color: #337ab7;
   font-style: normal;
   color: white;
-  width: 100px;
+  width: 160px;
 }
 
 
+.input-fecha {
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  width: 255px;
+}
 
+#FechaIedit,#FechaFedit {
+  border-radius: 100px;
+  border: 1px solid #337ab7;
+  width: 200px;
+}
 
 
 
