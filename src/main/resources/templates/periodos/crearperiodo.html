@@ -14,54 +14,63 @@
 	<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
 		th:if="${mensaje4 != null}" th:text="${mensaje4}" class="alert"></div>
 
-	<br />
-	<br />
+	
+  <th:block th:replace="partes/header :: header" />
+  <th:block th:replace="partes/menu :: menuSuperior" />
 
 
-	<div class="container my-5">
-		<div class="card">
+	
+		<div class="card" style="width: 100%;height: 100%;">
 			<div class="card-header">
 				<nav class="navbar navbar-expand-lg navbar-light bg-light">
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
-							<li class="nav-item active"><a class="nav-link"
-								th:href="@{/app/inicio}" data-toggle="tooltip"
-								data-placement="top" title="Ir al inicio"><i
-									class="bi bi-house"></i>Home </a> &nbsp; &nbsp;
-							<li class="nav-item active"><a class="nav-link"
-								th:href="@{/app/nuevoperiodo}" data-toggle="tooltip"
-								data-placement="top" title="Limpiar pantalla"><i
-									class="bi bi-eraser"></i>Limpiar</a></li> &nbsp; &nbsp;
-							<li class="nav-item active"><a class="nav-link my-2 my-sm-0"
-								th:href="@{/app/periodosescolares}" data-toggle="tooltip"
-								data-placement="top" title="Salir"><i class="bi bi-x"></i>Salir</a></li>
+									<li>
+										<a type="button" class="btn btn-secondary" th:href="@{/app/inicio}" data-toggle="tooltip"
+											data-placement="top" title="Ir al inicio"><i class="bi bi-house"></i></a>
+									</li>
+									&nbsp;
+
+
+									<li th:if="${crear}">
+										<a type="button" class="btn btn-secondary" th:href="@{/app/nuevoperiodo}"
+											data-toggle="tooltip" data-placement="top" title="Limpiar pantalla"><i
+												class="bi bi-eraser"></i></a>
+									</li>
+
+									<li th:if="${!crear}">
+										<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
+											title="Editar" id="botonEditarProfesor"><i class="bi bi-pencil-fill"></i>
+										</button>
+									</li>
+									&nbsp;
+
+									<li>
+										<a type="button" class="btn btn-secondary" th:href="@{/app/periodosescolares}"
+											data-toggle="tooltip" data-placement="top" title="Salir"><i class="bi bi-x"></i></a>
+									</li>
+							
+							
+								
+							
 						</ul>
 					</div>
 				</nav>
 			</div>
 
-			<div class="card-body">
-				<div th:if="${crear}" class="row">
-					<form class="form-horizontal" th:action="@{/app/guardarperiodo}"
+			<div th:if="${crear}" class="card-body" style="text-align: center; width: 100%">
+				<div  class="row">
+					<form th:action="@{/app/guardarperiodo}"
 						th:object="${annioescolarDTO}" id="formPeriodo" name="formPeriodo"
 						method="post">
-						<div class="row">
-							<div class="form-group col-md-12">
-								&nbsp; &nbsp;
-								<h5>
-									<b>CREACIÓN DE PERIODO ESCOLAR</b>
-								</h5>
-							</div>
-						</div>
-						<br>
-						<br>
+					
 						
 						<input type="hidden" th:field="*{intAnnioEsc}"> 
 						<input type="hidden" th:field="*{status}">
 						<div class="row">
-							<div class="col-md-6">
+							<div class="col-md-5">
 								<label for="FechaI" class="col-form-label">Fecha de
-									inicio*</label> <input type="date" class="input-fecha" id="FechaI"
+									inicio*</label> <input type="date" class="input-fecha"
 									th:field="*{FechaI}" />
 								<div th:if="${#fields.hasErrors('FechaI')}"
 									th:errors="*{FechaI}" class="error"></div>
@@ -69,8 +78,8 @@
 
 
 							<div class="col-md-6">
-								<label for="FechaF" class="col-form-label">Fecha de fin*</label>
-								<input type="date" class="input-fecha" id="FechaF"
+								<label for="FechaF" class="col-form-label">Fecha de finalización*</label>
+								<input type="date" class="input-fecha"
 									th:field="*{FechaF}" />
 								<div th:if="${#fields.hasErrors('FechaF')}"
 									th:errors="*{FechaF}" class="error"></div>
@@ -83,30 +92,22 @@
 						</div>
 					</form>
 				</div>
+				</div>
 
 
-				<div class="card-body">
-					<div th:if="${!crear}" class="row">
+				<div th:if="${!crear}" class="card-body" style="text-align: center; width: 100%">
+					<div  class="row">
 						<form class="form-horizontal" th:action="@{/app/modificarperiodo}"
 							th:object="${annioescolarDTO}" id="formPeriodo"
 							name="formPeriodo" method="post">
-							<div class="row">
-								<div class="form-group col-md-12">
-									&nbsp; &nbsp;
-									<h5>
-										<b>MODIFICACION DE PERIODO ESCOLAR</b>
-									</h5>
-								</div>
-							</div>
-							<br>
-							<br>
+							
 							<input type="hidden" th:field="*{intAnnioEsc}"> 
 							<input type="hidden" th:field="*{status}">
 							<input type="hidden" th:field="*{idAnnioEsc}">
 							<div class="row">
-								<div class="col-md-6">
+								<div class="col-md-5">
 									<label for="FechaI" class="col-form-label">Fecha de
-										inicio*</label> <input type="date" id="FechaIedit"
+										inicio</label> <input type="date"  class="input-fecha"
 										th:field="*{FechaI}" />
 									<div th:if="${#fields.hasErrors('FechaI')}"
 										th:errors="*{FechaI}" class="error"></div>
@@ -115,7 +116,7 @@
 
 								<div class="col-md-6">
 									<label for="FechaF" class="col-form-label">Fecha de
-										fin*</label> <input type="date" id="FechaFedit" th:field="*{FechaF}" />
+										finalización</label> <input type="date"  class="input-fecha" th:field="*{FechaF}" />
 									<div th:if="${#fields.hasErrors('FechaF')}"
 										th:errors="*{FechaF}" class="error"></div>
 								</div>
@@ -130,8 +131,9 @@
 
 				</div>
 			</div>
-		</div>
-	</div>
+		
+	
+	<th:block th:replace="partes/footer :: footer" />
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

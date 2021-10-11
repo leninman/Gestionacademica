@@ -1,15 +1,26 @@
 
 
 $(document).ready(function () {
-
-
+if($("#crear").val()=="false"){    
+ $('form select').prop("disabled", true);
+ $('form input[type="text"]').prop("disabled", true);
+ $('#botonModificarMateria').prop('disabled',true);
+}
  $("#annio").val("");
-    $("#nivel").val("");
-     $("#especialidad").val("");
+ $("#nivel").val("");
+ $("#especialidad").val("");
      
 
 });
 
+
+$("#botonEditarProfesor").click(function () {
+    $('form select').prop("disabled", false);
+    $('form input[type="text"]').prop("disabled", false);
+    $('#botonModificarMateria').prop('disabled',false);
+
+
+});
 
 
 

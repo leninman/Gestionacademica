@@ -1,11 +1,12 @@
 #tablecursos th {
-  background-color: #337ab7 !important;
-  color: white;
+  background-color: #cccccc;
+  color: black;
   font-size: small;
+  text-align: center;
 }
 
 #tablecursos>tbody>tr>td {
-  vertical-align: middle !important;
+  vertical-align: middle;
   text-align: center;
   font-size: small;
 }
@@ -36,9 +37,9 @@
   justify-content: center;
 }
 
-#Annio,#Turno,#Seccion,#Nivel,#intAnnioEsc{
+#intAnnioEsc,#Annio,#Turno,#Seccion,#Nivel,#intAnnioEsc{
   border-radius: 100px;
-  border: 1px solid #337ab7;
+  border: 1px solid #b5b5b5;
   width: 300px;
   align-items: center;
   text-align: center;
@@ -47,8 +48,8 @@
 
 .input-buttons {
   border-radius: 100px;
-  border: 1px solid #337ab7;
-  background-color: #337ab7;
+  border: 1px solid #b5b5b5;
+  background-color: #b5b5b5;
   font-style: normal;
   color: white;
   width: 100px;
@@ -70,15 +71,71 @@
 }
 
 #tablealumnosinscritos th {
-  background-color: #337ab7 !important;
-  color: white;
+  background-color: #cccccc;
+  color: black;
   font-size: small;
+  text-align: center;
 }
 
 #tablealumnosinscritos>tbody>tr>td {
-  vertical-align: middle !important;
+  vertical-align: middle;
   text-align: center;
   font-size: small;
+}
+
+
+#tablecurso th {
+  background-color: #cccccc;
+  color: black;
+  font-size: small;
+  text-align: center;
+}
+
+#rowtablecurso {
+  text-align: center;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+#tablecurso>tbody>tr>td {
+  vertical-align: middle;
+  text-align: center;
+  font-size: small;
+  
+ 
+
+
+}
+
+
+
+#tablealumno th {
+  background-color: #cccccc;
+  color: black;
+  font-size: small;
+  text-align: center;
+}
+
+#rowtablealumno {
+  text-align: center;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+#tablealumno>tbody>tr>td {
+  vertical-align: middle;
+  text-align: center;
+  font-size: small;
+}
+
+#titulo1,#titulo2,#titulo3,#titulo4{
+
+  font-weight: bold;
+  align-content:center;
+  font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
+  font-size: large;
+  color: black;
+  font-size: 16px;
 }
 
 
@@ -88,5 +145,92 @@
   border: none;
   
 }
+
+
+#idCurso {
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  text-align: center;
+  width: 100px;
+}
+
+#annio {
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  text-align: center;
+  width: 100px;
+
+ 
+}
+
+#seccion {
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  text-align: center;
+  width: 100px;
+}
+
+#turno {
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  text-align: center;
+  width: 100px;
+}
+
+#nivel {
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  text-align: center;
+  width: 150px;
+}
+
+#especialidad {
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  text-align: center;
+  width: 150px;
+}
+
+#tipoDocAl {
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  text-align: center;
+  width: 100px;
+}
+
+#numDocAl {
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  text-align: center;
+  width: 150px;
+}
+
+#botonBuscAl {
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  text-align: center;
+  width: 100px;
+}
+
+#nombre {
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  text-align: center;
+  width: 300px;
+}
+
+
+#botonAsignar {
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  text-align: center;
+  width: 100px;
+}
+
+
+
+
+
+
 
 

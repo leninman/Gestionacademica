@@ -71,73 +71,68 @@
       th:text="${mensaje12}"
       class="alert"
 ></div>
+<th:block th:replace="partes/header :: header" />
+    <th:block th:replace="partes/menu :: menuSuperior" />
 
-    <div class="container my-5">
-      <div class="card" style="width: 100%; border-color: #337ab7">
-        <div class="card-header">
+    
+      <div class="card" style="width: 100%;border-color:#cccccc;margin-left: auto;margin-right: auto;">
+        <div class="card-header" style="width: 100%;height:100%;border-color:#cccccc;margin-left: auto;margin-right: auto;">
           <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                   <a
-                    class="nav-link"
+                    type="button" 
+                    class="btn btn-secondary"
                     th:href="@{/app/nuevocurso}"
                     data-toggle="tooltip"
                     data-placement="top"
                     title="Registrar Nuevo Curso"
-                    ><i></i>Nuevo <span class="sr-only">(current)</span></a
+                    ><i class="bi bi-book"></i><span class="sr-only">(current)</span></a
                   >
                 </li>
+                &nbsp;
                 <li class="nav-item active">
                   <a
-                    class="nav-link"
+                    type="button" 
+                    class="btn btn-secondary"
                     th:href="@{/app/cargarcurso}"
                     data-toggle="tooltip"
                     data-placement="top"
                     title="Cargar Curso"
-                    ><i></i>Cargar Curso <span class="sr-only">(current)</span></a
+                    ><i class="bi bi-card-list"></i><span class="sr-only">(current)</span></a
                   >
                 </li>
-                <li class="nav-item active">
-                  <a class="nav-link" th:href="@{/app/inicio}"
-                    ><i class="bi bi-x"></i>Salir<span class="sr-only"
-                      >(current)</span
-                    ></a
-                  >
+                &nbsp;
+                <li class="nav-item active" data-toggle="tooltip"
+                data-placement="top" title="Salir">
+                  <a type="button" class="btn btn-secondary" th:href="@{/app/inicio}"><i class="bi bi-x"></i><span class="sr-only">(current)</span></a>
                 </li>
               </ul>
             </div>
           </nav>
         </div>
-        <div class="card-body" style="text-align: left; width: 100%">
-          <div class="container">
-            <div class="col-md-20">
-              <form class="form-horizontal" id="formAlumno" name="formAlumno">
-                <div class="row">
-                  <div class="col-sm-4">&nbsp;</div>
-                  <div class="form-group col-md-8">
-                    <h5>
-                      <b>Listado de cursos activos</b>
-                    </h5>
-                  </div>
-                </div>
-                <br />
-                <div class="row" id="rowtablecursos">
+        <div class="card-body"  style="border: none;height: 100%;">
+          <br>
+          <div class="row" id="containertitulo">
+           <p id="titulo1">Listado de Cursos activos</p>
+          </div>
+          <br>
                   <table
                     id="tablecursos"
                     class="table table-striped table-hover"
                   >
                     <thead>
                       <tr>
-                        <th>NUMERO DEL CURSO</th>
-                        <th>AÑO</th>
-                        <th>SECCION</th>
-                        <th>TURNO</th>
-                        <th>NIVEL</th>
-                        <th>ESPECIALIDAD</th>
-                        <th>PERIODO</th>
+                        <th>Número del curso</th>
+                        <th>Año</th>
+                        <th>Sección</th>
+                        <th>Turno</th>
+                        <th>Nivel</th>
+                        <th>Especialidad</th>
+                        <th>Periodo</th>
                         <th></th>
-                        <th></th>
+                        <!--<th></th>-->
                         <th></th>
                       </tr>
                     </thead>
@@ -157,10 +152,10 @@
                           data-placement="top" 
                           title="Ver"
                           id="btnVer" 
-                          th:href="@{/app/vercurso/}+${curso.idCurso}"
+                          th:href="@{/app/editacurso/}+${curso.idCurso}"
                           ><i class="bi bi-eye"></i><a>
                         </td>
-                        <td>
+                        <!--<td>
                           <a
                             type="button"
                             class="btn btn-secondary"
@@ -171,7 +166,7 @@
                             th:href="@{/app/editacurso/}+${curso.idCurso}"
                             ><i class="bi bi-pencil-fill"></i
                           ></a>
-                        </td>
+                        </td>-->
                         <td>
                           <a
                             type="button"
@@ -187,14 +182,14 @@
                       </tr>
                     </tbody>
                   </table>
-                </div>
-              </form>
-            </div>
-          </div>
+                
+            
+          
+          
         </div>
       </div>
-    </div>
-
+    
+      <th:block th:replace="partes/footer :: footer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

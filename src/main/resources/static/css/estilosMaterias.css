@@ -1,84 +1,75 @@
 #tablematerias th {
-	background-color: #337ab7 !important;
-	color: white;
+	background-color: #cccccc;
+	color: black;
 	font-size: small;
+	text-align: center;
 }
 
 #tablematerias>tbody>tr>td {
-	vertical-align: middle !important;
+	vertical-align: middle;
 	text-align: center;
 	font-size: small;
 }
 
-#rowtablematerias {
-	text-align: center;
-	margin-left: 0px;
-	margin-right: 0px;
-}
 
-.card {
-	margin-right: auto;
-	margin-left: auto;
-	width: 80%;
-	border-color: #337ab7;
-}
 
-.card-body {
-	width: 80%;
-	margin-right: auto;
-	margin-left: auto;
-	justify-content: center;
-}
+
+
+
 
 .input-buttons {
-	border-radius: 100px;
-	border: 1px solid #337ab7;
-	background-color: #337ab7;
+	border-radius: 130px;
+	border: 1px solid #b5b5b5;
+	background-color: #b5b5b5;
 	font-style: normal;
 	color: white;
-	width: 130px;
+	width: 150px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .input-codigomat {
-	width: 100px;
+
 	border-radius: 100px;
-	border: 1px solid #337ab7;
+	border: 1px solid #b5b5b5;
+	width: 100px;
+	text-align: center;
 }
 
 .input-nombremat {
-	width: 400px;
+	width: 445px;
 	border-radius: 100px;
-	border: 1px solid #337ab7;
+	border: 1px solid #b5b5b5;
 }
 
 .input-descripcionMat {
-	width: 635px;
+	width: 705px;
 	border-radius: 100px;
-	border: 1px solid #337ab7;
+	border: 1px solid #b5b5b5;
 }
 
 #annio {
 	border-radius: 100px;
-	border: 1px solid #337ab7;
+	border: 1px solid #b5b5b5;
 	width: 80px;
-	align-items: center;
 	text-align: center;
+	
 }
 
 #nivel {
 	border-radius: 100px;
-	border: 1px solid #337ab7;
+	border: 1px solid #b5b5b5;
 	width: 130px;
-	align-items: center;
 	text-align: center;
+	
 }
 
 #especialidad {
 	border-radius: 100px;
-	border: 1px solid #337ab7;
+	border: 1px solid #b5b5b5;
 	width: 120px;
-	align-items: center;
 	text-align: center;
+
 }
 
 
@@ -86,26 +77,36 @@
 
 #cmbannio {
 	border-radius: 100px;
-	border: 1px solid #337ab7;
+	border: 1px solid #b5b5b5;
 	width: 80px;
-	align-items: center;
-	text-align: center;
+	
 }
 
 #cmbnivel {
 	border-radius: 100px;
-	border: 1px solid #337ab7;
+	border: 1px solid #b5b5b5;
 	width: 130px;
-	align-items: center;
-	text-align: center;
+
 }
 
 #cmbespecialidad {
 	border-radius: 100px;
-	border: 1px solid #337ab7;
+	border: 1px solid #b5b5b5;
 	width: 120px;
-	align-items: center;
-	text-align: center;
+	
 }
+#titulo1,#titulo2,#titulo3,#titulo4{
 
+	font-weight: bold;
+	align-content:center;
+	font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
+	font-size: large;
+	color: black;
+	font-size: 16px;
+  }
+
+  #formMateria{
+	margin-left: auto;
+	margin-right: auto;
+  }
 

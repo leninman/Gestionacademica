@@ -1,11 +1,14 @@
 
 
 $(document).ready(function () {
-
-
+  $('form select').prop("disabled", true);
+  $('#modificarcurso').prop('disabled',true);
 });
 
-
+$("#botonEditarCurso").click(function () {
+    $('form select').prop("disabled", false);
+    $('#modificarcurso').prop('disabled',false);
+  });
 
 
 

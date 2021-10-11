@@ -49,7 +49,7 @@
 </header>
 
 <body>
- 
+
 
   <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje2 != null}"
     th:text="${mensaje2}" class="alert">
@@ -59,8 +59,8 @@
   </div>
   <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje1 != null}"
     th:text="${mensaje1}" class="alert"></div>
-    <th:block th:replace="partes/header :: header" />
-    <th:block th:replace="partes/menu :: menuSuperior" />
+  <th:block th:replace="partes/header :: header" />
+  <th:block th:replace="partes/menu :: menuSuperior" />
 
 
   <!--<div class="card" style="width: 100%;border: none;margin-left: auto;margin-right: auto;">-->
@@ -163,27 +163,28 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" th:href="@{/app/registroalumno}" data-toggle="tooltip" data-placement="top"
-                title="Registrar Nuevo Alumno"><i class="bi bi-person-plus"></i>Nuevo <span
+              <a type="button" class="btn btn-secondary" th:href="@{/app/registroalumno}" data-toggle="tooltip"
+                data-placement="top" title="Registrar Nuevo Alumno"><i class="bi bi-person-plus"></i> <span
                   class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active">
-              <a class="nav-link" th:href="@{/app/inicio}"><i class="bi bi-x"></i>Salir<span
-                  class="sr-only">(current)</span></a>
+            &nbsp;
+            <li class="nav-item active" data-toggle="tooltip"
+            data-placement="top" title="Salir">
+              <a type="button" class="btn btn-secondary" th:href="@{/app/inicio}"><i class="bi bi-x"></i><span class="sr-only">(current)</span></a>
             </li>
           </ul>
 
         </div>
-       
+
       </nav>
-     
+
 
     </div>
     <br>
     <div class="card-body" style="border: none;height: 100%;">
       <div class="row" id="containertitulo">
         <div class="col-md-5">&nbsp;</div>
-       <p id="titulo1">Listado de alumnos activos</p>
+        <p id="titulo1">Listado de alumnos activos</p>
       </div>
       <table class="table table-striped table-hover" id="tablaAlumnos">
         <thead>
@@ -234,7 +235,7 @@
 
     </div>
   </div>
- 
+
 
   <!--</div>-->
   <!--</div>-->
@@ -275,7 +276,7 @@
     });
     }
     </script>-->
-    <th:block th:replace="partes/footer :: footer" />
+  <th:block th:replace="partes/footer :: footer" />
 </body>
 
 </html>

@@ -74,7 +74,8 @@ public class cursoController {
 	public String nuevocurso(Model model) {
 		CursoDTO cursoDTO = new CursoDTO();
 		model.addAttribute("annioescolar", cursoservice.consultarAnnioEscolar());
-		model.addAttribute("annios", cursoservice.consultarannios());
+		model.addAttribute("annios", cursoservice.annios());
+		model.addAttribute("niveles", cursoservice.niveles());
 		model.addAttribute("secciones", cursoservice.consultarsecciones());
 		model.addAttribute("turnos", cursoservice.consultarturnos());
 		model.addAttribute("cursoDTO", cursoDTO);
@@ -136,12 +137,19 @@ public class cursoController {
 
 	@GetMapping(path = "/editacurso/{idCurso}")
 	public String editacurso(@PathVariable(value = "idCurso") Long idCurso, Model model) {
+		
+		
+		Responses resp = new Responses();
 
-		CursoDTO cursoDTO = cursoservice.consultarCursoPorId(idCurso);
+		resp = alumnoservice.consultarAlumnosPorCurso(idCurso);
+
+		CursoDTO cursoDTO = cursoservice.consultarCursoPorId(idCurso);	
 		model.addAttribute("annioescolar", cursoservice.consultarAnnioEscolar());
-		// model.addAttribute("annios",cursoservice.consultarannios());
+		model.addAttribute("annios", cursoservice.annios());
+		model.addAttribute("niveles", cursoservice.niveles());
 		model.addAttribute("secciones", cursoservice.consultarsecciones());
 		model.addAttribute("turnos", cursoservice.consultarturnos());
+		model.addAttribute("Alumnosinscritos", resp.getListadeAlumnos());
 		model.addAttribute("cursoDTO", cursoDTO);
 
 		return "cursos/editacurso";
