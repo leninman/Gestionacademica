@@ -37,6 +37,12 @@
   justify-content: center;
 }
 
+#containerannioescolar{
+  margin-left:auto
+ 
+
+}
+
 #intAnnioEsc,#Annio,#Turno,#Seccion,#Nivel,#intAnnioEsc{
   border-radius: 100px;
   border: 1px solid #b5b5b5;
@@ -128,6 +134,86 @@
   font-size: small;
 }
 
+#tablemateriasdisponibles th {
+  background-color: #cccccc;
+  color: black;
+  font-size: small;
+  text-align: center;
+}
+
+#tablemateriasdisponibles>tbody>tr>td {
+  vertical-align: middle;
+  text-align: center;
+  font-size: small;
+}
+
+#rowtablemateriasdisponibles {
+  text-align: center;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+
+
+
+#tablemateriasasignadas th {
+  background-color: #cccccc;
+  color: black;
+  font-size: small;
+  text-align: center;
+}
+
+#tablemateriasasignadas>tbody>tr>td {
+  vertical-align: middle;
+  text-align: center;
+  font-size: small;
+}
+
+#rowtablemateriasasignadas {
+  text-align: center;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+formListaMateriasAsignadas
+
+#tableprofesor th {
+  background-color: #cccccc;
+  color: black;
+  font-size: small;
+  text-align: center;
+}
+
+#tableprofesor>tbody>tr>td {
+  vertical-align: middle;
+  text-align: center;
+  font-size: small;
+}
+
+#rowtableprofesor {
+  text-align: center;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+
+
+
+
+
+
+
 #titulo1,#titulo2,#titulo3,#titulo4{
 
   font-weight: bold;
@@ -198,7 +284,21 @@
   width: 100px;
 }
 
+#tipoDocPrf {
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  text-align: center;
+  width: 100px;
+}
+
 #numDocAl {
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  text-align: center;
+  width: 150px;
+}
+
+#numDocPrf {
   border-radius: 100px;
   border: 1px solid #b5b5b5;
   text-align: center;
