@@ -615,6 +615,8 @@ public class ICursoServiceImpl implements ICursoService {
 		
 			if(cursoprofesor==null) {
 				Cursos_prof cursoprofesorguardado=cursoprofrepo.save(cursoprof);
+				resp.setResponseCode(Constantes.CURSO_MATERIA_ASIGNADA_CODE);
+				resp.setResponseDescription(Constantes.CURSO_MATERIA_ASIGNADA_DESC);
 				
 			}
 		}
@@ -628,6 +630,24 @@ public class ICursoServiceImpl implements ICursoService {
 	public Responses asignarMaterias(List<Materias_prof> materias) {
 		// TODO Auto-generated method stub
 		Responses resp=new Responses();
+		return resp;
+	}
+
+	@Override
+	public Responses eliminarCursosMateria(Long idProfesor,Long idCurso,Long idMateria) {
+		// TODO Auto-generated method stub
+		Responses resp=new Responses();
+		
+		//Long idCursoMateria=cursoprof.getIdCursoProf();
+		
+		Cursos_prof cursosprof=cursoprofrepo.findCursoProf(idCurso, idMateria, idProfesor);
+		
+		if(cursosprof!=null) {
+			cursoprofrepo.deleteById(cursosprof.getIdCursoProf());
+			resp.setResponseCode(Constantes.CURSO_MATERIA_ELIMINADA_CODE);
+			resp.setResponseDescription(Constantes.CURSO_MATERIA_ELIMINADA_DESC);
+		}
+		
 		return resp;
 	}
 

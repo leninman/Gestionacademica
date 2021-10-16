@@ -35,6 +35,9 @@ public class ViewCursosMateriasAsignada implements Serializable {
 	private String materia;
 
 	private String nivel;
+	
+	@Column(name="ID_PRF")
+	private BigInteger idPrf;
 
 	@Column(name="NUM_DOC_PRF")
 	private String numDocPrf;
@@ -189,5 +192,19 @@ public class ViewCursosMateriasAsignada implements Serializable {
 	public void setTipoDocPrf(String tipoDocPrf) {
 		this.tipoDocPrf = tipoDocPrf;
 	}
+
+	public BigInteger getIdPrf() {
+		return idPrf;
+	}
+
+	public void setIdPrf(BigInteger idPrf) {
+		this.idPrf = idPrf;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
 
 }

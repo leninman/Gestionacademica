@@ -9,8 +9,11 @@ import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.Alumno;
 import com.virtualeduc.tuescuelavirtual.models.Curso;
+import com.virtualeduc.tuescuelavirtual.models.Cursos_prof;
 import com.virtualeduc.tuescuelavirtual.models.Representante;
 import com.virtualeduc.tuescuelavirtual.models.Responses;
+import com.virtualeduc.tuescuelavirtual.models.ViewCursosMateriasAsignada;
+import com.virtualeduc.tuescuelavirtual.models.ViewCursosMateriasSinAsignar;
 import com.virtualeduc.tuescuelavirtual.services.IAlumnoService;
 import com.virtualeduc.tuescuelavirtual.services.ICursoService;
 import com.virtualeduc.tuescuelavirtual.services.IRepresentanteService;
@@ -137,13 +140,12 @@ public class cursoController {
 
 	@GetMapping(path = "/editacurso/{idCurso}")
 	public String editacurso(@PathVariable(value = "idCurso") Long idCurso, Model model) {
-		
-		
+
 		Responses resp = new Responses();
 
 		resp = alumnoservice.consultarAlumnosPorCurso(idCurso);
 
-		CursoDTO cursoDTO = cursoservice.consultarCursoPorId(idCurso);	
+		CursoDTO cursoDTO = cursoservice.consultarCursoPorId(idCurso);
 		model.addAttribute("annioescolar", cursoservice.consultarAnnioEscolar());
 		model.addAttribute("annios", cursoservice.annios());
 		model.addAttribute("niveles", cursoservice.niveles());
@@ -219,6 +221,71 @@ public class cursoController {
 		model.addAttribute("Cursos", cursos);
 		model.addAttribute("direccionbase", direccionbase);
 		return "cursos/cargarcurso";
+	}
+
+	@GetMapping(path = "/verasignarcurso")
+	public String verasignarcurso(Model model) {
+
+		List<ViewCursosMateriasSinAsignar> materias = new ArrayList<>();
+
+		materias = cursoservice.consultarMateriasSinAsignar();
+
+		String periodoescolar = materias.get(0).getPeriodoEscolar();
+
+		model.addAttribute("direccionbase", direccionbase);
+
+		model.addAttribute("materias", materias);
+
+		model.addAttribute("periodoescolar", periodoescolar);
+
+		return "cursos/verasignarcurso";
+	}
+
+	@GetMapping(path = "/cursosmateriasasignadas")
+	public String cursosmateriasasignadas(Model model) {
+
+		List<ViewCursosMateriasAsignada> materias = new ArrayList<>();
+
+		boolean hayMateriasAsignadas = false;
+
+		materias = cursoservice.consultarMateriasAsignadas();
+
+		if (materias.size() != 0) {
+
+			hayMateriasAsignadas = true;
+
+			String periodoescolar = materias.get(0).getPeriodoEscolar();
+
+			model.addAttribute("direccionbase", direccionbase);
+
+			model.addAttribute("materias", materias);
+
+			model.addAttribute("periodoescolar", periodoescolar);
+			
+			model.addAttribute("hayMateriasAsignadas", hayMateriasAsignadas);
+		}
+
+		return "cursos/cursosasignados";
+	}
+
+	// @CrossOrigin(origins = {
+	// "direccionbase/eliminacursomateria/{idCurso}/{idPrf}/{idMat}" })
+	@GetMapping(path = "/eliminacursomateria/{idCurso}/{idPrf}/{idMat}")
+	public String eliminacursomateria(@PathVariable(name = "idCurso") Long idCurso,
+			@PathVariable(name = "idPrf") Long idPrf, @PathVariable(name = "idMat") Long idMat,
+			RedirectAttributes redirectAttributes) {
+
+		Responses resp = new Responses();
+
+		resp = cursoservice.eliminarCursosMateria(idPrf, idCurso, idMat);
+		
+		if(resp.getResponseCode()==Constantes.CURSO_MATERIA_ELIMINADA_CODE) {
+			redirectAttributes.addFlashAttribute("mensaje23", resp.getResponseDescription())
+			.addFlashAttribute("clase", "success");
+		}
+
+		return "redirect:/app/cursosmateriasasignadas";
+
 	}
 
 }

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" type="text/css" href="/css/estilosCurso.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <header></header>
+
+  <body>
+    <div
+      th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+      th:if="${mensaje22 != null}"
+      th:text="${mensaje22}"
+      class="alert"
+    ></div>
+    <div
+      th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+      th:if="${mensaje23 != null}"
+      th:text="${mensaje23}"
+      class="alert"
+    ></div>
+    <th:block th:replace="partes/header :: header" />
+    <th:block th:replace="partes/menu :: menuSuperior" />
+
+    <div
+      class="card"
+      style="
+        width: 100%;
+        border-color: #cccccc;
+        margin-left: auto;
+        margin-right: auto;
+      "
+    >
+      <div
+        class="card-header"
+        style="
+          width: 100%;
+          border-color: #cccccc;
+          margin-left: auto;
+          margin-right: auto;
+        "
+      >
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li>
+                <a
+                  type="button"
+                  class="btn btn-secondary"
+                  th:href="@{/app/inicio}"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Ir al inicio"
+                  ><i class="bi bi-house"></i
+                ></a>
+              </li>
+              &nbsp;
+              <li>
+                <a
+                  type="button"
+                  class="btn btn-secondary"
+                  th:href="@{/app/verasignarcurso}"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Asignar materias y cursos"
+                  ><i class="fa fa-sign-in" aria-hidden="true"></i
+                ></a>
+              </li>
+              &nbsp;
+              <li>
+                <a
+                  type="button"
+                  class="btn btn-secondary"
+                  th:href="@{/app/listarcursos}"
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Salir"
+                  ><i class="bi bi-x"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="card-body" style="border: none; height: 100%">
+        <br />
+        <br />
+        <!------------------INICIO DEL FORMULARIO DE MATERIAS Y CURSOS ASIGNADOS--------------------->
+        <form
+          class="form-horizontal"
+          id="formListaMateriasAsignadas"
+          name="formListaMateriasAsignadas"
+        >
+          <input
+            type="hidden"
+            id="hayMateriasAsignadas"
+            name="hayMateriasAsignadas"
+            th:value="${hayMateriasAsignadas}"
+          />
+          <div class="row" id="containertitulo">
+            <p id="titulo1">Cursos y materias Asignadas</p>
+          </div>
+          <br />
+
+          <div id="rowtablemateriasasignadas" style="width: 100%">
+            <table
+              id="tablemateriasasignadas"
+              class="table table-striped table-hover"
+            >
+              <thead>
+                <tr>
+                  <th style="display: none">IdMateria</th>
+                  <th style="display: none">IdProfesor</th>
+                  <th>Curso</th>
+                  <th>Año</th>
+                  <th>Sección</th>
+                  <th>Nivel</th>
+                  <th>Especialidad</th>
+                  <th>Asignatura</th>
+                  <th>Profesor</th>
+                  <th>Cédula</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody th:if="${hayMateriasAsignadas}">
+                <tr th:each="materia:${materias}" id="rowsmateriasdisp">
+                  <td th:text="${materia.idMat}" style="display: none"></td>
+                  <td th:text="${materia.idPrf}" style="display: none"></td>
+                  <td th:text="${materia.idCurso}"></td>
+                  <td th:text="${materia.annio}"></td>
+                  <td th:text="${materia.seccion}"></td>
+                  <td th:text="${materia.nivel}"></td>
+                  <td th:text="${materia.especialidad}"></td>
+                  <td th:text="${materia.materia}"></td>
+                  <td
+                    th:text="${materia.primNombPrf}+' '+${materia.primApellPrf}"
+                  ></td>
+                  <td th:text="${materia.tipoDocPrf}+${materia.numDocPrf}"></td>
+
+                  <td>
+                    <!--<input
+										type="submit"
+										class="btn btn-secondary"
+										data-toggle="tooltip"
+										data-placement="top"
+										title="Eliminar"
+										id="btnEliminar"
+										><i class="bi bi-trash"></i
+									  />-->
+                    <!--<input type="button" class="btn btn-secondary"
+									  data-toggle="tooltip" data-placement="top" id="btnEliminar"/><i class="bi bi-trash"></i>-->
+                    <a
+                      type="button"
+                      class="btn btn-secondary"
+                      data-toggle="tooltip"
+                      data-placement="top"
+                      title="Eliminar"
+                      id="btnEliminar"
+                      th:href="@{/app/eliminacursomateria/}+${materia.idCurso}+'/'+${materia.idPrf}+'/'+${materia.idMat}"
+                      ><i class="bi bi-trash"></i
+                    ></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </form>
+
+        <!--<div class="row">
+				<input type="button" class="input-buttons" name="guardar" id="guardar" value="Guardar"
+					style="margin: 0 auto" />
+			</div>-->
+      </div>
+    </div>
+
+    <th:block th:replace="partes/footer :: footer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="/js/cursosasignados.js"></script>
+  </body>
+</html>

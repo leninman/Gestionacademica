@@ -41,6 +41,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -206,35 +207,42 @@ public class coreController {
     	
      }
      
-     @CrossOrigin(origins = {"direccionbase/asignarmateriasycursos"})
-     @PostMapping(path = "/asignarmateriasycursos")
-    public Responses asignarmateriasycursos(@RequestParam(name="idcursos[]") Long[] idcursos,
-    		@RequestParam(name="idmaterias[]") Long[] idmaterias,@RequestParam(name="idprofesor") Long idprofesor,
-    		RedirectAttributes redirectAttributes) {
-    	 
-    	 Responses resp=new Responses();
-    	 
-    	 List<Cursos_prof> cursosprof=new ArrayList<>();
-    	 
-    	 for(int i=0;i<idmaterias.length;i++) {
-    		 
-    		 Cursos_prof cursoprof=new Cursos_prof();
-    		 
-    		 cursoprof.setIdCurso(idcursos[i]);
-    		 
-    		 cursoprof.setIdMat(idmaterias[i]);
-    		 
-    		 cursoprof.setIdProf(idprofesor);
-    		 
-    		 cursosprof.add(cursoprof);
-    		 
-    	 }
-    	 
-    	 resp=cursoservice.asignarCursosMaterias(cursosprof);
-    	 
-    	 return resp;
-    	 
-     }
+   
+ 	@CrossOrigin(origins = { "direccionbase/asignarmateriasycursos" })
+ 	@PostMapping(path = "/asignarmateriasycursos")
+ 	public Responses asignarmateriasycursos(@RequestParam(name = "idcursos[]") Long[] idcursos,
+ 			@RequestParam(name = "idmaterias[]") Long[] idmaterias, @RequestParam(name = "idprofesor") Long idprofesor,
+ 			RedirectAttributes redirectAttributes) {
+
+ 		Responses resp = new Responses();
+
+ 		List<Cursos_prof> cursosprof = new ArrayList<>();
+
+ 		for (int i = 0; i < idmaterias.length; i++) {
+
+ 			Cursos_prof cursoprof = new Cursos_prof();
+
+ 			cursoprof.setIdCurso(idcursos[i]);
+
+ 			cursoprof.setIdMat(idmaterias[i]);
+
+ 			cursoprof.setIdProf(idprofesor);
+
+ 			cursosprof.add(cursoprof);
+
+ 		}
+
+ 		resp = cursoservice.asignarCursosMaterias(cursosprof);
+ 		
+ 		return resp;
+
+ 	}
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
     
      
      

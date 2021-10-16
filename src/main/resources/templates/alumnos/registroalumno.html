@@ -587,12 +587,19 @@
                     th:errors="*{numDocRep1}"
                     class="error"
                   ></div>
-                  <input
+                 <!--<input
                     type="button"
                     class="input-buttons"
                     id="botonBuscRep"
                     value="Buscar"
-                  />
+                  />-->
+                  <a  class="btn btn-secondary" 
+                         type="button" 
+                         data-toggle="tooltip"
+                         data-placement="top" title="Buscar Representante" 
+                         id="botonBuscRep">
+                         <i class="fa fa-search" aria-hidden="true"></i>
+                         </a>
                 </div>
               </div>
               <br />
@@ -1168,12 +1175,19 @@
                       onkeypress="return event.charCode >= 48 && event.charCode <= 57"
                       maxlength="8"
                     />
-                    <input
+                    <!--<input
                       type="button"
                       class="input-buttons"
                       id="botonBuscRep2"
                       value="Buscar"
-                    />
+                    />-->
+                    <a  class="btn btn-secondary" 
+                         type="button" 
+                         data-toggle="tooltip"
+                         data-placement="top" title="Buscar Representante" 
+                         id="botonBuscRep2">
+                         <i class="fa fa-search" aria-hidden="true"></i>
+                         </a>
                   </div>
                 </div>
                 <br />
@@ -1608,12 +1622,30 @@
                         <td th:text="${curso.nivel}"></td>
                         <td th:text="${curso.especialidad}"></td>
                         <td>
-                          <input
+                          <!--<span class="btn btn-warning" style="color: white;">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i><input
+                            type="button"     
+                            onclick="mostrarcursoelegido();"
+                            style="color: white;"/>
+                          </span>-->
+                         
+                          <!--<input
                             type="button"
                             class="input-buttons"
                             value="Asignar"
                             onclick="mostrarcursoelegido();"
-                          />
+                         / >-->
+                         <a  class="btn btn-secondary" 
+                         type="button" 
+                         data-toggle="tooltip"
+                         data-placement="top" title="Asignar curso" 
+                         onclick="mostrarcursoelegido();">
+                         <i class="fa fa-sign-in" aria-hidden="true"></i>
+                         </a>
+
+                      
+                       
+
                         </td>
                       </tr>
                     </tbody>
@@ -1785,6 +1817,10 @@
                   value="Registrar"
                   style="margin: 0 auto"
                 />
+
+                
+
+                
               </div>
               <br />
               <br />

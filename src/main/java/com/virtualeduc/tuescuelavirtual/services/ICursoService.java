@@ -87,6 +87,8 @@ public interface ICursoService {
       
       public Responses asignarMaterias(List<Materias_prof> materiasprof);
       
+      public Responses eliminarCursosMateria(Long idPrf,Long idCurso,Long idMat);
+      
       
       
 }
