@@ -15,6 +15,8 @@
     <class>com.virtualeduc.tuescuelavirtual.models.ViewMateriasPorCurso</class>
     <class>com.virtualeduc.tuescuelavirtual.models.ViewCursosMateriasAsignada</class>
     <class>com.virtualeduc.tuescuelavirtual.models.ViewCursosMateriasSinAsignar</class>
+    <class>com.virtualeduc.tuescuelavirtual.models.NotasPar</class>
+    <class>com.virtualeduc.tuescuelavirtual.models.NotasDef</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sistgestacad?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

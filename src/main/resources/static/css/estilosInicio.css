@@ -12,7 +12,7 @@ body {
     /*background-image: url("/images/modern-education-system-830x555.jpg");*/
     background-position: center;
     background-repeat: no-repeat;
-    background-size:100%;
+    background-size: 100%;
     position: relative;
     background-color: #cccccc;
     height: 600px;
@@ -26,44 +26,95 @@ h2 {
     font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
     font-size: large;
     color: white;
-    width:50%;
+    width: 50%;
 }
 
 
 h5 {
     font-style: italic;
     font-weight: bold;
-    align-content:center;
+    align-content: center;
     font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
     font-size: xxx-large;
     color: white;
 }
 
-#myNavBar {
+.navbar {
     background-color: #7f87a3;
     height: 50px;
 }
 
-
-#myNavBar .navbar-nav .nav-item a {
+.navbar .navbar-nav .nav-item a {
     float: center;
     display: block;
     text-align: left;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 14px;
-   color:white;
+    color: white;
+}
 
+.navbar .navbar-nav .nav-item a:hover {
+    background-color: #afb2bd;
+}
+
+.nav-item:hover .dropdown-menu {
+    background-color: #7f87a3;
+    display: block;
+    align-items: center;
 }
 
 
-#myNavBar .navbar-nav .nav-item a:hover {
-   
-    background-color:#afb2bd;
+/*#myNavBar {
+    background-color: #7f87a3;
+    height: 50px;
+}*/
+
+
+
+/*#myNavBar .navbar-nav .nav-item a {
+    float: center;
+    display: block;
+    text-align: left;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 14px;
+    color: white;
+}*/
+
+
+
+/*#myNavBar .navbar-nav .nav-item a:hover {
+    background-color: #afb2bd;
+}*/
+
+
+
+/*.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}*/
+
+
+
+/*#myNavBar .navbar-nav .nav-item a.active {
+    background-color: #4CAF50;
+    color: #4CAF50;
 
 }
 
-#myNavBar #navbarNav .navbar-nav .nav-item a.active {
+#myNavBar .navbar-nav .nav-item .icon {
+    display: none;
+}*/
+
+
+
+
+
+/*#myNavBar #navbarNav .navbar-nav .nav-item a.active {
     background-color: #4CAF50;
     color: #4CAF50;
 
@@ -71,7 +122,22 @@ h5 {
 
 #myNavBar #navbarNav .navbar-nav .nav-item .icon {
     display: none;
-}
+}*/
+
+
+
+
+/*.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}*/
+
+
+
+
+
 
 /*@media screen and (max-width: 600px) {
     #myNavBar #navbarNav .navbar-nav .nav-item a:not(:first-child) {
@@ -101,28 +167,3 @@ h5 {
         text-align: left;
     }
 }*/
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-  
-    text-decoration: none;
-    display: block;
-}
-.nav-item:hover .dropdown-menu {
-    background-color:#7f87a3;
-    display:block;
-    align-items: center;
-}
-
-
-
