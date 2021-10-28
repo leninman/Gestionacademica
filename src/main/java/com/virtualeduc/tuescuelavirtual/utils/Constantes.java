@@ -59,6 +59,8 @@ public class Constantes {
 	
 	public static int CURSO_MATERIA_ELIMINADA_CODE=123;
 	
+	public static int CURSO_NO_ASIGNASO=124;
+	
 	
     //mensaje2    	
 	public static String ALUMNO_REGISTRADO_DESC="EL ALUMNO HA SIDO REGISTRADO CORRECTAMENTE EN EL SISTEMA";
@@ -131,6 +133,9 @@ public class Constantes {
 
 	//mensaje23
 	public static String CURSO_MATERIA_ELIMINADA_DESC="EL CURSO HA SIDO ELIMINADO CORRECTAMENTE";
+	
+	//mensaje24
+	public static String CURSO_NO_ASIGNADO_DESC="DEBE ASIGNAR UN CURSO PARA PODER REGISTRAR EL ALUMNO";
 
 
 

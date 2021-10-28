@@ -8,6 +8,10 @@ and open the template in the editor.
     Author     : Lenin
 */
 
+input{
+	 text-transform:uppercase;
+}
+
 body {
     /*background-image: url("/images/modern-education-system-830x555.jpg");*/
     background-position: center;

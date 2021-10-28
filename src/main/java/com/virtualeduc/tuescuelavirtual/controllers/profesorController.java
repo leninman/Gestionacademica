@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,73 +65,76 @@ public class profesorController {
 	@GetMapping(path = "/registroprofesor")
 	public String registroprofesor(Model model) {
 		ProfesorDTO profesor = new ProfesorDTO();
-		List<Profesion> profesiones = new ArrayList<>();
-		List<String> materias = new ArrayList<>();
-		List<String> annios = new ArrayList<>();
-		List<String> niveles = new ArrayList<>();
-		List<String> especialidades = new ArrayList<>();
-		materias = materiasService.nombresmaterias();
-		annios = cursoservice.annios();
-		niveles = cursoservice.niveles();
-		especialidades = cursoservice.especialidades();
-		profesiones = variosservice.consultarProfesiones();
 		model.addAttribute("profesor", profesor);
-		model.addAttribute("profesiones", profesiones);
-		model.addAttribute("materias", materias);
+		//model.addAttribute("direccionbase", direccionbase);
+		//List<Profesion> profesiones = new ArrayList<>();
+		//List<String> materias = new ArrayList<>();
+		//List<String> annios = new ArrayList<>();
+		//List<String> niveles = new ArrayList<>();
+		//List<String> especialidades = new ArrayList<>();
+		//materias = materiasService.nombresmaterias();
+		//annios = cursoservice.annios();
+		//niveles = cursoservice.niveles();
+		//especialidades = cursoservice.especialidades();
+		//profesiones = variosservice.consultarProfesiones();
+		
+		//model.addAttribute("profesiones", profesiones);
+		/*model.addAttribute("materias", materias);
 		model.addAttribute("annios", annios);
 		model.addAttribute("niveles", niveles);
-		model.addAttribute("especialidades", especialidades);
-		model.addAttribute("direccionbase", direccionbase);
+		model.addAttribute("especialidades", especialidades);*/
+	
 		return "profesores/registroprofesor";
 	}
-
-	@GetMapping(path = "/verprofesor/{idPrf}")
-	public String verprofesor(@PathVariable(name = "idPrf") Long idPrf, Model model) {
-		
-		Profesor profesor=profesoresService.consultarProfesorPorId(idPrf);
-		
-		ProfesorDTO profesordto=new ProfesorDTO(profesor);
-		
-		List<Profesion> profesiones = new ArrayList<>();
-		
-		profesiones = variosservice.consultarProfesiones();
-		
-		model.addAttribute("profesiones", profesiones);
-		
-		model.addAttribute("profesor", profesordto);
-				
-		return "profesores/editarprofesor";
-	}
-
+	
 	@PostMapping(path = "/agregarprofesor")
 	public String registrarprofesor(@Valid ProfesorDTO profesor, BindingResult result, Model model,
 			RedirectAttributes redirectAttributes) {
-
+		
+		if (result.hasErrors()) {
+			model.addAttribute("profesor", profesor);
+			return "profesores/registroprofesor";
+		}
 		guardar = true;
-
 		Responses resp = profesoresService.guardarProfesor(profesor, guardar);
 
 		if (resp.getResponseCode() == Constantes.PROFESOR_REGISTRADO_CODE) {
 			redirectAttributes.addFlashAttribute("mensaje19", resp.getResponseDescription()).addFlashAttribute("clase",
 					"success");
 		}
-
 		return "redirect:listarprofesores?success";
 	}
 	
 	
+	
+	
+
+	@GetMapping(path = "/verprofesor/{idPrf}")
+	public String verprofesor(@PathVariable(name = "idPrf") Long idPrf, Model model) {
+		
+		Profesor profesor=profesoresService.consultarProfesorPorId(idPrf);
+		ProfesorDTO profesordto=new ProfesorDTO(profesor);
+		List<Profesion> profesiones = new ArrayList<>();
+		profesiones = variosservice.consultarProfesiones();
+		model.addAttribute("profesiones", profesiones);
+		model.addAttribute("profesor", profesordto);	
+		return "profesores/editarprofesor";
+	}
+
+
 	@PostMapping(path = "/actualizarprofesor")
 	public String actualizarprofesor(@Valid ProfesorDTO profesor, BindingResult result, Model model,
 			RedirectAttributes redirectAttributes) {
+		
+		if (result.hasErrors()) {
+			model.addAttribute("profesor", profesor);
+			return "profesores/editarprofesor";
+		}
 
 		guardar = false;
 		
 		Responses resp = profesoresService.guardarProfesor(profesor, guardar);
 		
-		
-
-
-
 		if (resp.getResponseCode() == Constantes.PROFESOR_MODIFICADO_CODE) {
 			redirectAttributes.addFlashAttribute("mensaje21", resp.getResponseDescription()).addFlashAttribute("clase",
 					"success");
@@ -139,6 +143,15 @@ public class profesorController {
 		return "redirect:listarprofesores?success";
 	}
 	
+	@ModelAttribute("profesiones")
+	public List<Profesion> poblarProfesiones(){
+		List<Profesion> profesiones = new ArrayList<>();
+		profesiones = variosservice.consultarProfesiones();
+		return profesiones;
+	}
+	
+	
+	
 	
 
-}
+	}

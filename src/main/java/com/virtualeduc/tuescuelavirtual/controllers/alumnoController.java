@@ -39,6 +39,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -75,6 +76,8 @@ public class alumnoController {
 	
 	boolean guardarPeriodo;
 	
+	boolean porvalidacion=false;
+	
 	
 
 	
@@ -102,10 +105,10 @@ public class alumnoController {
 	@GetMapping(path = "/verAlumno/{idAl}")
 	public String verAlumno(@PathVariable(value = "idAl") Long idAl, Model model) {
 		AlumnoDTO alumnoDTO = new AlumnoDTO(alumnoservice.consultarAlumnoPorId(idAl));
-		List<CursoDTO> cursos = new ArrayList<>();
+		/*List<CursoDTO> cursos = new ArrayList<>();
 		AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
 		cursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
-		model.addAttribute("Cursos", cursos);
+		model.addAttribute("Cursos", cursos);*/
 		model.addAttribute("alumnoDTO", alumnoDTO);
 		model.addAttribute("direccionbase",direccionbase);
 		return "alumnos/editaralumno";
@@ -114,7 +117,16 @@ public class alumnoController {
 	
 
 	@PostMapping(path = "/modificaralumno")
-	public String modificaralumno(AlumnoDTO alumnoDTO, RedirectAttributes redirectAttributes) {
+	public String modificaralumno(@Valid AlumnoDTO alumnoDTO, BindingResult result, Model model,RedirectAttributes redirectAttributes) {
+		
+		if (result.hasErrors()) {
+			/*model.addAttribute("alumnoDTO", alumnoDTO);
+			List<CursoDTO> cursos = new ArrayList<>();
+			AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
+			cursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
+			model.addAttribute("Cursos", cursos);*/
+			return "alumnos/editaralumno";
+		}
 
 		/*Alumno alumnog = alumnoservice.consultarAlumnoPorCedula(alumnoDTO.getTipoDocAl(), alumnoDTO.getNumDocAl());
 
@@ -270,13 +282,24 @@ public class alumnoController {
 
 		String numDocRpr;
 
-		if (result.hasErrors()) {
-			model.addAttribute("alumnoDTO", alumnoDTO);
-			List<CursoDTO> cursos = new ArrayList<>();
+		//if (result.hasErrors()) {
+			//model.addAttribute("alumnoDTO", alumnoDTO);
+			/*List<CursoDTO> cursos = new ArrayList<>();
 			AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
 			cursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
-			model.addAttribute("Cursos", cursos);
+			model.addAttribute("Cursos", cursos);*/
+			//porvalidacion=true;
+			//model.addAttribute("porvalidacion",porvalidacion);
+			//return "alumnos/registroalumno";
+		//}
+		
+		if(alumnoDTO.getAnnio().equals("")||alumnoDTO.getSeccion().equals("")||alumnoDTO.getTurno().equals("")||alumnoDTO.getNivel().equals("")) {
+			
+			redirectAttributes.addFlashAttribute("mensaje24", Constantes.CURSO_NO_ASIGNADO_DESC).addFlashAttribute("clase",
+					"danger");
+
 			return "alumnos/registroalumno";
+			
 		}
 
 		if (alumnoservice.consultarAlumnoPorCedula(alumnoDTO.getTipoDocAl(), alumnoDTO.getNumDocAl()) != null) {
@@ -343,7 +366,7 @@ public class alumnoController {
 			alumno.setIdRpr1(rep1);
 		}
 
-		if (alumnoDTO.getTipoDocRep2() != null && alumnoDTO.getNumDocRep2() != null) {
+		if (alumnoDTO.getTipoDocRep2() != null && !alumnoDTO.getNumDocRep2().equals("")) {
 			tipoDocRpr = alumnoDTO.getTipoDocRep2();
 			numDocRpr = alumnoDTO.getNumDocRep2();
 			Representante rep2 = representanteservice.consultarepresentanteporcedula(tipoDocRpr, numDocRpr);
@@ -366,6 +389,14 @@ public class alumnoController {
 		}
 		return "redirect:listaralumnos?success";
 
-	}	 
+	}
+	
+	@ModelAttribute("Cursos")
+	public List<CursoDTO> poblarCursos(){
+		List<CursoDTO> cursos = new ArrayList<>();
+		AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
+		cursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
+		return cursos;
+	}
 
 }

@@ -1,45 +1,67 @@
+input{
+	 text-transform:uppercase;
+}
+
 .input-nombre-apellido {
   border-radius: 100px;
   border: 1px solid #b5b5b5;
   width: 300px;
-  
 }
 
-.input-nombre-apellido-view {
 
-  width: 110px;
-  border: none;
-  enable-background:0;
-  
+
+p{
+  font-weight: bold;
+  font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
+  font-size: large;
+  color: black;
+  font-size: 20px;
 }
 .input-buttons {
   border-radius: 100px;
   border: 1px solid #b5b5b5;
-  background-color: #b5b5b5;
+  background-color: #2441e6;
   font-style: normal;
   color: white;
-  width: 100px;
+  width: 120px;
+  margin: 0 auto;
+}
+
+#guardar{
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  background-color: #b5b5b5;;
+  font-style: normal;
+  color: white;
+  width: 120px;
+  margin: 0 auto;
+}
+
+.card-header{
+  height: fit-content;
+  background-color:#b5b5b5;
+
+}
+#containerTitulo{
+  border:20px;
+  padding-top: 18px;
+}
+
+#botonCambiarRep,#botonCambiarRep2{
+  pointer-events: none;
+  cursor: default;
 }
 
 span > i {
   color: white;
 }
-span > #guardarAlumno {
-  background-color: #337ab7;
-  color: white;
 
-  width: 100px;
-}
 .input-cedula {
   border-radius: 100px;
   border: 1px solid #b5b5b5;
   width: 200px;
 }
 
-.input-cedula-view {
-  enable-background:0;
-  width: 100px;
-}
 .input-cmb-cedula {
   border-radius: 100px;
   border: 1px solid #b5b5b5;
@@ -54,12 +76,6 @@ span > #guardarAlumno {
 }
 
 
-.input-fech-nac-view {
- 
-  width: 150px;
-  border: none;
-}
-
 .input-fech-nac-rep {
   border-radius: 100px;
   border: 1px solid #b5b5b5;
@@ -70,40 +86,22 @@ span > #guardarAlumno {
   border: 1px solid #b5b5b5;
   width: 200px;
 }
-.input-fech-ing-view {
- 
-  border: none;
-  width: 150px;
-}
+
 .input-edad {
   border-radius: 100px;
   border: 1px solid #b5b5b5;
   width: 50px;
 }
-.input-edad-view {
- 
-  border: none;
-  width: 50px;
-}
+
 .input-sexo {
-  border-radius: 100px;
-  border: 1px solid #b5b5b5;
-  width: 100px;
-}
-
-.input-sexo-view {
-  border:none;
-  width: 100px;
-}
-
-.input-parentesco {
   border-radius: 100px;
   border: 1px solid #b5b5b5;
   width: 110px;
 }
 
-.input-parentesco-view {
-  border: none;
+.input-parentesco {
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
   width: 110px;
 }
 
@@ -114,21 +112,14 @@ span > #guardarAlumno {
   width: 105px;
 }
 
-.input-ed-civ-view {
-  border: none;
-  width: 105px;
-}
+
 .input-est-acad {
   border-radius: 100px;
   border: 1px solid #b5b5b5;
   width: 100px;
 }
 
-.input-est-acad-view {
-  
-  border: none;
-  width: 100px;
-}
+
 .input-txtDireccion {
   border-radius: 100px;
   border: 1px solid #b5b5b5;
@@ -136,12 +127,7 @@ span > #guardarAlumno {
   
 }
 
-.input-txtDireccion-view {
- 
-  border:none;
-  width: 92%;
-  
-}
+
 .input-estado {
   border-radius: 100px;
   border: 1px solid #b5b5b5;
@@ -159,68 +145,27 @@ span > #guardarAlumno {
   width: 200px;
 }
 
-.input-num-tlf-view {
-  border: none;
-  width: 200px;
-}
 
 .input-email {
   border-radius: 100px;
   border: 1px solid #b5b5b5;
   width: 400px;
+  text-transform:lowercase;
 }
 
-.input-email-view {
-  
-  border: none;
-  width: 400px;
-}
-
-.input-curso-view {
-  
-  border: none;
-  text-align: left;
-  width: 300px;
- 
-}
-
-/*#tablecursos {
-  display: block;
-}*/
 
 #tablecursos th {
   background-color: #cccccc;
   color: black;
   font-size: small;
   text-align: center;
- 
- 
 }
 
 #tablecursos>tbody>tr>td {
   vertical-align: middle;
   text-align: center;
   font-size: small;
- 
-}
-
-
-
-#tablecursosver th {
-  background-color: #cccccc;
-  color: black;
-  text-align: center;
-  align-items:center;
-}
-
-#tablecursosver>tbody>tr>td {
-  
-  vertical-align: middle;
-  text-align: center;
-  font-size: small;
-  
-  
- 
+  text-transform:uppercase;
 }
 
 
@@ -232,14 +177,59 @@ span > #guardarAlumno {
 }
 
 #tablecursoelegido>tbody>tr>td {
-  
   vertical-align: middle;
   text-align: center;
   font-size: small;
   align-items:center;
-  
-  
- 
+  text-transform:uppercase;
+}
+
+#idCurso{
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  text-align: center;
+  width:80px;
+}
+
+#annioescolar{
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  text-align: center;
+  width:100px;
+}
+
+#annio{
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  text-align: center;
+  width:60px;
+}
+
+#seccion{
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  text-align: center;
+  width:60px;
+}
+
+#turno{
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  text-align: center;
+  width:110px;
+}
+#nivel{
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  text-align: center;
+  width:160px;
+}
+
+#especialidad{
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  text-align: center;
+  width:100px;
 }
 
 
@@ -248,9 +238,6 @@ span > #guardarAlumno {
 
 
 
-
-
-/*estilos para la tabla*/
 #tablaAlumnos th {
   background-color: #cccccc;
   color: black;
@@ -261,20 +248,13 @@ span > #guardarAlumno {
   vertical-align: middle;
   text-align: center;
   font-size: small;
+  text-transform:uppercase;
 }
-
 
 #rowtablecursos {
   width: 100%;
   align-items: center;
-
-  
 }
-
-.btn-group, .btn-group-vertical {
-  position: absolute;
-}
-
 
 
 
@@ -284,7 +264,6 @@ span > #guardarAlumno {
 }
 
 #titulo1,#titulo2,#titulo3,#titulo4{
-
   font-weight: bold;
   align-content:center;
   font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;

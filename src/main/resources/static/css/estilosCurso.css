@@ -1,3 +1,6 @@
+input{
+	 text-transform:uppercase;
+}
 #tablecursos th {
   background-color: #cccccc;
   color: black;

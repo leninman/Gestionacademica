@@ -18,80 +18,80 @@
   <th:block th:replace="partes/menu :: menuSuperior" />
 
 
-  
- 
- <!-- <div class="container my-5">-->
-    <div class="card" style="
+
+
+  <!-- <div class="container my-5">-->
+  <div class="card" style="
     width: 100%;
     border-color: #cccccc;
     margin-left: auto;
     margin-right: auto;">
-      <div class="card-header" style="
+    <div class="card-header" style="
       width: 100%;
       border-color: #cccccc;
       margin-left: auto;
       margin-right: auto;
     ">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li>
-                <a type="button" class="btn btn-secondary" th:href="@{/app/inicio}" data-toggle="tooltip" data-placement="top"
-                  title="Ir al inicio"><i class="bi bi-house"></i></a>
-              </li>
-              &nbsp; &nbsp;
-              <li>
-                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Editar"
-                  id="botonEditarProfesor"><i class="bi bi-pencil-fill"></i>
-                </button>
-              </li>
-              &nbsp; &nbsp;
-              <li>
-                <a type="button" class="btn btn-secondary" th:href="@{/app/listarprofesores}" data-toggle="tooltip"
-                  data-placement="top" title="Salir"><i class="bi bi-x"></i></a>
-              </li>
-            </ul>
-            <div class="container" style="display: flex;
-            justify-content: left;">
-            
-      <div class="col-md-3"></div>
-        <p style="font-weight: bold;
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li>
+              <a type="button" class="btn btn-secondary" th:href="@{/app/inicio}" data-toggle="tooltip"
+                data-placement="top" title="Ir al inicio"><i class="bi bi-house"></i></a>
+            </li>
+            &nbsp; &nbsp;
+            <li>
+              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Editar"
+                id="botonEditarProfesor"><i class="bi bi-pencil-fill"></i>
+              </button>
+            </li>
+            &nbsp; &nbsp;
+            <li>
+              <a type="button" class="btn btn-danger" th:href="@{/app/listarprofesores}" data-toggle="tooltip"
+                data-placement="top" title="Salir"><i class="bi bi-x"></i></a>
+            </li>
+          </ul>
+          <div class="container" style="display: flex;
+            justify-content: left;" id="containerTitulo">
+
+            <div class="col-md-3"></div>
+            <p style="font-weight: bold;
           font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
           font-size: large;
           color: black;
           font-size: 20px;">&nbsp;&nbsp;&nbsp;Ficha de datos del profesor</p>
-      </div>
           </div>
-        </nav>
-      </div>
-      <div class="card-body" style="
+        </div>
+      </nav>
+    </div>
+    <div class="card-body" style="
       width: 100%;
       border-color: #b5b5b5;
       margin-left: auto;
       margin-right: auto;
     ">
-        <div class="container">
-          <div class="col-md-20">
-            <form class="form-horizontal" th:action="@{/app/actualizarprofesor}" th:object="${profesor}" id="formProfesor"
-              name="formProfesor" method="post">
-              <div>
-                <input type="hidden" id="idPrf" th:field="*{idPrf}">
-              </div>
-            <br/>
+      <div class="container">
+        <div class="col-md-20">
+          <form class="form-horizontal" th:action="@{/app/actualizarprofesor}" th:object="${profesor}" id="formProfesor"
+            name="formProfesor" method="post">
+            <div>
+              <input type="hidden" id="idPrf" th:field="*{idPrf}">
+            </div>
+            <br />
 
-              <!--************************PROFESOR*********************************-->
-              <div class="row">
-                <div class="col-md-5"></div>
-                <p id="titulo2">&nbsp;&nbsp;&nbsp;&nbsp;Datos básicos</p>
-              </div>
-              <br />
+            <!--************************PROFESOR*********************************-->
+            <div class="row">
+              <div class="col-md-5"></div>
+              <p id="titulo2">Datos básicos</p>
+            </div>
+            <br />
 
-              <div class="row">
-                <input type="hidden" id="direccionbase" th:name="direccionbase" th:value="${direccionbase}">
-                <div class="col-md-6">
-                  <label for="primNombPrf" class="col-form-label">Primer Nombre</label>
-                  <input type="text" class="input-nombre-apellido" id="primNombPrf" th:field="*{primNombPrf}" />
-                  <div class="error" th:if="${#fields.hasErrors('primNombPrf')}"
+            <div class="row">
+              <input type="hidden" id="direccionbase" th:name="direccionbase" th:value="${direccionbase}" />
+              <div class="col-md-6">
+                <label for="primNombPrf" class="col-form-label">Primer Nombre</label>
+                <input type="text" class="input-nombre-apellido" id="primNombPrf" th:field="*{primNombPrf}" />
+                <div class="error" th:if="${#fields.hasErrors('primNombPrf')}"
                       th:errors="*{primNombPrf}"
                     ></div>
                   </div>
@@ -805,10 +805,11 @@
                 <div class="row">
                   <input
                     type="submit"
-                    class="input-buttons"
-                    name="submit"
-                    value="Guardar"
-                    style="margin: 0 auto"
+                    name="submit" 
+                    data-toggle="tooltip"
+                    data-placement="top" 
+                    title="Guardar Cambios"
+                    value="Guardar"  
                     id="guardar"
                   />
             

@@ -1,3 +1,7 @@
+input{
+	 text-transform:uppercase;
+}
+
 #tablematerias th {
 	background-color: #cccccc;
 	color: black;

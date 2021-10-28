@@ -2,6 +2,7 @@ var rep1encontrado;
 var rep2encontrado;
 var cursoasignado;
 var direccionbase;
+var porvalidacion;
 function mostrarrepresentante2() {
   element = document.getElementById("datosRepSec");
   if (element.style.display == "none") {
@@ -49,8 +50,13 @@ function mostrarcursoelegido() {
 //Setea los combos a blanco, oculta los textos establece estilos
 $(document).ready(function () {
 	
-  $('form select').val("");
-  	 
+  //porvalidacion=$("#porvalidacion").val();
+
+  //if(porvalidacion){
+	
+ // }
+ 
+  // $('form select').val("");	   
   $("#txtSexoRpr1").hide();
   $("#txtParentescoRpr1").hide();
   $("#txtOtroParentescoRpr1").hide();
@@ -143,6 +149,9 @@ $(document).ready(function () {
   
 
 });
+
+
+
 
 $("#parentescoRpr1").change(function () {
   if ($("#parentescoRpr1").val() == "Otro") {
