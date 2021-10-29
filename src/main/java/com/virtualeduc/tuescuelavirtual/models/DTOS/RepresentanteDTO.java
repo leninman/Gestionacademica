@@ -53,7 +53,7 @@ public class RepresentanteDTO implements Serializable{
     private String edoCivRpr;
     
   
-    private String parentescoRpr;
+   
     
    
     //private String dirPpalRpr;
@@ -129,7 +129,7 @@ public class RepresentanteDTO implements Serializable{
         this.fechNacRpr = representante.getFechNacRpr();
         this.edadRpr = representante.getEdadRpr();
         this.edoCivRpr = representante.getEdoCivRpr();
-        this.parentescoRpr = representante.getParentescoRpr();
+        //this.parentescoRpr = representante.getParentescoRpr();
         
         this.textoDirPpalRpr=arrOfStrDirPpalRpr[0];
         this.estadodirppalrep=arrOfStrDirPpalRpr[1];
@@ -169,44 +169,7 @@ public class RepresentanteDTO implements Serializable{
 
 
 
-	public RepresentanteDTO(Long idRpr, String tipoDocRpr, String numDocRpr, String primNombRpr, String segNombRpr,
-			String primApellRpr, String segApellRpr, String sexoRpr, Date fechNacRpr, String edadRpr, String edoCivRpr,
-			String parentescoRpr, String textoDirPpalRpr, String estadodirppalrep, String municipiodirppalrep,
-			String ciudaddirppalrep, String parroquiadirppalrep, String codpostaldirppalrep, String textoDirSecRpr,
-			String estadodirsecrep, String municipiodirsecrep, String ciudaddirsecrep, String parroquiadirsecrep,
-			String codpostaldirsecrep, String codoperadorappalrep, String textoTlfPpalRpr, String codoperadorasecrep,
-			String textoTlfSecRpr, String emailRpr) {
-		super();
-		this.idRpr = idRpr;
-		this.tipoDocRpr = tipoDocRpr;
-		this.numDocRpr = numDocRpr;
-		this.primNombRpr = primNombRpr;
-		this.segNombRpr = segNombRpr;
-		this.primApellRpr = primApellRpr;
-		this.segApellRpr = segApellRpr;
-		this.sexoRpr = sexoRpr;
-		this.fechNacRpr = fechNacRpr;
-		this.edadRpr = edadRpr;
-		this.edoCivRpr = edoCivRpr;
-		this.parentescoRpr = parentescoRpr;
-		this.textoDirPpalRpr = textoDirPpalRpr;
-		this.estadodirppalrep = estadodirppalrep;
-		this.municipiodirppalrep = municipiodirppalrep;
-		this.ciudaddirppalrep = ciudaddirppalrep;
-		this.parroquiadirppalrep = parroquiadirppalrep;
-		this.codpostaldirppalrep = codpostaldirppalrep;
-		this.textoDirSecRpr = textoDirSecRpr;
-		this.estadodirsecrep = estadodirsecrep;
-		this.municipiodirsecrep = municipiodirsecrep;
-		this.ciudaddirsecrep = ciudaddirsecrep;
-		this.parroquiadirsecrep = parroquiadirsecrep;
-		this.codpostaldirsecrep = codpostaldirsecrep;
-		this.codoperadorappalrep = codoperadorappalrep;
-		this.textoTlfPpalRpr = textoTlfPpalRpr;
-		this.codoperadorasecrep = codoperadorasecrep;
-		this.textoTlfSecRpr = textoTlfSecRpr;
-		this.emailRpr = emailRpr;
-	}
+
 
 	public Long getIdRpr() {
 		return idRpr;
@@ -296,13 +259,7 @@ public class RepresentanteDTO implements Serializable{
 		this.edoCivRpr = edoCivRpr;
 	}
 
-	public String getParentescoRpr() {
-		return parentescoRpr;
-	}
-
-	public void setParentescoRpr(String parentescoRpr) {
-		this.parentescoRpr = parentescoRpr;
-	}
+	
 
 	public String getTextoDirPpalRpr() {
 		return textoDirPpalRpr;

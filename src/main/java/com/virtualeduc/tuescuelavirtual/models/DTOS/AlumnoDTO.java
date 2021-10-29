@@ -144,7 +144,7 @@ public class AlumnoDTO implements Serializable {
 	private String edoCivRpr1;
 
 	@NotEmpty(message = "Requerido")
-	private String parentescoRpr1;
+	private String parRpr1;
 
 	@NotEmpty(message = "Requerido")
 	private String textoDirPpalRpr1;
@@ -219,7 +219,7 @@ public class AlumnoDTO implements Serializable {
 
 	private String edoCivRpr2;
 
-	private String parentescoRpr2;
+	private String parRpr2;
 
 	private String textoDirPpalRpr2;
 
@@ -257,28 +257,32 @@ public class AlumnoDTO implements Serializable {
 	private String emailRpr2;
 
 	private Long idRpr1;
+	
+	
 
 	private Long idCurso;
 
 	private Long idRpr2;
+	
+	
 
 	private Date fechaCreacion;
 
-	@NotEmpty(message = "Requerido")
+	//@NotEmpty(message = "Requerido")
 	private String annio;
 
 	private String annioescolar;
 
-	@NotEmpty(message = "Requerido")
+	//@NotEmpty(message = "Requerido")
 	private String seccion;
 
-	@NotEmpty(message = "Requerido")
+	//@NotEmpty(message = "Requerido")
 	private String nivel;
 	
-	@NotEmpty(message = "Requerido")
+	//@NotEmpty(message = "Requerido")
 	private String turno;
 
-	@NotEmpty(message = "Requerido")
+	//@NotEmpty(message = "Requerido")
 	private String especialidad;
 
 //    @PrePersist
@@ -293,145 +297,7 @@ public class AlumnoDTO implements Serializable {
 		this.idAl = idAl;
 	}
 
-	public AlumnoDTO(Long idAl, @NotEmpty(message = "Requerido") String tipoDocAl,
-			@NotEmpty(message = "Requerido") String numDocAl, @NotEmpty(message = "Requerido") String primNombAl,
-			String segNombAl, @NotEmpty(message = "Requerido") String primApellAl, String segApellAl,
-			@NotEmpty(message = "Requerido") String sexoAl, @NotNull(message = "Requerido") Date fechNacAl,
-			@NotEmpty(message = "Requerido") String edadAl, @NotEmpty(message = "Requerido") String textoDirPpalAl,
-			@NotEmpty(message = "Requerido") String estadodirppalest,
-			@NotEmpty(message = "Requerido") String municipiodirppalest,
-			@NotEmpty(message = "Requerido") String ciudaddirppalest,
-			@NotEmpty(message = "Requerido") String parroquiadirppalest,
-			@NotEmpty(message = "Requerido") String codpostaldirppalest, String textoDirSecAl, String estadodirsecest,
-			String municipiodirsecest, String ciudaddirsecest, String parroquiadirsecest, String codpostaldirsecest,
-			@NotEmpty(message = "Requerido") String codoperadorappalest,
-			@NotEmpty(message = "Requerido") String textoTlfPpalAl, String codoperadorasecest, String textoTlfSecAl,
-			@NotEmpty(message = "Requerido") @Email(message = "El email no es válido") String emailAl,
-			@NotNull(message = "Requerido") Date fechIngAl, @NotEmpty(message = "Requerido") String status,
-			@NotEmpty(message = "Requerido") String tipoDocRep1, @NotEmpty(message = "Requerido") String numDocRep1,
-			@NotEmpty(message = "Requerido") String primNombRpr1, String segNombRpr1,
-			@NotEmpty(message = "Requerido") String primApellRpr1, String segApellRpr1,
-			@NotEmpty(message = "Requerido") String sexoRpr1,
-			@NotNull(message = "Requerido") @NotNull(message = "Requerido") Date fechNacRpr1,
-			@NotEmpty(message = "Requerido") String edadRpr1, @NotEmpty(message = "Requerido") String edoCivRpr1,
-			@NotEmpty(message = "Requerido") String parentescoRpr1,
-			@NotEmpty(message = "Requerido") String textoDirPpalRpr1,
-			@NotEmpty(message = "Requerido") String estadodirppalrep1,
-			@NotEmpty(message = "Requerido") String municipiodirppalrep1,
-			@NotEmpty(message = "Requerido") String ciudaddirppalrep1,
-			@NotEmpty(message = "Requerido") String parroquiadirppalrep1,
-			@NotEmpty(message = "Requerido") String codpostaldirppalrep1, String textoDirSecRpr1,
-			String estadodirsecrep1, String municipiodirsecrep1, String ciudaddirsecrep1, String parroquiadirsecrep1,
-			String codpostaldirsecrep1, @NotEmpty(message = "Requerido") String codoperadorappalrep1,
-			@NotEmpty(message = "Requerido") String textoTlfPpalRpr1,
-			@NotEmpty(message = "Requerido") @Email(message = "El email no es válido") String emailRpr1,
-			String codoperadorasecrep1, String textoTlfSecRpr1, String tipoDocRep2, String numDocRep2,
-			String primNombRpr2, String segNombRpr2, String primApellRpr2, String segApellRpr2, String sexoRpr2,
-			Date fechNacRpr2, String edadRpr2, String edoCivRpr2, String parentescoRpr2, String textoDirPpalRpr2,
-			String estadodirppalrep2, String municipiodirppalrep2, String ciudaddirppalrep2,
-			String parroquiadirppalrep2, String codpostaldirppalrep2, String textoDirSecRpr2, String estadodirsecrep2,
-			String municipiodirsecrep2, String ciudaddirsecrep2, String parroquiadirsecrep2, String codpostaldirsecrep2,
-			String codoperadorappalrep2, String textoTlfPpalRpr2, String codoperadorasecrep2, String textoTlfSecRpr2,
-			@Email(message = "El email no es válido") String emailRpr2, Long idRpr1, Long idCurso, Long idRpr2,
-			Date fechaCreacion, @NotEmpty(message = "Requerido") String annio, String annioescolar,
-			@NotEmpty(message = "Requerido") String seccion, String nivel, String turno, String especialidad) {
-		super();
-		this.idAl = idAl;
-		this.tipoDocAl = tipoDocAl;
-		this.numDocAl = numDocAl;
-		this.primNombAl = primNombAl;
-		this.segNombAl = segNombAl;
-		this.primApellAl = primApellAl;
-		this.segApellAl = segApellAl;
-		this.sexoAl = sexoAl;
-		this.fechNacAl = fechNacAl;
-		this.edadAl = edadAl;
-		this.textoDirPpalAl = textoDirPpalAl;
-		this.estadodirppalest = estadodirppalest;
-		this.municipiodirppalest = municipiodirppalest;
-		this.ciudaddirppalest = ciudaddirppalest;
-		this.parroquiadirppalest = parroquiadirppalest;
-		this.codpostaldirppalest = codpostaldirppalest;
-		this.textoDirSecAl = textoDirSecAl;
-		this.estadodirsecest = estadodirsecest;
-		this.municipiodirsecest = municipiodirsecest;
-		this.ciudaddirsecest = ciudaddirsecest;
-		this.parroquiadirsecest = parroquiadirsecest;
-		this.codpostaldirsecest = codpostaldirsecest;
-		this.codoperadorappalest = codoperadorappalest;
-		this.textoTlfPpalAl = textoTlfPpalAl;
-		this.codoperadorasecest = codoperadorasecest;
-		this.textoTlfSecAl = textoTlfSecAl;
-		this.emailAl = emailAl;
-		this.fechIngAl = fechIngAl;
-		this.status = status;
-		this.tipoDocRep1 = tipoDocRep1;
-		this.numDocRep1 = numDocRep1;
-		this.primNombRpr1 = primNombRpr1;
-		this.segNombRpr1 = segNombRpr1;
-		this.primApellRpr1 = primApellRpr1;
-		this.segApellRpr1 = segApellRpr1;
-		this.sexoRpr1 = sexoRpr1;
-		this.fechNacRpr1 = fechNacRpr1;
-		this.edadRpr1 = edadRpr1;
-		this.edoCivRpr1 = edoCivRpr1;
-		this.parentescoRpr1 = parentescoRpr1;
-		this.textoDirPpalRpr1 = textoDirPpalRpr1;
-		this.estadodirppalrep1 = estadodirppalrep1;
-		this.municipiodirppalrep1 = municipiodirppalrep1;
-		this.ciudaddirppalrep1 = ciudaddirppalrep1;
-		this.parroquiadirppalrep1 = parroquiadirppalrep1;
-		this.codpostaldirppalrep1 = codpostaldirppalrep1;
-		this.textoDirSecRpr1 = textoDirSecRpr1;
-		this.estadodirsecrep1 = estadodirsecrep1;
-		this.municipiodirsecrep1 = municipiodirsecrep1;
-		this.ciudaddirsecrep1 = ciudaddirsecrep1;
-		this.parroquiadirsecrep1 = parroquiadirsecrep1;
-		this.codpostaldirsecrep1 = codpostaldirsecrep1;
-		this.codoperadorappalrep1 = codoperadorappalrep1;
-		this.textoTlfPpalRpr1 = textoTlfPpalRpr1;
-		this.emailRpr1 = emailRpr1;
-		this.codoperadorasecrep1 = codoperadorasecrep1;
-		this.textoTlfSecRpr1 = textoTlfSecRpr1;
-		this.tipoDocRep2 = tipoDocRep2;
-		this.numDocRep2 = numDocRep2;
-		this.primNombRpr2 = primNombRpr2;
-		this.segNombRpr2 = segNombRpr2;
-		this.primApellRpr2 = primApellRpr2;
-		this.segApellRpr2 = segApellRpr2;
-		this.sexoRpr2 = sexoRpr2;
-		this.fechNacRpr2 = fechNacRpr2;
-		this.edadRpr2 = edadRpr2;
-		this.edoCivRpr2 = edoCivRpr2;
-		this.parentescoRpr2 = parentescoRpr2;
-		this.textoDirPpalRpr2 = textoDirPpalRpr2;
-		this.estadodirppalrep2 = estadodirppalrep2;
-		this.municipiodirppalrep2 = municipiodirppalrep2;
-		this.ciudaddirppalrep2 = ciudaddirppalrep2;
-		this.parroquiadirppalrep2 = parroquiadirppalrep2;
-		this.codpostaldirppalrep2 = codpostaldirppalrep2;
-		this.textoDirSecRpr2 = textoDirSecRpr2;
-		this.estadodirsecrep2 = estadodirsecrep2;
-		this.municipiodirsecrep2 = municipiodirsecrep2;
-		this.ciudaddirsecrep2 = ciudaddirsecrep2;
-		this.parroquiadirsecrep2 = parroquiadirsecrep2;
-		this.codpostaldirsecrep2 = codpostaldirsecrep2;
-		this.codoperadorappalrep2 = codoperadorappalrep2;
-		this.textoTlfPpalRpr2 = textoTlfPpalRpr2;
-		this.codoperadorasecrep2 = codoperadorasecrep2;
-		this.textoTlfSecRpr2 = textoTlfSecRpr2;
-		this.emailRpr2 = emailRpr2;
-		this.idRpr1 = idRpr1;
-		this.idCurso = idCurso;
-		this.idRpr2 = idRpr2;
-		this.fechaCreacion = fechaCreacion;
-		this.annio = annio;
-		this.annioescolar = annioescolar;
-		this.seccion = seccion;
-		this.nivel = nivel;
-		this.turno = turno;
-		this.especialidad = especialidad;
-	}
+
 
 	public AlumnoDTO(Alumno alumno) {
 		String strDirPpalAl = alumno.getDirPpalAl();
@@ -517,7 +383,7 @@ public class AlumnoDTO implements Serializable {
 		this.fechNacRpr1 = alumno.getIdRpr1().getFechNacRpr();
 		this.edadRpr1 = alumno.getIdRpr1().getEdadRpr();
 		this.edoCivRpr1 = alumno.getIdRpr1().getEdoCivRpr();
-		this.parentescoRpr1 = alumno.getIdRpr1().getParentescoRpr();
+		this.parRpr1 = alumno.getParRpr1();
 
 		this.textoDirPpalRpr1 = arrOfStrDirPpalRpr1[0];
 		this.estadodirppalrep1 = arrOfStrDirPpalRpr1[1];
@@ -551,7 +417,7 @@ public class AlumnoDTO implements Serializable {
 		this.fechNacRpr2 = alumno.getIdRpr2().getFechNacRpr();
 		this.edadRpr2 = alumno.getIdRpr2().getEdadRpr();
 		this.edoCivRpr2 = alumno.getIdRpr2().getEdoCivRpr();
-		this.parentescoRpr2 = alumno.getIdRpr2().getParentescoRpr();
+		this.parRpr2 = alumno.getParRpr2();
 
 		this.textoDirPpalRpr2 = arrOfStrDirPpalRpr2[0];
 		this.estadodirppalrep2 = arrOfStrDirPpalRpr2[1];
@@ -891,12 +757,14 @@ public class AlumnoDTO implements Serializable {
 		this.edoCivRpr1 = edoCivRpr1;
 	}
 
-	public String getParentescoRpr1() {
-		return parentescoRpr1;
+	
+
+	public String getParRpr1() {
+		return parRpr1;
 	}
 
-	public void setParentescoRpr1(String parentescoRpr1) {
-		this.parentescoRpr1 = parentescoRpr1;
+	public void setParRpr1(String parRpr1) {
+		this.parRpr1 = parRpr1;
 	}
 
 	public String getTextoDirPpalRpr1() {
@@ -1115,12 +983,14 @@ public class AlumnoDTO implements Serializable {
 		this.edoCivRpr2 = edoCivRpr2;
 	}
 
-	public String getParentescoRpr2() {
-		return parentescoRpr2;
+	
+
+	public String getParRpr2() {
+		return parRpr2;
 	}
 
-	public void setParentescoRpr2(String parentescoRpr2) {
-		this.parentescoRpr2 = parentescoRpr2;
+	public void setParRpr2(String parRpr2) {
+		this.parRpr2 = parRpr2;
 	}
 
 	public String getTextoDirPpalRpr2() {

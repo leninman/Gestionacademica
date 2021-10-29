@@ -55,7 +55,7 @@
 			<div class="container">
 				<div class="col-md-20">
 					<form class="form-horizontal" th:action="@{/app/agregarprofesor}"
-						th:object="${profesor}" id="formProfesor" name="formProfesor"
+						th:object="${profesorDTO}" id="formProfesor" name="formProfesor"
 						method="post">
 						<br />
 
@@ -179,7 +179,9 @@
 								<label for="textoDirPpalPrf" class="col-form-label">Dirección
 									principal de domicilio*</label> <input type="text"
 									class="input-txtDireccion" id="textoDirPpalPrf"
-									name="textoDirPpalPrf" />
+									 th:field="*{textoDirPpalPrf}"/>
+									<div class="error" th:if="${#fields.hasErrors('textoDirPpalPrf')}"
+									th:errors="*{textoDirPpalPrf}"></div>
 
 							</div>
 						</div>
@@ -188,41 +190,51 @@
 							<div class="col-md-2">
 								<label for="estadodirppalprf" class="col-form-label">Estado*</label>
 								<select class="input-estado" id="estadodirppalprf"
-									name="estadodirppalprf">
+								     th:field="*{estadodirppalprf}">
 									<option value="MIRANDA">MIRANDA</option>
 								</select>
+								<div class="error" th:if="${#fields.hasErrors('estadodirppalprf')}"
+									th:errors="*{estadodirppalprf}"></div>
 							</div>
 							<div class="col-md-2">
 								<label for="municipiodirppalprf" class="col-form-label">Municipio*</label>
 								<select class="input-estado" id="municipiodirppalprf"
-									name="municipiodirppalprf">
+									 th:field="*{municipiodirppalprf}">
 									<option value="PLAZA">PLAZA</option>
 									<option value="ZAMORA">ZAMORA</option>
 								</select>
+								<div class="error" th:if="${#fields.hasErrors('municipiodirppalprf')}"
+									th:errors="*{municipiodirppalprf}"></div>
 							</div>
 							<div class="col-md-2">
 								<label for="ciudaddirppalprf" class="col-form-label">Ciudad*</label>
 								<select class="input-estado" id="ciudaddirppalprf"
-									name="ciudaddirppalprf">
+									 th:field="*{ciudaddirppalprf}">
 									<option value="GUARENAS">GUARENAS</option>
 									<option value="GUATIRE">GUATIRE</option>
 								</select>
+								<div class="error" th:if="${#fields.hasErrors('ciudaddirppalprf')}"
+									th:errors="*{ciudaddirppalprf}"></div>
 							</div>
 							<div class="col-md-2">
 								<label for="parroquiadirppalprf" class="col-form-label">Parroquia*</label>
 								<select class="input-estado" id="parroquiadirppalprf"
-									name="parroquiadirppalprf">
+									 th:field="*{parroquiadirppalprf}">
 									<option value="GUARENAS">GUARENAS</option>
 									<option value="GUATIRE">GUATIRE</option>
 								</select>
+								<div class="error" th:if="${#fields.hasErrors('parroquiadirppalprf')}"
+									th:errors="*{parroquiadirppalprf}"></div>
 							</div>
 							<div class="col-md-2">
 								<label for="codpostaldirppalprf" class="col-form-label">Cod.
 									Postal*</label> <select class="input-estado" id="codpostaldirppalprf"
-									name="codpostaldirppalprf">
+									th:field="*{codpostaldirppalprf}">
 									<option value="1220">1220</option>
 									<option value="1221">1221</option>
 								</select>
+								<div class="error" th:if="${#fields.hasErrors('codpostaldirppalprf')}"
+									th:errors="*{codpostaldirppalprf}"></div>
 							</div>
 						</div>
 						<br />
@@ -291,7 +303,7 @@
 						<div class="row">
 							<div class="col-sm-1">
 								<select class="input-cod-operadora" id="codoperadorappalprf"
-									name=codoperadorappalprf>
+									th:field="*{codoperadorappalprf}">
 									<option value="0212">0212</option>
 									<option value="0412">0412</option>
 									<option value="0414">0414</option>
@@ -299,19 +311,27 @@
 									<option value="0424">0424</option>
 									<option value="0426">0426</option>
 								</select>
+								<div class="error" th:if="${#fields.hasErrors('codoperadorappalprf')}"
+									th:errors="*{codoperadorappalprf}"></div>
+								
 
 							</div>
 							<div class="col-sm-2">
 								<input type="text" class="input-num-tlf"
 									onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-									maxlength="7" id="textoTlfPpalPrf" name="textoTlfPpalPrf" />
-
+									maxlength="7" id="textoTlfPpalPrf" th:field="*{textoTlfPpalPrf}" />
 							</div>
-							<div class="col-sm-2">&nbsp;</div>
+							<div class="error" th:if="${#fields.hasErrors('textoTlfPpalPrf')}"
+									th:errors="*{textoTlfPpalPrf}"></div>
+									
+							<div class="col-sm-2"></div>
+							
 							<div class="col-sm-6">
 								<input type="email" class="input-email" id="emailPrf"
 									th:field="*{emailPrf}" />
 							</div>
+							<div class="error" th:if="${#fields.hasErrors('emailPrf')}"
+									th:errors="*{emailPrf}"></div>
 						</div>
 						<br />
 						<div class="row">
@@ -346,8 +366,8 @@
 						<!--************************INFORMACION PROFESIONAL*********************************-->
 
 						<div class="row">
-							<div class="col-md-4">&nbsp;</div>
-							<p id="titulo3">&nbsp;&nbsp;&nbsp;&nbsp;Datos profesionales y
+							<div class="col-md-4"></div>
+							<p id="titulo3">Datos profesionales y
 								académicos</p>
 						</div>
 						<br> <br>
@@ -360,13 +380,15 @@
 								<p>Graduado:</p>
 							</div>
 							<div class="col-sm-1">
-								<input type="radio" id="si" name="graduado" value="Si">
+								<input type="radio" id="si" th:field="*{graduado}" value="Si">
 								<label for="si">Si</label>
 							</div>
 							<div class="col-sm-1">
-								<input type="radio" id="no" name="graduado" value="No">
+								<input type="radio" id="no" th:field="*{graduado}" value="No">
 								<label for="no">No</label>
 							</div>
+							<div class="error" th:if="${#fields.hasErrors('graduado')}"
+									th:errors="*{graduado}"></div>
 
 						</div>
 						<br>
@@ -382,6 +404,8 @@
 										th:value="${profesion.profesion}"
 										th:text="${profesion.profesion}"></option>
 								</select>
+								<div class="error" th:if="${#fields.hasErrors('pregrado1')}"
+									th:errors="*{pregrado1}"></div>
 
 							</div>
 
@@ -389,8 +413,8 @@
 								<label for="especialidad1" class="col-form-label">Especialidad*</label>
 								<input type="text" class="input-nombre-apellido"
 									id="especialidad1" th:field="*{especialidad1}" />
-
-
+									<div class="error" th:if="${#fields.hasErrors('especialidad1')}"
+									th:errors="*{especialidad1}"></div>
 							</div>
 
 

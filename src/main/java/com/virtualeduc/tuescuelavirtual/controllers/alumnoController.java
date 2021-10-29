@@ -93,10 +93,10 @@ public class alumnoController {
 	@GetMapping(path = "/registroalumno")
 	public String registroalumno(Model model) {
 		AlumnoDTO alumnoDTO = new AlumnoDTO();
-		List<CursoDTO> cursos = new ArrayList<>();
-		AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
-		cursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
-		model.addAttribute("Cursos", cursos);
+		//List<CursoDTO> cursos = new ArrayList<>();
+		//AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
+		//cursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
+		//model.addAttribute("Cursos", cursos);
 		model.addAttribute("alumnoDTO", alumnoDTO);
 		model.addAttribute("direccionbase",direccionbase);
 		return "alumnos/registroalumno";
@@ -282,25 +282,25 @@ public class alumnoController {
 
 		String numDocRpr;
 
-		//if (result.hasErrors()) {
+		if (result.hasErrors()) {
 			//model.addAttribute("alumnoDTO", alumnoDTO);
 			/*List<CursoDTO> cursos = new ArrayList<>();
 			AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
 			cursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
 			model.addAttribute("Cursos", cursos);*/
-			//porvalidacion=true;
-			//model.addAttribute("porvalidacion",porvalidacion);
-			//return "alumnos/registroalumno";
-		//}
+			porvalidacion=true;
+			model.addAttribute("porvalidacion",porvalidacion);
+			return "alumnos/registroalumno";
+		}
 		
-		if(alumnoDTO.getAnnio().equals("")||alumnoDTO.getSeccion().equals("")||alumnoDTO.getTurno().equals("")||alumnoDTO.getNivel().equals("")) {
+		/*if(alumnoDTO.getAnnio().equals("")||alumnoDTO.getSeccion().equals("")||alumnoDTO.getTurno().equals("")||alumnoDTO.getNivel().equals("")) {
 			
 			redirectAttributes.addFlashAttribute("mensaje24", Constantes.CURSO_NO_ASIGNADO_DESC).addFlashAttribute("clase",
 					"danger");
 
 			return "alumnos/registroalumno";
 			
-		}
+		}*/
 
 		if (alumnoservice.consultarAlumnoPorCedula(alumnoDTO.getTipoDocAl(), alumnoDTO.getNumDocAl()) != null) {
 

@@ -151,7 +151,23 @@ $(document).ready(function () {
 });
 
 
+$("#submit").click(function () {
+	   
+   if($("#annio").val()==""&&$("#seccion").val()==""&&$("#turno").val()==""&&$("#nivel").val()==""&&$("#especialidad").val()==""){
+	  	alert("DEBE SELECCIONAR UN CURSO");
+  		//y = document.getElementById("tablecursos");
+ 	   //	y.style.display = "none";
+ 	   //x = document.getElementById("cursoelegido");
+ 		//if (x.style.display == "none") {
+        //x.style.display = "flex";
 
+//}
+	}
+     
+	 
+
+	
+});
 
 $("#parentescoRpr1").change(function () {
   if ($("#parentescoRpr1").val() == "Otro") {

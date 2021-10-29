@@ -22,6 +22,9 @@ public class ProfesorDTO implements Serializable {
 	
 	@NotEmpty(message = "Requerido")
 	private String primNombPrf;
+	
+	@NotEmpty(message = "Requerido")
+	private String primApellPrf;
 
 	@NotNull(message = "Requerido")
 	private int aniosServPrf;
@@ -101,8 +104,7 @@ public class ProfesorDTO implements Serializable {
 	@NotEmpty(message = "Requerido")
 	private String numDocPrf;
 
-	@NotEmpty(message = "Requerido")
-	private String primApellPrf;
+	
 
 	
 

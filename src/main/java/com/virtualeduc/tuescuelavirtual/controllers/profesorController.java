@@ -64,8 +64,8 @@ public class profesorController {
 
 	@GetMapping(path = "/registroprofesor")
 	public String registroprofesor(Model model) {
-		ProfesorDTO profesor = new ProfesorDTO();
-		model.addAttribute("profesor", profesor);
+		ProfesorDTO profesorDTO = new ProfesorDTO();
+		model.addAttribute("profesorDTO", profesorDTO);
 		//model.addAttribute("direccionbase", direccionbase);
 		//List<Profesion> profesiones = new ArrayList<>();
 		//List<String> materias = new ArrayList<>();
@@ -88,15 +88,15 @@ public class profesorController {
 	}
 	
 	@PostMapping(path = "/agregarprofesor")
-	public String registrarprofesor(@Valid ProfesorDTO profesor, BindingResult result, Model model,
+	public String registrarprofesor(@Valid ProfesorDTO profesorDTO, BindingResult result, Model model,
 			RedirectAttributes redirectAttributes) {
 		
 		if (result.hasErrors()) {
-			model.addAttribute("profesor", profesor);
+			//model.addAttribute("profesor", profesor);
 			return "profesores/registroprofesor";
 		}
 		guardar = true;
-		Responses resp = profesoresService.guardarProfesor(profesor, guardar);
+		Responses resp = profesoresService.guardarProfesor(profesorDTO, guardar);
 
 		if (resp.getResponseCode() == Constantes.PROFESOR_REGISTRADO_CODE) {
 			redirectAttributes.addFlashAttribute("mensaje19", resp.getResponseDescription()).addFlashAttribute("clase",

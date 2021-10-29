@@ -6,7 +6,20 @@ var nivel;
 var especialidad;
 var Ids=[];
 
-$("#botonAsignar").click(function () {
+
+
+
+$("#btnLimpiar").click(function () {
+  window.location.href = "/app/registroprofesor";
+});
+
+/*$(document).on('click', '#btnEliminar', function (event) {
+  event.preventDefault();
+  $(this).closest('tr').remove();
+});*/
+
+
+/*$("#botonAsignar").click(function () {
   materia = $("#materia").val();
   annio = $("#annio").val();
   nivel = $("#nivel").val();
@@ -40,7 +53,8 @@ $("#botonAsignar").click(function () {
       }
     });
  
-});
+});*/
+
 /*function mostrardatosacademicospostgrados() {
   element = document.getElementById("datosAcademicosPostgrados");
   if (element.style.display == "none") {
@@ -52,17 +66,9 @@ $("#botonAsignar").click(function () {
 
 
 //Setea los combos a blanco, oculta los textos establece estilos
-$(document).ready(function () {
+//$(document).ready(function () {
 	
-  $('form select').val("");
+ //$('form select').val("");
 
-});
+//});
 
-$(document).on('click', '#btnEliminar', function (event) {
-  event.preventDefault();
-  $(this).closest('tr').remove();
-});
-
-$("#btnLimpiar").click(function () {
-  window.location.href = "/app/registroprofesor";
-});
