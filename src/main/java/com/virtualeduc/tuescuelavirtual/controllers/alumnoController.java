@@ -207,6 +207,8 @@ public class alumnoController {
 			tipoDocRpr = alumnoDTO.getTipoDocRep1();
 
 			numDocRpr = alumnoDTO.getNumDocRep1();
+			
+			rep1=new Representante();
 
 			rep1 = representanteservice.consultarepresentanteporcedula(tipoDocRpr, numDocRpr);
 		} else {
@@ -220,6 +222,8 @@ public class alumnoController {
 			tipoDocRpr = alumnoDTO.getTipoDocRep2();
 
 			numDocRpr = alumnoDTO.getNumDocRep2();
+			
+			rep2=new Representante();
 
 			rep2 = representanteservice.consultarepresentanteporcedula(tipoDocRpr, numDocRpr);
 		} else {

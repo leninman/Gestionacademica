@@ -27,6 +27,8 @@ input{
 #containerTitulo{
   border:20px;
   padding-top: 18px;
+  display: flex; 
+  justify-content: left;
 }
 
 
@@ -192,17 +194,16 @@ span > i {
   font-size: 0.8em;
 }
 
-p{
+.tituloPrincipal{
   font-weight: bold; 
-  font-family: 'Helvetica', 'Verdana', 'Monaco', 
-  sans-serif; font-size: large; color: black; font-size: 20px;
+  font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif; 
+  font-size: large; 
+  color: black; 
+  font-size: 20px;
 }
 
-
-#titulo1,#titulo2,#titulo3,#titulo4{
-
+.titulos{
   font-weight: bold;
-  align-content:center;
   font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
   font-size: large;
   color: black;

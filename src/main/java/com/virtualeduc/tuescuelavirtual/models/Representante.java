@@ -148,7 +148,7 @@ public class Representante implements Serializable {
 		rep.setTlfPpalRpr(alumnoDTO.getCodoperadorappalrep1().concat("-").concat(alumnoDTO.getTextoTlfPpalRpr1()));
 
 		if (alumnoDTO.getCodoperadorasecrep1() != null
-				&& (alumnoDTO.getTextoTlfSecRpr1() != "" || alumnoDTO.getTextoTlfSecRpr1() != null)) {
+				&& alumnoDTO.getTextoTlfSecRpr1() != "") {
 			rep.setTlfSecRpr(alumnoDTO.getCodoperadorasecrep1().concat("-").concat(alumnoDTO.getTextoTlfSecRpr1()));
 		} else {
 			rep.setTlfSecRpr(rep.getTlfPpalRpr());

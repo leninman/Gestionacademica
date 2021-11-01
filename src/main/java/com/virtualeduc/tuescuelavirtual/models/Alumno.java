@@ -151,8 +151,7 @@ public class Alumno implements Serializable {
 				.concat(",").concat(alumnoDTO.getParroquiadirppalest()).concat(",")
 				.concat(alumnoDTO.getCodpostaldirppalest());
 
-		if ((alumnoDTO.getTextoDirSecAl() != "" || alumnoDTO.getTextoDirSecAl() != null)
-				&& alumnoDTO.getEstadodirsecest() != null && alumnoDTO.getMunicipiodirsecest() != null
+		if (alumnoDTO.getTextoDirSecAl() != "" && alumnoDTO.getEstadodirsecest() != null && alumnoDTO.getMunicipiodirsecest() != null
 				&& alumnoDTO.getCiudaddirsecest() != null && alumnoDTO.getParroquiadirsecest() != null
 				&& alumnoDTO.getCodpostaldirsecest() != null) {
 			this.dirSecAl = alumnoDTO.getTextoDirSecAl().concat(",").concat(alumnoDTO.getEstadodirsecest()).concat(",")
@@ -166,7 +165,7 @@ public class Alumno implements Serializable {
 		this.tlfPpalAl = alumnoDTO.getCodoperadorappalest().concat("-").concat(alumnoDTO.getTextoTlfPpalAl());
 
 		if (alumnoDTO.getCodoperadorasecest() != null
-				&& (alumnoDTO.getTextoTlfSecAl() != "" || alumnoDTO.getTextoTlfSecAl() != null)) {
+				&& alumnoDTO.getTextoTlfSecAl() != "") {
 			this.tlfSecAl = alumnoDTO.getCodoperadorasecest().concat("-").concat(alumnoDTO.getTextoTlfSecAl());
 		} else {
 			this.tlfSecAl = this.tlfPpalAl;

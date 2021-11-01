@@ -8,6 +8,12 @@ input{
   width: 300px;
 }
 
+.input-nombre-completo {
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  width: 300px;
+}
+
 
 
 p{

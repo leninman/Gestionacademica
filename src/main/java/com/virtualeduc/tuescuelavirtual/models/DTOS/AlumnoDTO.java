@@ -71,22 +71,22 @@ public class AlumnoDTO implements Serializable {
 	@NotEmpty(message = "Requerido")
 	private String codpostaldirppalest;
 
-	@NotEmpty(message = "Requerido")
+	
 	private String textoDirSecAl;
 
-	@NotEmpty(message = "Requerido")
+	
 	private String estadodirsecest;
 
-	@NotEmpty(message = "Requerido")
+
 	private String municipiodirsecest;
 
-	@NotEmpty(message = "Requerido")
+	
 	private String ciudaddirsecest;
 
-	@NotEmpty(message = "Requerido")
+	
 	private String parroquiadirsecest;
 
-	@NotEmpty(message = "Requerido")
+
 	private String codpostaldirsecest;
 
 	@NotEmpty(message = "Requerido")
@@ -95,10 +95,10 @@ public class AlumnoDTO implements Serializable {
 	@NotEmpty(message = "Requerido")
 	private String textoTlfPpalAl;
 
-	@NotEmpty(message = "Requerido")
+	
 	private String codoperadorasecest;
 
-	@NotEmpty(message = "Requerido")
+	
 	private String textoTlfSecAl;
 
 	@NotEmpty(message = "Requerido")
@@ -164,22 +164,22 @@ public class AlumnoDTO implements Serializable {
 	@NotEmpty(message = "Requerido")
 	private String codpostaldirppalrep1;
 
-	@NotEmpty(message = "Requerido")
+
 	private String textoDirSecRpr1;
 
-	@NotEmpty(message = "Requerido")
+
 	private String estadodirsecrep1;
 
-	@NotEmpty(message = "Requerido")
+	
 	private String municipiodirsecrep1;
 
-	@NotEmpty(message = "Requerido")
+	
 	private String ciudaddirsecrep1;
 
-	@NotEmpty(message = "Requerido")
+	
 	private String parroquiadirsecrep1;
 
-	@NotEmpty(message = "Requerido")
+	
 	private String codpostaldirsecrep1;
 
 	@NotEmpty(message = "Requerido")
@@ -192,10 +192,10 @@ public class AlumnoDTO implements Serializable {
 	@Email(message = "El email no es válido")
 	private String emailRpr1;
 
-	@NotEmpty(message = "Requerido")
+
 	private String codoperadorasecrep1;
 
-	@NotEmpty(message = "Requerido")
+	
 	private String textoTlfSecRpr1;
 
 	private String tipoDocRep2;

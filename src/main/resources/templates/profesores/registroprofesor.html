@@ -41,12 +41,9 @@
 							data-placement="top" title="Salir"><i class="bi bi-x"></i></a></li>
 					</ul>
 					<div class="container"
-						style="display: flex; justify-content: left;" id="containerTitulo">
-
+						 id="containerTitulo">
 						<div class="col-md-3"></div>
-						<p
-							>Formulario
-							de registro del profesor</p>
+						<p class="tituloPrincipal">Formulario de registro del profesor</p>
 					</div>
 				</div>
 			</nav>
@@ -62,7 +59,7 @@
 						<!--************************PROFESOR*********************************-->
 						<div class="row">
 							<div class="col-md-5"></div>
-							<p id="titulo2">Datos básicos</p>
+							<p class="titulos">Datos básicos</p>
 						</div>
 						<br />
 
@@ -107,22 +104,35 @@
 									<option value="E">E</option>
 									<option value="P">P</option>
 								</select>
-								<div th:if="${#fields.hasErrors('tipoDocPrf')}"
-									th:errors="*{tipoDocPrf}" class="error"></div>
+								
 								<input type="text" class="input-cedula"
 									onkeypress="return event.charCode >= 48 && event.charCode <= 57"
 									maxlength="8" id="numDocPrf" th:field="*{numDocPrf}" />
-								<div th:if="${#fields.hasErrors('numDocPrf')}"
-									th:errors="*{numDocPrf}" class="error"></div>
+								
 							</div>
 							<div class="col-md-6">
 								<label for="fechNacPrf" class="col-form-label">Fecha
 									de nacimiento*</label> <input type="date" class="input-fech-nac"
 									id="fechNacPrf" th:field="*{fechNacPrf}" />
-								<div th:if="${#fields.hasErrors('fechNacPrf')}"
-									th:errors="*{fechNacPrf}" class="error"></div>
+								
 							</div>
 						</div>
+						
+						<div class="row">
+						<div class="col-sm-2">
+							<div th:if="${#fields.hasErrors('tipoDocPrf')}"
+									th:errors="*{tipoDocPrf}" class="error"></div>
+						</div>
+						<div class="col-sm-4">
+							<div th:if="${#fields.hasErrors('numDocPrf')}"
+									th:errors="*{numDocPrf}" class="error"></div>
+						</div>
+						<div class="col-sm-6">
+							<div th:if="${#fields.hasErrors('fechNacPrf')}"
+									th:errors="*{fechNacPrf}" class="error"></div>
+						</div>
+
+					</div>
 						<br />
 						<div class="row">
 							<div class="col-sm-1">
@@ -291,13 +301,13 @@
 						<br />
 						<div class="row">
 							<div class="col-sm-4">
-								<label class="col-form-label">Telefono
+								<label class="col-form-label">Teléfono
 									Principal*</label>
 							</div>
 							<div class="col-sm-1"></div>
 							<div class="col-sm-4">
 								<label class="col-form-label">Correo
-									electrónico</label>
+									electrónico*</label>
 							</div>
 						</div>
 						<div class="row">
@@ -320,18 +330,20 @@
 								<input type="text" class="input-num-tlf"
 									onkeypress="return event.charCode >= 48 && event.charCode <= 57"
 									maxlength="7" id="textoTlfPpalPrf" th:field="*{textoTlfPpalPrf}" />
-							</div>
-							<div class="error" th:if="${#fields.hasErrors('textoTlfPpalPrf')}"
+									<div class="error" th:if="${#fields.hasErrors('textoTlfPpalPrf')}"
 									th:errors="*{textoTlfPpalPrf}"></div>
+							</div>
+							
 									
 							<div class="col-sm-2"></div>
 							
 							<div class="col-sm-6">
 								<input type="email" class="input-email" id="emailPrf"
 									th:field="*{emailPrf}" />
-							</div>
-							<div class="error" th:if="${#fields.hasErrors('emailPrf')}"
+									<div class="error" th:if="${#fields.hasErrors('emailPrf')}"
 									th:errors="*{emailPrf}"></div>
+							</div>
+							
 						</div>
 						<br />
 						<div class="row">
@@ -367,7 +379,7 @@
 
 						<div class="row">
 							<div class="col-md-4"></div>
-							<p id="titulo3">Datos profesionales y
+							<p class="titulos">Datos profesionales y
 								académicos</p>
 						</div>
 						<br> <br>
@@ -515,8 +527,8 @@
 								<label for="aniosServPrf" class="col-form-label">Años
 									de servicio</label> <input type="text" class="annios-serv"
 									id="aniosServPrf" th:field="*{aniosServPrf}" />
-
-
+									<div class="error" th:if="${#fields.hasErrors('aniosServPrf')}"
+									th:errors="*{aniosServPrf}"></div>
 							</div>
 
 
@@ -525,6 +537,8 @@
 								<label for="catPrf" class="col-form-label">Categoria
 									docente</label> <input type="text" class="categoria" id="catPrf"
 									th:field="*{catPrf}" />
+									<div class="error" th:if="${#fields.hasErrors('catPrf')}"
+									th:errors="*{catPrf}"></div>
 
 
 							</div>

@@ -26,8 +26,8 @@ public class ProfesorDTO implements Serializable {
 	@NotEmpty(message = "Requerido")
 	private String primApellPrf;
 
-	@NotNull(message = "Requerido")
-	private int aniosServPrf;
+	@NotEmpty(message = "Requerido")
+	private String aniosServPrf;
 
 	@NotEmpty(message = "Requerido")
 	private String catPrf;
@@ -62,8 +62,8 @@ public class ProfesorDTO implements Serializable {
 
 	private String codpostaldirsecprf;
 
-	@NotNull(message = "Requerido")
-	private int edadPrf;
+	@NotEmpty(message = "Requerido")
+	private String edadPrf;
 
 	@NotEmpty(message = "Requerido")
 	private String edoCivilPrf;
@@ -141,71 +141,7 @@ public class ProfesorDTO implements Serializable {
 	
 	
 
-	public ProfesorDTO(Long idPrf, @NotNull(message = "Requerido") int aniosServPrf,
-			@NotEmpty(message = "Requerido") String catPrf, @NotEmpty(message = "Requerido") String textoDirPpalPrf,
-			@NotEmpty(message = "Requerido") String estadodirppalprf,
-			@NotEmpty(message = "Requerido") String municipiodirppalprf,
-			@NotEmpty(message = "Requerido") String ciudaddirppalprf,
-			@NotEmpty(message = "Requerido") String parroquiadirppalprf,
-			@NotEmpty(message = "Requerido") String codpostaldirppalprf, String textoDirSecPrf, String estadodirsecprf,
-			String municipiodirsecprf, String ciudaddirsecprf, String parroquiadirsecprf, String codpostaldirsecprf,
-			@NotNull(message = "Requerido") int edadPrf, @NotEmpty(message = "Requerido") String edoCivilPrf,
-			@NotEmpty(message = "Requerido") @Email(message = "El email no es válido") String emailPrf,
-			@NotNull(message = "Requerido") Date fechNacPrf, @NotEmpty(message = "Requerido") String graduado,
-			@NotEmpty(message = "Requerido") String pregrado1, @NotEmpty(message = "Requerido") String especialidad1,
-			String pregrado2, String especialidad2, String postgrado1, String postgrado2, String curso1, String curso2,
-			String curso3, String curso4, @NotEmpty(message = "Requerido") String numDocPrf,
-			@NotEmpty(message = "Requerido") String primApellPrf, @NotEmpty(message = "Requerido") String primNombPrf,
-			String segApellPrf, String segNombPrf, @NotEmpty(message = "Requerido") String sexoPrf,
-			@NotEmpty(message = "Requerido") String status, @NotEmpty(message = "Requerido") String tipoDocPrf,
-			@NotEmpty(message = "Requerido") String codoperadorappalprf,
-			@NotEmpty(message = "Requerido") String textoTlfPpalPrf, String codoperadorasecprf, String textoTlfSecPrf,
-			@NotNull(message = "Requerido") Date fechIngPrf) {
-		super();
-		this.idPrf = idPrf;
-		this.aniosServPrf = aniosServPrf;
-		this.catPrf = catPrf;
-		this.textoDirPpalPrf = textoDirPpalPrf;
-		this.estadodirppalprf = estadodirppalprf;
-		this.municipiodirppalprf = municipiodirppalprf;
-		this.ciudaddirppalprf = ciudaddirppalprf;
-		this.parroquiadirppalprf = parroquiadirppalprf;
-		this.codpostaldirppalprf = codpostaldirppalprf;
-		this.textoDirSecPrf = textoDirSecPrf;
-		this.estadodirsecprf = estadodirsecprf;
-		this.municipiodirsecprf = municipiodirsecprf;
-		this.ciudaddirsecprf = ciudaddirsecprf;
-		this.parroquiadirsecprf = parroquiadirsecprf;
-		this.codpostaldirsecprf = codpostaldirsecprf;
-		this.edadPrf = edadPrf;
-		this.edoCivilPrf = edoCivilPrf;
-		this.emailPrf = emailPrf;
-		this.fechNacPrf = fechNacPrf;
-		this.graduado = graduado;
-		this.pregrado1 = pregrado1;
-		this.especialidad1 = especialidad1;
-		this.pregrado2 = pregrado2;
-		this.especialidad2 = especialidad2;
-		this.postgrado1 = postgrado1;
-		this.postgrado2 = postgrado2;
-		this.curso1 = curso1;
-		this.curso2 = curso2;
-		this.curso3 = curso3;
-		this.curso4 = curso4;
-		this.numDocPrf = numDocPrf;
-		this.primApellPrf = primApellPrf;
-		this.primNombPrf = primNombPrf;
-		this.segApellPrf = segApellPrf;
-		this.segNombPrf = segNombPrf;
-		this.sexoPrf = sexoPrf;
-		this.status = status;
-		this.tipoDocPrf = tipoDocPrf;
-		this.codoperadorappalprf = codoperadorappalprf;
-		this.textoTlfPpalPrf = textoTlfPpalPrf;
-		this.codoperadorasecprf = codoperadorasecprf;
-		this.textoTlfSecPrf = textoTlfSecPrf;
-		this.fechIngPrf = fechIngPrf;
-	}
+
 
 
 
@@ -288,11 +224,11 @@ public class ProfesorDTO implements Serializable {
 		this.idPrf = idPrf;
 	}
 
-	public int getAniosServPrf() {
+	public String getAniosServPrf() {
 		return aniosServPrf;
 	}
 
-	public void setAniosServPrf(int aniosServPrf) {
+	public void setAniosServPrf(String aniosServPrf) {
 		this.aniosServPrf = aniosServPrf;
 	}
 
@@ -400,11 +336,11 @@ public class ProfesorDTO implements Serializable {
 		this.codpostaldirsecprf = codpostaldirsecprf;
 	}
 
-	public int getEdadPrf() {
+	public String getEdadPrf() {
 		return edadPrf;
 	}
 
-	public void setEdadPrf(int edadPrf) {
+	public void setEdadPrf(String edadPrf) {
 		this.edadPrf = edadPrf;
 	}
 

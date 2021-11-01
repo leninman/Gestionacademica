@@ -113,27 +113,27 @@ public class profesorController {
 	public String verprofesor(@PathVariable(name = "idPrf") Long idPrf, Model model) {
 		
 		Profesor profesor=profesoresService.consultarProfesorPorId(idPrf);
-		ProfesorDTO profesordto=new ProfesorDTO(profesor);
+		ProfesorDTO profesorDTO=new ProfesorDTO(profesor);
 		List<Profesion> profesiones = new ArrayList<>();
 		profesiones = variosservice.consultarProfesiones();
 		model.addAttribute("profesiones", profesiones);
-		model.addAttribute("profesor", profesordto);	
+		model.addAttribute("profesorDTO", profesorDTO);	
 		return "profesores/editarprofesor";
 	}
 
 
 	@PostMapping(path = "/actualizarprofesor")
-	public String actualizarprofesor(@Valid ProfesorDTO profesor, BindingResult result, Model model,
+	public String actualizarprofesor(@Valid ProfesorDTO profesorDTO, BindingResult result, Model model,
 			RedirectAttributes redirectAttributes) {
 		
 		if (result.hasErrors()) {
-			model.addAttribute("profesor", profesor);
+			//model.addAttribute("profesor", profesorDTO);
 			return "profesores/editarprofesor";
 		}
 
 		guardar = false;
 		
-		Responses resp = profesoresService.guardarProfesor(profesor, guardar);
+		Responses resp = profesoresService.guardarProfesor(profesorDTO, guardar);
 		
 		if (resp.getResponseCode() == Constantes.PROFESOR_MODIFICADO_CODE) {
 			redirectAttributes.addFlashAttribute("mensaje21", resp.getResponseDescription()).addFlashAttribute("clase",

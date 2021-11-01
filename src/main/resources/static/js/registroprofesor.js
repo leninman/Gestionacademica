@@ -66,9 +66,9 @@ $("#btnLimpiar").click(function () {
 
 
 //Setea los combos a blanco, oculta los textos establece estilos
-//$(document).ready(function () {
+$(document).ready(function () {
 	
- //$('form select').val("");
+ $('form select').val("");
 
-//});
+});
 

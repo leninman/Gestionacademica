@@ -15,6 +15,7 @@ $(document).ready(function () {
 
 
 $("#botonCambiarRep").click(function () {
+  $("#nombreCompletoRep1").val('');
   $("#tipoDocRep1").val("");
   $("#numDocRep1").val("");
   $("#primNombRpr1").val("");
@@ -53,6 +54,7 @@ $("#botonCambiarRep").click(function () {
 
 
 $("#botonCambiarRep2").click(function () {
+  $("#nombreCompletoRep1").val('');
   $("#tipoDocRep2").val("");
   $("#numDocRep2").val("");
   $("#primNombRpr2").val("");
@@ -153,6 +155,7 @@ $("#botonEditarAlumno").click(function () {
     .done(function (data) {
       rep1encontrado = 1;
       console.log(data);
+      $("#nombreCompletoRep1").val(data["primNombRpr"]+" "+data["segNombRpr"]+" "+data["primApellRpr"]+" "+data["segApellRpr"]);
       $("#primNombRpr1").val(data["primNombRpr"]);
       $("#segNombRpr1").val(data["segNombRpr"]);
       $("#primApellRpr1").val(data["primApellRpr"]);
@@ -202,6 +205,7 @@ $("#botonBuscRep2").click(function () {
     .done(function (data) {
       rep1encontrado = 1;
       console.log(data);
+       $("#nombreCompletoRep2").val(data["primNombRpr"]+" "+data["segNombRpr"]+" "+data["primApellRpr"]+" "+data["segApellRpr"]);
       $("#primNombRpr2").val(data["primNombRpr"]);
       $("#segNombRpr2").val(data["segNombRpr"]);
       $("#primApellRpr2").val(data["primApellRpr"]);

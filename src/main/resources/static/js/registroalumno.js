@@ -56,7 +56,7 @@ $(document).ready(function () {
 	
  // }
  
-  // $('form select').val("");	   
+   $('form select').val("");	   
   $("#txtSexoRpr1").hide();
   $("#txtParentescoRpr1").hide();
   $("#txtOtroParentescoRpr1").hide();

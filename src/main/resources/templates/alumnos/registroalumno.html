@@ -264,62 +264,50 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<label class="col-form-label">Direccion secundaria de
-								domicilio*</label> <input type="text" class="input-txtDireccion"
+								domicilio</label> <input type="text" class="input-txtDireccion"
 								name="textoDirSecAl" id="textoDirSecAl" />
-								<div th:if="${#fields.hasErrors('textoDirSecAl')}"
-								th:errors="*{textoDirSecAl}" class="error"></div>
 						</div>
 					</div>
 					<br />
 					<div class="row">
 						<div class="col-sm-2">
-							<label for="estadodirsecest" class="col-form-label">Estado*</label>
+							<label for="estadodirsecest" class="col-form-label">Estado</label>
 							<select class="input-estado" name="estadodirsecest"
 								id="estadodirsecest">
 								<option value="MIRANDA">MIRANDA</option>
 							</select>
-							<div th:if="${#fields.hasErrors('estadodirsecest')}"
-								th:errors="*{estadodirsecest}" class="error"></div>
 						</div>
 						<div class="col-sm-2">
-							<label for="municipiodirsecest" class="col-form-label">Municipio*</label>
+							<label for="municipiodirsecest" class="col-form-label">Municipio</label>
 							<select class="input-estado" name="municipiodirsecest"
 								id="municipiodirsecest">
 								<option value="PLAZA">PLAZA</option>
 								<option value="ZAMORA">ZAMORA</option>
 							</select>
-							<div th:if="${#fields.hasErrors('municipiodirsecest')}"
-								th:errors="*{municipiodirsecest}" class="error"></div>
 						</div>
 						<div class="col-sm-2">
-							<label for="ciudaddirsecest" class="col-form-label">Ciudad*</label>
+							<label for="ciudaddirsecest" class="col-form-label">Ciudad</label>
 							<select class="input-estado" name="ciudaddirsecest"
 								id="ciudaddirsecest">
 								<option value="GUARENAS">GUARENAS</option>
 								<option value="GUATIRE">GUATIRE</option>
 							</select>
-							<div th:if="${#fields.hasErrors('ciudaddirsecest')}"
-								th:errors="*{ciudaddirsecest}" class="error"></div>
 						</div>
 						<div class="col-sm-2">
-							<label for="parroquiadirsecest" class="col-form-label">Parroquia*</label>
+							<label for="parroquiadirsecest" class="col-form-label">Parroquia</label>
 							<select class="input-estado" name="parroquiadirsecest"
 								id="parroquiadirsecest">
 								<option value="GUARENAS">GUARENAS</option>
 								<option value="GUATIRE">GUATIRE</option>
 							</select>
-							<div th:if="${#fields.hasErrors('parroquiadirsecest')}"
-								th:errors="*{parroquiadirsecest}" class="error"></div>
 						</div>
 						<div class="col-sm-2">
 							<label for="codpostaldirsecest" class="col-form-label">Cod.
-								Postal*</label> <select class="input-estado" name="codpostaldirsecest"
+								Postal</label> <select class="input-estado" name="codpostaldirsecest"
 								id="codpostaldirsecest">
 								<option value="1220">1220</option>
 								<option value="1221">1221</option>
 							</select>
-							<div th:if="${#fields.hasErrors('codpostaldirsecest')}"
-								th:errors="*{codpostaldirsecest}" class="error"></div>
 						</div>
 					</div>
 					<br />
@@ -353,7 +341,7 @@
 							<div th:if="${#fields.hasErrors('textoTlfPpalAl')}"
 								th:errors="*{textoTlfPpalAl}" class="error"></div>
 						</div>
-						<div class="col-sm-2">&nbsp;</div>
+						<div class="col-sm-2"></div>
 						<div class="col-sm-6">
 							<input type="email" class="input-email" id="emailAl"
 								th:field="*{emailAl}" />
@@ -364,7 +352,7 @@
 					<br />
 					<div class="row">
 						<div class="col-sm-12">
-							<label class="col-form-label">Teléfono Secundario*</label>
+							<label class="col-form-label">Teléfono Secundario</label>
 						</div>
 					</div>
 					<div class="row">
@@ -378,15 +366,11 @@
 								<option value="0424">0424</option>
 								<option value="0426">0426</option>
 							</select>
-							<div th:if="${#fields.hasErrors('codoperadorasecest')}"
-								th:errors="*{codoperadorasecest}" class="error"></div>
 						</div>
 						<div class="col-sm-2">
 							<input type="text" class="input-num-tlf"
 								onkeypress="return event.charCode >= 48 && event.charCode <= 57"
 								maxlength="7" name="textoTlfSecAl" th:field="*{textoTlfSecAl}"/>
-								<div th:if="${#fields.hasErrors('textoTlfSecAl')}"
-								th:errors="*{textoTlfSecAl}" class="error"></div>
 						</div>
 					</div>
 					<br /> <br />
@@ -596,74 +580,57 @@
 					<br />
 					<div class="row">
 						<div class="col-sm-12">
-							<label class="col-form-label">Direccion secundaria de
-								domicilio*</label> <input type="text" class="input-txtDireccion"
+							<label class="col-form-label">Dirección secundaria de
+								domicilio</label> <input type="text" class="input-txtDireccion"
 								name="textoDirSecRpr1" id="textoDirSecRpr1" th:field="*{textoDirSecRpr1}" />
 						</div>
-						<div th:if="${#fields.hasErrors('textoDirSecRpr1')}"
-							 th:errors="*{textoDirSecRpr1}" class="error"></div>
 					</div>
 					<br />
 					<div class="row">
 						<div class="col-sm-2">
 							<label for="estadodirsecrep1" id="lblEstadodirsecrep1"
-								class="col-form-label">Estado*</label> <select
+								class="col-form-label">Estado</label> <select
 								class="input-estado" name="estadodirsecrep1"
 								id="estadodirsecrep1"
 								th:field="*{estadodirsecrep1}">
 								<option value="MIRANDA">MIRANDA</option>
 							</select>
-							<div th:if="${#fields.hasErrors('estadodirsecrep1')}"
-								th:errors="*{estadodirsecrep1}" class="error"></div>
-							
 						</div>
 						<div class="col-sm-2">
 							<label for="municipiodirsecrep1" id="lblMunicipiodirsecrep1"
-								class="col-form-label">Municipio*</label> <select
+								class="col-form-label">Municipio</label> <select
 								class="input-estado" name="municipiodirsecrep1"
 								id="municipiodirsecrep1" th:field="*{municipiodirsecrep1}">
 								<option value="PLAZA">PLAZA</option>
 								<option value="ZAMORA">ZAMORA</option>
 							</select>
-							<div th:if="${#fields.hasErrors('municipiodirsecrep1')}"
-								th:errors="*{municipiodirsecrep1}" class="error"></div>
-							
-							
 						</div>
 						<div class="col-sm-2">
 							<label for="ciudaddirsecrep1" id="lblCiudaddirsecrep1"
-								class="col-form-label">Ciudad*</label> <select
+								class="col-form-label">Ciudad</label> <select
 								class="input-estado" name="ciudaddirsecrep1"
 								id="ciudaddirsecrep1" th:field="*{ciudaddirsecrep1}">
 								<option value="GUARENAS">GUARENAS</option>
 								<option value="GUATIRE">GUATIRE</option>
 							</select>
-							<div th:if="${#fields.hasErrors('ciudaddirsecrep1')}"
-								th:errors="*{ciudaddirsecrep1}" class="error"></div>
 						</div>
 						<div class="col-sm-2">
 							<label for="parroquiadirsecrep1" id="lblParroquiadirsecrep1"
-								class="col-form-label">Parroquia*</label> <select
+								class="col-form-label">Parroquia</label> <select
 								class="input-estado" name="parroquiadirsecrep1"
 								id="parroquiadirsecrep1" th:field="*{parroquiadirsecrep1}">
 								<option value="GUARENAS">GUARENAS</option>
 								<option value="GUATIRE">GUATIRE</option>
 							</select>
-							<div th:if="${#fields.hasErrors('parroquiadirsecrep1')}"
-								th:errors="*{parroquiadirsecrep1}" class="error"></div>
-							
 						</div>
 						<div class="col-sm-2">
 							<label for="codpostaldirsecrep1" id="lblCodpostaldirsecrep1"
-								class="col-form-label">Código postal*</label> <select
+								class="col-form-label">Código postal</label> <select
 								class="input-estado" name="codpostaldirsecrep1"
 								id="codpostaldirsecrep1" th:field="*{codpostaldirsecrep1}">
 								<option value="1220">1220</option>
 								<option value="1221">1221</option>
 							</select>
-							<div th:if="${#fields.hasErrors('codpostaldirsecrep1')}"
-								th:errors="*{codpostaldirsecrep1}" class="error"></div>
-							
 						</div>
 					</div>
 					<br />
@@ -709,7 +676,7 @@
 					<br />
 					<div class="row">
 						<div class="col">
-							<label class="col-form-label">Teléfono Secundario*</label>
+							<label class="col-form-label">Teléfono Secundario</label>
 						</div>
 					</div>
 					<div class="row">
@@ -723,10 +690,6 @@
 								<option value="0424">0424</option>
 								<option value="0426">0426</option>
 							</select>
-							<div th:if="${#fields.hasErrors('codoperadorasecrep1')}"
-								th:errors="*{codoperadorasecrep1}" class="error"></div>
-							
-							
 						</div>
 						<div class="col-sm-2">
 							<input type="text" class="input-num-tlf" name="textoTlfSecRpr1"
@@ -734,8 +697,6 @@
 								onkeypress="return event.charCode >= 48 && event.charCode <= 57"
 								maxlength="7" 
 								th:field="*{textoTlfSecRpr1}"/>
-								<div th:if="${#fields.hasErrors('textoTlfSecRpr1')}"
-								th:errors="*{textoTlfSecRpr1}" class="error"></div>
 						</div>
 					</div>
 					<br />
