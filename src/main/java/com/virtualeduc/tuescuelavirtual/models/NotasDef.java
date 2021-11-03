@@ -32,7 +32,7 @@ public class NotasDef implements Serializable {
 	@Column(name="ID_PRF")
 	private java.math.BigInteger idPrf;
 
-	private int nota;
+	private String nota;
 
 	public NotasDef() {
 	}
@@ -83,12 +83,16 @@ public class NotasDef implements Serializable {
 		this.idPrf = idPrf;
 	}
 
-	public int getNota() {
-		return this.nota;
+	public String getNota() {
+		return nota;
 	}
 
-	public void setNota(int nota) {
+	public void setNota(String nota) {
 		this.nota = nota;
 	}
+	
+	
+
+
 
 }

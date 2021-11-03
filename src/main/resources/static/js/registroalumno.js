@@ -55,8 +55,40 @@ $(document).ready(function () {
   //if(porvalidacion){
 	
  // }
- 
-   $('form select').val("");	   
+
+//let selects = document.querySelectorAll("select");
+
+//let numberOfSelects=selects.length
+
+
+//console.log(numberOfSelects);
+
+//for (let i=0;i<numberOfSelects;i++) {
+	
+	
+	//console.log(selects[i].value);
+	
+	//if(('form select').val()==""){
+		//console.log("hello");
+	//}
+	
+	//var valor=$('form select').val();
+
+	//console.log(valor);
+	
+	
+	
+//}
+
+
+//console.log($('form select'));
+
+
+
+ //if($('form select').val()==""){
+	// $('form select').val("");	  
+ //}
+  
   $("#txtSexoRpr1").hide();
   $("#txtParentescoRpr1").hide();
   $("#txtOtroParentescoRpr1").hide();

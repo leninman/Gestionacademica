@@ -442,6 +442,7 @@
 								<label for="pregrado2" class="col-form-label">Profesión
 									2</label> <select class="input-nombre-apellido" id="pregrado2"
 									th:field="*{pregrado2}">
+									<option value="" selected></option>
 									<option th:each="profesion:${profesiones}"
 										th:value="${profesion.profesion}"
 										th:text="${profesion.profesion}"></option>

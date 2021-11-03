@@ -268,21 +268,21 @@ public class AlumnoDTO implements Serializable {
 
 	private Date fechaCreacion;
 
-	//@NotEmpty(message = "Requerido")
+	@NotEmpty(message = "Requerido")
 	private String annio;
 
 	private String annioescolar;
 
-	//@NotEmpty(message = "Requerido")
+	@NotEmpty(message = "Requerido")
 	private String seccion;
 
-	//@NotEmpty(message = "Requerido")
+	@NotEmpty(message = "Requerido")
 	private String nivel;
 	
-	//@NotEmpty(message = "Requerido")
+	@NotEmpty(message = "Requerido")
 	private String turno;
 
-	//@NotEmpty(message = "Requerido")
+	@NotEmpty(message = "Requerido")
 	private String especialidad;
 
 //    @PrePersist

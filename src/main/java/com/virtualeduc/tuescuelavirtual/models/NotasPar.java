@@ -20,85 +20,88 @@ public class NotasPar implements Serializable {
 	private Long idNotaPar;
 	
 	@Column(name="ID_ALUMNO")
-	private BigInteger idAlumno;
+	private Long idAlumno;
 
 	@Column(name="ID_CURSO")
-	private BigInteger idCurso;
+	private Long idCurso;
 
 	@Column(name="ID_LAPSO")
-	private BigInteger idLapso;
+	private Long idLapso;
 
 	@Column(name="ID_MAT")
-	private BigInteger idMat;
+	private Long idMat;
 
 	@Column(name="ID_PRF")
-	private BigInteger idPrf;
+	private Long idPrf;
 
-	private int nota;
+	private String nota;
 
 	public NotasPar() {
 	}
 
 	public Long getIdNotaPar() {
-		return this.idNotaPar;
+		return idNotaPar;
 	}
 
 	public void setIdNotaPar(Long idNotaPar) {
 		this.idNotaPar = idNotaPar;
 	}
-	
-	public BigInteger getIdAlumno() {
+
+	public Long getIdAlumno() {
 		return idAlumno;
 	}
 
-	public void setIdAlumno(BigInteger idAlumno) {
+	public void setIdAlumno(Long idAlumno) {
 		this.idAlumno = idAlumno;
 	}
+
+	public Long getIdCurso() {
+		return idCurso;
+	}
+
+	public void setIdCurso(Long idCurso) {
+		this.idCurso = idCurso;
+	}
+
+	public Long getIdLapso() {
+		return idLapso;
+	}
+
+	public void setIdLapso(Long idLapso) {
+		this.idLapso = idLapso;
+	}
+
+	public Long getIdMat() {
+		return idMat;
+	}
+
+	public void setIdMat(Long idMat) {
+		this.idMat = idMat;
+	}
+
+	public Long getIdPrf() {
+		return idPrf;
+	}
+
+	public void setIdPrf(Long idPrf) {
+		this.idPrf = idPrf;
+	}
+
 	
-	
+
+	public String getNota() {
+		return nota;
+	}
+
+	public void setNota(String nota) {
+		this.nota = nota;
+	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	
 
-	public BigInteger getIdCurso() {
-		return this.idCurso;
-	}
-
-	public void setIdCurso(BigInteger idCurso) {
-		this.idCurso = idCurso;
-	}
-
-	public BigInteger getIdLapso() {
-		return this.idLapso;
-	}
-
-	public void setIdLapso(BigInteger idLapso) {
-		this.idLapso = idLapso;
-	}
-
-	public BigInteger getIdMat() {
-		return this.idMat;
-	}
-
-	public void setIdMat(BigInteger idMat) {
-		this.idMat = idMat;
-	}
-
-	public BigInteger getIdPrf() {
-		return this.idPrf;
-	}
-
-	public void setIdPrf(BigInteger idPrf) {
-		this.idPrf = idPrf;
-	}
-
-	public int getNota() {
-		return this.nota;
-	}
-
-	public void setNota(int nota) {
-		this.nota = nota;
-	}
 
 }

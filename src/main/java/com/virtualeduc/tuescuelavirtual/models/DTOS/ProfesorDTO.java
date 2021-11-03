@@ -189,7 +189,12 @@ public class ProfesorDTO implements Serializable {
 		this.especialidad1 = arrOfStrPregrado1[1];
 		if (!strPregrado2.equals("") ) {
 			this.pregrado2 = arrOfStrPregrado2[0];
-			this.especialidad2 = arrOfStrPregrado2[1];
+			if(arrOfStrPregrado2.length==2) {
+				this.especialidad2 = arrOfStrPregrado2[1];
+			}else {
+				this.especialidad2="";
+			}
+			
 		}else {
 			this.pregrado2 = "";
 			this.especialidad2 = "";

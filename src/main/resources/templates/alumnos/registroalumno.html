@@ -115,6 +115,7 @@
 
 							<label for="numDocAl" class="col-form-label">Cédula*</label> <select
 								class="input-cmb-cedula" id="tipoDocAl" th:field="*{tipoDocAl}">
+								<option value="" selected></option>
 								<option value="V">V</option>
 								<option value="E">E</option>
 								<option value="P">P</option>
@@ -174,6 +175,7 @@
 						<div class="col-sm-2">
 							<label for="sexoAl" class="col-form-label">Sexo*</label> <select
 								class="input-sexo" id="sexoAl" th:field="*{sexoAl}">
+								<option value="" selected></option>
 								<option value="FEMENINO">FEMENINO</option>
 								<option value="MASCULINO">MASCULINO</option>
 							</select>
@@ -183,6 +185,7 @@
 						<div class="col-sm-3">
 							<label for="status" class="col-form-label">Est Académico*</label>
 							<select class="input-est-acad" id="status" th:field="*{status}">
+							    <option value="" selected></option>
 								<option value="ACTIVO">ACTIVO</option>
 								<option value="RETIRADO">RETIRADO</option>
 							</select>
@@ -214,6 +217,7 @@
 							<label for="estadodirppalest" class="col-form-label">Estado*</label>
 							<select class="input-estado" id="estadodirppalest"
 								th:field="*{estadodirppalest}">
+								<option value="" selected></option>
 								<option value="MIRANDA">MIRANDA</option>
 							</select>
 							<div th:if="${#fields.hasErrors('estadodirppalest')}"
@@ -223,6 +227,7 @@
 							<label for="municipiodirppalest" class="col-form-label">Municipio*</label>
 							<select class="input-estado" id="municipiodirppalest"
 								th:field="*{municipiodirppalest}">
+								<option value="" selected></option>
 								<option value="PLAZA">PLAZA</option>
 								<option value="ZAMORA">ZAMORA</option>
 							</select>
@@ -233,6 +238,7 @@
 							<label for="ciudaddirppalest" class="col-form-label">Ciudad*</label>
 							<select class="input-estado" id="ciudaddirppalest"
 								th:field="*{ciudaddirppalest}">
+								<option value="" selected></option>
 								<option value="GUARENAS">GUARENAS</option>
 								<option value="GUATIRE">GUATIRE</option>
 							</select>
@@ -243,6 +249,7 @@
 							<label for="parroquiadirppalest" class="col-form-label">Parroquia*</label>
 							<select class="input-estado" id="parroquiadirppalest"
 								th:field="*{parroquiadirppalest}">
+								<option value="" selected></option>
 								<option value="GUARENAS">GUARENAS</option>
 								<option value="GUATIRE">GUATIRE</option>
 							</select>
@@ -253,6 +260,7 @@
 							<label for="codpostaldirppalest" class="col-form-label">Cod.
 								Postal*</label> <select class="input-estado" id="codpostaldirppalest"
 								th:field="*{codpostaldirppalest}">
+								<option value="" selected></option>
 								<option value="1220">1220</option>
 								<option value="1221">1221</option>
 							</select>
@@ -273,14 +281,16 @@
 						<div class="col-sm-2">
 							<label for="estadodirsecest" class="col-form-label">Estado</label>
 							<select class="input-estado" name="estadodirsecest"
-								id="estadodirsecest">
+								id="estadodirsecest" th:field="*{estadodirsecest}">
+								<option value="" selected></option>
 								<option value="MIRANDA">MIRANDA</option>
 							</select>
 						</div>
 						<div class="col-sm-2">
 							<label for="municipiodirsecest" class="col-form-label">Municipio</label>
 							<select class="input-estado" name="municipiodirsecest"
-								id="municipiodirsecest">
+								id="municipiodirsecest" th:field="*{municipiodirsecest}">
+								<option value="" selected></option>
 								<option value="PLAZA">PLAZA</option>
 								<option value="ZAMORA">ZAMORA</option>
 							</select>
@@ -288,7 +298,8 @@
 						<div class="col-sm-2">
 							<label for="ciudaddirsecest" class="col-form-label">Ciudad</label>
 							<select class="input-estado" name="ciudaddirsecest"
-								id="ciudaddirsecest">
+								id="ciudaddirsecest" th:field="*{ciudaddirsecest}">
+								<option value="" selected></option>
 								<option value="GUARENAS">GUARENAS</option>
 								<option value="GUATIRE">GUATIRE</option>
 							</select>
@@ -296,7 +307,8 @@
 						<div class="col-sm-2">
 							<label for="parroquiadirsecest" class="col-form-label">Parroquia</label>
 							<select class="input-estado" name="parroquiadirsecest"
-								id="parroquiadirsecest">
+								id="parroquiadirsecest" th:field="*{parroquiadirsecest}">
+								<option value="" selected></option>
 								<option value="GUARENAS">GUARENAS</option>
 								<option value="GUATIRE">GUATIRE</option>
 							</select>
@@ -304,7 +316,8 @@
 						<div class="col-sm-2">
 							<label for="codpostaldirsecest" class="col-form-label">Cod.
 								Postal</label> <select class="input-estado" name="codpostaldirsecest"
-								id="codpostaldirsecest">
+								id="codpostaldirsecest" th:field="*{codpostaldirsecest}">
+								<option value="" selected></option>
 								<option value="1220">1220</option>
 								<option value="1221">1221</option>
 							</select>
@@ -324,6 +337,7 @@
 						<div class="col-sm-1">
 							<select class="input-cod-operadora" id="codoperadorappalest"
 								th:field="*{codoperadorappalest}">
+								<option value="" selected></option>
 								<option value="0212">0212</option>
 								<option value="0412">0412</option>
 								<option value="0414">0414</option>
@@ -358,7 +372,8 @@
 					<div class="row">
 						<div class="col-sm-1">
 							<select class="input-cod-operadora" name="codoperadorasecest"
-								id="codoperadorasecest">
+								id="codoperadorasecest" th:field="*{codoperadorasecest}">
+								<option value="" selected></option>
 								<option value="0212">0212</option>
 								<option value="0412">0412</option>
 								<option value="0414">0414</option>
@@ -390,6 +405,7 @@
 							<label for="numDocRep1" class="col-form-label">Numero de
 								Cédula*</label> <select class="input-cmb-cedula" id="tipoDocRep1"
 								th:field="*{tipoDocRep1}">
+								<option value="" selected></option>
 								<option value="V">V</option>
 								<option value="E">E</option>
 								<option value="P">P</option>
@@ -485,6 +501,7 @@
 						<div class="col-sm-2">
 							<label for="sexoRpr1" class="col-form-label">Sexo*</label> <select
 								class="input-sexo" id="sexoRpr1" th:field="*{sexoRpr1}">
+								<option value="" selected></option>
 								<option value="FEMENINO">FEMENINO</option>
 								<option value="MASCULINO">MASCULINO</option>
 							</select>
@@ -501,6 +518,7 @@
 						<div class="col-sm-3">
 							<label for="edoCivRpr1" class="col-form-label">Edo Civ*</label> <select
 								class="input-ed-civ" id="edoCivRpr1" th:field="*{edoCivRpr1}">
+								<option value="" selected></option>
 								<option value="CASADO">CASADO</option>
 								<option value="SOLTERO">SOLTERO</option>
 								<option value="VIUDO">VIUDO</option>
@@ -527,6 +545,7 @@
 								class="col-form-label">Estado*</label> <select
 								class="input-estado" id="estadodirppalrep1"
 								th:field="*{estadodirppalrep1}">
+								<option value="" selected></option>
 								<option value="MIRANDA">MIRANDA</option>
 							</select>
 							<div th:if="${#fields.hasErrors('estadodirppalrep1')}"
@@ -537,6 +556,7 @@
 								class="col-form-label">Municipio*</label> <select
 								class="input-estado" id="municipiodirppalrep1"
 								th:field="*{municipiodirppalrep1}">
+								<option value="" selected></option>
 								<option value="PLAZA">PLAZA</option>
 								<option value="ZAMORA">ZAMORA</option>
 							</select>
@@ -548,6 +568,7 @@
 								class="col-form-label">Ciudad*</label> <select
 								class="input-estado" id="ciudaddirppalrep1"
 								th:field="*{ciudaddirppalrep1}">
+								<option value="" selected></option>
 								<option value="GUARENAS">GUARENAS</option>
 								<option value="GUATIRE">GUATIRE</option>
 							</select>
@@ -559,6 +580,7 @@
 								class="col-form-label">Parroquia*</label> <select
 								class="input-estado" id="parroquiadirppalrep1"
 								th:field="*{parroquiadirppalrep1}">
+								<option value="" selected></option>
 								<option value="GUARENAS">GUARENAS</option>
 								<option value="GUATIRE">GUATIRE</option>
 							</select>
@@ -570,6 +592,7 @@
 								class="col-form-label">Código postal*</label> <select
 								class="input-estado" id="codpostaldirppalrep1"
 								th:field="*{codpostaldirppalrep1}">
+								<option value="" selected></option>
 								<option value="1220">1220</option>
 								<option value="1221">1221</option>
 							</select>
@@ -593,6 +616,7 @@
 								class="input-estado" name="estadodirsecrep1"
 								id="estadodirsecrep1"
 								th:field="*{estadodirsecrep1}">
+								<option value="" selected></option>
 								<option value="MIRANDA">MIRANDA</option>
 							</select>
 						</div>
@@ -601,6 +625,7 @@
 								class="col-form-label">Municipio</label> <select
 								class="input-estado" name="municipiodirsecrep1"
 								id="municipiodirsecrep1" th:field="*{municipiodirsecrep1}">
+								<option value="" selected></option>
 								<option value="PLAZA">PLAZA</option>
 								<option value="ZAMORA">ZAMORA</option>
 							</select>
@@ -610,6 +635,7 @@
 								class="col-form-label">Ciudad</label> <select
 								class="input-estado" name="ciudaddirsecrep1"
 								id="ciudaddirsecrep1" th:field="*{ciudaddirsecrep1}">
+								<option value="" selected></option>
 								<option value="GUARENAS">GUARENAS</option>
 								<option value="GUATIRE">GUATIRE</option>
 							</select>
@@ -619,6 +645,7 @@
 								class="col-form-label">Parroquia</label> <select
 								class="input-estado" name="parroquiadirsecrep1"
 								id="parroquiadirsecrep1" th:field="*{parroquiadirsecrep1}">
+								<option value="" selected></option>
 								<option value="GUARENAS">GUARENAS</option>
 								<option value="GUATIRE">GUATIRE</option>
 							</select>
@@ -628,6 +655,7 @@
 								class="col-form-label">Código postal</label> <select
 								class="input-estado" name="codpostaldirsecrep1"
 								id="codpostaldirsecrep1" th:field="*{codpostaldirsecrep1}">
+								<option value="" selected></option>
 								<option value="1220">1220</option>
 								<option value="1221">1221</option>
 							</select>
@@ -647,6 +675,7 @@
 						<div class="col-sm-1">
 							<select class="input-cod-operadora" id="codoperadorappalrep1"
 								th:field="*{codoperadorappalrep1}">
+								<option value="" selected></option>
 								<option value="0212">0212</option>
 								<option value="0412">0412</option>
 								<option value="0414">0414</option>
@@ -683,6 +712,7 @@
 						<div class="col-sm-1">
 							<select class="input-cod-operadora" name="codoperadorasecrep1"
 								id="codoperadorasecrep1" th:field="*{codoperadorasecrep1}">
+								<option value="" selected></option>
 								<option value="0212">0212</option>
 								<option value="0412">0412</option>
 								<option value="0414">0414</option>
@@ -725,6 +755,7 @@
 								<label for="numDocRep2" class="col-form-label">Numero de
 									Cédula</label> <select class="input-cmb-cedula" id="tipoDocRep2"
 									name="tipoDocRep2">
+									<option value="" selected></option>
 									<option value="V">V</option>
 									<option value="E">E</option>
 									<option value="P">P</option>
@@ -787,6 +818,7 @@
 							<div class="col-sm-2">
 								<label for="sexoRpr2" class="col-form-label">Sexo</label> <select
 									class="input-sexo" id="sexoRpr2" name="sexoRpr2">
+									<option value="" selected></option>
 									<option value="FEMENINO">FEMENINO</option>
 									<option value="MASCULINO">MASCULINO</option>
 								</select>
@@ -799,6 +831,7 @@
 							<div class="col-sm-3">
 								<label for="edoCivRpr2" class="col-form-label">Edo Civ</label> <select
 									class="input-ed-civ" id="edoCivRpr2" name="edoCivRpr2">
+									<option value="" selected></option>
 									<option value="CASADO">CASADO</option>
 									<option value="SOLTERO">SOLTERO</option>
 									<option value="VIUDO">VIUDO</option>
@@ -822,6 +855,7 @@
 									class="col-form-label">Estado</label> <select
 									class="input-estado" id="estadodirppalrep2"
 									name="estadodirppalrep2">
+									<option value="" selected></option>
 									<option value="MIRANDA">MIRANDA</option>
 								</select>
 							</div>
@@ -830,6 +864,7 @@
 									class="col-form-label">Municipio</label> <select
 									class="input-estado" id="municipiodirppalrep2"
 									name="municipiodirppalrep2">
+									<option value="" selected></option>
 									<option value="PLAZA">PLAZA</option>
 									<option value="ZAMORA">ZAMORA</option>
 								</select>
@@ -839,6 +874,7 @@
 									class="col-form-label">Ciudad</label> <select
 									class="input-estado" id="ciudaddirppalrep2"
 									name="ciudaddirppalrep2">
+									<option value="" selected></option>
 									<option value="GUARENAS">GUARENAS</option>
 									<option value="GUATIRE">GUATIRE</option>
 								</select>
@@ -848,6 +884,7 @@
 									class="col-form-label">Parroquia</label> <select
 									class="input-estado" id="parroquiadirppalrep2"
 									name="parroquiadirppalrep2">
+									<option value="" selected></option>
 									<option value="GUARENAS">GUARENAS</option>
 									<option value="GUATIRE">GUATIRE</option>
 								</select>
@@ -857,6 +894,7 @@
 									class="col-form-label">Código postal</label> <select
 									class="input-estado" id="codpostaldirppalrep2"
 									name="codpostaldirppalrep2">
+									<option value="" selected></option>
 									<option value="1220">1220</option>
 									<option value="1221">1221</option>
 								</select>
@@ -878,6 +916,7 @@
 									class="col-form-label">Estado</label> <select
 									class="input-estado" name="estadodirsecrep2"
 									id="estadodirsecrep2">
+									<option value="" selected></option>
 									<option value="MIRANDA">MIRANDA</option>
 								</select>
 							</div>
@@ -886,6 +925,7 @@
 									class="col-form-label">Municipio</label> <select
 									class="input-estado" name="municipiodirsecrep2"
 									id="municipiodirsecrep2">
+									<option value="" selected></option>
 									<option value="PLAZA">PLAZA</option>
 									<option value="ZAMORA">ZAMORA</option>
 								</select>
@@ -895,6 +935,7 @@
 									class="col-form-label">Ciudad</label> <select
 									class="input-estado" name="ciudaddirsecrep2"
 									id="ciudaddirsecrep2">
+									<option value="" selected></option>
 									<option value="GUARENAS">GUARENAS</option>
 									<option value="GUATIRE">GUATIRE</option>
 								</select>
@@ -904,6 +945,7 @@
 									class="col-form-label">Parroquia</label> <select
 									class="input-estado" name="parroquiadirsecrep2"
 									id="parroquiadirsecrep2">
+									<option value="" selected></option>
 									<option value="GUARENAS">GUARENAS</option>
 									<option value="GUATIRE">GUATIRE</option>
 								</select>
@@ -913,6 +955,7 @@
 									class="col-form-label">Código postal</label> <select
 									class="input-estado" name="codpostaldirsecrep2"
 									id="codpostaldirsecrep2">
+									<option value="" selected></option>
 									<option value="1220">1220</option>
 									<option value="1221">1221</option>
 								</select>
@@ -932,6 +975,7 @@
 							<div class="col-sm-1">
 								<select class="input-cod-operadora" id="codoperadorappalrep2"
 									name="codoperadorappalrep2">
+									<option value="" selected></option>
 									<option value="0212">0212</option>
 									<option value="0412">0412</option>
 									<option value="0414">0414</option>
@@ -963,6 +1007,7 @@
 							<div class="col-sm-1">
 								<select class="input-cod-operadora" name="codoperadorasecrep2"
 									id="codoperadorasecrep2">
+									<option value="" selected></option>
 									<option value="0212">0212</option>
 									<option value="0412">0412</option>
 									<option value="0414">0414</option>
@@ -1062,25 +1107,25 @@
 							<tbody>
 								<tr>
 									<td><input type="text" name="annio" id="annio" th:field="*{annio}"/>
-									<!-- <div th:if="${#fields.hasErrors('annio')}"
-									th:errors="*{annio}" class="error"></div>-->
+									 <div th:if="${#fields.hasErrors('annio')}"
+									th:errors="*{annio}" class="error"></div>
 									</td>
 									<td><input type="text" name="seccion" id="seccion" th:field="*{seccion}"/>
-									<!-- <div th:if="${#fields.hasErrors('seccion')}"
-									th:errors="*{seccion}" class="error"></div>-->
+									< <div th:if="${#fields.hasErrors('seccion')}"
+									th:errors="*{seccion}" class="error"></div>
 									</td>
 									<td><input type="text" name="turno" id="turno" th:field="*{turno}">
-									<!-- <div th:if="${#fields.hasErrors('turno')}"
-									th:errors="*{turno}" class="error"></div>-->
+									 <div th:if="${#fields.hasErrors('turno')}"
+									th:errors="*{turno}" class="error"></div>
 									</td>
 									<td><input type="text" name="nivel" id="nivel" th:field="*{nivel}">
-									<!-- <div th:if="${#fields.hasErrors('nivel')}"
-									th:errors="*{nivel}" class="error"></div>-->
+									 <div th:if="${#fields.hasErrors('nivel')}"
+									th:errors="*{nivel}" class="error"></div>
 									</td>
 									<td><input type="text" name="especialidad"
 										id="especialidad" th:field="*{especialidad}">
-										<!-- <div th:if="${#fields.hasErrors('especialidad')}"
-										th:errors="*{especialidad}" class="error"></div>-->
+										 <div th:if="${#fields.hasErrors('especialidad')}"
+										th:errors="*{especialidad}" class="error"></div>
 									</td>
 								</tr>
 							</tbody>
