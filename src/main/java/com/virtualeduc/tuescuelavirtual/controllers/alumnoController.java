@@ -50,7 +50,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @author Personal
  */
 @Controller
-@RequestMapping(path="/app")
+@RequestMapping("/app")
 public class alumnoController {
 
 	@Autowired

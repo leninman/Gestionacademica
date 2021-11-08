@@ -57,8 +57,9 @@ import com.virtualeduc.tuescuelavirtual.utils.Constantes;
  */
 
 @RestController
-@RequestMapping("/app")
+
 //@CrossOrigin(origins = {"http://localhost:8080"})
+@RequestMapping("/app")
 public class coreController {
 
     @Autowired

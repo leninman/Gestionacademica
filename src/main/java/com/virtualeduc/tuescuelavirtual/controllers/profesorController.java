@@ -34,7 +34,8 @@ import com.virtualeduc.tuescuelavirtual.services.IVariosService;
 import com.virtualeduc.tuescuelavirtual.utils.Constantes;
 
 @Controller
-@RequestMapping(path = "/app")
+
+@RequestMapping("/app")
 public class profesorController {
 	@Autowired
 	IProfesoresService profesoresService;

@@ -1,3 +1,4 @@
+<html xmlns:th="http://thymeleaf.org" xmlns:sec="http://thymeleaf.org/extras/spring-security">
 <th:block th:fragment="footer">
 </th:block>
 <head>
@@ -17,7 +18,12 @@
     <div class="text-center p-3" style="background-color: #7f87a3;">
       © 2021 Copyright:
       <a class="text-white" href="https://mdbootstrap.com/">Tecnodestreza</a>
+      <p sec:authorized="isAuthenticated()">Usuario: 
+        <span sec:authentication="name"></span>
+    </p>
     </div>
+
+  
     <!-- Copyright -->
   </footer>
   <!-- Footer -->
@@ -28,4 +34,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-
+</html>
