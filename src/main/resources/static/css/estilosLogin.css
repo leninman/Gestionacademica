@@ -1,32 +1,4 @@
 
-
-/*.container {
-  display: flex;
-  justify-content: center;
-}
-
-.card{
-  width: 50%;
-  height: 50%;
- 
-
-}
-
-.card-header{
-  width: 350px;
-    height: 40px;
-}
-
-form{
-
-}
-
-.card-body{
-
-}*/
-
-
-
 body{
 background-image: url("/images/modern-education-system-830x555.jpg");
 }
@@ -39,8 +11,9 @@ background-image: url("/images/modern-education-system-830x555.jpg");
   border-radius: 100px;
   border: 1px solid #b5b5b5;
 }
-.login-header, .registro {
+.login-header{
   background: radial-gradient(95.14% 7284.37% at 2.57% 20%, #cccccc 0%, #7f87a3 100%);
+
 }
 .button, #regForm {
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
@@ -62,6 +35,7 @@ background-image: url("/images/modern-education-system-830x555.jpg");
 }
 
 .form-control{
+  padding:15px;
   border-radius: 100px;
   border: 1px solid #b5b5b5;
   width: 300px;

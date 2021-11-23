@@ -2,8 +2,13 @@ let idPrf = 0;
 let idmaterias = [];
 let idcursos = [];
 let direccionbase;
+var token;
+
+
+
 
 $(document).ready(function () {
+  token = $("meta[name='_csrf']").attr("content");
   $("#tipoDocPrf").val("");
   $('#tablemateriasdisponibles').DataTable({
     language: {
@@ -30,12 +35,15 @@ $(document).ready(function () {
 $("#botonBuscPrf").click(function () {
   direccionbase = $("#direccionbase").val();
   url = direccionbase + "/buscarProfesor";
+ 
+  
   $.ajax({
       data: {
         tdoc: $("select[name=tipoDocPrf]").val(),
         ndoc: $("input:text[name=numDocPrf]").val(),
       },
       url: url,
+ 	  headers: {"X-CSRF-TOKEN": token}, //send CSRF token in header
       dataType: "json", //tipo de datos retornados
       type: "GET",
     })
@@ -98,7 +106,7 @@ function asignarmateria() {
 $("#guardar").click(function () {
   direccionbase = $("#direccionbase").val();
   url = direccionbase + "/asignarmateriasycursos";
-
+  
   $.ajax({
       data: {
         idcursos: idcursos,
@@ -106,11 +114,12 @@ $("#guardar").click(function () {
         idprofesor: idPrf
       },
       url: url,
+      headers: {"X-CSRF-TOKEN": token}, //send CSRF token in header
       dataType: "json", //tipo de datos retornados
       type: "POST",
       contentType: "application/x-www-form-urlencoded",
       success: function (json) {
-        alert("EL CURSO HA SIDO CARGADO CORRECTAMENTE");
+        alert("EL CURSO HA SIDO ASIGNADO CORRECTAMENTE");
         window.location.href = direccionbase + "/cursosmateriasasignadas";
       }
     })

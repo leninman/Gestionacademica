@@ -31,9 +31,8 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 						<li><a type="button" class="btn btn-secondary"
-							th:href="@{/inicio}" data-toggle="tooltip"
-							data-placement="top" title="Ir al inicio"><i
-								class="bi bi-house"></i></a></li> &nbsp;
+							th:href="@{/inicio}" data-toggle="tooltip" data-placement="top"
+							title="Ir al inicio"><i class="bi bi-house"></i></a></li> &nbsp;
 						<li>
 							<button type="button" class="btn btn-secondary"
 								data-toggle="tooltip" data-placement="top" title="Editar"
@@ -46,9 +45,10 @@
 							data-placement="top" title="Salir"><i class="bi bi-x"></i></a></li>
 
 					</ul>
-					<div class="col-md-3"></div>
+
 					<div class="container" id="containerTitulo">
-						<p>Ficha de datos del alumno</p>
+						<div class="col-md-3"></div>
+						<p class="tituloPrincipal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ficha de datos del alumno</p>
 					</div>
 				</div>
 
@@ -736,7 +736,7 @@
 									data-placement="top" title="Cambiar Representante"
 									id="botonBuscRep2"> <i class="fa fa-search"
 									aria-hidden="true"></i></a>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label
 									for="nombreCompletoRep1" class="col-form-label">Nombre*</label>
 								<input type="text" name="nombreCompletoRep2"
 									id="nombreCompletoRep2" class="input-nombre-completo"
@@ -1000,8 +1000,7 @@
 								</div>
 							</div>
 						</div>
-						<br /> <br />
-						<br /> <br />
+						<br /> <br /> <br /> <br />
 
 						<!--************************FIN REPRESENTANTE SECUNDARIO*********************************-->
 
@@ -1086,7 +1085,7 @@
 		<script
 			src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-		<!--<script src="/js/Swalert.js"></script>-->
+		<script src="/js/Swalert.js"></script>
 		<script src="/js/editaralumno.js"></script>
 		<!--   <script>
    			if ('${flagExisteAl}' == 'showAlertExisteAl') {

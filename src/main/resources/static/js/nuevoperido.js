@@ -1,23 +1,19 @@
 
-
 $(document).ready(function () {
 if($("#crear").val()=="false"){    
- $('form select').prop("disabled", true);
- $('form input[type="text"]').prop("disabled", true);
- $('#botonModificarMateria').prop('disabled',true);
+
+ $('form input[type="date"]').prop("disabled", true);
+ $('#botonModificarPeriodo').prop('disabled',true);
 }
- $("#annio").val("");
- $("#nivel").val("");
- $("#especialidad").val("");
-     
+
 
 });
 
 
-$("#botonEditarMateria").click(function () {
-    $('form select').prop("disabled", false);
-    $('form input[type="text"]').prop("disabled", false);
-    $('#botonModificarMateria').prop('disabled',false);
+$("#botonEditarPeriodo").click(function () {
+   
+    $('form input[type="date"]').prop("disabled", false);
+    $('#botonModificarPeriodo').prop('disabled',false);
 
 
 });

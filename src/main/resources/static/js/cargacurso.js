@@ -2,7 +2,10 @@ let cedulas=[];
 let idCurso=0;
 let direccionbase;
 
+var token;
+
 $(document).ready(function () {
+	token = $("meta[name='_csrf']").attr("content");
     $("#idCurso").val("");
     $("#tipoDocAl").val("");
 });
@@ -92,15 +95,15 @@ $("#guardar").click(function () {
             cedulasAlumnos: cedulas,
         },
         url: url,
+		headers: {"X-CSRF-TOKEN": token}, //send CSRF token in header
         dataType: "json", //tipo de datos retornados
         type: "POST",
-		success:
-			alert("EL CURSO HA SIDO CARGADO CORRECTAMENTE")
+		success: function (json) {
+        alert("EL CURSO HA SIDO CARGADO CORRECTAMENTE");
+        window.location.href = direccionbase + "/listarcursos";
+      }
       })
       .done(function () {
-        
-      		alert("EL CURSO HA SIDO CARGADO CORRECTAMENTE");
-       
       })
       .fail(function (data) {
          

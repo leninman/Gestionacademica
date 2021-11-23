@@ -14,15 +14,25 @@ input{
   width: 300px;
 }
 
+.tituloPrincipal{
+  font-weight: bold; 
+  font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif; 
+  font-size: large; 
+  color: black; 
+  font-size: 20px;
+}
 
 
-p{
+
+/*p{
   font-weight: bold;
   font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
   font-size: large;
   color: black;
   font-size: 20px;
-}
+}*/
+
+
 .input-buttons {
   border-radius: 100px;
   border: 1px solid #b5b5b5;
@@ -43,14 +53,22 @@ p{
   margin: 0 auto;
 }
 
-.card-header{
+/*.card-header{
   height: fit-content;
   background-color:#b5b5b5;
 
-}
+}*/
+/*#containerTitulo{
+  border:20px;
+  padding-top: 18px;
+}*/
+
+
 #containerTitulo{
   border:20px;
   padding-top: 18px;
+  display: flex; 
+  justify-content: left;
 }
 
 #botonCambiarRep,#botonCambiarRep2{

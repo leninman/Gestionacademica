@@ -64,8 +64,8 @@
                       class="sr-only">(current)</span></a>
                 </li>
                 &nbsp;
-                <li class="nav-item active" data-toggle="tooltip" data-placement="top" title="Salir">
-                  <a type="button" class="btn btn-secondary" th:href="@{/inicio}"><i class="bi bi-x"></i><span
+                <li>
+                  <a type="button" class="btn btn-danger" th:href="@{/inicio}" data-toggle="tooltip" data-placement="top" title="Salir"><i class="bi bi-x"></i><span
                       class="sr-only">(current)</span></a>
                 </li>
               </ul>
@@ -115,10 +115,10 @@
                             class="btn btn-secondary"
                             data-toggle="tooltip"
                             data-placement="top"
-                            title="Editar"
+                            title="Ver/Editar"
                             id="btnEditar"
                             th:href="@{/app/editarperiodo/}+${periodo.idAnnioEsc}"
-                            ><i class="bi bi-pencil-fill"></i
+                            ><i class="bi bi-eye"></i
                           ></a>
                         </td>
                         <td>

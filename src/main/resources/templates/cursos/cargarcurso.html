@@ -4,6 +4,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}"/>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
 	<link rel="stylesheet" type="text/css" href="/css/estilosCurso.css" />
@@ -51,7 +52,7 @@
 						&nbsp;
 
 						<li>
-							<a type="button" class="btn btn-secondary" th:href="@{/app/listarcursos}"
+							<a type="button" class="btn btn-danger" th:href="@{/app/listarcursos}"
 								data-toggle="tooltip" data-placement="top" title="Salir"><i class="bi bi-x"></i></a>
 						</li>
 					</ul>
@@ -131,6 +132,8 @@
 
 		<!------------------------------------------INICIO DEL FORMULARIO DEL ALUMNO--------------------->
 		<form class="form-horizontal" id="formAlumno" name="formAlumno">
+		
+		
 
 			<div class="row" id="rowtablealumno">
 				<input type="hidden" id="idAlumno" />

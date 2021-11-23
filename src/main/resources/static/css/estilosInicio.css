@@ -68,6 +68,17 @@ h5 {
     align-items: center;
 }
 
+#logoutButton{
+    border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  background-color: #2441e6;
+  font-style: normal;
+  color: white;
+  width: 150px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
 
 /*#myNavBar {
     background-color: #7f87a3;

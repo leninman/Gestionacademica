@@ -25,27 +25,27 @@
   <th:block th:replace="partes/header :: header" />
   <th:block th:replace="partes/menu :: menuSuperior" />
 
-  <div class="card" style="width: 100%; border-color: #337ab7">
+  <div class="card">
     <div class="card-header">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
 
-            <li class="nav-item active">
+            <li>
               <a type="button" class="btn btn-secondary" th:href="@{/app/nuevamateria}" data-toggle="tooltip"
                 data-placement="top" title="Registrar Nueva Materia"><i class="bi bi-briefcase"></i> <span
                   class="sr-only">(current)</span></a>
             </li>
             &nbsp;
-            <li class="nav-item active" data-toggle="tooltip" data-placement="top" title="Salir">
-              <a type="button" class="btn btn-secondary" th:href="@{/inicio}"><i class="bi bi-x"></i><span
+            <li>
+              <a type="button" class="btn btn-danger" th:href="@{/inicio}" data-toggle="tooltip" data-placement="top" title="Salir"><i class="bi bi-x"></i><span
                   class="sr-only">(current)</span></a>
             </li>
           </ul>
         </div>
       </nav>
     </div>
-    <div class="card-body" style="border: none;height: 100%;">
+    <div class="card-body">
       <br>
       <div class="row" id="containertitulo">
         <div class="col-md-5">&nbsp;</div>

@@ -15,11 +15,8 @@
 	<th:block th:replace="partes/header :: header" />
 	<th:block th:replace="partes/menu :: menuSuperior" />
 
-	<div class="card" style="width: 100%;height: 100%;border-color: #cccccc;margin-left: auto;
-		margin-right: auto;">
-		<div class="card-header" style="width: 100%;border-color: #cccccc;margin-left: auto;
-		margin-right: auto;
-		">
+	<div class="card">
+		<div class="card-header">
 
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -36,12 +33,12 @@
 						</li>
 						<li th:if="${!crear}">
 							<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
-								title="Editar" id="botonEditarProfesor"><i class="bi bi-pencil-fill"></i>
+								title="Editar" id="botonEditarMateria"><i class="bi bi-pencil-fill"></i>
 							</button>
 						</li>
 						&nbsp;
 						<li>
-							<a type="button" class="btn btn-secondary" th:href="@{/app/listarmaterias}"
+							<a type="button" class="btn btn-danger" th:href="@{/app/listarmaterias}"
 								data-toggle="tooltip" data-placement="top" title="Salir"><i class="bi bi-x"></i></a>
 						</li>
 					</ul>
@@ -69,12 +66,7 @@
 		</div>
 
 
-		<div th:if="${crear}" class="card-body" style="
-			width: 100%;
-			border-color: #b5b5b5;
-			margin-left: auto;
-			margin-right: auto;
-		  ">
+		<div th:if="${crear}" class="card-body">
 			<div  class="row">
 
 				<form class="form-horizontal" th:action="@{/app/agregarmateria}" th:object="${materiaDTO}"
@@ -159,12 +151,7 @@
 
 
 
-			<div th:if="${!crear}" class="card-body" style="
-			width: 100%;
-			border-color: #b5b5b5;
-			margin-left: auto;
-			margin-right: auto;
-		  ">
+			<div th:if="${!crear}">
 				<div  class="row">
 					<form class="form-horizontal" th:action="@{/app/modificarmateria}"
 						th:object="${materiaDTO}" id="formMateria" name="formMateria"
@@ -239,7 +226,7 @@
 						<br /> <br />
 						<div class="row">
 							<input type="submit" class="input-buttons" name="submit"
-								id="botonModificarMateria" value="Modificar Materia" style="margin: 0 auto" />
+								id="botonModificarMateria" value="Modificar Materia" />
 						</div>
 					</form>
 				</div>
