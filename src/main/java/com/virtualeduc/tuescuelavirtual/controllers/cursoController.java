@@ -23,6 +23,7 @@ import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -212,6 +213,7 @@ public class cursoController {
 		return "redirect:listarcursos?success";
 	}
 
+	@Secured("ROLE_ADMIN")
 	@GetMapping(path = "cargarcurso")
 	public String cargarcurso(Model model) {
 

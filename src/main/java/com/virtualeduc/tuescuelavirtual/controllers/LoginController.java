@@ -4,6 +4,10 @@ package com.virtualeduc.tuescuelavirtual.controllers;
 
 import java.security.Principal;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +18,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class LoginController {
 	
+	protected final Log logger = LogFactory.getLog(this.getClass());
+	
 	
 	@GetMapping("/login")
-	public String login(@RequestParam(name="error",required=false) String error,Model model,Principal principal,RedirectAttributes flash) {
+	public String login(@RequestParam(name="error",required=false) String error,
+			Model model,Principal principal,RedirectAttributes flash,@RequestParam(name="logout",required=false) String logout) {
 		
 		if(principal!=null) {
 			
@@ -28,6 +35,19 @@ public class LoginController {
 			model.addAttribute("error","Error en el login nombre de usuario o contraseña incorrecta,por favor vuelva a intentar!");
 		
 		}
+		
+		if(logout!=null) {
+			model.addAttribute("logout","Ha cerrado sesión con éxito!");
+			
+			//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			
+			
+			
+			//logger.info("El usuario "+auth.getName()+" ha cerrado sesión");
+	
+		
+		}
+		
 		
 		
 		return "login";

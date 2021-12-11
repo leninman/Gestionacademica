@@ -11,6 +11,7 @@ import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoCursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.PersonaDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.ProfesorDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.RepresentanteDTO;
 import com.virtualeduc.tuescuelavirtual.models.Alumno;
@@ -27,6 +28,7 @@ import com.virtualeduc.tuescuelavirtual.services.ICursoService;
 import com.virtualeduc.tuescuelavirtual.services.IMateriaService;
 import com.virtualeduc.tuescuelavirtual.services.IProfesoresService;
 import com.virtualeduc.tuescuelavirtual.services.IRepresentanteService;
+import com.virtualeduc.tuescuelavirtual.services.IUsuarioService;
 import com.virtualeduc.tuescuelavirtual.services.IVariosService;
 import com.virtualeduc.tuescuelavirtual.utils.Constantes;
 
@@ -74,6 +76,9 @@ public class coreController {
     @Autowired
     IMateriaService materiaservice;
     
+    
+    @Autowired
+    IUsuarioService usuarioservice;
   
     
     @Value("${dir.base}")
@@ -239,7 +244,22 @@ public class coreController {
 
  	}
  	
- 	
+ 	  @CrossOrigin(origins = {"direccionbase/consultarpersona"})
+      @GetMapping(path = "/consultarpersona")
+ 	  public PersonaDTO consultarpersona(@RequestParam(name="tipodoc") String tipodoc,@RequestParam(name="numdoc") String numdoc,@RequestParam(name="tipousuario") String tipousuario) {
+ 		  
+ 		  PersonaDTO persona=new PersonaDTO();
+ 		  
+ 		  persona=usuarioservice.findPersonaByCedulaAndTipoUsuario(tipodoc, numdoc, tipousuario);
+ 		  
+ 		  if(persona==null) {
+ 			  
+ 		  }else {
+ 			  
+ 		  }
+ 		  
+ 		  return persona;
+ 	  }
  	
  	
  	

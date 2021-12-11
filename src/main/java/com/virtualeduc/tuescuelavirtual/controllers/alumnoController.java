@@ -25,16 +25,23 @@ import com.virtualeduc.tuescuelavirtual.services.IAlumnoService;
 import com.virtualeduc.tuescuelavirtual.services.ICursoService;
 import com.virtualeduc.tuescuelavirtual.services.IRepresentanteService;
 import com.virtualeduc.tuescuelavirtual.utils.Constantes;
-
-
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -53,19 +60,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/app")
 public class alumnoController {
 
+	protected final Log logger = LogFactory.getLog(this.getClass());
+
 	@Autowired
 	IAlumnoService alumnoservice;
-	
-	 @Value("${dir.base}")
-	 String direccionbase;
+
+	@Value("${dir.base}")
+	String direccionbase;
 
 	@Autowired
 	IRepresentanteService representanteservice;
 
 	@Autowired
 	ICursoService cursoservice;
-	
-	
+
 	Representante representante;
 
 	boolean buscarAlumno = false;
@@ -73,87 +81,117 @@ public class alumnoController {
 	boolean guardar;
 
 	boolean guardarCurso;
-	
+
 	boolean guardarPeriodo;
-	
-	boolean porvalidacion=false;
-	
-	
+
+	boolean porvalidacion = false;
 
 	
-
 	@GetMapping(path = "/listaralumnos")
 	public String listaralumnos(Model model) {
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null) {
+			logger.info("El usuario " + auth.getName() + " ha ingresado al módulo de alumnos");
+		}
+
+		if (hasRole("ROLE_USER")) {
+			logger.info("Hola ".concat(auth.getName()).concat(" tienes acceso!"));
+		} else {
+			logger.info("Hola ".concat(auth.getName()).concat(" no tienes acceso!"));
+		}
+
 		List<AlumnoCursoDTO> listaAlumnos = new ArrayList<>();
 		listaAlumnos = alumnoservice.consultarAlumnos();
 		model.addAttribute("Alumnos", listaAlumnos);
 		return "alumnos/listaralumnos";
 	}
 
+	//@Secured("ROLE_ADMIN")
+	//@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	@GetMapping(path = "/registroalumno")
 	public String registroalumno(Model model) {
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+		if (hasRole("ROLE_ADMIN")) {
+			logger.info("Hola usuario ".concat(auth.getName()).concat(" tienes acceso"));
+		} else {
+			logger.info("Hola usuario ".concat(auth.getName()).concat(" no tienes acceso"));
+		}
+
 		AlumnoDTO alumnoDTO = new AlumnoDTO();
-		//List<CursoDTO> cursos = new ArrayList<>();
-		//AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
-		//cursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
-		//model.addAttribute("Cursos", cursos);
+		// List<CursoDTO> cursos = new ArrayList<>();
+		// AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
+		// cursos =
+		// cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
+		// model.addAttribute("Cursos", cursos);
+
 		model.addAttribute("alumnoDTO", alumnoDTO);
-		model.addAttribute("direccionbase",direccionbase);
+		model.addAttribute("direccionbase", direccionbase);
 		return "alumnos/registroalumno";
 	}
 
+	//@Secured("ROLE_USER")
 	@GetMapping(path = "/verAlumno/{idAl}")
 	public String verAlumno(@PathVariable(value = "idAl") Long idAl, Model model) {
 		AlumnoDTO alumnoDTO = new AlumnoDTO(alumnoservice.consultarAlumnoPorId(idAl));
-		/*List<CursoDTO> cursos = new ArrayList<>();
-		AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
-		cursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
-		model.addAttribute("Cursos", cursos);*/
+		/*
+		 * List<CursoDTO> cursos = new ArrayList<>(); AnnioEscolarDTO annioEscolar =
+		 * cursoservice.consultarAnnioEscolar(); cursos =
+		 * cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
+		 * model.addAttribute("Cursos", cursos);
+		 */
 		model.addAttribute("alumnoDTO", alumnoDTO);
-		model.addAttribute("direccionbase",direccionbase);
+		model.addAttribute("direccionbase", direccionbase);
 		return "alumnos/editaralumno";
 	}
 
-	
-
 	@PostMapping(path = "/modificaralumno")
-	public String modificaralumno(@Valid AlumnoDTO alumnoDTO, BindingResult result, Model model,RedirectAttributes redirectAttributes) {
-		
+	public String modificaralumno(@Valid AlumnoDTO alumnoDTO, BindingResult result, Model model,
+			RedirectAttributes redirectAttributes) {
+
 		if (result.hasErrors()) {
-			/*model.addAttribute("alumnoDTO", alumnoDTO);
-			List<CursoDTO> cursos = new ArrayList<>();
-			AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
-			cursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
-			model.addAttribute("Cursos", cursos);*/
+			/*
+			 * model.addAttribute("alumnoDTO", alumnoDTO); List<CursoDTO> cursos = new
+			 * ArrayList<>(); AnnioEscolarDTO annioEscolar =
+			 * cursoservice.consultarAnnioEscolar(); cursos =
+			 * cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
+			 * model.addAttribute("Cursos", cursos);
+			 */
 			return "alumnos/editaralumno";
 		}
 
-		/*Alumno alumnog = alumnoservice.consultarAlumnoPorCedula(alumnoDTO.getTipoDocAl(), alumnoDTO.getNumDocAl());
+		/*
+		 * Alumno alumnog =
+		 * alumnoservice.consultarAlumnoPorCedula(alumnoDTO.getTipoDocAl(),
+		 * alumnoDTO.getNumDocAl());
+		 * 
+		 * if (alumnog != null) { //cedula existe
+		 * 
+		 * String cedulaGuardada = alumnog.getTipoDocAl().concat(alumnog.getNumDocAl());
+		 * 
+		 * String cedulaAguardar =
+		 * alumnoDTO.getTipoDocAl().concat(alumnoDTO.getNumDocAl());
+		 * 
+		 * if (!cedulaAguardar.equals(cedulaGuardada)) {
+		 * 
+		 * String cedula =
+		 * alumnoservice.consultarCedulasDeAlumnos(alumnoDTO.getTipoDocAl(),
+		 * alumnoDTO.getNumDocAl());
+		 * 
+		 * 
+		 * if (cedulaAguardar.equals(cedula)) {
+		 * redirectAttributes.addFlashAttribute("mensaje1",
+		 * Constantes.ALUMNO_EXISTE_DESC) .addFlashAttribute("clase", "danger");
+		 * 
+		 * return "redirect:listaralumnos"; }
+		 * 
+		 * 
+		 * } }
+		 */
 
-		if (alumnog != null) {  //cedula existe
-
-			String cedulaGuardada = alumnog.getTipoDocAl().concat(alumnog.getNumDocAl());
-
-			String cedulaAguardar = alumnoDTO.getTipoDocAl().concat(alumnoDTO.getNumDocAl());
-
-			if (!cedulaAguardar.equals(cedulaGuardada)) {
-
-				String cedula = alumnoservice.consultarCedulasDeAlumnos(alumnoDTO.getTipoDocAl(),
-						alumnoDTO.getNumDocAl());
-
-			
-					if (cedulaAguardar.equals(cedula)) {
-						redirectAttributes.addFlashAttribute("mensaje1", Constantes.ALUMNO_EXISTE_DESC)
-								.addFlashAttribute("clase", "danger");
-
-						return "redirect:listaralumnos";
-					}
-				
-
-			}
-		}*/
-		
-		//cedula no existe
+		// cedula no existe
 		guardar = false;
 
 		Responses resp = new Responses();
@@ -202,13 +240,13 @@ public class alumnoController {
 		curso.setIdCurso(cursoDTO.getIdCurso());
 
 		alumnoActualizar.setIdCurso(curso);
-		
+
 		if (alumnoDTO.getTipoDocRep1() != null && alumnoDTO.getNumDocRep1() != null) {
 			tipoDocRpr = alumnoDTO.getTipoDocRep1();
 
 			numDocRpr = alumnoDTO.getNumDocRep1();
-			
-			rep1=new Representante();
+
+			rep1 = new Representante();
 
 			rep1 = representanteservice.consultarepresentanteporcedula(tipoDocRpr, numDocRpr);
 		} else {
@@ -222,8 +260,8 @@ public class alumnoController {
 			tipoDocRpr = alumnoDTO.getTipoDocRep2();
 
 			numDocRpr = alumnoDTO.getNumDocRep2();
-			
-			rep2=new Representante();
+
+			rep2 = new Representante();
 
 			rep2 = representanteservice.consultarepresentanteporcedula(tipoDocRpr, numDocRpr);
 		} else {
@@ -287,24 +325,29 @@ public class alumnoController {
 		String numDocRpr;
 
 		if (result.hasErrors()) {
-			//model.addAttribute("alumnoDTO", alumnoDTO);
-			/*List<CursoDTO> cursos = new ArrayList<>();
-			AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
-			cursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
-			model.addAttribute("Cursos", cursos);*/
-			porvalidacion=true;
-			model.addAttribute("porvalidacion",porvalidacion);
+			// model.addAttribute("alumnoDTO", alumnoDTO);
+			/*
+			 * List<CursoDTO> cursos = new ArrayList<>(); AnnioEscolarDTO annioEscolar =
+			 * cursoservice.consultarAnnioEscolar(); cursos =
+			 * cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
+			 * model.addAttribute("Cursos", cursos);
+			 */
+			porvalidacion = true;
+			model.addAttribute("porvalidacion", porvalidacion);
 			return "alumnos/registroalumno";
 		}
-		
-		/*if(alumnoDTO.getAnnio().equals("")||alumnoDTO.getSeccion().equals("")||alumnoDTO.getTurno().equals("")||alumnoDTO.getNivel().equals("")) {
-			
-			redirectAttributes.addFlashAttribute("mensaje24", Constantes.CURSO_NO_ASIGNADO_DESC).addFlashAttribute("clase",
-					"danger");
 
-			return "alumnos/registroalumno";
-			
-		}*/
+		/*
+		 * if(alumnoDTO.getAnnio().equals("")||alumnoDTO.getSeccion().equals("")||
+		 * alumnoDTO.getTurno().equals("")||alumnoDTO.getNivel().equals("")) {
+		 * 
+		 * redirectAttributes.addFlashAttribute("mensaje24",
+		 * Constantes.CURSO_NO_ASIGNADO_DESC).addFlashAttribute("clase", "danger");
+		 * 
+		 * return "alumnos/registroalumno";
+		 * 
+		 * }
+		 */
 
 		if (alumnoservice.consultarAlumnoPorCedula(alumnoDTO.getTipoDocAl(), alumnoDTO.getNumDocAl()) != null) {
 
@@ -394,13 +437,42 @@ public class alumnoController {
 		return "redirect:listaralumnos?success";
 
 	}
-	
+
 	@ModelAttribute("Cursos")
-	public List<CursoDTO> poblarCursos(){
+	public List<CursoDTO> poblarCursos() {
 		List<CursoDTO> cursos = new ArrayList<>();
 		AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
 		cursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
 		return cursos;
+	}
+
+	private boolean hasRole(String role) {
+
+		SecurityContext context = SecurityContextHolder.getContext();
+
+		if (context == null) {
+			return false;
+		}
+
+		Authentication auth = context.getAuthentication();
+
+		if (auth == null) {
+			return false;
+		}
+
+		Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
+
+		return authorities.contains(new SimpleGrantedAuthority(role));
+
+		/*
+		 * for(GrantedAuthority authority:authorities) {
+		 * 
+		 * if(role.equals(authority.getAuthority())) {
+		 * logger.info("Hola usuario ".concat(auth.getName()).concat(" tu role es: ").
+		 * concat(authority.getAuthority())); return true; }
+		 * 
+		 * } return false;
+		 */
 	}
 
 }

@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 
 @RequestMapping("/app")
-public class NotasController {
+public class usuarioController {
 	
 	
-	@GetMapping("/verCursos")
+	@GetMapping("/nuevoUsuario")
 	public String verCursos(Model model) {
 		
 		
 		
-		return "notas/principal";
+		return "usuarios/crearusuario";
 		
 		
 		

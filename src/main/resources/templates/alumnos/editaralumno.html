@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org" xmlns:sec="http://thymeleaf.org/extras/spring-security">
 
 <head>
 <meta charset="UTF-8" />
@@ -36,7 +36,7 @@
 						<li>
 							<button type="button" class="btn btn-secondary"
 								data-toggle="tooltip" data-placement="top" title="Editar"
-								id="botonEditarAlumno">
+								id="botonEditarAlumno" sec:authorize="hasRole('ROLE_USER_DIRECTIVO')">
 								<i class="bi bi-pencil-fill"></i>
 							</button>
 						</li> &nbsp;

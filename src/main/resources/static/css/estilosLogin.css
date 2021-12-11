@@ -43,3 +43,70 @@ background-image: url("/images/modern-education-system-830x555.jpg");
   padding-bottom: 20px;
 }
 
+
+#tipodocumento{
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  width: 50px;
+  text-align: center;
+}
+
+#numerocedula{
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  width: 100px;
+  text-align: center;
+}
+
+#tipousuario{
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  width: 150px;
+  text-align: center;
+}
+
+#nombreapellido,#usuario,#clave,#confirmarclave{
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  width: 415px;
+  text-align: center;
+}
+
+
+#containerusuario{
+	display:none;
+}
+
+#tablenuevousuario {
+	border:none;
+}
+
+
+#tablenuevousuario th {
+
+  
+  font-size: medium;
+
+  border:none;
+}
+
+
+#btnBuscarUsuario{
+	height:30px;
+	 vertical-align: middle;
+}
+
+#tablenuevousuario>tbody>tr>td {
+  vertical-align: middle;
+ 
+  font-size: medium;
+  text-transform:uppercase;
+}
+
+#rowtablenuevousuario {
+  width: 100%;
+  align-items: center;
+}
+
+
+
