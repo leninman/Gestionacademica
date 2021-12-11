@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+<link rel="stylesheet" type="text/css" href="/css/estilosLogin.css" />
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css" />
+</head>
+
+<body>
+
+	<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+		th:if="${error != null}" th:text="${error}" class="alert"></div>
+
+
+	<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+		th:if="${logout != null}" th:text="${logout}" class="alert">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	</div>
+
+
+	<div class="container mt-5">
+
+		<div class="card mx-auto" id="regForm">
+			<h2 class="login-header rounded-top">Por favor inicie Sesión</h2>
+			<div class="card-body">
+				<form th:action="@{/login}" method="post">
+					<div class="form-group col-12 p-0 mb-4">
+						<input type="text" name="username" id="username"
+							class="form-control" placeholder="Usuario" required />
+					</div>
+					<!--//form-group-->
+					<!--<div class="form-group col-12 p-0 mb-4">
+						<input class="form-control" type="email" placeholder="Correo electrónico" />
+					</div>-->
+					<!--//form-group-->
+					<div class="form-group col-12 p-0 mb-4">
+						<input type="password" name="password" id="password"
+							class="form-control" placeholder="Clave" required />
+					</div>
+					<!--//form-group-->
+					<!--<div class="form-group col-12 p-0 mb-4">
+						<input class="form-control" type="password" placeholder="Confirmar contraseña" id="confirm_password" required />
+					</div>-->
+					<!--//form-group-->
+					<div class="form-group col-12 text-center mb-3">
+						<input type="submit" class="btn button btn-primary"
+							value="Iniciar Sesión" id="submit">
+					</div>
+					<!--//form-group-->
+					<div class="form-group col-12 text-center mb-3">
+						<a href="#" data-toggle="modal" data-target="#Registro">
+							Registrarse </a>
+
+						<!-- <input type="button" class="btn button btn-primary" 
+						data-toggle="modal" data-target="#Registro" data-whatever="@mdo" 
+						id="RegistrarUsuario" value="Registrarse"/>-->
+
+
+					</div>
+					<!--//form-group-->
+				</form>
+			</div>
+			<!--//card-body-->
+		</div>
+		<!--//card-->
+
+	</div>
+
+	<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>-->
+
+	<div class="modal fade" id="Registro" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Registro de
+						usuario</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+
+
+						<div class="row" id="rowtablenuevousuario">
+							<table id="tablenuevousuario" class="table">
+								<thead>
+									<tr>
+										<th>Cédula:</th>
+										<th>Tipo de usuario:</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><select id="tipodocumento">
+												<option value="" selected></option>
+												<option value="V">V</option>
+												<option value="E">E</option>
+												<option value="P">P</option>
+										</select> <input type="text" id="numerocedula"></td>
+
+										<td><select id="tipousuario">
+												<option value="" selected></option>
+												<option value="Alumno">Alumno</option>
+												<option value="Profesor">Profesor</option>
+												<option value="Representante">Representante</option>
+										</select></td>
+
+										<td>
+											<button type="button" class="btn btn-secondary"
+												id="btnBuscarUsuario">Buscar</button>
+										</td>
+
+									</tr>
+								</tbody>
+
+							</table>
+
+						</div>
+						<br>
+						<div class="container" id="containerusuario">
+
+							<div class="row">
+								<div class="col-md-12">
+									<label for="nombreapellido" class="col-form-label">Nombre
+										y Apellido:</label>
+								</div>
+								<div class="col-md-12">
+									<input type="text" id="nombreapellido">
+								</div>
+							</div>
+
+							<br>
+
+							<div class="row">
+								<div class="col-md-12">
+									<label for="usuario" class="col-form-label">Usuario:</label>
+								</div>
+								<div class="col-md-12">
+									<input type="text" id="usuario">
+								</div>
+							</div>
+
+							<br>
+
+							<div class="row">
+								<div class="col-md-12">
+									<label for="clave" class="col-form-label">Clave:</label>
+								</div>
+								<div class="col-md-12">
+									<input type="text" id="clave">
+								</div>
+							</div>
+
+							<br>
+
+							<div class="row">
+								<div class="col-md-12">
+									<label for="confirmarclave" class="col-form-label">Confirmar
+										Clave:</label>
+								</div>
+								<div class="col-md-12">
+									<input type="text" id="confirmarclave">
+								</div>
+							</div>
+
+							<div class="row">
+								<button type="button" class="btn btn-primary">Registar Usuario</button>
+							</div>
+
+
+
+
+
+						</div>
+
+
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!--//container-->
+
+	<!-- <div>-->
+
+
+	<!--<div class="container py-4">
+
+		<div class="card border-primary">
+
+			<div class="card-header">Por favor inicie sesión</div>
+
+			<div class="card-body">
+
+				<form th:action="@{/login}" method="post">
+
+					<div class="form-group col-sm-6">
+						<input type="text" name="username" id="username" class="form-control" placeholder="Usuario"
+						autofocus required/>
+					</div>
+
+
+					<div class="form-group col-sm-6">
+						<input type="password" name="password" id="password" class="form-control" placeholder="Clave"
+						required/>
+					</div>
+
+
+					<div class="form-group col-sm-6">
+						<input type="submit" class="btn btn-lg btn-primary btn-block" value="Iniciar Sesión"/>
+					</div>
+
+
+				</form>
+			</div>
+
+
+		</div>
+
+
+	</div>-->
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+	<!--<script src="/js/Swalert.js"></script>-->
+	<script src="/js/registroalumno.js"></script>
+	<!--   <script>
+   			if ('${flagExisteAl}' == 'showAlertExisteAl') {
+           		 Swal.fire({
+            	title: "El alumno ya existe"
+    			});
+    		}
+      </script>-->
+</body>
+</html>

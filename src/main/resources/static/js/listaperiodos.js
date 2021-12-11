@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     $('#tableperiodos').DataTable({        
         language: {
-                "lengthMenu": "Mostrar _MENU_ registros",
+                "lengthMenu": "",
                 "zeroRecords": "No se encontraron resultados",
                 "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
                 "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",

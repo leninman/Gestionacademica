@@ -1,3 +1,8 @@
+
+input{
+	 text-transform:uppercase;
+}
+
 .input-nombre-apellido {
   border-radius: 100px;
   border: 1px solid #b5b5b5;
@@ -19,6 +24,13 @@
   
 }
 
+#containerTitulo{
+  border:20px;
+  padding-top: 18px;
+  display: flex; 
+  justify-content: left;
+}
+
 
 
 #rowtablematerias {
@@ -30,21 +42,30 @@
 .input-buttons {
   border-radius: 100px;
   border: 1px solid #b5b5b5;
-  background-color: #b5b5b5;
+  background-color: #2441e6;
   font-style: normal;
   color: white;
-  width: 100px;
+  width: 120px;
+  margin: 0 auto;
 }
 
 span > i {
   color: white;
 }
-span > #guardarAlumno {
-  background-color: #337ab7;
-  color: white;
 
-  width: 100px;
+
+#guardar{
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  background-color: #b5b5b5;;
+  font-style: normal;
+  color: white;
+  width: 120px;
+  margin: 0 auto;
 }
+
+
+
 .input-cedula {
   border-radius: 100px;
   border: 1px solid #b5b5b5;
@@ -140,25 +161,12 @@ span > #guardarAlumno {
   width: 200px;
 }
 
-
-
 .input-email {
   border-radius: 100px;
   border: 1px solid #b5b5b5;
   width: 400px;
+  text-transform:lowercase;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*estilos para la tabla*/
 #tablaProfesores th {
@@ -166,31 +174,36 @@ span > #guardarAlumno {
   color: black;
   font-size: small;
   text-align: center;
+
 }
 
 #tablaProfesores>tbody>tr>td {
   vertical-align: middle;
   text-align: center;
   font-size: small;
+  text-transform:uppercase;
 }
+
 
 .btn-group, .btn-group-vertical {
   position: absolute;
 }
-
-
-
 
 .error {
   color: red;
   font-size: 0.8em;
 }
 
+.tituloPrincipal{
+  font-weight: bold; 
+  font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif; 
+  font-size: large; 
+  color: black; 
+  font-size: 20px;
+}
 
-#titulo1,#titulo2,#titulo3,#titulo4{
-
+.titulos{
   font-weight: bold;
-  align-content:center;
   font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
   font-size: large;
   color: black;

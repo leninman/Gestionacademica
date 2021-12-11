@@ -55,6 +55,12 @@ public class Constantes {
 	
 	public static int PROFESOR_MODIFICADO_CODE=121;
 	
+	public static int CURSO_MATERIA_ASIGNADA_CODE=122;
+	
+	public static int CURSO_MATERIA_ELIMINADA_CODE=123;
+	
+	public static int CURSO_NO_ASIGNASO=124;
+	
 	
     //mensaje2    	
 	public static String ALUMNO_REGISTRADO_DESC="EL ALUMNO HA SIDO REGISTRADO CORRECTAMENTE EN EL SISTEMA";
@@ -121,6 +127,15 @@ public class Constantes {
 
 	//mensaje21
 	public static String PROFESOR_MODIFICADO_DESC="LOS DATOS DEL PROFESOR HAN SIDO MODIFICADOS CORRECTAMENTE EN EL SISTEMA";
+
+	//mensaje22
+	public static String CURSO_MATERIA_ASIGNADA_DESC="EL(LOS) CURSO(S) HA(N) SIDO ASIGNADO(S) CORRECTAMENTE";
+
+	//mensaje23
+	public static String CURSO_MATERIA_ELIMINADA_DESC="EL CURSO HA SIDO ELIMINADO CORRECTAMENTE";
+	
+	//mensaje24
+	public static String CURSO_NO_ASIGNADO_DESC="DEBE ASIGNAR UN CURSO PARA PODER REGISTRAR EL ALUMNO";
 
 
 

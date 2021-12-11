@@ -23,7 +23,7 @@ public class Profesor implements Serializable {
 	private Long idPrf;
 
 	@Column(name = "ANIOS_SERV_PRF")
-	private int aniosServPrf;
+	private String aniosServPrf;
 
 	@Column(name = "CAT_PRF")
 	private String catPrf;
@@ -35,7 +35,7 @@ public class Profesor implements Serializable {
 	private String dirSecPrf;
 
 	@Column(name = "EDAD_PRF")
-	private int edadPrf;
+	private String edadPrf;
 
 	@Column(name = "EDO_CIVIL_PRF")
 	private String edoCivilPrf;
@@ -179,11 +179,11 @@ public class Profesor implements Serializable {
 		this.idPrf = idPrf;
 	}
 
-	public int getAniosServPrf() {
+	public String getAniosServPrf() {
 		return this.aniosServPrf;
 	}
 
-	public void setAniosServPrf(int aniosServPrf) {
+	public void setAniosServPrf(String aniosServPrf) {
 		this.aniosServPrf = aniosServPrf;
 	}
 
@@ -211,11 +211,11 @@ public class Profesor implements Serializable {
 		this.dirSecPrf = dirSecPrf;
 	}
 
-	public int getEdadPrf() {
+	public String getEdadPrf() {
 		return this.edadPrf;
 	}
 
-	public void setEdadPrf(int edadPrf) {
+	public void setEdadPrf(String edadPrf) {
 		this.edadPrf = edadPrf;
 	}
 

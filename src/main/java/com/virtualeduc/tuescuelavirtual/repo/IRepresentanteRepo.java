@@ -8,6 +8,7 @@ package com.virtualeduc.tuescuelavirtual.repo;
 
 import com.virtualeduc.tuescuelavirtual.models.Representante;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -16,9 +17,7 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface IRepresentanteRepo extends CrudRepository<Representante,Long> {
     
-//    @Query("SELECT * from Representante u"
-//            + " WHERE u.tipoDocRpr=tipoDoc AND u.numDocRpr=numDoc"
-//    )
-    
+    @Query(value="SELECT * from representantes a"
+            + " WHERE a.TIPO_DOC_RPR=?1 AND a.NUM_DOC_RPR=?2",nativeQuery = true)
     Representante findRepresentanteByTipoDocRprAndNumDocRpr(String tipoDocRpr,String numDocRpr);
 }

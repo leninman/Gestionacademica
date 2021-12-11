@@ -1,195 +1,182 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-    />
-    <link rel="stylesheet" type="text/css" href="/css/estilosCurso.css" />
-  </head>
-  <header>
-  </header>
-  <body>
-    <br>
-    <br>
-    <div class="row">
-        
-        <div class="form-group col-md-4">
-          <h5>
-            <b>MODIFICACION DE CURSOS</b>
-          </h5>
-        </div>
-      </div>
 
-      <div class="container my-5">
-        <div class="card" style="width: 100%; border-color: #337ab7">
-          <div class="card-header">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
-                    <a
-                      class="nav-link"
-                      th:href="@{/app/inicio}"
-                      data-toggle="tooltip"
-                      data-placement="top"
-                      title="Ir al inicio"
-                      ><i class="bi bi-house"></i>Home</a
-                    >
-                  </li>
-                 
-                  &nbsp; &nbsp;
-                  <li class="nav-item active">
-                    <a
-                      class="nav-link my-2 my-sm-0"
-                      th:href="@{/app/listarcursos}"
-                      data-toggle="tooltip"
-                      data-placement="top"
-                      title="Salir"
-                      ><i class="bi bi-x"></i>Salir</a
-                    >
-                  </li>
-                </ul>
-              </div>
-            </nav>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+  <link rel="stylesheet" type="text/css" href="/css/estilosCurso.css" />
+</head>
+<header>
+</header>
+
+<body>
+  <th:block th:replace="partes/header :: header" />
+  <th:block th:replace="partes/menu :: menuSuperior" />
+
+
+  <div class="card" style="width: 100%; border-color: #337ab7">
+    <div class="card-header">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li>
+              <a type="button" class="btn btn-secondary" th:href="@{/inicio}" data-toggle="tooltip"
+                data-placement="top" title="Ir al inicio"><i class="bi bi-house"></i></a>
+            </li>
+
+            &nbsp;
+            <li>
+              <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Editar"
+                id="botonEditarCurso"><i class="bi bi-pencil-fill"></i>
+              </button>
+            </li>
+            &nbsp;
+            <li>
+              <a type="button" class="btn btn-danger" th:href="@{/app/listarcursos}" data-toggle="tooltip"
+                data-placement="top" title="Salir"><i class="bi bi-x"></i></a>
+            </li>
+          </ul>
+          <div class="container" style="display: flex;
+                justify-content: left;">
+                
+          <div class="col-md-4"></div>
+            <p style="font-weight: bold;
+              font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
+              font-size: large;
+              color: black;
+              font-size: 20px;">&nbsp;&nbsp;&nbsp;Detalle del curso</p>
           </div>
+        </div>
+      </nav>
+    </div>
 
-          <div class="card-body" style="text-align: left; width: 100%">
-            <div class="container">
-              <div class="col-md-20">
-                <form class="form-horizontal"
-                th:action="@{/app/modificarcurso}"
-                th:object="${cursoDTO}"
-                id="formCurso"
-                name="formCurso"
-                method="post">
+    <div class="card-body" style="text-align: left; width: 100%">
+      <div class="container">
+        <div class="col-md-20">
+          <form class="form-horizontal" th:action="@{/app/modificarcurso}" th:object="${cursoDTO}" id="formCurso"
+            name="formCurso" method="post">
+            <br>
+            <br>
 
-                  <div class="row">
-                    <input type="hidden" th:field="*{idCurso}">
-                    <b
-                      ><label for="intAnnioEsc" class="col-form-label"
-                        >Año Escolar:&nbsp;&nbsp;</label
-                      ></b
-                    >
-                    <select id="intAnnioEsc" th:field="*{intAnnioEsc}">
-                       <option
-                        th:each="annioescolar:${annioescolar}"
-                        th:value="${annioescolar.intAnnioEsc}"
-                        th:text="${annioescolar.intAnnioEsc}"
-                      ></option>
-                    </select>
-                  </div>
-                  <br />
-      
-                  <div class="row">
-                    <b
-                      ><label for="Annio" class="col-form-label"
-                        >Año:&nbsp;&nbsp;</label
-                      ></b
-                    >
-                    <select id="Annio" th:field="*{annio}">
-                      <option value="1°">1°
-                      </option>
-                      <option value="2°">2°
-                      </option>
-                      <option value="3°">3°
-                      </option>
-                      <option value="4°">4°
-                      </option>
-                      <option value="5°">5°
-                      </option>
-                      <!--<option
-                        th:each="annio:${annios}"
-                        th:value="${annio.annio}"
-                        th:text="${annio.annio}"
-                      ></option>-->
-                    </select>
-                  </div>
-                  <br />
-      
-                  <div class="row">
-                    <b
-                      ><label for="Nivel" class="col-form-label"
-                        >Nivel:&nbsp;&nbsp;</label
-                      ></b
-                    >
-                    <select id="Nivel" th:field="*{nivel}">
-                      <option value="MEDIA GENERAL">MEDIA GENERAL
-                      </option>
-                      <option value="PRIMARIA">PRIMARIA
-                      </option>
-                      <!--<option
-                        th:each="annio:${annios}"
-                        th:value="${annio.nivel}"
-                        th:text="${annio.nivel}"
-                      ></option>-->
-                    </select>
-                  </div>
-                  <br />
-      
-                  <div class="row">
-                    <b
-                      ><label for="Turno" class="col-form-label"
-                        >Turno:&nbsp;&nbsp;</label
-                      ></b
-                    >
-                    <select id="Turno" th:field="*{turno}">
-                      <option
-                        th:each="turno:${turnos}"
-                        th:value="${turno.turno}"
-                        th:text="${turno.turno}"
-                      ></option>
-                    </select>
-                  </div>
-                  <br />
-      
-                  <div class="row">
-                    <b
-                      ><label for="Seccion" class="col-form-label"
-                        >Sección:&nbsp;&nbsp;</label
-                      ></b
-                    >
-                    <select id="Seccion" th:field="*{seccion}">
-                      <option
-                        th:each="seccion:${secciones}"
-                        th:value="${seccion.seccion}"
-                        th:text="${seccion.seccion}"
-                      ></option>
-                    </select>
-                  </div>
-                  <br />
-                  <div class="row">
-                    <input
-                      type="submit"
-                      class="input-buttons"
-                      name="submit"
-                      value="Modificar"
-                      style="margin: 0 auto"
-                    />
-                  </div>
-
-                </form>
+            <div class="row">
+              <input type="hidden" th:field="*{idCurso}">
+              <div class="col-md-4"></div>
+              <div class="col-md-8">
+              <label for="intAnnioEsc" class="col-form-label">Año Escolar:&nbsp;&nbsp;</label>
+              <select id="intAnnioEsc" th:field="*{intAnnioEsc}">
+                <option th:each="annioescolar:${annioescolar}" th:value="${annioescolar.intAnnioEsc}"
+                  th:text="${annioescolar.intAnnioEsc}"></option>
+              </select>
               </div>
             </div>
-          </div>
-        
+            <br />
+
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-8">
+                &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                &nbsp;
+              <label for="Annio" class="col-form-label">Año:&nbsp;&nbsp;</label>
+              <select id="Annio" th:field="*{annio}">
+                <option th:each="annio:${annios}" 
+                        th:value="${annio}" 
+                        th:text="${annio}"></option>
+              </select>
+              </div>
+            </div>
+            <br />
+
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-8">
+                &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                
+              <label for="Nivel" class="col-form-label">Nivel:&nbsp;&nbsp;</label>
+              <select id="Nivel" th:field="*{nivel}">
+                <option
+                th:each="nivel:${niveles}"
+                th:value="${nivel}"
+                th:text="${nivel}"
+              ></option>
+              </select>
+            </div>
+            </div>
+            <br />
+
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-8">
+                &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+              <label for="Turno" class="col-form-label">Turno:&nbsp;&nbsp;</label>
+              <select id="Turno" th:field="*{turno}">
+                <option th:each="turno:${turnos}" th:value="${turno.turno}" th:text="${turno.turno}"></option>
+              </select>
+            </div>
+            </div>
+            <br />
+
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-8">
+                &nbsp;&nbsp; &nbsp;
+              <label for="Seccion" class="col-form-label">Sección:&nbsp;&nbsp;</label>
+              <select id="Seccion" th:field="*{seccion}">
+                <option th:each="seccion:${secciones}" th:value="${seccion.seccion}" th:text="${seccion.seccion}">
+                </option>
+              </select>
+            </div>
+            </div>
+            <br>
+             <br>
+            <!--AQUI VA LA TABLA-->
+            <div class="row" id="rowtablealumnosinscritos">
+              <table
+                id="tablealumnosinscritos"
+                class="table table-striped table-hover"
+              >
+                <thead>
+                  <tr>
+                    <th>CEDULA</th>
+                    <th>NOMBRE Y APELLIDO</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="alumnoinscrito:${Alumnosinscritos}">
+                    <td th:text="${alumnoinscrito.tipoDocAl}+${alumnoinscrito.numDocAl}"></td>
+                    <td th:text="${alumnoinscrito.primNombAl}+' '+${alumnoinscrito.primApellAl}"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            
+            <br />
+            <br />
+            <div class="row">
+              <input id="modificarcurso" type="submit" class="input-buttons" name="submit" value="Modificar" style="margin: 0 auto" />
+            </div>
+            <br />
+            <br />
+          </form>
         </div>
       </div>
-  
-  
-  
+    </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <script src="/js/editacurso.js"></script>
-  </body>
+  </div>
+
+
+
+  <th:block th:replace="partes/footer :: footer" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  <script src="/js/editacurso.js"></script>
+</body>
+
 </html>

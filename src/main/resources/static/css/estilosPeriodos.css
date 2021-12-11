@@ -1,13 +1,19 @@
+
+input{
+	 text-transform:uppercase;
+}
+
 #tableperiodos th {
-  background-color: #337ab7 !important;
-  color: white;
-  font-size: small;
+  background-color: #cccccc;
+	color: black;
+	font-size: small;
+	text-align: center;
 }
 
 #tableperiodos>tbody>tr>td {
-  vertical-align: middle !important;
-  text-align: center;
-  font-size: small;
+  vertical-align: middle;
+	text-align: center;
+	font-size: small;
 }
 
 #rowtableperiodos {
@@ -16,19 +22,7 @@
   margin-right: 0px;
 }
 
-.card{
-  margin-right:auto;
-  margin-left:auto;
-  width: 80%; 
-  border-color: #337ab7;
-}
 
-.card-body{
-  width: 80%;
-  margin-right:auto;
-  margin-left:auto;
-  justify-content: center;
-}
 
 .row{
   margin-right:auto;
@@ -40,25 +34,31 @@
 
 .input-buttons {
   border-radius: 100px;
-  border: 1px solid #337ab7;
-  background-color: #337ab7;
+  border: 1px solid #b5b5b5;
+  background-color: #b5b5b5;
   font-style: normal;
   color: white;
-  width: 160px;
+  width: 150px;
 }
 
 
 .input-fecha {
   border-radius: 100px;
-  border: 1px solid #337ab7;
-  width: 255px;
-}
-
-#FechaIedit,#FechaFedit {
-  border-radius: 100px;
-  border: 1px solid #337ab7;
+  border: 1px solid #b5b5b5;
   width: 200px;
 }
+
+
+
+#titulo1,#titulo2,#titulo3,#titulo4{
+
+	font-weight: bold;
+	align-content:center;
+	font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
+	font-size: large;
+	color: black;
+	font-size: 16px;
+  }
 
 
 

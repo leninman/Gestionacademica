@@ -3,6 +3,8 @@ package com.virtualeduc.tuescuelavirtual.models.DTOS;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,21 +19,35 @@ public class ProfesorDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long idPrf;
+	
+	@NotEmpty(message = "Requerido")
+	private String primNombPrf;
+	
+	@NotEmpty(message = "Requerido")
+	private String primApellPrf;
 
-	private int aniosServPrf;
+	@NotEmpty(message = "Requerido")
+	private String aniosServPrf;
 
+	@NotEmpty(message = "Requerido")
 	private String catPrf;
 
+	@NotEmpty(message = "Requerido")
 	private String textoDirPpalPrf;
 
+	@NotEmpty(message = "Requerido")
 	private String estadodirppalprf;
 
+	@NotEmpty(message = "Requerido")
 	private String municipiodirppalprf;
 
+	@NotEmpty(message = "Requerido")
 	private String ciudaddirppalprf;
 
+	@NotEmpty(message = "Requerido")
 	private String parroquiadirppalprf;
 
+	@NotEmpty(message = "Requerido")
 	private String codpostaldirppalprf;
 
 	private String textoDirSecPrf;
@@ -46,20 +62,27 @@ public class ProfesorDTO implements Serializable {
 
 	private String codpostaldirsecprf;
 
-	private int edadPrf;
+	@NotEmpty(message = "Requerido")
+	private String edadPrf;
 
+	@NotEmpty(message = "Requerido")
 	private String edoCivilPrf;
 
+	@NotEmpty(message = "Requerido")
+	@Email(message = "El email no es válido")
 	private String emailPrf;
 
 	@NotNull(message = "Requerido")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechNacPrf;
 
+	@NotEmpty(message = "Requerido")
 	private String graduado;
 
+	@NotEmpty(message = "Requerido")
 	private String pregrado1;
 
+	@NotEmpty(message = "Requerido")
 	private String especialidad1;
 
 	private String pregrado2;
@@ -78,24 +101,30 @@ public class ProfesorDTO implements Serializable {
 
 	private String curso4;
 
+	@NotEmpty(message = "Requerido")
 	private String numDocPrf;
 
-	private String primApellPrf;
+	
 
-	private String primNombPrf;
+	
 
 	private String segApellPrf;
 
 	private String segNombPrf;
 
+	@NotEmpty(message = "Requerido")
 	private String sexoPrf;
 
+	@NotEmpty(message = "Requerido")
 	private String status;
 
+	@NotEmpty(message = "Requerido")
 	private String tipoDocPrf;
 
+	@NotEmpty(message = "Requerido")
 	private String codoperadorappalprf;
 
+	@NotEmpty(message = "Requerido")
 	private String textoTlfPpalPrf;
 
 	private String codoperadorasecprf;
@@ -109,6 +138,12 @@ public class ProfesorDTO implements Serializable {
 	public ProfesorDTO() {
 
 	}
+	
+	
+
+
+
+
 
 	public ProfesorDTO(Profesor profesor) {
 
@@ -154,7 +189,12 @@ public class ProfesorDTO implements Serializable {
 		this.especialidad1 = arrOfStrPregrado1[1];
 		if (!strPregrado2.equals("") ) {
 			this.pregrado2 = arrOfStrPregrado2[0];
-			this.especialidad2 = arrOfStrPregrado2[1];
+			if(arrOfStrPregrado2.length==2) {
+				this.especialidad2 = arrOfStrPregrado2[1];
+			}else {
+				this.especialidad2="";
+			}
+			
 		}else {
 			this.pregrado2 = "";
 			this.especialidad2 = "";
@@ -189,11 +229,11 @@ public class ProfesorDTO implements Serializable {
 		this.idPrf = idPrf;
 	}
 
-	public int getAniosServPrf() {
+	public String getAniosServPrf() {
 		return aniosServPrf;
 	}
 
-	public void setAniosServPrf(int aniosServPrf) {
+	public void setAniosServPrf(String aniosServPrf) {
 		this.aniosServPrf = aniosServPrf;
 	}
 
@@ -301,11 +341,11 @@ public class ProfesorDTO implements Serializable {
 		this.codpostaldirsecprf = codpostaldirsecprf;
 	}
 
-	public int getEdadPrf() {
+	public String getEdadPrf() {
 		return edadPrf;
 	}
 
-	public void setEdadPrf(int edadPrf) {
+	public void setEdadPrf(String edadPrf) {
 		this.edadPrf = edadPrf;
 	}
 

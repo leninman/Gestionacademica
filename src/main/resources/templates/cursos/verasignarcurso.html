@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+	<link rel="stylesheet" type="text/css" href="/css/estilosCurso.css" />
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
+	<link rel="stylesheet" type="text/css"
+		href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<header></header>
+
+<body>
+	<th:block th:replace="partes/header :: header" />
+	<th:block th:replace="partes/menu :: menuSuperior" />
+
+
+
+
+
+
+	<div class="card" style="
+		width: 100%;
+		border-color: #cccccc;
+		margin-left: auto;
+		margin-right: auto;">
+		<div class="card-header" style="
+		  width: 100%;
+		  border-color: #cccccc;
+		  margin-left: auto;
+		  margin-right: auto;
+		">
+
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li>
+							<a type="button" class="btn btn-secondary" th:href="@{/inicio}" data-toggle="tooltip"
+								data-placement="top" title="Ir al inicio"><i class="bi bi-house"></i></a>
+						</li>
+						&nbsp;
+						<li>
+							<a type="button" class="btn btn-secondary" th:href="@{/app/verasignarcurso}"
+								data-toggle="tooltip" data-placement="top" title="Limpiar pantalla"><i
+									class="bi bi-eraser"></i></a>
+						</li>
+						&nbsp;
+						<li>
+							<a type="button" class="btn btn-danger" th:href="@{/app/cursosmateriasasignadas}"
+								data-toggle="tooltip" data-placement="top" title="Salir"><i class="bi bi-x"></i></a>
+						</li>
+					</ul>
+					<div class="container" style="display: flex;
+                justify-content: left;">
+
+						<div class="col-md-3"></div>
+						<p style="font-weight: bold;
+              font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
+              font-size: large;
+              color: black;
+              font-size: 20px;">&nbsp;&nbsp;&nbsp;Formulario de asignación de cursos y materias</p>
+					</div>
+				</div>
+			</nav>
+		</div>
+
+
+		<div class="card-body" style="border: none;height: 100%;">
+			<br /> <br />
+			<!------------------------------------------INICIO DEL FORMULARIO DEL PROFESOR--------------------->
+			<form class="form-horizontal" id="formProfesor" name="formProfesor">
+				<input type="hidden" id="direccionbase" name="direccionbase" th:value="${direccionbase}" />
+				
+				<div class="row" id="containertitulo">
+					<p id="titulo1">Datos del profesor</p>
+				</div>
+
+
+				<div class="row" id="rowtableprofesor">
+					<input type="hidden" id="idPrf" />
+					<table id="tableprofesor" class="table table-striped table-hover">
+						<thead>
+							<tr>
+								<th>Tipo</th>
+								<th>N° de cédula</th>
+								<th></th>
+								<th>Nombre y apellido</th>
+
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><select id="tipoDocPrf" name="tipoDocPrf">
+										<option value="V">V</option>
+										<option value="E">E</option>
+										<option value="P">P</option>
+									</select></td>
+								<td><input type="text" id="numDocPrf" name="numDocPrf" /></td>
+								<td><input type="button" class="input-buttons" id="botonBuscPrf" value="Buscar" /></td>
+								<td><input type="text" id="nombre" />
+								</td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</form>
+
+			<br /> <br />
+			<br /> <br />
+
+			<!------------------INICIO DEL FORMULARIO DE MATERIAS Y CURSOS DISPONIBLES--------------------->
+			<form class="form-horizontal" id="formListaMaterias" name="formListaMaterias">
+				<div class="row" id="containertitulo">
+					<p id="titulo1">Datos de cursos y materias sin asignar</p>
+				</div>
+
+
+
+			
+
+
+
+				<div id="rowtablemateriasdisponibles" style="width:100%">
+					<table id="tablemateriasdisponibles" class="table table-striped table-hover">
+						<thead>
+							<tr>
+								<th style="display: none;"></th>
+								<th>N° del curso</th>
+								<th>Año</th>
+								<th>Sección</th>
+								<th>Nivel</th>
+								<th>Especialidad</th>
+								<th>Asignatura</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="materia:${materias}" id="rowsmateriasdisp">
+								<td th:text="${materia.idMat}" style="display: none;"></td>
+								<td th:text="${materia.idCurso}"></td>
+								<td th:text="${materia.annio}"></td>
+								<td th:text="${materia.seccion}"></td>
+								<td th:text="${materia.nivel}"></td>
+								<td th:text="${materia.especialidad}"></td>
+								<td th:text="${materia.materia}"></td>
+							
+								<td>
+									<input type="button" class="input-buttons" value="Asignar"
+										onclick="asignarmateria();" />
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</form>
+
+			<br /> <br />
+			<br /> <br />
+
+
+
+			<!------------------INICIO DEL FORMULARIO DE MATERIAS Y CURSOS DISPONIBLES--------------------->
+			
+			<form class="form-horizontal" id="formListaMateriasAsignadas" name="formListaMateriasAsignadas">
+			    <div class="row" id="containertitulo">
+					<p id="titulo1">Cursos y materias asignadas</p>
+				</div>
+				
+				<div class="row" id="rowtablemateriasasignadas">
+					<table id="tablemateriasasignadas" class="table table-striped table-hover">
+						<thead>
+							<tr>
+								<th>N° del curso</th>
+								<th>Año</th>
+								<th>Sección</th>
+								<th>Asignatura</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+	
+	
+	
+						</tbody>
+					</table>
+				</div>
+			
+			</form>
+
+
+
+			<br>
+			<br>
+			<div class="row">
+				<input type="button" class="input-buttons" name="guardar" id="guardar" value="Guardar"
+					style="margin: 0 auto" />
+			</div>
+			<br>
+			<br>
+
+
+			<!------------------FIN DEL FORMULARIO DE LA LISTA DE ALUMOS--------------------->
+		</div>
+	</div>
+
+	<th:block th:replace="partes/footer :: footer" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+	<script src="/js/asignarcurso.js"></script>
+</body>
+
+</html>

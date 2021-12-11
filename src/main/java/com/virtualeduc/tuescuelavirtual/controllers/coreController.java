@@ -11,10 +11,14 @@ import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoCursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.PersonaDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.ProfesorDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.RepresentanteDTO;
 import com.virtualeduc.tuescuelavirtual.models.Alumno;
 import com.virtualeduc.tuescuelavirtual.models.Annio;
 import com.virtualeduc.tuescuelavirtual.models.Curso;
+
+import com.virtualeduc.tuescuelavirtual.models.Cursos_prof;
 import com.virtualeduc.tuescuelavirtual.models.Profesion;
 import com.virtualeduc.tuescuelavirtual.models.Profesor;
 import com.virtualeduc.tuescuelavirtual.models.Representante;
@@ -22,10 +26,13 @@ import com.virtualeduc.tuescuelavirtual.models.Responses;
 import com.virtualeduc.tuescuelavirtual.services.IAlumnoService;
 import com.virtualeduc.tuescuelavirtual.services.ICursoService;
 import com.virtualeduc.tuescuelavirtual.services.IMateriaService;
+import com.virtualeduc.tuescuelavirtual.services.IProfesoresService;
 import com.virtualeduc.tuescuelavirtual.services.IRepresentanteService;
+import com.virtualeduc.tuescuelavirtual.services.IUsuarioService;
 import com.virtualeduc.tuescuelavirtual.services.IVariosService;
 import com.virtualeduc.tuescuelavirtual.utils.Constantes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -36,6 +43,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,12 +59,16 @@ import com.virtualeduc.tuescuelavirtual.utils.Constantes;
  */
 
 @RestController
-@RequestMapping("/app")
+
 //@CrossOrigin(origins = {"http://localhost:8080"})
+@RequestMapping("/app")
 public class coreController {
 
     @Autowired
     IAlumnoService alumnoservice;
+    
+    @Autowired
+    IProfesoresService profesorservice;
 
     @Autowired
     IRepresentanteService representanteservice;
@@ -64,6 +76,9 @@ public class coreController {
     @Autowired
     IMateriaService materiaservice;
     
+    
+    @Autowired
+    IUsuarioService usuarioservice;
   
     
     @Value("${dir.base}")
@@ -95,6 +110,19 @@ public class coreController {
          Alumno alumno=this.alumnoservice.consultarAlumnoPorCedula(tdoc, ndoc);
          alumnoDTO=new AlumnoDTO(alumno);
     	 return alumnoDTO;
+     }
+    
+    
+    
+    //CONSULTA DE PROFESOR POR CEDULA
+    @CrossOrigin(origins = {"direccionbase/buscarProfesor"})
+     @GetMapping(path = "/buscarProfesor",
+            produces = "application/json")
+     public @ResponseBody ProfesorDTO consultaProfesor(@RequestParam("tdoc") String tdoc,@RequestParam("ndoc") String ndoc){
+         ProfesorDTO profesorDTO;
+         Profesor profesor=this.profesorservice.consultarProfesorPorCedula(tdoc, ndoc);
+         profesorDTO=new ProfesorDTO(profesor);
+    	 return profesorDTO;
      }
 
 //CONSULTA LA LISTA DE ALUMNOS ACTIVOS
@@ -184,6 +212,58 @@ public class coreController {
     	
     	
      }
+     
+   
+ 	@CrossOrigin(origins = { "direccionbase/asignarmateriasycursos" })
+ 	@PostMapping(path = "/asignarmateriasycursos")
+ 	public Responses asignarmateriasycursos(@RequestParam(name = "idcursos[]") Long[] idcursos,
+ 			@RequestParam(name = "idmaterias[]") Long[] idmaterias, @RequestParam(name = "idprofesor") Long idprofesor,
+ 			RedirectAttributes redirectAttributes) {
+
+ 		Responses resp = new Responses();
+
+ 		List<Cursos_prof> cursosprof = new ArrayList<>();
+
+ 		for (int i = 0; i < idmaterias.length; i++) {
+
+ 			Cursos_prof cursoprof = new Cursos_prof();
+
+ 			cursoprof.setIdCurso(idcursos[i]);
+
+ 			cursoprof.setIdMat(idmaterias[i]);
+
+ 			cursoprof.setIdProf(idprofesor);
+
+ 			cursosprof.add(cursoprof);
+
+ 		}
+
+ 		resp = cursoservice.asignarCursosMaterias(cursosprof);
+ 		
+ 		return resp;
+
+ 	}
+ 	
+ 	  @CrossOrigin(origins = {"direccionbase/consultarpersona"})
+      @GetMapping(path = "/consultarpersona")
+ 	  public PersonaDTO consultarpersona(@RequestParam(name="tipodoc") String tipodoc,@RequestParam(name="numdoc") String numdoc,@RequestParam(name="tipousuario") String tipousuario) {
+ 		  
+ 		  PersonaDTO persona=new PersonaDTO();
+ 		  
+ 		  persona=usuarioservice.findPersonaByCedulaAndTipoUsuario(tipodoc, numdoc, tipousuario);
+ 		  
+ 		  if(persona==null) {
+ 			  
+ 		  }else {
+ 			  
+ 		  }
+ 		  
+ 		  return persona;
+ 	  }
+ 	
+ 	
+ 	
+ 	
     
      
      

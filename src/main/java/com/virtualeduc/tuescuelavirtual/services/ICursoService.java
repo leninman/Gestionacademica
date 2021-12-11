@@ -7,7 +7,12 @@ package com.virtualeduc.tuescuelavirtual.services;
 
 
 import com.virtualeduc.tuescuelavirtual.models.Curso;
+import com.virtualeduc.tuescuelavirtual.models.Cursos_prof;
+import com.virtualeduc.tuescuelavirtual.models.Materias_prof;
 import com.virtualeduc.tuescuelavirtual.models.Responses;
+import com.virtualeduc.tuescuelavirtual.models.ViewCursosMateriasAsignada;
+import com.virtualeduc.tuescuelavirtual.models.ViewCursosMateriasSinAsignar;
+import com.virtualeduc.tuescuelavirtual.models.ViewMateriasPorCurso;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
@@ -71,6 +76,18 @@ public interface ICursoService {
       public List<String> niveles();
       
       public List<String> especialidades();
+      
+      public List<ViewCursosMateriasAsignada> consultarMateriasAsignadas();
+      
+      public List<ViewCursosMateriasSinAsignar> consultarMateriasSinAsignar();
+      
+      public List<ViewMateriasPorCurso> consultarMateriaPorCurso();
+      
+      public Responses asignarCursosMaterias(List<Cursos_prof> cursosprof);
+      
+      public Responses asignarMaterias(List<Materias_prof> materiasprof);
+      
+      public Responses eliminarCursosMateria(Long idPrf,Long idCurso,Long idMat);
       
       
       

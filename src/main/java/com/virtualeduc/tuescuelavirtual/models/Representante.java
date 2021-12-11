@@ -76,9 +76,7 @@ public class Representante implements Serializable {
 	@Column(name = "EDO_CIV_RPR")
 	private String edoCivRpr;
 
-	@Basic(optional = false)
-	@Column(name = "PARENTESCO_RPR")
-	private String parentescoRpr;
+	
 
 	@Basic(optional = false)
 	@Column(name = "DIR_PPAL_RPR")
@@ -113,30 +111,7 @@ public class Representante implements Serializable {
 		this.idRpr = idRpr;
 	}
 
-	public Representante(Long idRpr, String tipoDocRpr, String numDocRpr, String primNombRpr, String segNombRpr,
-			String primApellRpr, String segApellRpr, String sexoRpr, Date fechNacRpr, String edadRpr, String edoCivRpr,
-			String parentescoRpr, String dirPpalRpr, String dirSecRpr, String tlfPpalRpr, String tlfSecRpr,
-			String emailRpr, Collection<Alumno> alumnoCollection, Collection<Alumno> alumnoCollection1) {
-		this.idRpr = idRpr;
-		this.tipoDocRpr = tipoDocRpr;
-		this.numDocRpr = numDocRpr;
-		this.primNombRpr = primNombRpr;
-		this.segNombRpr = segNombRpr;
-		this.primApellRpr = primApellRpr;
-		this.segApellRpr = segApellRpr;
-		this.sexoRpr = sexoRpr;
-		this.fechNacRpr = fechNacRpr;
-		this.edadRpr = edadRpr;
-		this.edoCivRpr = edoCivRpr;
-		this.parentescoRpr = parentescoRpr;
-		this.dirPpalRpr = dirPpalRpr;
-		this.dirSecRpr = dirSecRpr;
-		this.tlfPpalRpr = tlfPpalRpr;
-		this.tlfSecRpr = tlfSecRpr;
-		this.emailRpr = emailRpr;
-		this.alumnoCollection = alumnoCollection;
-		this.alumnoCollection1 = alumnoCollection1;
-	}
+
 
 	public Representante setRepresentante1(AlumnoDTO alumnoDTO) {
 		Representante rep = new Representante();
@@ -152,7 +127,7 @@ public class Representante implements Serializable {
 
 		rep.setEdadRpr(alumnoDTO.getEdadRpr1());
 		rep.setEdoCivRpr(alumnoDTO.getEdoCivRpr1());
-		rep.setParentescoRpr(alumnoDTO.getParentescoRpr1());
+		//rep.setParentescoRpr(alumnoDTO.getParentescoRpr1());
 
 		rep.setDirPpalRpr(alumnoDTO.getTextoDirPpalRpr1().concat(",").concat(alumnoDTO.getEstadodirppalrep1())
 				.concat(",").concat(alumnoDTO.getMunicipiodirppalrep1()).concat(",")
@@ -173,7 +148,7 @@ public class Representante implements Serializable {
 		rep.setTlfPpalRpr(alumnoDTO.getCodoperadorappalrep1().concat("-").concat(alumnoDTO.getTextoTlfPpalRpr1()));
 
 		if (alumnoDTO.getCodoperadorasecrep1() != null
-				&& (alumnoDTO.getTextoTlfSecRpr1() != "" || alumnoDTO.getTextoTlfSecRpr1() != null)) {
+				&& alumnoDTO.getTextoTlfSecRpr1() != "") {
 			rep.setTlfSecRpr(alumnoDTO.getCodoperadorasecrep1().concat("-").concat(alumnoDTO.getTextoTlfSecRpr1()));
 		} else {
 			rep.setTlfSecRpr(rep.getTlfPpalRpr());
@@ -199,7 +174,7 @@ public class Representante implements Serializable {
 
 		rep.setEdadRpr(alumnoDTO.getEdadRpr2());
 		rep.setEdoCivRpr(alumnoDTO.getEdoCivRpr2());
-		rep.setParentescoRpr(alumnoDTO.getParentescoRpr2());
+		//rep.setParentescoRpr(alumnoDTO.getParentescoRpr2());
 
 		rep.setDirPpalRpr(alumnoDTO.getTextoDirPpalRpr2().concat(",").concat(alumnoDTO.getEstadodirppalrep2())
 				.concat(",").concat(alumnoDTO.getMunicipiodirppalrep2()).concat(",")
@@ -321,13 +296,7 @@ public class Representante implements Serializable {
 		this.edoCivRpr = edoCivRpr;
 	}
 
-	public String getParentescoRpr() {
-		return parentescoRpr;
-	}
-
-	public void setParentescoRpr(String parentescoRpr) {
-		this.parentescoRpr = parentescoRpr;
-	}
+	
 
 	public String getDirPpalRpr() {
 		return dirPpalRpr;

@@ -21,27 +21,33 @@
       th:text="${mensaje11}"
       class="alert"
     ></div>
+    <th:block th:replace="partes/header :: header" />
+    <th:block th:replace="partes/menu :: menuSuperior" />
+  
 
-    <br />
-    <br />
-    <div class="row">
-      <div class="form-group col-md-4">
-        <h5>
-          <b>DETALLE DEL CURSO</b>
-        </h5>
-      </div>
-    </div>
 
-    <div class="container my-5">
-      <div class="card">
-        <div class="card-header">
+    
+
+
+      <div class="card" style="
+      width: 100%;
+      border-color: #cccccc;
+      margin-left: auto;
+      margin-right: auto;">
+        <div class="card-header" style="
+        width: 100%;
+        border-color: #cccccc;
+        margin-left: auto;
+        margin-right: auto;
+      ">
+    
           <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                   <a
                     class="nav-link"
-                    th:href="@{/app/inicio}"
+                    th:href="@{/inicio}"
                     data-toggle="tooltip"
                     data-placement="top"
                     title="Ir al inicio"
@@ -64,6 +70,7 @@
             </div>
           </nav>
         </div>
+      
 
         <div class="card-body">
           <form class="form-horizontal" id="formCurso" name="formCurso">
@@ -175,7 +182,8 @@
           </form>
         </div>
       </div>
-    </div>
+   
+    <th:block th:replace="partes/footer :: footer" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

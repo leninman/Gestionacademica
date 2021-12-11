@@ -29,6 +29,10 @@ public interface IAlumnoRepo extends JpaRepository<Alumno, Long> {
     public List<Alumno> findListAlumnos();
     
     
+    
+    
+    @Query(value="SELECT * from alumnos a "
+            + "WHERE a.TIPO_DOC_AL=?1 and a.NUM_DOC_AL=?2 and a.STATUS='ACTIVO'",nativeQuery = true)
     public Alumno findAlumnoByTipoDocAlAndNumDocAl(String tipoDocAl, String numDocAl);
     
     

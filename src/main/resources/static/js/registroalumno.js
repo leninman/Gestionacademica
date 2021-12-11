@@ -2,6 +2,7 @@ var rep1encontrado;
 var rep2encontrado;
 var cursoasignado;
 var direccionbase;
+var porvalidacion;
 function mostrarrepresentante2() {
   element = document.getElementById("datosRepSec");
   if (element.style.display == "none") {
@@ -49,8 +50,45 @@ function mostrarcursoelegido() {
 //Setea los combos a blanco, oculta los textos establece estilos
 $(document).ready(function () {
 	
-  $('form select').val("");
-  	 
+  //porvalidacion=$("#porvalidacion").val();
+
+  //if(porvalidacion){
+	
+ // }
+
+//let selects = document.querySelectorAll("select");
+
+//let numberOfSelects=selects.length
+
+
+//console.log(numberOfSelects);
+
+//for (let i=0;i<numberOfSelects;i++) {
+	
+	
+	//console.log(selects[i].value);
+	
+	//if(('form select').val()==""){
+		//console.log("hello");
+	//}
+	
+	//var valor=$('form select').val();
+
+	//console.log(valor);
+	
+	
+	
+//}
+
+
+//console.log($('form select'));
+
+
+
+ //if($('form select').val()==""){
+	// $('form select').val("");	  
+ //}
+  
   $("#txtSexoRpr1").hide();
   $("#txtParentescoRpr1").hide();
   $("#txtOtroParentescoRpr1").hide();
@@ -142,6 +180,25 @@ $(document).ready(function () {
   
   
 
+});
+
+
+$("#submit").click(function () {
+	   
+   if($("#annio").val()==""&&$("#seccion").val()==""&&$("#turno").val()==""&&$("#nivel").val()==""&&$("#especialidad").val()==""){
+	  	alert("DEBE SELECCIONAR UN CURSO");
+  		//y = document.getElementById("tablecursos");
+ 	   //	y.style.display = "none";
+ 	   //x = document.getElementById("cursoelegido");
+ 		//if (x.style.display == "none") {
+        //x.style.display = "flex";
+
+//}
+	}
+     
+	 
+
+	
 });
 
 $("#parentescoRpr1").change(function () {

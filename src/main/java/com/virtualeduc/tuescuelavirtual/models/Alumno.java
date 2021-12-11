@@ -104,6 +104,10 @@ public class Alumno implements Serializable {
 	@JoinColumn(name = "ID_RPR1", referencedColumnName = "ID_RPR")
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	private Representante idRpr1;
+	
+	@Basic(optional = false)
+	@Column(name = "PAR_RPR1")
+	private String parRpr1;
 
 	@JoinColumn(name = "ID_CURSO", referencedColumnName = "ID_CURSO")
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -112,6 +116,10 @@ public class Alumno implements Serializable {
 	@JoinColumn(name = "ID_RPR2", referencedColumnName = "ID_RPR")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Representante idRpr2;
+	
+	@Basic(optional = false)
+	@Column(name = "PAR_RPR2")
+	private String parRpr2;
 
 	@Basic(optional = false)
 	@Column(name = "FECHA_CREACION")
@@ -143,8 +151,7 @@ public class Alumno implements Serializable {
 				.concat(",").concat(alumnoDTO.getParroquiadirppalest()).concat(",")
 				.concat(alumnoDTO.getCodpostaldirppalest());
 
-		if ((alumnoDTO.getTextoDirSecAl() != "" || alumnoDTO.getTextoDirSecAl() != null)
-				&& alumnoDTO.getEstadodirsecest() != null && alumnoDTO.getMunicipiodirsecest() != null
+		if (alumnoDTO.getTextoDirSecAl() != "" && alumnoDTO.getEstadodirsecest() != null && alumnoDTO.getMunicipiodirsecest() != null
 				&& alumnoDTO.getCiudaddirsecest() != null && alumnoDTO.getParroquiadirsecest() != null
 				&& alumnoDTO.getCodpostaldirsecest() != null) {
 			this.dirSecAl = alumnoDTO.getTextoDirSecAl().concat(",").concat(alumnoDTO.getEstadodirsecest()).concat(",")
@@ -158,11 +165,14 @@ public class Alumno implements Serializable {
 		this.tlfPpalAl = alumnoDTO.getCodoperadorappalest().concat("-").concat(alumnoDTO.getTextoTlfPpalAl());
 
 		if (alumnoDTO.getCodoperadorasecest() != null
-				&& (alumnoDTO.getTextoTlfSecAl() != "" || alumnoDTO.getTextoTlfSecAl() != null)) {
+				&& alumnoDTO.getTextoTlfSecAl() != "") {
 			this.tlfSecAl = alumnoDTO.getCodoperadorasecest().concat("-").concat(alumnoDTO.getTextoTlfSecAl());
 		} else {
 			this.tlfSecAl = this.tlfPpalAl;
 		}
+		
+		this.parRpr1=alumnoDTO.getParRpr1();
+		this.parRpr2=alumnoDTO.getParRpr2();
 
 		this.emailAl = alumnoDTO.getEmailAl();
 		this.fechIngAl = alumnoDTO.getFechIngAl();
@@ -368,5 +378,27 @@ public class Alumno implements Serializable {
 	public void setIdRpr2(Representante idRpr2) {
 		this.idRpr2 = idRpr2;
 	}
+
+	public String getParRpr1() {
+		return parRpr1;
+	}
+
+	public void setParRpr1(String parRpr1) {
+		this.parRpr1 = parRpr1;
+	}
+
+	public String getParRpr2() {
+		return parRpr2;
+	}
+
+	public void setParRpr2(String parRpr2) {
+		this.parRpr2 = parRpr2;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
 
 }

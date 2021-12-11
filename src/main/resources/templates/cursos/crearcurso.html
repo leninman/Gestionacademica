@@ -22,58 +22,86 @@
     class="alert"
   ></div>
 
-    <br />
-    <br />
-    <div class="row">
-      <div class="form-group col-md-4">
-        <h5>
-          <b>Formulario de creación de cursos</b>
-        </h5>
-      </div>
-    </div>
+  <th:block th:replace="partes/header :: header" />
+  <th:block th:replace="partes/menu :: menuSuperior" />
 
-    <div class="container my-5">
-      <div class="card">
-        <div class="card-header">
+   
+  
+
+  
+      <div class="card" style="
+      width: 100%;
+      border-color: #cccccc;
+      margin-left: auto;
+      margin-right: auto;">
+        <div class="card-header" style="
+        width: 100%;
+        border-color: #cccccc;
+        margin-left: auto;
+        margin-right: auto;
+      ">
+      
           <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link"
-                  th:href="@{/app/inicio}"
+                <li>
+                  <a 
+                  type="button" 
+                  class="btn btn-secondary"
+                  th:href="@{/inicio}"
                   data-toggle="tooltip"
                   data-placement="top"
                   title="Ir al inicio"
                   ><i class="bi bi-house"></i
-                >Home </a>
-                &nbsp; &nbsp;
-                <li class="nav-item active">
+                ></a>
+                </li>
+                &nbsp;
+                <li>
                   <a
-                    class="nav-link"
+                    type="button" 
+                    class="btn btn-secondary"
                     th:href="@{/app/nuevocurso}"
                     data-toggle="tooltip"
                     data-placement="top"
                     title="Limpiar pantalla"
                     ><i class="bi bi-eraser"></i
-                  >Limpiar</a>
+                  ></a>
                 </li>
-                &nbsp; &nbsp;
-                <li class="nav-item active">
+                &nbsp;
+                <li>
                   <a
-                    class="nav-link my-2 my-sm-0"
+                    type="button" 
+                    class="btn btn-danger"
                     th:href="@{/app/listarcursos}"
                     data-toggle="tooltip"
                     data-placement="top"
                     title="Salir"
                     ><i class="bi bi-x"></i
-                  >Salir</a>
+                  ></a>
                 </li>
               </ul>
+              <div class="container" style="display: flex;
+                justify-content: left;">
+                
+          <div class="col-md-3"></div>
+            <p style="font-weight: bold;
+              font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
+              font-size: large;
+              color: black;
+              font-size: 20px;">&nbsp;&nbsp;&nbsp;Formulario de creación de cursos</p>
+          </div>
             </div>
           </nav>
         </div>
+       
 
-        <div class="card-body">
+        <div class="card-body" style="
+        width: 100%;
+        border-color: #b5b5b5;
+        margin-left: auto;
+        margin-right: auto;
+      ">
+      
           <form
             class="form-horizontal"
             th:action="@{/app/agregarcurso}"
@@ -82,12 +110,19 @@
             name="formCurso"
             method="post"
           >
+   
+
+       
+        
+          <br />
+          <br />
+
             <div class="row">
-              <b
-                ><label for="intAnnioEsc" class="col-form-label"
-                  >Año Escolar:&nbsp;&nbsp;</label
-                ></b
-              >
+              <div class="col-md-4"></div>
+              <div class="col-md-8">
+              <label for="intAnnioEsc" class="col-form-label"
+                  >Periodo Escolar:&nbsp;&nbsp;</label
+                >
               <select id="intAnnioEsc" th:field="*{intAnnioEsc}">
                  <option
                   th:each="annioescolar:${annioescolar}"
@@ -95,63 +130,57 @@
                   th:text="${annioescolar.intAnnioEsc}"
                 ></option>
               </select>
+              </div>
             </div>
             <br />
 
             <div class="row">
-              <b
-                ><label for="Annio" class="col-form-label"
+              <div class="col-md-4"></div>
+              <div class="col-md-8">
+                &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+               <label for="Annio" class="col-form-label"
                   >Año:&nbsp;&nbsp;</label
-                ></b
-              >
+                >
               <select id="Annio" th:field="*{annio}">
-                <option value="1°">1°
-                </option>
-                <option value="2°">2°
-                </option>
-                <option value="3°">3°
-                </option>
-                <option value="4°">4°
-                </option>
-                <option value="5°">5°
-                </option>
-                 <option value="6°">6°
-                </option>
-                <!--<option
-                  th:each="annio:${annios}"
-                  th:value="${annio.annio}"
-                  th:text="${annio.annio}"
-                ></option>-->
+                <option
+                th:each="annio:${annios}"
+                th:value="${annio}"
+                th:text="${annio}"
+              ></option>
               </select>
+            </div>
             </div>
             <br />
 
             <div class="row">
-              <b
-                ><label for="Nivel" class="col-form-label"
+              <div class="col-md-4"></div>
+              <div class="col-md-8">
+                &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                &nbsp;&nbsp; &nbsp;&nbsp;
+              <label for="Nivel" class="col-form-label"
                   >Nivel:&nbsp;&nbsp;</label
-                ></b
-              >
+                >
               <select id="Nivel" th:field="*{nivel}">
-                <option value="MEDIA GENERAL">MEDIA GENERAL
-                </option>
-                <option value="PRIMARIA">PRIMARIA
-                </option>
-                <!--<option
-                  th:each="annio:${annios}"
-                  th:value="${annio.nivel}"
-                  th:text="${annio.nivel}"
-                ></option>-->
+                <option
+                th:each="nivel:${niveles}"
+                th:value="${nivel}"
+                th:text="${nivel}"
+              ></option>
+               
               </select>
+            </div>
             </div>
             <br />
 
             <div class="row">
-              <b
-                ><label for="Turno" class="col-form-label"
+              <div class="col-md-4"></div>
+              <div class="col-md-8">
+                &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                &nbsp;&nbsp; &nbsp;&nbsp;
+            <label for="Turno" class="col-form-label"
                   >Turno:&nbsp;&nbsp;</label
-                ></b
-              >
+                >
               <select id="Turno" th:field="*{turno}">
                 <option
                   th:each="turno:${turnos}"
@@ -160,14 +189,17 @@
                 ></option>
               </select>
             </div>
+            </div>
             <br />
 
             <div class="row">
-              <b
-                ><label for="Seccion" class="col-form-label"
+              <div class="col-md-4"></div>
+              <div class="col-md-8">
+                &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                &nbsp;&nbsp;
+             <label for="Seccion" class="col-form-label"
                   >Sección:&nbsp;&nbsp;</label
-                ></b
-              >
+                >
               <select id="Seccion" th:field="*{seccion}">
                 <option
                   th:each="seccion:${secciones}"
@@ -176,6 +208,8 @@
                 ></option>
               </select>
             </div>
+            </div>
+            <br />
             <br />
             <div class="row">
               <input
@@ -186,11 +220,13 @@
                 style="margin: 0 auto"
               />
             </div>
+            <br />
+            <br />
           </form>
         </div>
       </div>
-    </div>
-
+  
+      <th:block th:replace="partes/footer :: footer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

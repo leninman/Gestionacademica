@@ -56,6 +56,7 @@ public class IAlumnoServiceImpl implements IAlumnoService {
 		// String tipoDocAl = alumno.getTipoDocAl();
 		// String numDocAl = alumno.getNumDocAl();
 		Responses resp = new Responses();
+		try {
 		if (guardar) {
 
 			alumnoguardado = new Alumno();
@@ -88,6 +89,9 @@ public class IAlumnoServiceImpl implements IAlumnoService {
 			this.alumnoactualizado = alumnorepo.save(alumno);
 			this.alumnoDTO = new AlumnoDTO(alumnoactualizado);
 			resp.setAlumno(this.alumnoDTO);
+		}
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
 
 		return resp;
@@ -129,7 +133,15 @@ public class IAlumnoServiceImpl implements IAlumnoService {
 	public Alumno consultarAlumnoPorId(Long id) {
 		// throw new UnsupportedOperationException("Not supported yet."); //To change
 		// body of generated methods, choose Tools | Templates.
-		return alumnorepo.findById(id).orElse(null);
+		Alumno alumno = null;
+			
+		try {
+				alumno= alumnorepo.findById(id).orElse(null);
+		}catch(Exception e){
+				e.printStackTrace();
+		}
+		
+		return alumno;
 	}
 
 	@Override

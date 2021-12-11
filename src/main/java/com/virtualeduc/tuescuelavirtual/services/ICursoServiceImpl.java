@@ -8,6 +8,8 @@ package com.virtualeduc.tuescuelavirtual.services;
 import com.virtualeduc.tuescuelavirtual.models.Annio;
 import com.virtualeduc.tuescuelavirtual.models.AnnioEscolar;
 import com.virtualeduc.tuescuelavirtual.models.Curso;
+import com.virtualeduc.tuescuelavirtual.models.Cursos_prof;
+import com.virtualeduc.tuescuelavirtual.models.Materias_prof;
 import com.virtualeduc.tuescuelavirtual.models.Responses;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
@@ -16,11 +18,18 @@ import com.virtualeduc.tuescuelavirtual.models.DTOS.SeccionDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.TurnoDTO;
 import com.virtualeduc.tuescuelavirtual.models.Seccion;
 import com.virtualeduc.tuescuelavirtual.models.Turno;
+import com.virtualeduc.tuescuelavirtual.models.ViewCursosMateriasAsignada;
+import com.virtualeduc.tuescuelavirtual.models.ViewCursosMateriasSinAsignar;
+import com.virtualeduc.tuescuelavirtual.models.ViewMateriasPorCurso;
 import com.virtualeduc.tuescuelavirtual.repo.IAnnioEscolarRepo;
 import com.virtualeduc.tuescuelavirtual.repo.IAnnioRepo;
+import com.virtualeduc.tuescuelavirtual.repo.ICursoProfRepo;
 import com.virtualeduc.tuescuelavirtual.repo.ICursoRepo;
 import com.virtualeduc.tuescuelavirtual.repo.ISeccionRepo;
 import com.virtualeduc.tuescuelavirtual.repo.ITurnoRepo;
+import com.virtualeduc.tuescuelavirtual.repo.IViewCursosMateriasAsignada;
+import com.virtualeduc.tuescuelavirtual.repo.IViewCursosMateriasSinAsignar;
+import com.virtualeduc.tuescuelavirtual.repo.IViewMateriasPorCurso;
 import com.virtualeduc.tuescuelavirtual.utils.Constantes;
 import com.virtualeduc.tuescuelavirtual.utils.Utils;
 
@@ -50,6 +59,20 @@ public class ICursoServiceImpl implements ICursoService {
 
 	@Autowired
 	ICursoRepo cursorepo;
+	
+	
+	@Autowired
+	ICursoProfRepo cursoprofrepo;
+	
+	
+	@Autowired
+	IViewCursosMateriasAsignada cursosmateriasasignadas;
+	
+	@Autowired
+	IViewCursosMateriasSinAsignar cursosmateriassinasignar;
+	
+	@Autowired
+	IViewMateriasPorCurso materiasporcurso;
 
 	private CursoDTO cursoaguardar;
 
@@ -559,6 +582,73 @@ public class ICursoServiceImpl implements ICursoService {
 	public List<String> especialidades() {
 		// TODO Auto-generated method stub
 		return anniorepo.especialidades();
+	}
+
+	@Override
+	public List<ViewCursosMateriasAsignada> consultarMateriasAsignadas() {
+		// TODO Auto-generated method stub
+		return cursosmateriasasignadas.findAll();
+	}
+
+	@Override
+	public List<ViewCursosMateriasSinAsignar> consultarMateriasSinAsignar() {
+		// TODO Auto-generated method stub
+		return cursosmateriassinasignar.findAll();
+	}
+
+	@Override
+	public List<ViewMateriasPorCurso> consultarMateriaPorCurso() {
+		// TODO Auto-generated method stub
+		return materiasporcurso.findAll();
+	}
+
+	@Override
+	public Responses asignarCursosMaterias(List<Cursos_prof> cursos) {
+		// TODO Auto-generated method stub
+		Responses resp=new Responses();
+		
+		Cursos_prof cursoprofesor;
+		
+		for(Cursos_prof cursoprof:cursos) {
+			
+			cursoprofesor=cursoprofrepo.findCursoProf(cursoprof.getIdCurso(), cursoprof.getIdMat(), cursoprof.getIdProf());
+		
+			if(cursoprofesor==null) {
+				Cursos_prof cursoprofesorguardado=cursoprofrepo.save(cursoprof);
+				resp.setResponseCode(Constantes.CURSO_MATERIA_ASIGNADA_CODE);
+				resp.setResponseDescription(Constantes.CURSO_MATERIA_ASIGNADA_DESC);
+				
+			}
+		}
+		
+		
+		
+		return resp;
+	}
+
+	@Override
+	public Responses asignarMaterias(List<Materias_prof> materias) {
+		// TODO Auto-generated method stub
+		Responses resp=new Responses();
+		return resp;
+	}
+
+	@Override
+	public Responses eliminarCursosMateria(Long idProfesor,Long idCurso,Long idMateria) {
+		// TODO Auto-generated method stub
+		Responses resp=new Responses();
+		
+		//Long idCursoMateria=cursoprof.getIdCursoProf();
+		
+		Cursos_prof cursosprof=cursoprofrepo.findCursoProf(idCurso, idMateria, idProfesor);
+		
+		if(cursosprof!=null) {
+			cursoprofrepo.deleteById(cursosprof.getIdCursoProf());
+			resp.setResponseCode(Constantes.CURSO_MATERIA_ELIMINADA_CODE);
+			resp.setResponseDescription(Constantes.CURSO_MATERIA_ELIMINADA_DESC);
+		}
+		
+		return resp;
 	}
 
 }
