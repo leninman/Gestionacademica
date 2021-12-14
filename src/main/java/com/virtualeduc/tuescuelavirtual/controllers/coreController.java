@@ -243,7 +243,7 @@ public class coreController {
  		return resp;
 
  	}
- 	
+ 	/*
  	  @CrossOrigin(origins = {"direccionbase/consultarpersona"})
       @GetMapping(path = "/consultarpersona")
  	  public PersonaDTO consultarpersona(@RequestParam(name="tipodoc") String tipodoc,@RequestParam(name="numdoc") String numdoc,@RequestParam(name="tipousuario") String tipousuario) {
@@ -251,17 +251,11 @@ public class coreController {
  		  PersonaDTO persona=new PersonaDTO();
  		  
  		  persona=usuarioservice.findPersonaByCedulaAndTipoUsuario(tipodoc, numdoc, tipousuario);
- 		  
- 		  if(persona==null) {
- 			  
- 		  }else {
- 			  
- 		  }
- 		  
+ 		    
  		  return persona;
  	  }
  	
- 	
+ 	*/
  	
  	
     

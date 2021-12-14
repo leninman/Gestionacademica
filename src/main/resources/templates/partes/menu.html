@@ -25,7 +25,7 @@
 					<!-- <a class="dropdown-item" href="#">REPRESENTANTES</a>
                     <a class="dropdown-item" href="#">EMPLEADOS</a>-->
 				</div></li>
-			<li class="nav-item dropdown"><a class="nav-link">
+			<li class="nav-item dropdown" sec:authorize="hasAnyRole('ROLE_USER_DIRECTIVO','ROLE_USER_ADMINISTRATIVO')"><a class="nav-link">
 					CONFIGURACION <i class="fa fa-cogs" aria-hidden="true"></i>
 			</a>
 				<div class="dropdown-menu">
@@ -47,6 +47,7 @@
 
 				<div class="dropdown-menu">
 					<a class="dropdown-item" th:href="@{/app/verCursos}" sec:authorize="hasRole('ROLE_USER_PROFESOR')">CARGA </a> 
+					<a class="dropdown-item" href="#">CONSULTAR</a> 
 					<!-- <a class="dropdown-item" href="#">REPORTES</a>-->
 				</div>
 			</li>
@@ -56,6 +57,7 @@
 
 				<div class="dropdown-menu">
 					<a class="dropdown-item" th:href="@{/app/nuevoUsuario}" sec:authorize="hasRole('ROLE_USER_ADMINISTRATIVO')">CREAR USUARIO </a> 
+					<a class="dropdown-item" href="#">CAMBIAR CLAVE </a> 
 					
 				</div>
 			</li>

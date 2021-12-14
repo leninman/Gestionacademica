@@ -6,6 +6,7 @@ import java.security.Principal;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,13 @@ public class LoginController {
 	
 	protected final Log logger = LogFactory.getLog(this.getClass());
 	
+	
+    @Value("${dir.base}")
+    String direccionbase;
+    
+    @Value("${dir.registro.usuario}")
+    String direccionregistrousuario;
+
 	
 	@GetMapping("/login")
 	public String login(@RequestParam(name="error",required=false) String error,
@@ -47,6 +55,12 @@ public class LoginController {
 	
 		
 		}
+		
+		model.addAttribute("direccionbase", direccionbase);
+		
+		model.addAttribute("direccionregistrousuario", direccionregistrousuario);
+		
+		
 		
 		
 		
