@@ -19,6 +19,7 @@
     <class>com.virtualeduc.tuescuelavirtual.models.NotasDef</class>
     <class>com.virtualeduc.tuescuelavirtual.models.Role</class>
     <class>com.virtualeduc.tuescuelavirtual.models.Usuario</class>
+    <class>com.virtualeduc.tuescuelavirtual.models.Authorities</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sistgestacad?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

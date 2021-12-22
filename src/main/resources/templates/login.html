@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}"/>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
 <link rel="stylesheet"
@@ -33,6 +34,8 @@
 			<h2 class="login-header rounded-top">Por favor inicie Sesión</h2>
 			<div class="card-body">
 				<form th:action="@{/login}" method="post">
+				<input type="hidden" id="direccionbase" name="direccionbase" th:value="${direccionbase}" />
+				<input type="hidden" id="direccionregistrousuario" name="direccionregistrousuario" th:value="${direccionregistrousuario}" />
 					<div class="form-group col-12 p-0 mb-4">
 						<input type="text" name="username" id="username"
 							class="form-control" placeholder="Usuario" required />
@@ -57,8 +60,12 @@
 					</div>
 					<!--//form-group-->
 					<div class="form-group col-12 text-center mb-3">
-						<a href="#" data-toggle="modal" data-target="#Registro">
+						<!-- <a href="#" data-toggle="modal" data-target="#Registro">
+							Registrarse </a>-->
+							
+						<a th:href="@{${direccionregistrousuario}+'/nuevousuario'}">
 							Registrarse </a>
+							
 
 						<!-- <input type="button" class="btn button btn-primary" 
 						data-toggle="modal" data-target="#Registro" data-whatever="@mdo" 
@@ -93,7 +100,7 @@
 				</div>
 				<div class="modal-body">
 					<form>
-
+						
 
 						<div class="row" id="rowtablenuevousuario">
 							<table id="tablenuevousuario" class="table">
@@ -106,14 +113,14 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td><select id="tipodocumento">
+										<td><select id="tipodocumento" name="tipodocumento">
 												<option value="" selected></option>
 												<option value="V">V</option>
 												<option value="E">E</option>
 												<option value="P">P</option>
-										</select> <input type="text" id="numerocedula"></td>
+										</select> <input type="text" id="numerocedula" name="numerocedula"></td>
 
-										<td><select id="tipousuario">
+										<td><select id="tipousuario" name="tipousuario">
 												<option value="" selected></option>
 												<option value="Alumno">Alumno</option>
 												<option value="Profesor">Profesor</option>
@@ -122,7 +129,7 @@
 
 										<td>
 											<button type="button" class="btn btn-secondary"
-												id="btnBuscarUsuario">Buscar</button>
+												id="btnBuscarPersona">Buscar</button>
 										</td>
 
 									</tr>
@@ -179,7 +186,7 @@
 							</div>
 
 							<div class="row">
-								<button type="button" class="btn btn-primary">Registar Usuario</button>
+								<button type="button" class="btn btn-primary">Registrar Usuario</button>
 							</div>
 
 
@@ -246,7 +253,7 @@
 	<script
 		src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 	<!--<script src="/js/Swalert.js"></script>-->
-	<script src="/js/registroalumno.js"></script>
+	<script src="/js/usuario.js"></script>
 	<!--   <script>
    			if ('${flagExisteAl}' == 'showAlertExisteAl') {
            		 Swal.fire({

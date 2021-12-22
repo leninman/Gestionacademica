@@ -59,10 +59,18 @@ public class Usuario implements Serializable {
 	private String clave5;
 	
 	
-	@Column(length = 10)
-	private String cedula;
+//	@Column(length = 10)
+//	private String cedula;
+        
+        @Column(length = 8)
+	private String nrodoc;
+        
+        @Column(length = 1)
+	private String tipodoc;
 	
-	
+	@Column(length = 20)
+	private String tipousuario;
+        
 	@Column(name="fecha_hora_ult_ingreso")
 	private Date fechaHoraUltIngreso;
 	
@@ -175,13 +183,41 @@ public class Usuario implements Serializable {
 		this.clave5 = clave5;
 	}
 
-	public String getCedula() {
-		return cedula;
-	}
+    public String getNrodoc() {
+        return nrodoc;
+    }
 
-	public void setCedula(String cedula) {
-		this.cedula = cedula;
-	}
+    public void setNrodoc(String nrodoc) {
+        this.nrodoc = nrodoc;
+    }
+
+    public String getTipodoc() {
+        return tipodoc;
+    }
+
+    public void setTipodoc(String tipodoc) {
+        this.tipodoc = tipodoc;
+    }
+
+    public String getTipousuario() {
+        return tipousuario;
+    }
+
+    public void setTipousuario(String tipousuario) {
+        this.tipousuario = tipousuario;
+    }
+    
+    
+        
+        
+
+//	public String getCedula() {
+//		return cedula;
+//	}
+//
+//	public void setCedula(String cedula) {
+//		this.cedula = cedula;
+//	}
 
 	public Date getFechaHoraUltIngreso() {
 		return fechaHoraUltIngreso;

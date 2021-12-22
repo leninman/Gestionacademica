@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/app")
 public class usuarioController {
 	
-	
+	/*
 	@GetMapping("/nuevoUsuario")
 	public String verCursos(Model model) {
 		
@@ -21,6 +21,6 @@ public class usuarioController {
 		
 		
 	}
-	
+	*/
 
 }
