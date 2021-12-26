@@ -5,7 +5,7 @@ var direccionbase;
 var porvalidacion;
 function mostrarrepresentante2() {
   element = document.getElementById("datosRepSec");
-  if (element.style.display == "none") {
+  if (element.style.display === "none") {
     element.style.display = "block";
   } else {
     element.style.display = "none";
@@ -32,7 +32,7 @@ function mostrarcursoelegido() {
       var nivel = cell.innerHTML;
       var cell = this.getElementsByTagName("td")[5];
       var especialidad = cell.innerHTML;
-      if (x.style.display == "none") {
+      if (x.style.display === "none") {
         x.style.display = "flex";
         document.getElementById("annio").setAttribute("value", annio);
         document.getElementById("seccion").setAttribute("value", seccion);
@@ -130,11 +130,11 @@ $(document).ready(function () {
                     "sNext":"Siguiente",
                     "sPrevious": "Anterior"
 			     },
-			     "sProcessing":"Procesando...",
+			     "sProcessing":"Procesando..."
             },
         //para usar los botones   
         responsive: "true",
-        dom: 'Bfrtilp',       
+        dom: 'Bfrtilp'       
         /*buttons:[ 
 			{
 				extend:    'excelHtml5',
@@ -185,7 +185,7 @@ $(document).ready(function () {
 
 $("#submit").click(function () {
 	   
-   if($("#annio").val()==""&&$("#seccion").val()==""&&$("#turno").val()==""&&$("#nivel").val()==""&&$("#especialidad").val()==""){
+   if($("#annio").val()===""&&$("#seccion").val()===""&&$("#turno").val()===""&&$("#nivel").val()===""&&$("#especialidad").val()===""){
 	  	alert("DEBE SELECCIONAR UN CURSO");
   		//y = document.getElementById("tablecursos");
  	   //	y.style.display = "none";
@@ -202,7 +202,7 @@ $("#submit").click(function () {
 });
 
 $("#parentescoRpr1").change(function () {
-  if ($("#parentescoRpr1").val() == "Otro") {
+  if ($("#parentescoRpr1").val() === "Otro") {
     $("#parentescoRpr1").hide();
     $("#txtOtroParentescoRpr1").show();
   }
@@ -216,13 +216,13 @@ $("#botonBuscRep").click(function () {
   $.ajax({
       data: {
         tdoc: $("select[name=tipoDocRep1]").val(),
-        ndoc: $("input:text[name=numDocRep1]").val(),
+        ndoc: $("input:text[name=numDocRep1]").val()
         
 
       },
       url:url,
       dataType: "json", //tipo de datos retornados
-      type: "GET",
+      type: "GET"
     })
     .done(function (data) {
       rep1encontrado = 1;
@@ -267,11 +267,11 @@ $("#botonBuscRep2").click(function () {
   $.ajax({	
       data: {
         tdoc: $("select[name=tipoDocRep2]").val(),
-        ndoc: $("input:text[name=numDocRep2]").val(),
+        ndoc: $("input:text[name=numDocRep2]").val()
       },
       url: url,
       dataType: "json", //tipo de datos retornados
-      type: "GET",
+      type: "GET"
     })
     .done(function (data) {
       rep1encontrado = 1;

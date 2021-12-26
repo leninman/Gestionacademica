@@ -1,6 +1,6 @@
 
 $(document).ready(function () {
-if($("#crear").val()=="false"){    
+if($("#crear").val()==="false"){    
 
  $('form input[type="date"]').prop("disabled", true);
  $('#botonModificarPeriodo').prop('disabled',true);

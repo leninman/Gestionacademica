@@ -29,13 +29,13 @@ $("#btnBuscarPersona").click(function () {
       data: {
         tipodoc: tipodocumento,
         numdoc: numerocedula,
-        tipousuario: tipousuario,
+        tipousuario: tipousuario
 
       },
       url:url,
  	  headers: {"X-CSRF-TOKEN": token}, //send CSRF token in header
       dataType: "json", //tipo de datos retornados
-      type: "GET",
+      type: "GET"
     })
     .done(function (data) {
     
