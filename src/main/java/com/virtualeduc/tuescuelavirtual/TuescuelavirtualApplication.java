@@ -20,12 +20,12 @@ public class TuescuelavirtualApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		String clave="12345";
-		
-		for(int i=0;i<2;i++) {
-			String bcryptedPassword=passWordEncoder.encode(clave);
-			System.out.println(bcryptedPassword);
-		}
+//		String clave="directorguarenas2021*";
+//		
+//		for(int i=0;i<2;i++) {
+//			String bcryptedPassword=passWordEncoder.encode(clave);
+//			System.out.println(bcryptedPassword);
+//		}
 	}
 	
 	

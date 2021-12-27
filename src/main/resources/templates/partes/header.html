@@ -1,3 +1,4 @@
+<html xmlns:th="http://thymeleaf.org" xmlns:sec="http://thymeleaf.org/extras/spring-security">
 <th:block th:fragment="header">
 	<head>
 <meta charset="UTF-8" />
@@ -27,13 +28,15 @@
 			<h5>SIGA</h5>
 		</div>
 
-		 <!-- <ul class="navbar-nav navbar-right">
+		  <ul class="navbar-nav navbar-right">
 			<li>
 				<p sec:authorized="isAuthenticated()" class="text-left text-white">
-					<span sec:authentication="name"></span>
-				</p>
+					
+                                        <img class="img-profile rounded-circle" th:src="@{/images/userimage.png}" alt="memorynotfound user">
+                                        <span sec:authentication="name"></span>
+                                </p>
 			</li>
-		</ul>-->
+		</ul>
 
 
 	</nav>
@@ -44,3 +47,4 @@
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </th:block>
+</html>
