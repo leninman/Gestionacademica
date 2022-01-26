@@ -83,11 +83,15 @@ public interface ICursoService {
       
       public List<ViewMateriasPorCurso> consultarMateriaPorCurso();
       
+      public List<Cursos_prof> consultarCursosPorProfesor(Long idProfesor);
+      
       public Responses asignarCursosMaterias(List<Cursos_prof> cursosprof);
       
       public Responses asignarMaterias(List<Materias_prof> materiasprof);
       
       public Responses eliminarCursosMateria(Long idPrf,Long idCurso,Long idMat);
+      
+      public List<ViewCursosMateriasAsignada> consultarcursomateriaprofesor(Long idprofesor);
       
       
       

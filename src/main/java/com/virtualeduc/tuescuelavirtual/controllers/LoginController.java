@@ -46,7 +46,7 @@ public class LoginController {
 		}
 		
 		if(logout!=null) {
-			model.addAttribute("logout","Ha cerrado sesión con éxito!");
+			model.addAttribute("logout","Has cerrado sesión con éxito!");
 			
 			//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			

@@ -49,6 +49,21 @@ $("#btnBuscarPersona").click(function () {
     });
 });
 
+$('#alert1').fadeIn();     
+  setTimeout(function() {
+       $("#alert1").fadeOut();           
+  },2000);
+  
+  $('#alert2').fadeIn();     
+  setTimeout(function() {
+       $("#alert2").fadeOut();           
+  },2000);
+
+ $('#alertsesionconexito').fadeIn();     
+  setTimeout(function() {
+       $("#alertsesionconexito").fadeOut();           
+  },2000);
+
 
 
 

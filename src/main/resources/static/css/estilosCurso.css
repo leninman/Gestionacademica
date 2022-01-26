@@ -329,10 +329,29 @@ input{
   text-align: center;
   width: 100px;
 }
+.input-nombre-apellido {
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  width: 200px;
+}
 
+#rowIdProfesor{
+    display:flex;
+   
+    justify-content:flex-start
+}
 
+#navbarSupportedContent{
+    display: flex; 
+    justify-content:flex-end;
+}
 
-
+#tipoCarga {
+  border-radius: 100px;
+  border: 1px solid #b5b5b5;
+  width: 100px;
+  text-align: center;
+}
 
 
 

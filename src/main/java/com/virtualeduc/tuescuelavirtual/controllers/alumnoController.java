@@ -25,6 +25,7 @@ import com.virtualeduc.tuescuelavirtual.services.IAlumnoService;
 import com.virtualeduc.tuescuelavirtual.services.ICursoService;
 import com.virtualeduc.tuescuelavirtual.services.IRepresentanteService;
 import com.virtualeduc.tuescuelavirtual.utils.Constantes;
+import com.virtualeduc.tuescuelavirtual.utils.Utils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -94,12 +95,18 @@ public class alumnoController {
 		if (auth != null) {
 			logger.info("El usuario " + auth.getName() + " ha ingresado al módulo de alumnos");
 		}
+                
+                if (Utils.hasRole("ROLE_USER_DIRECTIVO")) {
+			logger.info("Hola usuario ".concat(auth.getName()).concat(" tienes acceso"));
+		} else {
+			logger.info("Hola usuario ".concat(auth.getName()).concat(" no tienes acceso"));
+		}
 
-		if (hasRole("ROLE_USER")) {
+		/*if (hasRole("ROLE_USER")) {
 			logger.info("Hola ".concat(auth.getName()).concat(" tienes acceso!"));
 		} else {
 			logger.info("Hola ".concat(auth.getName()).concat(" no tienes acceso!"));
-		}
+		}*/
 
 		List<AlumnoCursoDTO> listaAlumnos = new ArrayList<>();
 		listaAlumnos = alumnoservice.consultarAlumnos();
@@ -114,7 +121,7 @@ public class alumnoController {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-		if (hasRole("ROLE_ADMIN")) {
+		if (Utils.hasRole("ROLE_USER_DIRECTIVO")) {
 			logger.info("Hola usuario ".concat(auth.getName()).concat(" tienes acceso"));
 		} else {
 			logger.info("Hola usuario ".concat(auth.getName()).concat(" no tienes acceso"));
@@ -446,33 +453,33 @@ public class alumnoController {
 		return cursos;
 	}
 
-	private boolean hasRole(String role) {
-
-		SecurityContext context = SecurityContextHolder.getContext();
-
-		if (context == null) {
-			return false;
-		}
-
-		Authentication auth = context.getAuthentication();
-
-		if (auth == null) {
-			return false;
-		}
-
-		Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
-
-		return authorities.contains(new SimpleGrantedAuthority(role));
-
-		/*
-		 * for(GrantedAuthority authority:authorities) {
-		 * 
-		 * if(role.equals(authority.getAuthority())) {
-		 * logger.info("Hola usuario ".concat(auth.getName()).concat(" tu role es: ").
-		 * concat(authority.getAuthority())); return true; }
-		 * 
-		 * } return false;
-		 */
-	}
+//	private boolean hasRole(String role) {
+//
+//		SecurityContext context = SecurityContextHolder.getContext();
+//
+//		if (context == null) {
+//			return false;
+//		}
+//
+//		Authentication auth = context.getAuthentication();
+//
+//		if (auth == null) {
+//			return false;
+//		}
+//
+//		Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
+//
+//		return authorities.contains(new SimpleGrantedAuthority(role));
+//
+//		/*
+//		 * for(GrantedAuthority authority:authorities) {
+//		 * 
+//		 * if(role.equals(authority.getAuthority())) {
+//		 * logger.info("Hola usuario ".concat(auth.getName()).concat(" tu role es: ").
+//		 * concat(authority.getAuthority())); return true; }
+//		 * 
+//		 * } return false;
+//		 */
+//	}
 
 }

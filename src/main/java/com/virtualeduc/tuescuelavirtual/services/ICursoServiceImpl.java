@@ -73,6 +73,9 @@ public class ICursoServiceImpl implements ICursoService {
 	
 	@Autowired
 	IViewMateriasPorCurso materiasporcurso;
+        
+        @Autowired
+	IViewCursosMateriasAsignada materiasasignadas;
 
 	private CursoDTO cursoaguardar;
 
@@ -650,5 +653,24 @@ public class ICursoServiceImpl implements ICursoService {
 		
 		return resp;
 	}
+
+    @Override
+    public List<Cursos_prof> consultarCursosPorProfesor(Long idProfesor) {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+      List<Cursos_prof>  cursos_prof=cursoprofrepo.findCursosPorProf(idProfesor);
+      
+      return cursos_prof;
+    }
+
+    @Override
+    public List<ViewCursosMateriasAsignada> consultarcursomateriaprofesor(Long idprofesor) {
+       //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       
+       List<ViewCursosMateriasAsignada> cursomateriaprofesor=materiasasignadas.consultarMateriasPorCursoProfesor(idprofesor);
+        
+        return cursomateriaprofesor;
+    }
+
+ 
 
 }

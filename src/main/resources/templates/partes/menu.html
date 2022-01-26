@@ -16,12 +16,12 @@
         <div class="navbar navbar-expand-lg navbar-light ">
 
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown"><a class="nav-link"> PERSONAS
+                <li class="nav-item dropdown"><a class="nav-link" sec:authorize="hasAnyRole('ROLE_USER_DIRECTIVO','ROLE_USER_ADMINISTRATIVO')"> PERSONAS
                         <i class="fa fa-users" aria-hidden="true"></i>
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" th:href="@{/app/listaralumnos}">ALUMNOS</a>
-                        <a class="dropdown-item" th:href="@{/app/listarprofesores}">DOCENTES</a>
+                        <a class="dropdown-item" th:href="@{/app/listarprofesores}" sec:authorize="hasAnyRole('ROLE_USER_DIRECTIVO','ROLE_USER_ADMINISTRATIVO')">DOCENTES</a>
                         <!-- <a class="dropdown-item" href="#">REPRESENTANTES</a>
     <a class="dropdown-item" href="#">EMPLEADOS</a>-->
                     </div></li>
@@ -56,7 +56,7 @@
                         SEGURIDAD </a>
 
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" th:href="@{/app/nuevoUsuario}" sec:authorize="hasRole('ROLE_USER_ADMINISTRATIVO')">CREAR USUARIO </a> 
+                        <a class="dropdown-item" th:href="@{/app/nuevoUsuario}" sec:authorize="hasAnyRole('ROLE_USER_ADMINISTRATIVO','ROLE_USER_DIRECTIVO')">USUARIOS</a> 
                         <a class="dropdown-item" href="#">CAMBIAR CLAVE </a> 
 
                     </div>
