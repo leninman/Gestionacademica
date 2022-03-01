@@ -47,21 +47,9 @@
 
     <div
       class="card"
-      style="
-        width: 100%;
-        border-color: #cccccc;
-        margin-left: auto;
-        margin-right: auto;
-      "
     >
       <div
         class="card-header"
-        style="
-          width: 100%;
-          border-color: #cccccc;
-          margin-left: auto;
-          margin-right: auto;
-        "
       >
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -106,9 +94,8 @@
         </nav>
       </div>
 
-      <div class="card-body" style="border: none; height: 100%">
-        <br />
-        <br />
+      <div class="card-body">
+        
         <!------------------INICIO DEL FORMULARIO DE MATERIAS Y CURSOS ASIGNADOS--------------------->
         <form
           class="form-horizontal"
@@ -121,8 +108,21 @@
             name="hayMateriasAsignadas"
             th:value="${hayMateriasAsignadas}"
           />
+          <div class="row" id="containeretqtitulo">
+            <div class="col-md-10">
+
+            </div>
+            <div class="col-md-2">
+                <b><label for="annioescolar" class="col-form-label">P.E:</label></b>
+                <input type="text" id="annioescolar" th:value="${periodoEscolar}" />
+            </div>
+        </div>
           <div class="row" id="containertitulo">
-            <p id="titulo1">Cursos y materias Asignadas</p>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              &nbsp;&nbsp;&nbsp;<p id="titulo1">Listado de cursos y materias asignadas</p>
+            </div>
+           
           </div>
           <br />
 

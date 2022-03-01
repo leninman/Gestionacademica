@@ -16,11 +16,12 @@ $(document).ready(function () {
                     "sNext":"Siguiente",
                     "sPrevious": "Anterior"
 			     },
-			     "sProcessing":"Procesando...",
+			     "sProcessing":"Procesando..."
+                             
             },
         //para usar los botones   
         responsive: "true",
-        dom: 'Bfrtilp',       
+        dom: 'Bfrtilp'       
         /*buttons:[ 
 			{
 				extend:    'excelHtml5',

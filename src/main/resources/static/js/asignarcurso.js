@@ -24,10 +24,10 @@ $(document).ready(function () {
         "sNext": "Siguiente",
         "sPrevious": "Anterior"
       },
-      "sProcessing": "Procesando...",
+      "sProcessing": "Procesando..."
     },
     responsive: "true",
-    dom: 'Bfrtilp',
+    dom: 'Bfrtilp'
   });
 });
 
@@ -40,12 +40,12 @@ $("#botonBuscPrf").click(function () {
   $.ajax({
       data: {
         tdoc: $("select[name=tipoDocPrf]").val(),
-        ndoc: $("input:text[name=numDocPrf]").val(),
+        ndoc: $("input:text[name=numDocPrf]").val()
       },
       url: url,
  	  headers: {"X-CSRF-TOKEN": token}, //send CSRF token in header
       dataType: "json", //tipo de datos retornados
-      type: "GET",
+      type: "GET"
     })
     .done(function (data) {
       $("#nombre").val(data["primNombPrf"] + " " + data["primApellPrf"]);

@@ -1,7 +1,7 @@
 
 
 $(document).ready(function () {
-if($("#crear").val()=="false"){    
+if($("#crear").val()==="false"){    
  $('form select').prop("disabled", true);
  $('form input[type="text"]').prop("disabled", true);
  $('#botonModificarMateria').prop('disabled',true);

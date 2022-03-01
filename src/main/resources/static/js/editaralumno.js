@@ -146,11 +146,11 @@ $("#botonEditarAlumno").click(function () {
   $.ajax({
       data: {
         tdoc: $("select[name=tipoDocRep1]").val(),
-        ndoc: $("input:text[name=numDocRep1]").val(),
+        ndoc: $("input:text[name=numDocRep1]").val()
       },
       url: url,
       dataType: "json", //tipo de datos retornados
-      type: "GET",
+      type: "GET"
     })
     .done(function (data) {
       rep1encontrado = 1;
@@ -196,11 +196,11 @@ $("#botonBuscRep2").click(function () {
   $.ajax({
       data: {
         tdoc: $("select[name=tipoDocRep2]").val(),
-        ndoc: $("input:text[name=numDocRep2]").val(),
+        ndoc: $("input:text[name=numDocRep2]").val()
       },
       url: url,
       dataType: "json", //tipo de datos retornados
-      type: "GET",
+      type: "GET"
     })
     .done(function (data) {
       rep1encontrado = 1;
@@ -244,11 +244,11 @@ $("#idCurso").change(function () {
   url=direccionbase+"/consultarcursoporid";
   $.ajax({
       data: {
-      idcurso: $("select[name=idCurso]").val(),
+      idcurso: $("select[name=idCurso]").val()
       },
       url: url,
       dataType: "json", //tipo de datos retornados
-      type: "GET",
+      type: "GET"
     })
     .done(function (data) {
      // console.log(data);

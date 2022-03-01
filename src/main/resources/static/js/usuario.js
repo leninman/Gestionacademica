@@ -29,13 +29,13 @@ $("#btnBuscarPersona").click(function () {
       data: {
         tipodoc: tipodocumento,
         numdoc: numerocedula,
-        tipousuario: tipousuario,
+        tipousuario: tipousuario
 
       },
       url:url,
  	  headers: {"X-CSRF-TOKEN": token}, //send CSRF token in header
       dataType: "json", //tipo de datos retornados
-      type: "GET",
+      type: "GET"
     })
     .done(function (data) {
     
@@ -48,6 +48,21 @@ $("#btnBuscarPersona").click(function () {
       alert("La persona no se encuentra registrada");
     });
 });
+
+$('#alert1').fadeIn();     
+  setTimeout(function() {
+       $("#alert1").fadeOut();           
+  },2000);
+  
+  $('#alert2').fadeIn();     
+  setTimeout(function() {
+       $("#alert2").fadeOut();           
+  },2000);
+
+ $('#alertsesionconexito').fadeIn();     
+  setTimeout(function() {
+       $("#alertsesionconexito").fadeOut();           
+  },2000);
 
 
 

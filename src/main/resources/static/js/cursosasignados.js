@@ -14,8 +14,8 @@ $(document).ready(function () {
         "sNext": "Siguiente",
         "sPrevious": "Anterior"
       },
-      "sProcessing": "Procesando...",
-    },
+      "sProcessing": "Procesando..."
+    }
 
   });
 

@@ -9,5 +9,5 @@ public interface IUsuarioService {
 	
 	public PersonaDTO findPersonaByCedulaAndTipoUsuario(String tipodoc,String numdoc,String tipoUsuario);
 	
-
+        public Usuario findUsuarioByUserName(String username);
 }

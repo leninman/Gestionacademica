@@ -1,133 +1,97 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-    />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
     <link rel="stylesheet" type="text/css" href="/css/estilosCurso.css" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-  </head>
-  <header></header>
-  <body>
-    <div
-      th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
-      th:if="${mensaje3 != null}"
-      th:text="${mensaje3}"
-      class="alert"
-    ></div>
-    <div
-      th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
-      th:if="${mensaje6 != null}"
-      th:text="${mensaje6}"
-      class="alert"
-    ></div>
-    <div
-      th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
-      th:if="${mensaje7 != null}"
-      th:text="${mensaje7}"
-      class="alert"
-    ></div>
-    <div
-      th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
-      th:if="${mensaje8 != null}"
-      th:text="${mensaje8}"
-      class="alert"
-    ></div>
-    <div
-    th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
-    th:if="${mensaje9 != null}"
-    th:text="${mensaje9}"
-    class="alert"
-  ></div>
-  <div
-  th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
-  th:if="${mensaje4 != null}"
-  th:text="${mensaje4}"
-  class="alert"
-></div>
-<div
-      th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
-      th:if="${mensaje12 != null}"
-      th:text="${mensaje12}"
-      class="alert"
-></div>
-<th:block th:replace="partes/header :: header" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<header></header>
+
+<body>
+    <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje3 != null}"
+        th:text="${mensaje3}" class="alert"></div>
+    <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje6 != null}"
+        th:text="${mensaje6}" class="alert"></div>
+    <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje7 != null}"
+        th:text="${mensaje7}" class="alert"></div>
+    <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje8 != null}"
+        th:text="${mensaje8}" class="alert"></div>
+    <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje9 != null}"
+        th:text="${mensaje9}" class="alert"></div>
+    <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje4 != null}"
+        th:text="${mensaje4}" class="alert"></div>
+    <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje12 != null}"
+        th:text="${mensaje12}" class="alert"></div>
+    <th:block th:replace="partes/header :: header" />
     <th:block th:replace="partes/menu :: menuSuperior" />
 
-    
-      <div class="card">
+
+    <div class="card">
         <div class="card-header">
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li>
-                  <a
-                    type="button" 
-                    class="btn btn-secondary"
-                    th:href="@{/app/nuevocurso}"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Registrar Nuevo Curso"
-                    ><i class="bi bi-book"></i><span class="sr-only">(current)</span></a
-                  >
-                </li>
-                &nbsp;
-                <li>
-                  <a
-                    type="button" 
-                    class="btn btn-secondary"
-                    th:href="@{/app/cargarcurso}"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Cargar curso"
-                    ><i class="bi bi-card-list"></i><span class="sr-only">(current)</span></a
-                  >
-                </li>
-                &nbsp;
-                <li>
-                  <a  type="button" 
-                  	  class="btn btn-danger" 
-                  	  th:href="@{/inicio}" 
-                  	  data-toggle="tooltip"
-                  	  data-placement="top"
-                      title="Salir"><i class="bi bi-x"></i><span class="sr-only">(current)</span></a>
-                </li>
-              </ul>
-            </div>
-          </nav>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li>
+                            <!-- <a type="button" class="btn btn-secondary" th:href="@{/app/nuevocurso}"
+                                data-toggle="tooltip" data-placement="top" title="Registrar Nuevo Curso"><i
+                                    class="bi bi-book"></i><span class="sr-only">(current)</span></a>-->
+
+                            <a type="button" class="btn btn-secondary" href="#" data-toggle="modal"
+                                data-target="#Registro" data-placement="top" title="Registrar Nuevo Curso"><i
+                                    class="bi bi-book"></i><span class="sr-only">(current)</span></a>
+
+
+                        </li>
+                        &nbsp;
+                        <li>
+                            <a type="button" class="btn btn-secondary" th:href="@{/app/cargarcurso}"
+                                data-toggle="tooltip" data-placement="top" title="Cargar curso"><i
+                                    class="bi bi-card-list"></i><span class="sr-only">(current)</span></a>
+                        </li>
+                        &nbsp;
+                        <li>
+                            <a type="button" class="btn btn-danger" th:href="@{/inicio}" data-toggle="tooltip"
+                                data-placement="top" title="Salir"><i class="bi bi-x"></i><span
+                                    class="sr-only">(current)</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         </div>
         <div class="card-body">
-          <br>
-          <div class="row" id="containertitulo">
-           <p id="titulo1">Listado de Cursos activos</p>
-          </div>
-          <br>
-                  <table
-                    id="tablecursos"
-                    class="table table-striped table-hover"
-                  >
-                    <thead>
-                      <tr>
+            <br>
+            <div class="row" id="containeretqtitulo">
+                <div class="col-md-10">
+
+                </div>
+                <div class="col-md-2">
+                    <b><label for="annioescolar" class="col-form-label">P.E:</label></b>
+                    <input type="text" id="annioescolar" th:value="${periodoEscolar}" />
+                </div>
+            </div>
+
+            <div class="row" id="containertitulo">
+                <div class="col-md-5">
+
+                </div>
+                <div class="col-md-4">
+                    <p id="titulo1">Listado de Cursos activos</p>
+                </div>
+
+
+
+            </div>
+            <br>
+            <table id="tablecursos" class="table table-striped table-hover">
+                <thead>
+                    <tr>
                         <th>Número del curso</th>
                         <th>Año</th>
                         <th>Sección</th>
@@ -138,10 +102,10 @@
                         <th></th>
                         <!--<th></th>-->
                         <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr th:each="curso:${Cursos}">
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="curso:${Cursos}">
                         <td th:text="${curso.idCurso}"></td>
                         <td th:text="${curso.annio}"></td>
                         <td th:text="${curso.seccion}"></td>
@@ -150,55 +114,62 @@
                         <td th:text="${curso.especialidad}"></td>
                         <td th:text="${curso.intAnnioEsc}"></td>
                         <td>
-                          <a type="button" 
-                          class="btn btn-secondary" 
-                          data-toggle="tooltip" 
-                          data-placement="top" 
-                          title="Ver"
-                          id="btnVer" 
-                          th:href="@{/app/editacurso/}+${curso.idCurso}"
-                          ><i class="bi bi-eye"></i><a>
+                            <a type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
+                                title="Ver" id="btnVer" th:href="@{/app/editacurso/}+${curso.idCurso}"><i
+                                    class="bi bi-eye"></i><a>
                         </td>
                         <!--<td>
-                          <a
-                            type="button"
-                            class="btn btn-secondary"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Editar"
-                            id="btnEditar"
-                            th:href="@{/app/editacurso/}+${curso.idCurso}"
-                            ><i class="bi bi-pencil-fill"></i
-                          ></a>
-                        </td>-->
+                                      <a
+                                        type="button"
+                                        class="btn btn-secondary"
+                                        data-toggle="tooltip"
+                                        data-placement="top"
+                                        title="Editar"
+                                        id="btnEditar"
+                                        th:href="@{/app/editacurso/}+${curso.idCurso}"
+                                        ><i class="bi bi-pencil-fill"></i
+                                      ></a>
+                                    </td>-->
                         <td>
-                          <a
-                            type="button"
-                            class="btn btn-secondary"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Eliminar"
-                            id="btnEliminar"
-                            th:href="@{/app/eliminacurso/}+${curso.idCurso}"
-                            ><i class="bi bi-trash"></i
-                          ></a>
+                            <a type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
+                                title="Eliminar" id="btnEliminar" th:href="@{/app/eliminacurso/}+${curso.idCurso}"><i
+                                    class="bi bi-trash"></i></a>
                         </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                
-            
-          
-          
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+
         </div>
-      </div>
-    
-      <th:block th:replace="partes/footer :: footer" />
+    </div>
+
+    <!--AQUI VA A IR EL MODAL PARA LA CREACION DE CURSOS-->
+
+    <div class="modal fade" id="Registro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                </div>
+                <div class="modal-body">
+                    <form>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <th:block th:replace="partes/footer :: footer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script src="/js/listacurso.js"></script>
-  </body>
+</body>
+
 </html>

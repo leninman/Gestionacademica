@@ -29,6 +29,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,6 +65,8 @@ public class cursoController {
 	boolean guardarCurso;
 
 	boolean guardarPeriodo;
+        
+        String periodoEscolar;
 
 	@GetMapping(path = "/listarcursos")
 	public String listarcursos(Model model) {
@@ -213,15 +216,17 @@ public class cursoController {
 		return "redirect:listarcursos?success";
 	}
 
-	@Secured("ROLE_ADMIN")
+	//@Secured("ROLE_ADMIN")
 	@GetMapping(path = "cargarcurso")
 	public String cargarcurso(Model model) {
 
 		List<CursoDTO> cursos = new ArrayList<>();
 		AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
 		cursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
-		model.addAttribute("Cursos", cursos);
+		periodoEscolar=cursos.get(0).getIntAnnioEsc();
+                model.addAttribute("Cursos", cursos);
 		model.addAttribute("direccionbase", direccionbase);
+                //model.addAttribute("periodoEscolar",periodoEscolar);
 		return "cursos/cargarcurso";
 	}
 
@@ -289,5 +294,16 @@ public class cursoController {
 		return "redirect:/app/cursosmateriasasignadas";
 
 	}
+        
+        @ModelAttribute("periodoEscolar")
+        public String obtenerPeriodoEscolar(){
+         
+          AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
+          
+          this.periodoEscolar=annioEscolar.getIntAnnioEsc();
+          
+          return periodoEscolar;
+          
+        }
 
 }

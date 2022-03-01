@@ -29,7 +29,8 @@ public class LoginController {
     String direccionregistrousuario;
 
 	
-	@GetMapping("/login")
+//	@GetMapping("/login")
+        @GetMapping(path = {"/login",""})
 	public String login(@RequestParam(name="error",required=false) String error,
 			Model model,Principal principal,RedirectAttributes flash,@RequestParam(name="logout",required=false) String logout) {
 		
@@ -45,7 +46,7 @@ public class LoginController {
 		}
 		
 		if(logout!=null) {
-			model.addAttribute("logout","Ha cerrado sesión con éxito!");
+			model.addAttribute("logout","Has cerrado sesión con éxito!");
 			
 			//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			

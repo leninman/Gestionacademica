@@ -15,11 +15,11 @@ $("#idCurso").change(function () {
   url=direccionbase+"/consultarcursoporid";	
     $.ajax({
         data: {
-        idcurso: $("select[name=idCurso]").val(),
+        idcurso: $("select[name=idCurso]").val()
         },
         url: url,
         dataType: "json", //tipo de datos retornados
-        type: "GET",
+        type: "GET"
       })
       .done(function (data) {
           
@@ -42,11 +42,11 @@ $("#idCurso").change(function () {
     $.ajax({
         data: {
           tdoc: $("select[name=tipoDocAl]").val(),
-          ndoc: $("input:text[name=numDocAl]").val(),
+          ndoc: $("input:text[name=numDocAl]").val()
         },
         url: url,
         dataType: "json", //tipo de datos retornados
-        type: "GET",
+        type: "GET"
       })
       .done(function (data) {
         $("#nombre").val(data["primNombAl"]+" "+data["primApellAl"]);
@@ -62,7 +62,7 @@ $("#idCurso").change(function () {
 });
 
 $("#botonAsignar").click(function () {
-    let numAlumno=$("#idAlumno").val()
+    let numAlumno=$("#idAlumno").val();
     let cedula=$("#tipoDocAl").val()+$("#numDocAl").val();
     let nombre=$("#nombre").val();
     let htmlTags = '<tr>'+
@@ -92,7 +92,7 @@ $("#guardar").click(function () {
     $.ajax({
         data: {
             idcurso: idCurso,  
-            cedulasAlumnos: cedulas,
+            cedulasAlumnos: cedulas
         },
         url: url,
 		headers: {"X-CSRF-TOKEN": token}, //send CSRF token in header
