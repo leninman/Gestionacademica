@@ -5,6 +5,7 @@ import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.Profesor;
 import com.virtualeduc.tuescuelavirtual.models.Usuario;
 import com.virtualeduc.tuescuelavirtual.models.ViewCursosMateriasAsignada;
+import com.virtualeduc.tuescuelavirtual.services.IAlumnoService;
 
 import com.virtualeduc.tuescuelavirtual.services.ICursoService;
 import com.virtualeduc.tuescuelavirtual.services.IProfesoresService;
@@ -37,6 +38,9 @@ public class NotasController {
 
     @Autowired
     ICursoService cursoservice;
+    
+    @Autowired
+    IAlumnoService alumnoservice;
 
     List<ViewCursosMateriasAsignada> cursosmateriasprof;
     
@@ -76,5 +80,13 @@ public class NotasController {
         model.addAttribute("cursosmateriasprof", cursosmateriasprof);
         
         return "notas/principal";
+    }
+    
+     @GetMapping("/verAlumnos")
+    public String verAlumnos(Model model) {
+    
+        
+        return "notas/formulariocarga";
+    
     }
 }

@@ -1,25 +1,30 @@
 input{
-	 text-transform:uppercase;
+    text-transform:uppercase;
 }
 #tablecursos th {
-  background-color: #cccccc;
-  color: black;
-  font-size: small;
-  text-align: center;
+    background-color: #cccccc;
+    color: black;
+    font-size: small;
+    text-align: center;
 }
 
 #tablecursos>tbody>tr>td {
-  vertical-align: middle;
-  text-align: center;
-  font-size: small;
+    vertical-align: middle;
+    text-align: center;
+    font-size: small;
 }
 
 #rowtablecursos {
-  text-align: center;
-  margin-left: 0px;
-  margin-right: 0px;
+    text-align: center;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
+#rowPeriodo{
+    display:flex;
+     justify-content:right;
+   
+}
 /*.card{
   margin-right:auto;
   margin-left:auto;
@@ -32,86 +37,109 @@ input{
   margin-right:auto;
   margin-left:auto;
   justify-content: center;
-}*/
+}
 
 .row{
-  margin-right:auto;
-  margin-left:auto;
-  justify-content: center;
-}
+    margin-right:auto;
+    margin-left:auto;
+    justify-content: center;
+}*/
 
 #containerannioescolar{
-  margin-left:auto
- 
+    margin-left:auto;
+
 
 }
 
-#intAnnioEsc,#Annio,#Turno,#Seccion,#Nivel,#intAnnioEsc{
-  border-radius: 100px;
-  border: 1px solid #b5b5b5;
-  width: 300px;
-  align-items: center;
-  text-align: center;
+#containerTitulo{
+  border:20px;
+  padding-top: 18px;
+  display: flex; 
+  justify-content: left;
   
 }
 
+#containeretqtitulo{
+   margin-right: 0px;
+}
+
+
+.tituloPrincipal{
+    font-weight: bold;
+    font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
+    font-size: large;
+    color: black;
+    font-size: 20px;
+}
+
+#intAnnioEsc,#Annio,#Turno,#Seccion,#Nivel,#intAnnioEsc{
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    width: 300px;
+    align-items: center;
+    text-align: center;
+
+}
+
 .input-buttons {
-  border-radius: 100px;
-  border: 1px solid #b5b5b5;
-  background-color: #b5b5b5;
-  font-style: normal;
-  color: white;
-  width: 100px;
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    background-color: #b5b5b5;
+    font-style: normal;
+    color: white;
+    width: 100px;
 }
 
 
 #periodo,#Annios,#Niveles,#Turnos,#Secciones{
-  border: none;
-  width: 300px;
-  align-items: center;
-  text-align: center;
-  
+    border: none;
+    width: 300px;
+    align-items: center;
+    text-align: center;
+
 }
 
 #rowtablealumnosinscritos {
-  text-align: center;
-  margin-left: 0px;
-  margin-right: 0px;
+    text-align: center;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 #tablealumnosinscritos th {
-  background-color: #cccccc;
-  color: black;
-  font-size: small;
-  text-align: center;
+    background-color: #cccccc;
+    color: black;
+    font-size: small;
+    text-align: center;
+     text-transform:uppercase;
 }
 
 #tablealumnosinscritos>tbody>tr>td {
-  vertical-align: middle;
-  text-align: center;
-  font-size: small;
+    vertical-align: middle;
+    text-align: center;
+    font-size: small;
+     text-transform:uppercase;
 }
 
 
 #tablecurso th {
-  background-color: #cccccc;
-  color: black;
-  font-size: small;
-  text-align: center;
+    background-color: #cccccc;
+    color: black;
+    font-size: small;
+    text-align: center;
 }
 
 #rowtablecurso {
-  text-align: center;
-  margin-left: 0px;
-  margin-right: 0px;
+    text-align: center;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 #tablecurso>tbody>tr>td {
-  vertical-align: middle;
-  text-align: center;
-  font-size: small;
-  
- 
+    vertical-align: middle;
+    text-align: center;
+    font-size: small;
+
+
 
 
 }
@@ -119,63 +147,63 @@ input{
 
 
 #tablealumno th {
-  background-color: #cccccc;
-  color: black;
-  font-size: small;
-  text-align: center;
+    background-color: #cccccc;
+    color: black;
+    font-size: small;
+    text-align: center;
 }
 
 #rowtablealumno {
-  text-align: center;
-  margin-left: 0px;
-  margin-right: 0px;
+    text-align: center;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 #tablealumno>tbody>tr>td {
-  vertical-align: middle;
-  text-align: center;
-  font-size: small;
+    vertical-align: middle;
+    text-align: center;
+    font-size: small;
 }
 
 #tablemateriasdisponibles th {
-  background-color: #cccccc;
-  color: black;
-  font-size: small;
-  text-align: center;
+    background-color: #cccccc;
+    color: black;
+    font-size: small;
+    text-align: center;
 }
 
 #tablemateriasdisponibles>tbody>tr>td {
-  vertical-align: middle;
-  text-align: center;
-  font-size: small;
+    vertical-align: middle;
+    text-align: center;
+    font-size: small;
 }
 
 #rowtablemateriasdisponibles {
-  text-align: center;
-  margin-left: 0px;
-  margin-right: 0px;
+    text-align: center;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 
 
 
 #tablemateriasasignadas th {
-  background-color: #cccccc;
-  color: black;
-  font-size: small;
-  text-align: center;
+    background-color: #cccccc;
+    color: black;
+    font-size: small;
+    text-align: center;
 }
 
 #tablemateriasasignadas>tbody>tr>td {
-  vertical-align: middle;
-  text-align: center;
-  font-size: small;
+    vertical-align: middle;
+    text-align: center;
+    font-size: small;
 }
 
 #rowtablemateriasasignadas {
-  text-align: center;
-  margin-left: 0px;
-  margin-right: 0px;
+    text-align: center;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 
@@ -192,22 +220,22 @@ input{
 
 
 #tableprofesor th {
-  background-color: #cccccc;
-  color: black;
-  font-size: small;
-  text-align: center;
+    background-color: #cccccc;
+    color: black;
+    font-size: small;
+    text-align: center;
 }
 
 #tableprofesor>tbody>tr>td {
-  vertical-align: middle;
-  text-align: center;
-  font-size: small;
+    vertical-align: middle;
+    text-align: center;
+    font-size: small;
 }
 
 #rowtableprofesor {
-  text-align: center;
-  margin-left: 0px;
-  margin-right: 0px;
+    text-align: center;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 
@@ -219,138 +247,142 @@ input{
 
 #titulo1,#titulo2,#titulo3,#titulo4{
 
-  font-weight: bold;
-  align-content:center;
-  font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
-  font-size: large;
-  color: black;
-  font-size: 16px;
+    font-weight: bold;
+    align-content:center;
+    font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
+    font-size: large;
+    color: black;
+    font-size: 16px;
 }
 
 
 #annioescolar {
 
-  width: 300px;
-  border: none;
-  
+    width: 100px;
+    border: none;
+
 }
 
 
 #idCurso {
-  border-radius: 100px;
-  border: 1px solid #b5b5b5;
-  text-align: center;
-  width: 100px;
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    text-align: center;
+    width: 100px;
 }
 
 #annio {
-  border-radius: 100px;
-  border: 1px solid #b5b5b5;
-  text-align: center;
-  width: 100px;
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    text-align: center;
+    width: 100px;
 
- 
+
 }
 
 #seccion {
-  border-radius: 100px;
-  border: 1px solid #b5b5b5;
-  text-align: center;
-  width: 100px;
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    text-align: center;
+    width: 100px;
 }
 
 #turno {
-  border-radius: 100px;
-  border: 1px solid #b5b5b5;
-  text-align: center;
-  width: 100px;
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    text-align: center;
+    width: 100px;
 }
 
 #nivel {
-  border-radius: 100px;
-  border: 1px solid #b5b5b5;
-  text-align: center;
-  width: 150px;
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    text-align: center;
+    width: 150px;
 }
 
 #especialidad {
-  border-radius: 100px;
-  border: 1px solid #b5b5b5;
-  text-align: center;
-  width: 150px;
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    text-align: center;
+    width: 150px;
 }
 
 #tipoDocAl {
-  border-radius: 100px;
-  border: 1px solid #b5b5b5;
-  text-align: center;
-  width: 100px;
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    text-align: center;
+    width: 100px;
 }
 
 #tipoDocPrf {
-  border-radius: 100px;
-  border: 1px solid #b5b5b5;
-  text-align: center;
-  width: 100px;
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    text-align: center;
+    width: 100px;
 }
 
 #numDocAl {
-  border-radius: 100px;
-  border: 1px solid #b5b5b5;
-  text-align: center;
-  width: 150px;
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    text-align: center;
+    width: 150px;
 }
 
 #numDocPrf {
-  border-radius: 100px;
-  border: 1px solid #b5b5b5;
-  text-align: center;
-  width: 150px;
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    text-align: center;
+    width: 150px;
 }
 
 #botonBuscAl {
-  border-radius: 100px;
-  border: 1px solid #b5b5b5;
-  text-align: center;
-  width: 100px;
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    text-align: center;
+    width: 100px;
 }
 
 #nombre {
-  border-radius: 100px;
-  border: 1px solid #b5b5b5;
-  text-align: center;
-  width: 300px;
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    text-align: center;
+    width: 300px;
 }
 
 
 #botonAsignar {
-  border-radius: 100px;
-  border: 1px solid #b5b5b5;
-  text-align: center;
-  width: 100px;
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    text-align: center;
+    width: 100px;
 }
 .input-nombre-apellido {
-  border-radius: 100px;
-  border: 1px solid #b5b5b5;
-  width: 200px;
+   /* border-radius: 100px;
+    border: 1px solid #b5b5b5;*/
+    border: none;
+    width: 160x;
+   
 }
 
 #rowIdProfesor{
-    display:flex;
-   
-    justify-content:flex-start
+    display:inline-flex;
+  
+
+
+    
 }
 
 #navbarSupportedContent{
-    display: flex; 
+    display: flex;
     justify-content:flex-end;
 }
 
 #tipoCarga {
-  border-radius: 100px;
-  border: 1px solid #b5b5b5;
-  width: 100px;
-  text-align: center;
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    width: 155px;
+    text-align: center;
 }
 
 

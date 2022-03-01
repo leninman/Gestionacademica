@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}"/>
+	<meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
 	<link rel="stylesheet" type="text/css" href="/css/estilosCurso.css" />
@@ -20,22 +20,8 @@
 	<th:block th:replace="partes/menu :: menuSuperior" />
 
 
-
-
-
-
-	<div class="card" style="
-		width: 100%;
-		border-color: #cccccc;
-		margin-left: auto;
-		margin-right: auto;">
-		<div class="card-header" style="
-		  width: 100%;
-		  border-color: #cccccc;
-		  margin-left: auto;
-		  margin-right: auto;
-		">
-
+	<div class="card">
+		<div class="card-header">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
@@ -60,23 +46,35 @@
 
 						<div class="col-md-3"></div>
 						<p style="font-weight: bold;
-              font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
-              font-size: large;
-              color: black;
-              font-size: 20px;">&nbsp;&nbsp;&nbsp;Formulario de asignación de cursos y materias</p>
+						font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
+              			font-size: large;
+             			color: black;
+						 padding-top: 20px;
+              			font-size: 20px;">&nbsp;&nbsp;&nbsp;Formulario de asignación de cursos y materias</p>
 					</div>
 				</div>
 			</nav>
 		</div>
 
 
-		<div class="card-body" style="border: none;height: 100%;">
-			<br /> <br />
+		<div class="card-body">
+			
 			<!------------------------------------------INICIO DEL FORMULARIO DEL PROFESOR--------------------->
 			<form class="form-horizontal" id="formProfesor" name="formProfesor">
 				<input type="hidden" id="direccionbase" name="direccionbase" th:value="${direccionbase}" />
-				
+				<div class="row" id="containeretqtitulo">
+					<div class="col-md-10">
+	
+					</div>
+					<div class="col-md-2">
+						<b><label for="annioescolar" class="col-form-label">P.E:</label></b>
+						<input type="text" id="annioescolar" th:value="${periodoEscolar}" />
+					</div>
+				</div>
+				<br>
+				<br>
 				<div class="row" id="containertitulo">
+					<div class="col-md-5"></div>
 					<p id="titulo1">Datos del profesor</p>
 				</div>
 
@@ -118,12 +116,13 @@
 			<!------------------INICIO DEL FORMULARIO DE MATERIAS Y CURSOS DISPONIBLES--------------------->
 			<form class="form-horizontal" id="formListaMaterias" name="formListaMaterias">
 				<div class="row" id="containertitulo">
-					<p id="titulo1">Datos de cursos y materias sin asignar</p>
+					<div class="col-md-5"></div>
+					<p id="titulo1">Cursos y materias</p>
 				</div>
 
 
 
-			
+
 
 
 
@@ -150,7 +149,7 @@
 								<td th:text="${materia.nivel}"></td>
 								<td th:text="${materia.especialidad}"></td>
 								<td th:text="${materia.materia}"></td>
-							
+
 								<td>
 									<input type="button" class="input-buttons" value="Asignar"
 										onclick="asignarmateria();" />
@@ -167,12 +166,13 @@
 
 
 			<!------------------INICIO DEL FORMULARIO DE MATERIAS Y CURSOS DISPONIBLES--------------------->
-			
+
 			<form class="form-horizontal" id="formListaMateriasAsignadas" name="formListaMateriasAsignadas">
-			    <div class="row" id="containertitulo">
-					<p id="titulo1">Cursos y materias asignadas</p>
+				<div class="row" id="containertitulo">
+					<div class="col-md-5"></div>
+					<p id="titulo1">Asignaciones</p>
 				</div>
-				
+
 				<div class="row" id="rowtablemateriasasignadas">
 					<table id="tablemateriasasignadas" class="table table-striped table-hover">
 						<thead>
@@ -185,13 +185,13 @@
 							</tr>
 						</thead>
 						<tbody>
-	
-	
-	
+
+
+
 						</tbody>
 					</table>
 				</div>
-			
+
 			</form>
 
 
@@ -199,8 +199,9 @@
 			<br>
 			<br>
 			<div class="row">
+				<div class="col-md-5"></div>
 				<input type="button" class="input-buttons" name="guardar" id="guardar" value="Guardar"
-					style="margin: 0 auto" />
+					 />
 			</div>
 			<br>
 			<br>

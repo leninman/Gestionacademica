@@ -1,6 +1,11 @@
 
 body{
 background-image: url("/images/modern-education-system-830x555.jpg");
+background-position: center center;
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+
 }
 .login-header {
   width: 350px;

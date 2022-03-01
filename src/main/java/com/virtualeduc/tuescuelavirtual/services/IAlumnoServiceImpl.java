@@ -29,220 +29,216 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Service
 public class IAlumnoServiceImpl implements IAlumnoService {
 
-	@Autowired
-	IAlumnoRepo alumnorepo;
+    @Autowired
+    IAlumnoRepo alumnorepo;
 
-	@Autowired
-	IRepresentanteService representanteservice;
+    @Autowired
+    IRepresentanteService representanteservice;
 
-	@Autowired
-	ICursoService cursoservice;
+    @Autowired
+    ICursoService cursoservice;
 
-	Alumno alumnoconsultado;;
+    Alumno alumnoconsultado;
+    ;
 
 	AlumnoDTO alumnoDTO;
 
-	Alumno alumnoguardado;
+    Alumno alumnoguardado;
 
-	Alumno alumnoactualizado;
+    Alumno alumnoactualizado;
 
-	String cedula;
+    String cedula;
 
-	@Override
-	@Transactional
-	@ResponseStatus(HttpStatus.CREATED)
-	public Responses guardaAlumno(Alumno alumno, Boolean guardar) {
+    @Override
+    @Transactional
+    @ResponseStatus(HttpStatus.CREATED)
+    public Responses guardaAlumno(Alumno alumno, Boolean guardar) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-		// String tipoDocAl = alumno.getTipoDocAl();
-		// String numDocAl = alumno.getNumDocAl();
-		Responses resp = new Responses();
-		try {
-		if (guardar) {
+        // String tipoDocAl = alumno.getTipoDocAl();
+        // String numDocAl = alumno.getNumDocAl();
+        Responses resp = new Responses();
+        try {
+            if (guardar) {
 
-			alumnoguardado = new Alumno();
+                alumnoguardado = new Alumno();
 
-			alumnoactualizado = new Alumno();
+                alumnoactualizado = new Alumno();
 
-			alumnoconsultado = new Alumno();
+                alumnoconsultado = new Alumno();
 
-			alumnoconsultado = this.consultarAlumnoPorCedula(alumno.getTipoDocAl(), alumno.getNumDocAl());
+                alumnoconsultado = this.consultarAlumnoPorCedula(alumno.getTipoDocAl(), alumno.getNumDocAl());
 
-			// CONSULTA SI EL ALUMNO YA EXISTE, SI EXISTE RETORNA EL ALUMNO, SI NO LO GUARDA
-			if (alumnoconsultado == null) {
-				alumno.setFechaCreacion(new Date());
-				alumnoguardado = alumnorepo.save(alumno);
-				resp.setResponseCode(Constantes.ALUMNO_REGISTRADO_CODE);
-				resp.setResponseDescription(Constantes.ALUMNO_REGISTRADO_DESC);
-				alumnoDTO = new AlumnoDTO(alumnoguardado);
+                // CONSULTA SI EL ALUMNO YA EXISTE, SI EXISTE RETORNA EL ALUMNO, SI NO LO GUARDA
+                if (alumnoconsultado == null) {
+                    alumno.setFechaCreacion(new Date());
+                    alumnoguardado = alumnorepo.save(alumno);
+                    resp.setResponseCode(Constantes.ALUMNO_REGISTRADO_CODE);
+                    resp.setResponseDescription(Constantes.ALUMNO_REGISTRADO_DESC);
+                    alumnoDTO = new AlumnoDTO(alumnoguardado);
 
-			} else {
-				resp.setResponseCode(Constantes.ALUMNO_EXISTE_CODE);
-				resp.setResponseDescription(Constantes.ALUMNO_EXISTE_DESC);
-				alumnoDTO = new AlumnoDTO(alumnoconsultado);
-				// alumno.setIdAl(this.alumnoDTO.getIdAl());
-			}
-			resp.setAlumno(this.alumnoDTO);
+                } else {
+                    resp.setResponseCode(Constantes.ALUMNO_EXISTE_CODE);
+                    resp.setResponseDescription(Constantes.ALUMNO_EXISTE_DESC);
+                    alumnoDTO = new AlumnoDTO(alumnoconsultado);
+                    // alumno.setIdAl(this.alumnoDTO.getIdAl());
+                }
+                resp.setAlumno(this.alumnoDTO);
 
-		} else {
-			resp.setResponseCode(Constantes.ALUMNO_MODIFICADO_CODE);
-			resp.setResponseDescription(Constantes.ALUMNO_MODIFICADO_DESC);
-			this.alumnoactualizado = alumnorepo.save(alumno);
-			this.alumnoDTO = new AlumnoDTO(alumnoactualizado);
-			resp.setAlumno(this.alumnoDTO);
-		}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+            } else {
+                resp.setResponseCode(Constantes.ALUMNO_MODIFICADO_CODE);
+                resp.setResponseDescription(Constantes.ALUMNO_MODIFICADO_DESC);
+                this.alumnoactualizado = alumnorepo.save(alumno);
+                this.alumnoDTO = new AlumnoDTO(alumnoactualizado);
+                resp.setAlumno(this.alumnoDTO);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-		return resp;
+        return resp;
 
-	}
+    }
 
-	/**
-	 *
-	 * @return
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public List<AlumnoCursoDTO> consultarAlumnos() {
-		// throw new UnsupportedOperationException("Not supported yet."); //To change
-		// body of generated methods, choose Tools | Templates.
+    /**
+     *
+     * @return
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<AlumnoCursoDTO> consultarAlumnos() {
+        // throw new UnsupportedOperationException("Not supported yet."); //To change
+        // body of generated methods, choose Tools | Templates.
 
-		List<Alumno> alumnos = alumnorepo.findListAlumnos();
+        List<Alumno> alumnos = alumnorepo.findListAlumnos();
 
-		List<AlumnoCursoDTO> alumnosCursoDTO = new ArrayList<AlumnoCursoDTO>();
+        List<AlumnoCursoDTO> alumnosCursoDTO = new ArrayList<AlumnoCursoDTO>();
 
-		for (int i = 0; i < alumnos.size(); i++) {
+        for (int i = 0; i < alumnos.size(); i++) {
 
-			Alumno al = new Alumno();
+            Alumno al = new Alumno();
 
-			al = alumnos.get(i);
+            al = alumnos.get(i);
 
-			AlumnoCursoDTO al1 = new AlumnoCursoDTO(al);
+            AlumnoCursoDTO al1 = new AlumnoCursoDTO(al);
 
-			alumnosCursoDTO.add(al1);
+            alumnosCursoDTO.add(al1);
 
-		}
+        }
 
-		return alumnosCursoDTO;
+        return alumnosCursoDTO;
 
-	}
+    }
 
-	@Override
-	@Transactional(readOnly = true)
-	public Alumno consultarAlumnoPorId(Long id) {
-		// throw new UnsupportedOperationException("Not supported yet."); //To change
-		// body of generated methods, choose Tools | Templates.
-		Alumno alumno = null;
-			
-		try {
-				alumno= alumnorepo.findById(id).orElse(null);
-		}catch(Exception e){
-				e.printStackTrace();
-		}
-		
-		return alumno;
-	}
+    @Override
+    @Transactional(readOnly = true)
+    public Alumno consultarAlumnoPorId(Long id) {
+        // throw new UnsupportedOperationException("Not supported yet."); //To change
+        // body of generated methods, choose Tools | Templates.
+        Alumno alumno = null;
 
-	@Override
-	public Alumno consultarAlumnoPorCedula(String tipoDoc, String numDoc) {
+        try {
+            alumno = alumnorepo.findById(id).orElse(null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return alumno;
+    }
+
+    @Override
+    public Alumno consultarAlumnoPorCedula(String tipoDoc, String numDoc) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates. 
-		return alumnorepo.findAlumnoByTipoDocAlAndNumDocAl(tipoDoc, numDoc);
-	}
+        return alumnorepo.findAlumnoByTipoDocAlAndNumDocAl(tipoDoc, numDoc);
+    }
 
-	@Override
-	public List<AlumnoDTO> consultarTodosLosAlumnos() {
+    @Override
+    public List<AlumnoDTO> consultarTodosLosAlumnos() {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-		List<AlumnoDTO> alumnosDTO = new ArrayList<AlumnoDTO>();
+        List<AlumnoDTO> alumnosDTO = new ArrayList<AlumnoDTO>();
 
-		List<Alumno> alumnos = alumnorepo.findAll();
+        List<Alumno> alumnos = alumnorepo.findAll();
 
-		for (int i = 0; i < alumnos.size(); i++) {
+        for (int i = 0; i < alumnos.size(); i++) {
 
-			Alumno al = new Alumno();
+            Alumno al = new Alumno();
 
-			al = alumnos.get(i);
+            al = alumnos.get(i);
 
-			AlumnoDTO al1 = new AlumnoDTO(al);
+            AlumnoDTO al1 = new AlumnoDTO(al);
 
-			alumnosDTO.add(al1);
+            alumnosDTO.add(al1);
 
-		}
+        }
 
-		return alumnosDTO;
-	}
+        return alumnosDTO;
+    }
 
-	@Override
-	public Long[] consultarIdAlumnoPorIdCurso(Long idcurso) {
-		// TODO Auto-generated method stub
-		Long[] listaIdAlumnos = null;
+    @Override
+    public Long[] consultarIdAlumnoPorIdCurso(Long idcurso) {
+        // TODO Auto-generated method stub
+        Long[] listaIdAlumnos = null;
 
-		listaIdAlumnos = alumnorepo.findAlumnoByIdCurso(idcurso);
+        listaIdAlumnos = alumnorepo.findAlumnoByIdCurso(idcurso);
 
-		return listaIdAlumnos;
-	}
+        return listaIdAlumnos;
+    }
 
-	@Override
-	public String consultarCedulasDeAlumnos(String tipoDocAl, String numDocAl) {
-		// TODO Auto-generated method stub
+    @Override
+    public String consultarCedulasDeAlumnos(String tipoDocAl, String numDocAl) {
+        // TODO Auto-generated method stub
 
-		Alumno alumno = new Alumno();
-		alumno = alumnorepo.findCedulasAlumnos(tipoDocAl, numDocAl);
+        Alumno alumno = new Alumno();
+        alumno = alumnorepo.findCedulasAlumnos(tipoDocAl, numDocAl);
 
-		cedula = alumno.getTipoDocAl().concat(alumno.getNumDocAl());
+        cedula = alumno.getTipoDocAl().concat(alumno.getNumDocAl());
 
-		return cedula;
-	}
+        return cedula;
+    }
 
-	@Override
-	public Responses consultarAlumnosPorCurso(Long idcurso) {
-		// TODO Auto-generated method stub
+    @Override
+    public Responses consultarAlumnosPorCurso(Long idcurso) {
+        // TODO Auto-generated method stub
 
-		Responses resp = new Responses();
+        Responses resp = new Responses();
 
-		List<AlumnoDTO> alumnosdto = new ArrayList<>();
+        List<AlumnoDTO> alumnosdto = new ArrayList<>();
 
-		List<Alumno> alumnos = new ArrayList<>();
+        List<Alumno> alumnos = new ArrayList<>();
 
-		alumnos = alumnorepo.findAlumnosByCurso(idcurso);
+        alumnos = alumnorepo.findAlumnosByCurso(idcurso);
 
-		if (alumnos != null) {
+        if (alumnos != null) {
 
-			for (int i = 0; i < alumnos.size(); i++) {
-				Alumno alumno = new Alumno();
-				alumno = alumnos.get(i);
-				AlumnoDTO alumnodto = new AlumnoDTO(alumno);
-				alumnosdto.add(alumnodto);
-			}
-			
-			resp.setListadeAlumnos(alumnosdto);
-			
+            for (int i = 0; i < alumnos.size(); i++) {
+                Alumno alumno = new Alumno();
+                alumno = alumnos.get(i);
+                AlumnoDTO alumnodto = new AlumnoDTO(alumno);
+                alumnosdto.add(alumnodto);
+            }
 
-		}else {
-			resp.setResponseCode(Constantes.CURSO_SIN_INSCRITOS_CODE);
-			resp.setResponseDescription(Constantes.CURSO_SIN_INSCRITOS_DESC);
-		}
+            resp.setListadeAlumnos(alumnosdto);
 
-		return resp;
-	}
+        } else {
+            resp.setResponseCode(Constantes.CURSO_SIN_INSCRITOS_CODE);
+            resp.setResponseDescription(Constantes.CURSO_SIN_INSCRITOS_DESC);
+        }
 
-	@Override
-	public void ActualizarIdAlumno(Long idCurso, String[] Cedulas) {
-		// TODO Auto-generated method stub
-		Curso curso=new Curso();
-		
-		CursoDTO cursoDTO=new CursoDTO();
-		
-		cursoDTO=this.cursoservice.consultarCursoPorId(idCurso);
-		
-		
-		
-		
-		
-	}
+        return resp;
+    }
+
+    @Override
+    public void ActualizarIdAlumno(Long idCurso, String[] Cedulas) {
+        // TODO Auto-generated method stub
+        Curso curso = new Curso();
+
+        CursoDTO cursoDTO = new CursoDTO();
+
+        cursoDTO = this.cursoservice.consultarCursoPorId(idCurso);
+
+    }
 
 
-	/*
+    /*
 	 * @Override public Responses RetirarAlumno(Long idAl) { // TODO Auto-generated
 	 * method stub Responses response=new Responses(); Alumno alumnoAmodificar=new
 	 * Alumno(); Alumno alumnoModificado=new Alumno();
@@ -255,6 +251,36 @@ public class IAlumnoServiceImpl implements IAlumnoService {
 	 * 
 	 * 
 	 * }
-	 */
+     */
+    @Override
+    public Responses consultarAlumnosPorCursoYmateria(Long idcurso, Long idmateria) {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Responses resp = new Responses();
+
+        List<AlumnoDTO> alumnosdto = new ArrayList<>();
+
+        List<Alumno> alumnos = new ArrayList<>();
+
+        alumnos = alumnorepo.findAlumnosByCursoAndMateria(idcurso, idmateria);
+        
+        if (alumnos != null) {
+
+            for (int i = 0; i < alumnos.size(); i++) {
+                Alumno alumno = new Alumno();
+                alumno = alumnos.get(i);
+                AlumnoDTO alumnodto = new AlumnoDTO(alumno);
+                alumnosdto.add(alumnodto);
+            }
+
+            resp.setListadeAlumnos(alumnosdto);
+
+        } else {
+            resp.setResponseCode(Constantes.CURSO_SIN_INSCRITOS_CODE);
+            resp.setResponseDescription(Constantes.CURSO_SIN_INSCRITOS_DESC);
+        }
+
+
+        return resp;
+    }
 
 }

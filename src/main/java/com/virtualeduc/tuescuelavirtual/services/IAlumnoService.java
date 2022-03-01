@@ -35,6 +35,8 @@ public interface IAlumnoService {
     
     public Responses consultarAlumnosPorCurso(Long idcurso);
     
+    public Responses consultarAlumnosPorCursoYmateria(Long idcurso,Long idmateria);
+    
     public void ActualizarIdAlumno(Long idCurso,String[] Cedulas);
     
     

@@ -49,26 +49,28 @@
            
             
             <div class="row" id="rowIdProfesor">
-                &nbsp;&nbsp;
-                <div class="col-sm-4">
+          
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-5">
 
-                    <label for="nombreProfesor" class="col-form-label">Profesor:&nbsp
-                    </label> <input type="text" class="input-nombre-apellido"
+                    <label for="nombreProfesor" class="col-form-label">Profesor:&nbsp;
+                    </label> <input readonly type="text" class="input-nombre-apellido"
                                     id="nombreProfesor" th:value="${profesor.primNombPrf}+' '+${profesor.primApellPrf}" />
 
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-md-5">
 
-                    <label for="cedulaProfesor" class="col-form-label">Cédula:&nbsp
-                    </label> <input type="text" class="input-nombre-apellido"
+                    <label for="cedulaProfesor" class="col-form-label">Cédula:&nbsp;
+                    </label> <input readonly type="text" class="input-nombre-apellido"
                                     id="primNombAl" th:value="${profesor.tipoDocPrf}+${profesor.numDocPrf}" />
 
                 </div>
 
                 <!--<div class="col-sm-4">
 
-                    <label for="tipoCarga" class="col-form-label">Tipo de carga:&nbsp
+                    <label for="tipoCarga" class="col-form-label">Tipo de carga:&nbsp;
                     </label> <select id="tipoCarga">
                         <option value="Total">Total</option>
                           <option value="Parcial">Parcial</option>
@@ -79,11 +81,18 @@
 
             </div>
             <br><br><br>
-            <div class="row" id="containertitulo">
 
-                <p id="titulo1">Listado de cursos del profesor</p>
-            </div>
-            <br>
+            <div class="row" id="containertitulo">
+                <div class="col-md-5"></div>
+                <div class="col-md-4">
+                  <p id="titulo1">Listado de cursos del profesor</p>
+                </div>
+               
+              </div>
+
+
+        
+           
 
             <table id="tablecursos" class="table table-striped table-hover">
                 <thead>
