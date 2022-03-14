@@ -9,6 +9,7 @@ import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.MateriaDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.NotasParDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.ProfesorDTO;
 
 import java.io.Serializable;
@@ -20,105 +21,107 @@ import java.util.List;
  */
 public class Responses implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	private int responseCode;
+    private int responseCode;
 
-	private String responseDescription;
+    private String responseDescription;
 
-	private AlumnoDTO alumno;
+    private AlumnoDTO alumno;
 
-	private CursoDTO curso;
+    private CursoDTO curso;
 
-	private AnnioEscolarDTO annioescolar;
+    private AnnioEscolarDTO annioescolar;
 
-	private List<AlumnoDTO> listadeAlumnos;
+    private List<AlumnoDTO> listadeAlumnos;
 
-	private MateriaDTO materia;
-	
-	public ProfesorDTO profesor;
+    private List<NotasParDTO> notasParciales;
 
-	public Responses() {
+    private MateriaDTO materia;
 
-	}
+    public ProfesorDTO profesor;
 
-	
-	
-	public AlumnoDTO getAlumno() {
-		return alumno;
-	}
+    public Responses() {
 
-	public void setAlumno(AlumnoDTO alumno) {
-		this.alumno = alumno;
-	}
+    }
 
-	public void setCurso(CursoDTO curso) {
-		this.curso = curso;
-	}
+    public AlumnoDTO getAlumno() {
+        return alumno;
+    }
 
-	public CursoDTO getCurso() {
-		return curso;
-	}
+    public void setAlumno(AlumnoDTO alumno) {
+        this.alumno = alumno;
+    }
 
-	public AnnioEscolarDTO getAnnioescolar() {
-		return annioescolar;
-	}
+    public void setCurso(CursoDTO curso) {
+        this.curso = curso;
+    }
 
-	public void setAnnioescolar(AnnioEscolarDTO annioescolar) {
-		this.annioescolar = annioescolar;
-	}
+    public CursoDTO getCurso() {
+        return curso;
+    }
 
-	public List<AlumnoDTO> getListadeAlumnos() {
-		return listadeAlumnos;
-	}
+    public AnnioEscolarDTO getAnnioescolar() {
+        return annioescolar;
+    }
 
-	public void setListadeAlumnos(List<AlumnoDTO> listadeAlumnos) {
-		this.listadeAlumnos = listadeAlumnos;
-	}
+    public void setAnnioescolar(AnnioEscolarDTO annioescolar) {
+        this.annioescolar = annioescolar;
+    }
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+    public List<AlumnoDTO> getListadeAlumnos() {
+        return listadeAlumnos;
+    }
 
-	public MateriaDTO getMateria() {
-		return materia;
-	}
+    public void setListadeAlumnos(List<AlumnoDTO> listadeAlumnos) {
+        this.listadeAlumnos = listadeAlumnos;
+    }
 
-	public void setMateria(MateriaDTO materia) {
-		this.materia = materia;
-	}
-	
-	
+    public List<NotasParDTO> getNotasParciales() {
+        return notasParciales;
+    }
 
-	public ProfesorDTO getProfesor() {
-		return profesor;
-	}
+    public void setNotasParciales(List<NotasParDTO> notasParciales) {
+        this.notasParciales = notasParciales;
+    }
 
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
 
+    public MateriaDTO getMateria() {
+        return materia;
+    }
 
-	public void setProfesor(ProfesorDTO profesor) {
-		this.profesor = profesor;
-	}
+    public void setMateria(MateriaDTO materia) {
+        this.materia = materia;
+    }
 
+    public ProfesorDTO getProfesor() {
+        return profesor;
+    }
 
+    public void setProfesor(ProfesorDTO profesor) {
+        this.profesor = profesor;
+    }
 
-	public int getResponseCode() {
-		return responseCode;
-	}
+    public int getResponseCode() {
+        return responseCode;
+    }
 
-	public void setResponseCode(int responseCode) {
-		this.responseCode = responseCode;
-	}
+    public void setResponseCode(int responseCode) {
+        this.responseCode = responseCode;
+    }
 
-	public String getResponseDescription() {
-		return responseDescription;
-	}
+    public String getResponseDescription() {
+        return responseDescription;
+    }
 
-	public void setResponseDescription(String responseDescription) {
-		this.responseDescription = responseDescription;
-	}
+    public void setResponseDescription(String responseDescription) {
+        this.responseDescription = responseDescription;
+    }
 
 }

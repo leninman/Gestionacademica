@@ -49,7 +49,7 @@ public interface IAlumnoRepo extends JpaRepository<Alumno, Long> {
     
     @Query(value="SELECT * FROM alumnos a "
     		+ "LEFT JOIN cursos b ON a.ID_CURSO=b.ID_CURSO "
-    		+ "WHERE a.STATUS='ACTIVO' and a.ID_CURSO=?1",nativeQuery = true)
+    		+ "WHERE a.STATUS='ACTIVO' and a.ID_CURSO=?1 ORDER BY PRIM_APELL_AL",nativeQuery = true)
     public List<Alumno> findAlumnosByCurso(Long idcurso);
     
     
