@@ -1,13 +1,34 @@
 input{
     text-transform:uppercase;
 }
-#tablecursos th {
+#tablenotas{
+    text-transform:uppercase;
+}
+#tablenotas th {
     background-color: #cccccc;
     color: black;
     font-size: small;
     text-align: center;
 }
 
+.txtnota{
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    width: 50px;
+    text-align: center;
+}
+
+#tablecursos th {
+    background-color: #cccccc;
+    color: black;
+    font-size: small;
+    text-align: center;
+}
+#tablenotas>tbody>tr>td {
+    vertical-align: middle;
+    text-align: center;
+    font-size: small;
+}
 #tablecursos>tbody>tr>td {
     vertical-align: middle;
     text-align: center;
@@ -20,36 +41,7 @@ input{
     margin-right: 0px;
 }
 
-#rowPeriodo{
-    display:flex;
-     justify-content:right;
-   
-}
-/*.card{
-  margin-right:auto;
-  margin-left:auto;
-  width: 80%; 
-  border-color: #337ab7;
-}
 
-.card-body{
-  width: 80%;
-  margin-right:auto;
-  margin-left:auto;
-  justify-content: center;
-}
-
-.row{
-    margin-right:auto;
-    margin-left:auto;
-    justify-content: center;
-}*/
-
-#containerannioescolar{
-    margin-left:auto;
-
-
-}
 
 #containerTitulo{
   border:20px;
@@ -90,6 +82,26 @@ input{
     width: 100px;
 }
 
+#Guardar{
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    background-color: #2441e6;
+    font-style: normal;
+    color: white;
+    width: 120px;
+    margin: 0 auto;
+}
+
+
+.confirmar,.editar{
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    background-color: #2441e6;
+    font-style: normal;
+    color: white;
+    width: 50px;
+    margin: 0 auto;
+}
 
 #periodo,#Annios,#Niveles,#Turnos,#Secciones{
     border: none;
@@ -206,6 +218,11 @@ input{
     margin-right: 0px;
 }
 
+.grid-container0,.grid-container1 {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto;
+  
+}
 
 
 
@@ -358,26 +375,32 @@ input{
     width: 100px;
 }
 .input-nombre-apellido {
-   /* border-radius: 100px;
-    border: 1px solid #b5b5b5;*/
-    border: none;
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    background-color: #cccccc;;
     width: 160x;
    
 }
 
 
 
-#navbarSupportedContent{
-    display: flex;
-    justify-content:flex-end;
-}
 
-#tipoCarga {
+
+#tipoCarga,#lapso{
     border-radius: 100px;
     border: 1px solid #b5b5b5;
     width: 155px;
     text-align: center;
+    background-color: #cccccc;
 }
+
+
+#lbllapso,#lbltipodecarga{
+    display:none;
+    font-size: small;
+    color:red;
+}
+
 
 
 
