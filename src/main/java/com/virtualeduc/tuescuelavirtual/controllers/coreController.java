@@ -16,9 +16,10 @@ import com.virtualeduc.tuescuelavirtual.models.Alumno;
 import com.virtualeduc.tuescuelavirtual.models.Annio;
 import com.virtualeduc.tuescuelavirtual.models.Curso;
 
-import com.virtualeduc.tuescuelavirtual.models.Cursos_prof;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.NotasParDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.NotasParDTOwrapper;
+import com.virtualeduc.tuescuelavirtual.models.CursoProf;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.NotaParDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.Notawrapper;
+import com.virtualeduc.tuescuelavirtual.models.NotaPar;
 import com.virtualeduc.tuescuelavirtual.models.Profesion;
 import com.virtualeduc.tuescuelavirtual.models.Profesor;
 import com.virtualeduc.tuescuelavirtual.models.Representante;
@@ -78,8 +79,8 @@ public class coreController {
 
     @Autowired
     IUsuarioService usuarioservice;
-    
-     @Autowired
+
+    @Autowired
     INotasService notasservice;
 
     @Value("${dir.base}")
@@ -88,9 +89,14 @@ public class coreController {
     @Autowired
     ICursoService cursoservice;
 
+    @Autowired
+    INotasService notaservice;
+
     Representante representante;
 
     Boolean guardarAlumno;
+
+    List<AlumnoDTO> lista = new ArrayList<>();
 
     //CONSULTA DE REPRESENTANTE POR CEDULA
     @CrossOrigin(origins = {"direccionbase/consultarepresentante"})
@@ -214,11 +220,11 @@ public class coreController {
 
         Responses resp = new Responses();
 
-        List<Cursos_prof> cursosprof = new ArrayList<>();
+        List<CursoProf> cursosprof = new ArrayList<>();
 
         for (int i = 0; i < idmaterias.length; i++) {
 
-            Cursos_prof cursoprof = new Cursos_prof();
+            CursoProf cursoprof = new CursoProf();
 
             cursoprof.setIdCurso(idcursos[i]);
 
@@ -237,11 +243,21 @@ public class coreController {
     }
 
     @CrossOrigin(origins = {"direccionbase/guardarnotas"})
-    @PostMapping(path = "/guardarnotas",consumes = "application/json",produces = "application/json")
-    public @ResponseBody Responses guardarnotas(@RequestBody List<NotasParDTO> calificaciones,
+    @PostMapping(path = "/guardarnotas", consumes = "application/json", produces = "application/json")
+    public @ResponseBody
+    Responses guardarnotas(@RequestBody List<NotaParDTO> calificaciones,
             RedirectAttributes redirectAttributes) {
 
         return notasservice.guardarNotasParciales(calificaciones);
 
     }
+
+//    @CrossOrigin(origins = {"direccionbase/consultarNotas"})
+//    @GetMapping(path = "/consultarNotas")
+//    public List<Notawrapper> consultarNotas(@RequestParam(name = "tipoDoc") String tipoDoc,
+//            @RequestParam(name = "numDoc") String numDoc, Model model) {
+//
+//        return notaservice.consultarNotasPorCedula(tipoDoc, numDoc);
+//
+//    }
 }

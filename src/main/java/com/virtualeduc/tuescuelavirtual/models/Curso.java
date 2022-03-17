@@ -56,10 +56,10 @@ public class Curso implements Serializable {
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCurso")
     private Collection<Alumno> alumnoCollection;
-
+    
     public Curso() {
     }
-    
+
     public Curso(Long idCurso) {
         this.idCurso = idCurso;
     }

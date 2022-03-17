@@ -6,7 +6,7 @@ import java.math.BigInteger;
 import javax.persistence.Column;
 import javax.persistence.Id;
 
-public class NotasDefDTO implements Serializable{
+public class NotaDefDTO implements Serializable{
 
 	/**
 	 * 
@@ -30,7 +30,7 @@ public class NotasDefDTO implements Serializable{
 
 	private String nota;
 
-	public NotasDefDTO() {
+	public NotaDefDTO() {
 		
 	}
 

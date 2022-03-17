@@ -9,7 +9,7 @@ import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.MateriaDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.NotasParDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.NotaParDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.ProfesorDTO;
 
 import java.io.Serializable;
@@ -38,7 +38,7 @@ public class Responses implements Serializable {
 
     private List<AlumnoDTO> listadeAlumnos;
 
-    private List<NotasParDTO> notasParciales;
+    private List<NotaParDTO> notasParciales;
 
     private MateriaDTO materia;
 
@@ -80,11 +80,11 @@ public class Responses implements Serializable {
         this.listadeAlumnos = listadeAlumnos;
     }
 
-    public List<NotasParDTO> getNotasParciales() {
+    public List<NotaParDTO> getNotasParciales() {
         return notasParciales;
     }
 
-    public void setNotasParciales(List<NotasParDTO> notasParciales) {
+    public void setNotasParciales(List<NotaParDTO> notasParciales) {
         this.notasParciales = notasParciales;
     }
 

@@ -79,6 +79,34 @@ h5 {
   margin-top: 10px;
 }
 
+.grid-container1 {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+#btnPersona {
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    background-color: #2441e6;
+    font-style: normal;
+    color: white;
+    width: 120px;
+    margin: 0 auto;
+}
+
+#tipodoc {
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    width: 50px;
+    text-align: center;
+}
+
+#nrodoc {
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    width: 100px;
+    text-align: center;
+}
 
 /*#myNavBar {
     background-color: #7f87a3;

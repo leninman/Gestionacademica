@@ -52,13 +52,32 @@
                     <input type="text" id="annioescolar" th:value="${periodoEscolar}" />
                 </div>
             </div>
+            
+            
+             <div class="row">
+
+                <div class="col-md-4">
+                    <label>Nombre del docente:&nbsp;</label>
+                     <input readonly type="text" class="input-nombre-apellido" id="nombreProfesor"
+                        th:value="${profesor.primNombPrf}+' '+${profesor.primApellPrf}" />
+                </div>
+
+                <div class="col-md-4">
+                    <label>Cédula:&nbsp;</label>
+                       <input readonly type="text" class="input-nombre-apellido" id="cedulaProfesor"
+                        th:value="${profesor.tipoDocPrf}+${profesor.numDocPrf}" />
+                  
+                </div>
+
+                
+            </div>
 
 
 
 
 
 
-            <div class="grid-container0">
+       <!--     <div class="grid-container0">
               
 
                 <div class="grid-item">
@@ -109,7 +128,7 @@
 
 
 
-            </div>
+            </div>-->
 
             <br><br><br>
 

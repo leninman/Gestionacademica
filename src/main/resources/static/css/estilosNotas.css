@@ -1,5 +1,6 @@
 input{
     text-transform:uppercase;
+    font-size: small;
 }
 #tablenotas{
     text-transform:uppercase;
@@ -218,8 +219,14 @@ input{
     margin-right: 0px;
 }
 
-.grid-container0,.grid-container1 {
-    display: grid;
+.grid-container0 {
+    display:grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto;
+  
+}
+
+.grid-container1 {
+    display:inline-block;
     grid-template-columns: auto auto auto auto auto auto auto auto;
   
 }
@@ -232,7 +239,9 @@ input{
 
 
 
-
+label{
+    font-size: medium;
+}
 
 
 
@@ -365,6 +374,7 @@ input{
     border: 1px solid #b5b5b5;
     text-align: center;
     width: 300px;
+    font-size: small;
 }
 
 
@@ -374,11 +384,51 @@ input{
     text-align: center;
     width: 100px;
 }
+#materia {
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    background-color: #cccccc;
+    width: 160px;
+    font-size: small;
+}
+
+#seccion {
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    background-color: #cccccc;
+    width: 60px;
+    font-size: medium;
+}
+
+#annio {
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    background-color: #cccccc;
+    width: 60px;
+    font-size: medium;
+}
+
+#cedulaAlumno {
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    background-color: #cccccc;
+    width: 90px;
+    font-size: medium;
+}
+
+
+#nombreAlumno{
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    background-color: #cccccc;
+    width: 150px;
+    font-size: medium;
+}
 .input-nombre-apellido {
     border-radius: 100px;
     border: 1px solid #b5b5b5;
     background-color: #cccccc;;
-    width: 160x;
+    width: 160px;
    
 }
 
@@ -386,15 +436,24 @@ input{
 
 
 
-#tipoCarga,#lapso{
+#tipoCarga{
     border-radius: 100px;
     border: 1px solid #b5b5b5;
     width: 155px;
     text-align: center;
-    background-color: #cccccc;
+     height: 30px;
+   
 }
 
+#lapso{
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    width: 100px;
+    text-align: center;
+    height: 30px;
+    font-size: small;
 
+}
 #lbllapso,#lbltipodecarga{
     display:none;
     font-size: small;

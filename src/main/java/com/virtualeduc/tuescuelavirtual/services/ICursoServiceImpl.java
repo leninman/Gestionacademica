@@ -8,8 +8,8 @@ package com.virtualeduc.tuescuelavirtual.services;
 import com.virtualeduc.tuescuelavirtual.models.Annio;
 import com.virtualeduc.tuescuelavirtual.models.AnnioEscolar;
 import com.virtualeduc.tuescuelavirtual.models.Curso;
-import com.virtualeduc.tuescuelavirtual.models.Cursos_prof;
-import com.virtualeduc.tuescuelavirtual.models.Materias_prof;
+import com.virtualeduc.tuescuelavirtual.models.CursoProf;
+import com.virtualeduc.tuescuelavirtual.models.MateriaProf;
 import com.virtualeduc.tuescuelavirtual.models.Responses;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
@@ -606,18 +606,18 @@ public class ICursoServiceImpl implements ICursoService {
 	}
 
 	@Override
-	public Responses asignarCursosMaterias(List<Cursos_prof> cursos) {
+	public Responses asignarCursosMaterias(List<CursoProf> cursos) {
 		// TODO Auto-generated method stub
 		Responses resp=new Responses();
 		
-		Cursos_prof cursoprofesor;
+		CursoProf cursoprofesor;
 		
-		for(Cursos_prof cursoprof:cursos) {
+		for(CursoProf cursoprof:cursos) {
 			
 			cursoprofesor=cursoprofrepo.findCursoProf(cursoprof.getIdCurso(), cursoprof.getIdMat(), cursoprof.getIdProf());
 		
 			if(cursoprofesor==null) {
-				Cursos_prof cursoprofesorguardado=cursoprofrepo.save(cursoprof);
+				CursoProf cursoprofesorguardado=cursoprofrepo.save(cursoprof);
 				resp.setResponseCode(Constantes.CURSO_MATERIA_ASIGNADA_CODE);
 				resp.setResponseDescription(Constantes.CURSO_MATERIA_ASIGNADA_DESC);
 				
@@ -630,7 +630,7 @@ public class ICursoServiceImpl implements ICursoService {
 	}
 
 	@Override
-	public Responses asignarMaterias(List<Materias_prof> materias) {
+	public Responses asignarMaterias(List<MateriaProf> materias) {
 		// TODO Auto-generated method stub
 		Responses resp=new Responses();
 		return resp;
@@ -643,7 +643,7 @@ public class ICursoServiceImpl implements ICursoService {
 		
 		//Long idCursoMateria=cursoprof.getIdCursoProf();
 		
-		Cursos_prof cursosprof=cursoprofrepo.findCursoProf(idCurso, idMateria, idProfesor);
+		CursoProf cursosprof=cursoprofrepo.findCursoProf(idCurso, idMateria, idProfesor);
 		
 		if(cursosprof!=null) {
 			cursoprofrepo.deleteById(cursosprof.getIdCursoProf());
@@ -655,9 +655,9 @@ public class ICursoServiceImpl implements ICursoService {
 	}
 
     @Override
-    public List<Cursos_prof> consultarCursosPorProfesor(Long idProfesor) {
+    public List<CursoProf> consultarCursosPorProfesor(Long idProfesor) {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-      List<Cursos_prof>  cursos_prof=cursoprofrepo.findCursosPorProf(idProfesor);
+      List<CursoProf>  cursos_prof=cursoprofrepo.findCursosPorProf(idProfesor);
       
       return cursos_prof;
     }

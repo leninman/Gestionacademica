@@ -2,25 +2,28 @@ package com.virtualeduc.tuescuelavirtual.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.virtualeduc.tuescuelavirtual.models.NotasPar;
+import com.virtualeduc.tuescuelavirtual.models.NotaPar;
+import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 
-public interface INotasParRepo extends JpaRepository<NotasPar,Long> {
+public interface INotasParRepo extends JpaRepository<NotaPar,Long> {
     
-    /*@Query(value="SELECT "
-                + "b.TIPO_DOC_AL,b.NUM_DOC_AL,b.PRIM_NOMB_AL,b.PRIM_APELL_AL,"
-                + "b.SEG_APELL_AL,b.SEG_NOMB_AL,a.NOTA,c.NOMBRE_MAT,e.ANNIO,"
-                + "f.SECCION,g.INT_ANNIO_ESC,h.TURNO,i.DESCRIPCION "
+    
+//      @Query("SELECT * from NotaPar u "
+//              + "INNER JOIN Alumno v "
+//              + "on u.alumno=v "
+//              + "INNER JOIN Curso e "
+//              + "on u.curso=e "
+//              + "WHERE v.tipoDocAl=?1 AND v.numDocAl=?2",nativeQuery=true)
+//  List<NotaPar> consultarNotasPorAlumno(String tipoDocAl,String numDocAl);
+//}
+    
+    @Query(value="SELECT "
+                + "a.ID_NOTA_PAR,a.ID_ALUMNO,a.ID_MAT,a.ID_CURSO,a.ID_PRF,a.ID_LAPSO,a.NOTA "
 	 	+ "from notas_par a "
                 + "LEFT JOIN alumnos b ON a.ID_ALUMNO =b.ID_AL "
-                + "LEFT JOIN materias c  on a.ID_MAT =c.ID_MAT "
-                + "LEFT JOIN cursos d on a.ID_CURSO =d.ID_CURSO "
-                + "INNER JOIN annios e on d.ID_ANNIO =e.ID_ANNIO "
-                + "INNER JOIN secciones f on d.ID_SEC =f.ID_SEC "
-                + "INNER JOIN annio_escolar g on d.ID_ANNIO_ESC = g.ID_ANNIO_ESC "
-                + "INNER JOIN turnos h on d.ID_TURNO =h.ID_TURNO "
-                + "INNER JOIN lapsos i on a.ID_LAPSO = i.ID_LAPSO "
-	 	+ "where b.TIPO_DOC_AL =?1 AND b.NUM_DOC_AL =?2",nativeQuery = true)
-	 public List<Materia> listarMateriasActivas();*/
+                + "WHERE b.TIPO_DOC_AL=?1 AND b.NUM_DOC_AL=?2"
+         ,nativeQuery = true)
+	 public List<NotaPar> consultarNotasPorAlumno(String tipoDocAl,String numDocAl);
 
 }

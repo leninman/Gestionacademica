@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+        <link rel="stylesheet" type="text/css" href="/css/estilosNotas.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
+        <link rel="stylesheet" type="text/css"
+              href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    </head>
+    <header></header>
+
+    <body>
+    <th:block th:replace="partes/header :: header" />
+    <th:block th:replace="partes/menu :: menuSuperior" />
+
+
+    <div class="card">
+        <div class="card-header">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+
+
+
+                    </ul>
+
+                </div>
+            </nav>
+        </div>
+
+
+        <div class="card-body">
+            
+             <div class="row">
+
+                <div class="col-md-3">
+                    <label>Nombre:&nbsp;</label>
+                    <input readonly type="text" id="nombreAlumno"
+                           th:value="${nombreAlumno}" />
+                </div>
+
+                <div class="col-md-2">
+                    <label>Cédula:&nbsp;</label>
+                    <input readonly type="text" id="cedulaAlumno"
+                           th:value="${cedulaAlumno}" />
+                </div>
+
+                <div class="col-md-2">
+                    <label>Año que cursa:&nbsp;</label>
+                    <input readonly type="text"  id="annio"
+                           th:value="${anniocursado}" />      
+                </div>
+
+                <div class="col-md-2">
+                    <label>Sección:&nbsp;</label>
+                    <input readonly type="text"  id="seccion"
+                           th:value="${seccion}" />  
+                </div>
+
+
+                <div class="col-md-3">
+                   
+                </div>
+            </div>
+            <br><!-- comment -->
+            <br><!-- comment -->
+
+            <table id="tablenotas" class="table table-striped table-hover">
+                <thead>
+                    <tr>
+
+                        <th>Año</th>
+                        <th>Asignatura</th>
+                         <th>Lapso</th>
+                        <th>Calificacion</th>
+                       
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr th:each="nota:${notas}">
+                        <td th:text="${nota.annio}"></td>
+                        <td th:text="${nota.nombreMat}"></td>
+                         <td th:text="${nota.lapsodescripcion}"></td>
+                        <td th:text="${nota.nota}"></td>
+                       
+                        
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+    <th:block th:replace="partes/footer :: footer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="/js/notas.js"></script>
+</body>
+
+</html>

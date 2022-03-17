@@ -2,8 +2,8 @@ package com.virtualeduc.tuescuelavirtual.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.virtualeduc.tuescuelavirtual.models.Materias_prof;
+import com.virtualeduc.tuescuelavirtual.models.MateriaProf;
 
-public interface IMateriaProfRepo extends JpaRepository<Materias_prof,Long> {
+public interface IMateriaProfRepo extends JpaRepository<MateriaProf,Long> {
 
 }

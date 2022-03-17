@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import com.virtualeduc.tuescuelavirtual.models.DTOS.ProfesorDTO;
+import java.util.Collection;
 
 import java.util.Date;
 
@@ -97,7 +98,7 @@ public class Profesor implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "FECH_ING_PRF")
 	private Date fechIngPrf;
-
+        
 	public Profesor() {
 	}
 
