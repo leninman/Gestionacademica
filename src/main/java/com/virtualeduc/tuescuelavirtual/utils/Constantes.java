@@ -59,7 +59,16 @@ public class Constantes {
 	
 	public static int CURSO_MATERIA_ELIMINADA_CODE=123;
 	
-	public static int CURSO_NO_ASIGNASO=124;
+	public static int CURSO_NO_ASIGNADO=124;
+        
+        public static int NOTAS_REGISTRADAS=125;
+        
+        public static int PERIODO_LAPSO_SIN_REGISTROS_DE_NOTAS=126;
+        
+        public static int SIN_NOTAS_DEFINITIVAS_REGISTRADAS=127;
+        
+        public static int CONSULTA_EXITOSA_DE_NOTAS=128;
+        
 	
 	
     //mensaje2    	
@@ -137,6 +146,16 @@ public class Constantes {
 	//mensaje24
 	public static String CURSO_NO_ASIGNADO_DESC="DEBE ASIGNAR UN CURSO PARA PODER REGISTRAR EL ALUMNO";
 
+        //mensaje25
+	public static String NOTAS_REGISTRADAS_DESC="LAS NOTAS HAN SIDO REGISTRADAS EXITÓSAMENTE";
 
+        
+        //mensaje26
+	public static String PERIODO_LAPSO_SIN_REGISTROS_DE_NOTAS_DESC="NO EXISTEN NOTAS REGISTRADAS PARA ESTE PERIODO Y ESTE LAPSO";
 
+        //mensaje27
+        public static String SIN_NOTAS_DEFINITIVAS_REGISTRADAS_DESC="NO HAY NOTAS DEFINITIVAS REGISTRADAS PARA ESTE PERIODO ESCOLAR";
+
+        //mensaje28
+        public static String CONSULTA_EXITOSA_DE_NOTAS_DESC="LA CONSULTA DE NOTAS SE HA REALIZADO EXITOSAMENTE";
 }

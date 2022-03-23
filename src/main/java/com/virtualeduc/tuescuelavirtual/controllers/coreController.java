@@ -98,6 +98,8 @@ public class coreController {
 
     List<AlumnoDTO> lista = new ArrayList<>();
 
+    List<Notawrapper> notasresultado;
+
     //CONSULTA DE REPRESENTANTE POR CEDULA
     @CrossOrigin(origins = {"direccionbase/consultarepresentante"})
     @GetMapping(path = "/consultarepresentante",
@@ -252,12 +254,40 @@ public class coreController {
 
     }
 
-//    @CrossOrigin(origins = {"direccionbase/consultarNotas"})
-//    @GetMapping(path = "/consultarNotas")
-//    public List<Notawrapper> consultarNotas(@RequestParam(name = "tipoDoc") String tipoDoc,
-//            @RequestParam(name = "numDoc") String numDoc, Model model) {
-//
-//        return notaservice.consultarNotasPorCedula(tipoDoc, numDoc);
-//
-//    }
+    @CrossOrigin(origins = {"direccionbase/obtenerNotas"})
+    @GetMapping(path = "/obtenerNotas")
+    public List<Notawrapper> obtenerNotas(@RequestParam(name = "cedula") String cedula,
+            String periodo, String lapso, String tipodeconsulta, Model model) {
+
+        String tipoDoc = cedula.substring(0, 1);
+        String numDoc = cedula.substring(1);
+        Responses response = new Responses();
+        
+        notasresultado = new ArrayList<>();
+
+        if (tipodeconsulta.equalsIgnoreCase("Parciales")) {
+
+            notasresultado = notaservice.consultarNotasPorCedulaPeriodoYlapso(tipoDoc, numDoc, periodo, lapso);
+
+            if (notasresultado.size()>0) {
+                response.setNotasWrapper(notasresultado);
+                response.setResponseCode(Constantes.CONSULTA_EXITOSA_DE_NOTAS);
+                response.setResponseDescription(Constantes.CONSULTA_EXITOSA_DE_NOTAS_DESC);
+            }else{
+                notasresultado=null;
+                response.setNotasWrapper(null);
+                response.setResponseCode(Constantes.PERIODO_LAPSO_SIN_REGISTROS_DE_NOTAS);
+                response.setResponseDescription(Constantes.PERIODO_LAPSO_SIN_REGISTROS_DE_NOTAS_DESC);
+                
+            }
+
+        }
+
+        if (tipodeconsulta.equalsIgnoreCase("Definitivas")) {
+             notasresultado=null;
+        }
+
+        return notasresultado;
+
+    }
 }

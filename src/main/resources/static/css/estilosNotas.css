@@ -3,7 +3,7 @@ input{
     font-size: small;
 }
 #tablenotas{
-    text-transform:uppercase;
+    text-transform:uppercase;  
 }
 #tablenotas th {
     background-color: #cccccc;
@@ -11,6 +11,16 @@ input{
     font-size: small;
     text-align: center;
 }
+
+#consultarnotas {
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    background-color: #2441e6;
+    font-style: normal;
+    color: white;
+    width: 120px;
+    margin: 0 auto;
+  }
 
 .txtnota{
     border-radius: 100px;
@@ -41,7 +51,13 @@ input{
     margin-left: 0px;
     margin-right: 0px;
 }
-
+.titulos{
+    font-weight: bold;
+    font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
+    font-size: large;
+    color: black;
+    font-size: 20px;
+  }
 
 
 #containerTitulo{
@@ -408,7 +424,29 @@ label{
     font-size: medium;
 }
 
-#cedulaAlumno {
+#containerbotonmodalconsultavacia{
+    display: flex;
+    justify-content: center;
+}
+
+.modal-header{
+    background-color: #cccccc;
+    height: 38px;
+    padding-top: 5px;
+     padding-bottom: 0px;
+ 
+    padding-right: 1px;
+     padding-left: 5px;
+    
+}
+
+#parrafomodalcontent{
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 30px;
+}
+
+#ciAlumno {
     border-radius: 100px;
     border: 1px solid #b5b5b5;
     background-color: #cccccc;
@@ -417,7 +455,7 @@ label{
 }
 
 
-#nombreAlumno{
+#nombAlumno{
     border-radius: 100px;
     border: 1px solid #b5b5b5;
     background-color: #cccccc;
@@ -454,7 +492,38 @@ label{
     font-size: small;
 
 }
-#lbllapso,#lbltipodecarga{
+
+#periodoEscolar{
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    width: 100px;
+    text-align: center;
+    height: 30px;
+
+
+}
+
+#tipoConsulta{
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    width: 150px;
+    text-align: center;
+    height: 30px;
+  
+
+}
+
+#momento{
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    width: 200px;
+    text-align: center;
+    height: 30px;
+  
+
+}
+
+#lbllapso,#lbltipodecarga,#lblperiodo,#lbltipo,#lblapso{
     display:none;
     font-size: small;
     color:red;

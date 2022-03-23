@@ -6,6 +6,7 @@
 package com.virtualeduc.tuescuelavirtual.services;
 
 
+import com.virtualeduc.tuescuelavirtual.models.AnnioEscolar;
 import com.virtualeduc.tuescuelavirtual.models.Curso;
 import com.virtualeduc.tuescuelavirtual.models.CursoProf;
 import com.virtualeduc.tuescuelavirtual.models.MateriaProf;
@@ -50,6 +51,8 @@ public interface ICursoService {
       public List<AnnioEscolarDTO> consultarPeriodos();
       
       public AnnioEscolarDTO consultarAnnioEscolarPorId(Long idAnnioEscolar);
+      
+      public AnnioEscolar obtenerAnnioEscolarPorId(Long idAnnioEscolar);
       
       public Responses eliminarPeriodo(Long idAnnioEsc);
       

@@ -6,12 +6,12 @@ $(document).ready(function () {
 
 });
 
-function Abrirmodalalumno(){
+/*function Abrirmodalalumno(){
     $('#buscarNotasAlumno').modal({backdrop: 'static', keyboard: false});
     $("#buscarNotasAlumno").modal('show');
-}
+}*/
 
-$("#btnPersona").click(function () {
+/*$("#btnPersona").click(function () {
   direccionbase=$("#direccionbase").val();
   url=direccionbase+"app/consultarNotas";	
   $.ajax({
@@ -35,4 +35,4 @@ $("#btnPersona").click(function () {
     .fail(function (data) {
     
     });
-});
+});*/

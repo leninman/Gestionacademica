@@ -1,15 +1,21 @@
 package com.virtualeduc.tuescuelavirtual.controllers;
 
 import com.virtualeduc.tuescuelavirtual.models.Alumno;
+import com.virtualeduc.tuescuelavirtual.models.Annio;
+import com.virtualeduc.tuescuelavirtual.models.AnnioEscolar;
+import com.virtualeduc.tuescuelavirtual.models.Curso;
 import com.virtualeduc.tuescuelavirtual.models.CursoProf;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.Notawrapper;
+import com.virtualeduc.tuescuelavirtual.models.Lapso;
 import com.virtualeduc.tuescuelavirtual.models.NotaPar;
 import com.virtualeduc.tuescuelavirtual.models.Notasquery;
 import com.virtualeduc.tuescuelavirtual.models.Profesor;
 import com.virtualeduc.tuescuelavirtual.models.Responses;
+import com.virtualeduc.tuescuelavirtual.models.Seccion;
+import com.virtualeduc.tuescuelavirtual.models.Turno;
 import com.virtualeduc.tuescuelavirtual.models.Usuario;
 import com.virtualeduc.tuescuelavirtual.models.ViewCursosMateriasAsignada;
 import com.virtualeduc.tuescuelavirtual.services.IAlumnoService;
@@ -152,27 +158,78 @@ public class notasController {
 
     }
 
-    @PostMapping(path = "/consultarNotas")
-    public String consultarNotas(Notasquery notasquery, Model model) {
+    @ModelAttribute("periodos")
+    public List<String> obtenerPeriodosEscolares() {
 
-        List<Notawrapper> notas = new ArrayList<>();
+        List<AnnioEscolar> anniosEscolares = notaservice.consultarPeriodos();
 
-        notas = notaservice.consultarNotasPorCedula(notasquery.getTipoDoc(), notasquery.getNroDoc());
+        List<String> periodos = new ArrayList<>();
 
-        String nombreAlumno = notas.get(0).getPrimNombAl().concat(" ").concat(notas.get(0).getPrimApellAl());
+        for (AnnioEscolar periodo : anniosEscolares) {
+            String per = periodo.getIntAnnioEsc();
+            periodos.add(per);
+        }
 
-        String cedulaAlumno = notas.get(0).getTipoDocAl().concat(notas.get(0).getNumDocAl());
+        return periodos;
 
-        String anniocursado = notas.get(0).getAnnio();
+    }
 
-        String seccion = notas.get(0).getSeccion();
+    @ModelAttribute("lapsos")
+    public List<Lapso> obtenerLapsos() {
 
-        String turno = notas.get(0).getTurno();
+        List<Lapso> lapsos = notaservice.consultarLapsos();
 
-        String nivel = notas.get(0).getNivel();
+        List<String> periodos = new ArrayList<>();
 
-        String especialidad = notas.get(0).getEspecialidad();
+        return lapsos;
 
+    }
+
+    @GetMapping(path = "/consultarNotas")
+    //public String consultarNotas(Notasquery notasquery, Model model) {
+    public String consultarNotas(Model model) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        if (auth != null) {
+            logger.info("El usuario " + auth.getName() + " ha ingresado al módulo de consulta de notas");
+        }
+
+        String nombreusuario = auth.getName();
+
+        Usuario usuario = usuarioservice.findUsuarioByUserName(nombreusuario);
+
+        String tipoDocumento = usuario.getTipodoc();
+
+        String nroDocumento = usuario.getNrodoc();
+
+        Alumno alumno = alumnoservice.consultarAlumnoPorCedula(tipoDocumento, nroDocumento);
+
+        String nombreAlumno = alumno.getPrimNombAl().concat(" ").concat(alumno.getPrimApellAl());
+
+        String cedulaAlumno = tipoDocumento.concat(nroDocumento);
+
+        Curso curso = alumno.getIdCurso();
+
+        Annio annio = curso.getIdAnnio();
+
+        String anniocursado = annio.getAnnio();
+
+        Seccion sec = curso.getIdSec();
+
+        String seccion = sec.getSeccion();
+
+        Turno tur = curso.getIdTurno();
+
+        String turno = tur.getTurno();
+
+        String nivel = annio.getNivel();
+
+        String especialidad = annio.getEspecialidad();
+
+        //List<Notawrapper> notas = new ArrayList<>();
+        //notas = notaservice.consultarNotasPorCedula(notasquery.getTipoDoc(), notasquery.getNroDoc());
+        //notas = notaservice.consultarNotasPorCedula(tipoDocumento, nroDocumento);
         model.addAttribute("especialidad", especialidad);
 
         model.addAttribute("nombreAlumno", nombreAlumno);
@@ -187,8 +244,9 @@ public class notasController {
 
         model.addAttribute("turno", turno);
 
-        model.addAttribute("notas", notas);
+        model.addAttribute("direccionbase", direccionbase);
 
+        // model.addAttribute("notas", notas);
         return "notas/consultarNotas";
 
     }

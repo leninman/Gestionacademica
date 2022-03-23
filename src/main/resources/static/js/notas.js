@@ -9,48 +9,53 @@ $(document).ready(function () {
   $('.editar').prop('disabled', true);
   $('.editar').css('background-color', '#E5D9D7');
   $('.confirmar').prop('disabled', false);
-  
-      $('#tablenotas').DataTable({
-       
-        language: {
-                "lengthMenu": "",
-                "zeroRecords": "No se encontraron resultados",
-                "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-                "sSearch": "Buscar:",
-                "oPaginate": {
-                    "sFirst": "Primero",
-                    "sLast":"Último",
-                    "sNext":"Siguiente",
-                    "sPrevious": "Anterior"
-			     },
-			     "sProcessing":"Procesando..."
-            },
-        //para usar los botones   
-        responsive: "true",
-        dom: 'Bfrtilp'       
-        /*buttons:[ 
-			{
-				extend:    'excelHtml5',
-				text:      '<i class="fas fa-file-excel"></i> ',
-				titleAttr: 'Exportar a Excel',
-				className: 'btn btn-success'
-			},
-			{
-				extend:    'pdfHtml5',
-				text:      '<i class="fas fa-file-pdf"></i> ',
-				titleAttr: 'Exportar a PDF',
-				className: 'btn btn-danger'
-			},
-			{
-				extend:    'print',
-				text:      '<i class="fa fa-print"></i> ',
-				titleAttr: 'Imprimir',
-				className: 'btn btn-info'
-			},
-		]*/	        
-    });  
+  $('#lapsoconsulta').hide();
+  $('#tablenotascontainer').hide();
+
+
+
+
+  /* $('#tablenotas').DataTable({
+    
+     language: {
+             "lengthMenu": "",
+             "zeroRecords": "No se encontraron resultados",
+             "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+             "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+             "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+             "sSearch": "Buscar:",
+             "oPaginate": {
+                 "sFirst": "Primero",
+                 "sLast":"Último",
+                 "sNext":"Siguiente",
+                 "sPrevious": "Anterior"
+        },
+        "sProcessing":"Procesando..."
+         },
+     //para usar los botones   
+     responsive: "true",
+     dom: 'Bfrtilp'       
+     buttons:[ 
+   {
+     extend:    'excelHtml5',
+     text:      '<i class="fas fa-file-excel"></i> ',
+     titleAttr: 'Exportar a Excel',
+     className: 'btn btn-success'
+   },
+   {
+     extend:    'pdfHtml5',
+     text:      '<i class="fas fa-file-pdf"></i> ',
+     titleAttr: 'Exportar a PDF',
+     className: 'btn btn-danger'
+   },
+   {
+     extend:    'print',
+     text:      '<i class="fa fa-print"></i> ',
+     titleAttr: 'Imprimir',
+     className: 'btn btn-info'
+   },
+ ]	        
+ });  */
 });
 
 class Alumno {
@@ -73,6 +78,19 @@ class NotasParDTO {
 
   }
 }
+
+$('#tipoConsulta').click(function () {
+
+  if ($("#tipoConsulta").val() === "Parciales") {
+    $('#lapsoconsulta').show();
+  } else {
+    $('#lapsoconsulta').hide();
+  }
+
+
+});
+
+
 
 
 $('.confirmar').click(function () {
@@ -131,7 +149,7 @@ $('.editar').click(function () {
     '<td id="cellbtneditar" class="cellbtneditar"><button type="button" data-toggle="tooltip" data-placement="top" title="Editar" class="editar" id="editar"><i class="bi bi-pencil-fill"></i></button></td>'
   '</tr>';
 
-  $('#tablenotas tbody').append(nuevafila);  
+  $('#tablenotas tbody').append(nuevafila);
   //alert(nuevafila);
   //fila.append(nuevafila);
 
@@ -143,6 +161,8 @@ $('.editar').click(function () {
 
 
 });
+
+
 
 
 $("#Guardar").click(function () {
@@ -215,6 +235,85 @@ $("#Guardar").click(function () {
     .fail(function (data) {
       alert('DEBE LLENAR Y CONFIRMAR TODAS LAS NOTAS');
     });
+});
+
+
+$("#consultarnotas").click(function () {
+
+
+
+
+  direccionbase = $("#direccionbase").val();
+  url = direccionbase + "/obtenerNotas";
+  let cedulaidentidad = $("input:text[name=ciAlumno]").val();
+  let lapsoconsultar = $("select[name=lapso]").val();
+  let tipoconsulta = $("select[name=tipoConsulta]").val();
+  let periodoconsultar = $("select[name=periodoEscolar]").val();
+
+
+  if (periodoconsultar === '') {
+    $("#lblperiodo").css('display', 'block');
+    setTimeout(() => {
+      $("#lblperiodo").css('display', 'none');
+    }, 2000);
+    return;
+  }
+
+  if (tipoconsulta === '') {
+    $("#lbltipo").css('display', 'block');
+    setTimeout(() => {
+      $("#lbltipo").css('display', 'none');
+    }, 2000);
+    return;
+  }
+
+  if (tipoconsulta === "Parciales") {
+    if (lapsoconsultar === '') {
+      $("#lblapso").css('display', 'block');
+      setTimeout(() => {
+        $("#lblapso").css('display', 'none');
+      }, 2000);
+      return;
+    }
+  }
+
+
+
+  $.ajax({
+    data: {
+      cedula: cedulaidentidad,
+      periodo: periodoconsultar,
+      lapso: lapsoconsultar,
+      tipodeconsulta: tipoconsulta,
+    },
+    url: url,
+    dataType: "json", //tipo de datos retornados
+    type: "GET",
+  })
+    .done(function (data) {
+      /* Inicializamos tabla */
+      $("#contenido").html('');
+      /* Vemos que la respuesta no este vacía y sea una arreglo */
+      if (data != null) {
+        /* Recorremos tu respuesta con each */
+        console.log(data);
+        $.each(data, function (index, value) {
+          /* Vamos agregando a nuestra tabla las filas necesarias */
+          $("#contenido").append("<tr><td>" + value.annio + "</td><td>" + value.nombreMat + "</td><td>" + value.nota + "</td></tr>");
+        });
+        $('#tablenotascontainer').show();
+      }
+    })
+    .fail(function (data) {
+      $('#modalconsultadenotasvacia').modal({ backdrop: 'static', keyboard: false });
+      $("#modalconsultadenotasvacia").modal('show');
+      $("#parrafomodalconsultadenotasvacia").html("No existen registros para esta consulta");
+    });
+});
+
+$("#btnConsultaDeNotasVacia").click(function () {
+  //window.location.href = `${direccionbase}` + "/consultarNotas";
+  $('#modalconsultadenotasvacia').modal('hide');
 });
 
 function NumCheck(e, field) {

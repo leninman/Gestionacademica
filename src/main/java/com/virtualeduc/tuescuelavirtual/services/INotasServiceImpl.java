@@ -1,6 +1,7 @@
 package com.virtualeduc.tuescuelavirtual.services;
 
 import com.virtualeduc.tuescuelavirtual.models.Alumno;
+import com.virtualeduc.tuescuelavirtual.models.AnnioEscolar;
 import com.virtualeduc.tuescuelavirtual.models.Curso;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.MateriaDTO;
@@ -12,11 +13,13 @@ import com.virtualeduc.tuescuelavirtual.models.NotaPar;
 import com.virtualeduc.tuescuelavirtual.models.Profesor;
 import com.virtualeduc.tuescuelavirtual.models.Responses;
 import com.virtualeduc.tuescuelavirtual.repo.IAlumnoRepo;
+import com.virtualeduc.tuescuelavirtual.repo.IAnnioEscolarRepo;
 import com.virtualeduc.tuescuelavirtual.repo.ICursoRepo;
 import com.virtualeduc.tuescuelavirtual.repo.ILapsoRepo;
 import com.virtualeduc.tuescuelavirtual.repo.IMateriaRepo;
 import com.virtualeduc.tuescuelavirtual.repo.INotasParRepo;
 import com.virtualeduc.tuescuelavirtual.repo.IProfesorRepo;
+import com.virtualeduc.tuescuelavirtual.utils.Constantes;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,71 +36,69 @@ public class INotasServiceImpl implements INotasService {
     IAlumnoRepo alumnoRepo;
     
     @Autowired
-    ICursoRepo cursoRepo;
+     ICursoRepo cursoRepo;
     
     @Autowired
-    ILapsoRepo lapsoRepo;
+     ILapsoRepo lapsoRepo;
     
     @Autowired
-    IMateriaRepo materiaRepo;
+     IMateriaRepo materiaRepo;
     
     @Autowired
-    IProfesorRepo profesorRepo;
+     IProfesorRepo profesorRepo;
     
     @Autowired
-    IAlumnoService alumnoservice;
+     IAlumnoService alumnoservice;
     
     @Autowired
-    ICursoService cursoservice;
+     ICursoService cursoservice;
     
     @Autowired
-    IMateriaService materiaservice;
+     IMateriaService materiaservice;
     
     @Autowired
-    IProfesoresService profesoresservice;
+     IProfesoresService profesoresservice;
     
     @Autowired
-    ILapsoRepo lapsorepo;
+     ILapsoRepo lapsorepo;
+    
+     @Autowired
+     IAnnioEscolarRepo annioescolarRepo;
+     
+    static CursoDTO curso;
+        
+    static   MateriaDTO materia;
+        
+    static   Profesor profesor;
+        
+    static   Lapso lapso;
+        
+    static   AnnioEscolar periodoescolar;
+     
+    static Alumno alumno;
     
     @Override
     public Responses guardarNotasParciales(List<NotaParDTO> notasParDTO) {
-        // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+      
         Responses response = new Responses();
         
         List<NotaParDTO> notasGuardadas = new ArrayList<>();
 
-        //  List<NotasPar> notaspar=NotasParDTO.getListNotasPar(notasDTO);
+ 
         for (NotaParDTO notaParDTO : notasParDTO) {
             
             NotaParDTO notaGuardada = guardarNotaParcial(NotaParDTO.toNotaPar(notaParDTO));
             
             notasGuardadas.add(notaGuardada);
 
-//            Alumno alumno = alumnoRepo.findById(notaParDTO.getIdAlumno()).orElse(null);
-//
-//            Curso curso = cursoRepo.findById(notaParDTO.getIdCurso()).orElse(null);
-//
-//            Lapso lapso = lapsoRepo.findById(notaParDTO.getIdLapso()).orElse(null);
-//
-//            Materia materia = materiaRepo.findById(notaParDTO.getIdMat()).orElse(null);
-//
-//            Profesor profesor = profesorRepo.findById(notaParDTO.getIdPrf()).orElse(null);
-//
-//            NotaPar nota = new NotaPar();
-//            
-//            nota.setAlumno(alumno);
-//            
-//            nota.setCurso(curso);
-//            
-//            nota.setLapso(lapso);
-//            
-//            nota.setMateria(materia);
-//            
-//            nota.setProfesor(profesor);
-//            nota.setNota(notaParDTO.getNota());
         }
         
         response.setNotasParciales(notasGuardadas);
+        
+        response.setResponseCode(Constantes.NOTAS_REGISTRADAS);
+        
+        response.setResponseDescription(Constantes.NOTAS_REGISTRADAS_DESC);
+        
         return response;
         
     }
@@ -118,19 +119,69 @@ public class INotasServiceImpl implements INotasService {
         
         List<NotaPar> notas = new ArrayList<>();
         
-        List<Notawrapper> notaswrapper = new ArrayList<>();
-        
         notas = notasRepo.consultarNotasPorAlumno(tipoDoc, numDoc);
         
-        CursoDTO curso;
+        List<Notawrapper> notaswrapper = new ArrayList<>();
         
-        MateriaDTO materia;
+        notaswrapper=obtenerNotas(notas);
         
-        Profesor profesor;
+        return notaswrapper;
+       
+    }
+
+    @Override
+    public List<AnnioEscolar> consultarPeriodos() {
         
-        Lapso lapso;
+        List<AnnioEscolar> anniosescolares=new ArrayList<>();
         
-        Alumno alumno = alumnoservice.consultarAlumnoPorId(notas.get(0).getIdAlumno());
+        anniosescolares=annioescolarRepo.consultarPeriodosEscolares();
+        
+        return anniosescolares;
+    }
+
+    @Override
+    public List<Lapso> consultarLapsos() {
+       return lapsorepo.findAll();
+    }
+
+    @Override
+    public List<Notawrapper> consultarNotasPorCedulaYperiodo(String tipoDoc, String numDoc, String periodo) {
+        
+        List<NotaPar> notas = new ArrayList<>();
+        
+        notas = notasRepo.consultarNotasPorAlumnoPeriodo(tipoDoc, numDoc, periodo);
+        
+        List<Notawrapper> notaswrapper = new ArrayList<>();
+        
+        notaswrapper=obtenerNotas(notas);
+        
+        return notaswrapper;
+    }
+
+    @Override
+    public List<Notawrapper> consultarNotasPorCedulaPeriodoYlapso(String tipoDoc, String numDoc, String periodo, String lapso) {
+       
+         List<NotaPar> notas = new ArrayList<>();
+        
+        notas = notasRepo.consultarNotasPorAlumnoPeriodoLapso(tipoDoc, numDoc, periodo, lapso);
+        
+        List<Notawrapper> notaswrapper = new ArrayList<>();
+        
+        if(notas.size()>0){
+             notaswrapper=obtenerNotas(notas);
+        }
+        
+       
+        
+        return notaswrapper;
+        
+    }
+    
+    public  List<Notawrapper> obtenerNotas(List<NotaPar> notas){
+    
+        List<Notawrapper> notaswrapper = new ArrayList<>();
+        
+        alumno = alumnoservice.consultarAlumnoPorId(notas.get(0).getIdAlumno());
         
         for (NotaPar notaPar : notas) {
             
@@ -151,6 +202,8 @@ public class INotasServiceImpl implements INotasService {
             notawrapper.setSegApellAl(alumno.getSegApellAl());
             
             curso = cursoservice.consultarCursoPorId(notaPar.getIdCurso());
+            
+            periodoescolar=cursoservice.obtenerAnnioEscolarPorId(curso.getIdAnnio());
             
             notawrapper.setIdCurso(curso.getIdCurso());
             
@@ -206,6 +259,6 @@ public class INotasServiceImpl implements INotasService {
         }
         
         return notaswrapper;
-    }
     
+    }
 }

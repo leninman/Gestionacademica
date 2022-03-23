@@ -21,6 +21,23 @@ body {
     background-color: #cccccc;
     height: 600px;
 }
+#btncerrar{
+    height: 30px;
+     padding-top: 5px;
+     margin-right: 0px;
+     
+}
+
+.modal-header{
+    background-color: #cccccc;
+    height: 38px;
+    padding-top: 5px;
+     padding-bottom: 0px;
+ 
+    padding-right: 1px;
+     padding-left: 5px;
+    
+}
 
 
 
@@ -69,7 +86,7 @@ h5 {
 }
 
 #logoutButton{
-    border-radius: 100px;
+  border-radius: 100px;
   border: 1px solid #b5b5b5;
   background-color: #2441e6;
   font-style: normal;
@@ -81,7 +98,7 @@ h5 {
 
 .grid-container1 {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto auto;
 }
 
 #btnPersona {
@@ -94,7 +111,11 @@ h5 {
     margin: 0 auto;
 }
 
-#tipodoc {
+#rowdatosconsulta{
+    margin-left: auto;
+    margin-right: auto;
+}
+#tipodoc,#lapso {
     border-radius: 100px;
     border: 1px solid #b5b5b5;
     width: 50px;
@@ -210,3 +231,62 @@ h5 {
         text-align: left;
     }
 }*/
+
+
+.dropdown-toggle {
+    /*background-color: #b5b5b5;
+    color: white;
+    padding: 16px;
+    font-size: 14px;
+    border: none;*/
+
+   
+    font-size: 14px;
+    border: none;
+  
+    color: white;
+
+    background-color: inherit;
+    
+    margin: 0; /* Important for vertical align on mobile phones */
+    
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #7f87a3;
+    min-width: 160px;
+  
+  }
+
+ 
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+      background-color: #7f87a3;
+    }
+  
+  #opcionconsulta:hover .dropdown-content {
+      display: inline;  
+      background-color: #afb2bd;
+    }
+  
+  #opcionconsulta:hover .dropdown-toggle {
+      
+      background-color: #7f87a3;
+      display: inline;
+     
+   
+    }
