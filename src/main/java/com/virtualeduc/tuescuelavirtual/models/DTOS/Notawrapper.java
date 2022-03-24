@@ -41,40 +41,39 @@ public class Notawrapper implements Serializable {
     private String nivel;
 
     private String especialidad;
-    
-    private Long idMateria;
-    
-    private String codigoMat;
-    
-    private String nombreMat;
-    
-     private Long idPrf;
-     
-     private String tipoDocPrf;
-     
-     private String numDocPrf;
-     
-     private String primNombPrf;
-     
-     private String primApellPrf;
-     
-     private String segNombPrf;
-     
-     private String segApellPrf;
-     
-     private Long idLapso;
-     
-     private String periodo;
-     
-     private String lapsodescripcion;
-     
-     private Float nota;
 
-    
-     public Notawrapper(){
-     }
-     
-   
+    private Long idMateria;
+
+    private String codigoMat;
+
+    private String nombreMat;
+
+    private Long idPrf;
+
+    private String tipoDocPrf;
+
+    private String numDocPrf;
+
+    private String primNombPrf;
+
+    private String primApellPrf;
+
+    private String segNombPrf;
+
+    private String segApellPrf;
+
+    private Long idLapso;
+
+    private String periodo;
+
+    private String lapsodescripcion;
+
+    private Float nota;
+
+    private Float porcentaje;
+
+    public Notawrapper() {
+    }
 
     public Long getIdAl() {
         return idAl;
@@ -299,6 +298,15 @@ public class Notawrapper implements Serializable {
     public void setNota(Float nota) {
         this.nota = nota;
     }
+
+    public Float getPorcentaje() {
+        return porcentaje;
+    }
+
+    public void setPorcentaje(Float porcentaje) {
+        this.porcentaje = porcentaje;
+    }
     
     
+
 }

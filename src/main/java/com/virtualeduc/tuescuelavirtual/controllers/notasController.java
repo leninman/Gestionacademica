@@ -75,7 +75,10 @@ public class notasController {
     List<ViewCursosMateriasAsignada> cursosmateriasprof;
 
     Profesor profesor;
-
+    
+    private boolean cursoSinAlumnos;
+    
+   
     protected final Log logger = LogFactory.getLog(this.getClass());
 
     @GetMapping("/verCursos")
@@ -122,8 +125,18 @@ public class notasController {
             @RequestParam Long idCurso,
             Model model) {
 
+        
+        cursoSinAlumnos=true;
+         
         Responses resp = alumnoservice.consultarAlumnosPorCurso(idCurso);
+        
+       if(!resp.getListadeAlumnos().isEmpty()){
+           cursoSinAlumnos=false;
+       }
+        
+        List<Lapso> lapsosdisponibles = notaservice.consultarLapsosHabilitados(idMat, idCurso);
 
+        
         model.addAttribute("alumnos", resp.getListadeAlumnos());
 
         model.addAttribute("annio", annio);
@@ -139,10 +152,14 @@ public class notasController {
         model.addAttribute("idMat", idMat);
 
         model.addAttribute("idCurso", idCurso);
+        
+        model.addAttribute("lapsosdisponibles",lapsosdisponibles);
+        
+        model.addAttribute("cursoSinAlumnos",cursoSinAlumnos);
 
         // model.addAttribute("idLapso", idLapso);
         model.addAttribute("direccionbase", direccionbase);
-
+    
         return "notas/formulariocarga";
 
     }
@@ -184,7 +201,7 @@ public class notasController {
         return lapsos;
 
     }
-
+    
     @GetMapping(path = "/consultarNotas")
     //public String consultarNotas(Notasquery notasquery, Model model) {
     public String consultarNotas(Model model) {

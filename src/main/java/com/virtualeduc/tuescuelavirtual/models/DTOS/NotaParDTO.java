@@ -41,6 +41,8 @@ public class NotaParDTO implements Serializable {
     private String tipoDeCarga;
 
     private Float nota;
+    
+    private Float porcentaje;
 
     @Autowired
     static IAlumnoRepo alumnoRepo;
@@ -77,26 +79,7 @@ public class NotaParDTO implements Serializable {
 
         notaPar.setNota(notaParDTO.getNota());
 
-//        Alumno alumno = alumnoRepo.findById(notaParDTO.getIdAlumno()).orElse(null);
-//
-//        notaPar.setAlumno(alumno);
-//
-//        Curso curso = cursoRepo.findById(notaParDTO.getIdCurso()).orElse(null);
-//
-//        notaPar.setCurso(curso);
-//
-//        Lapso lapso = lapsoRepo.findById(notaParDTO.getIdLapso()).orElse(null);
-//
-//        notaPar.setLapso(lapso);
-//
-//        Materia materia = materiaRepo.findById(notaParDTO.getIdMat()).orElse(null);
-//
-//        notaPar.setMateria(materia);
-//
-//        Profesor profesor = profesorRepo.findById(notaParDTO.getIdPrf()).orElse(null);
-//
-//        notaPar.setProfesor(profesor);
-        return notaPar;
+      return notaPar;
 
     }
 
@@ -173,60 +156,13 @@ public class NotaParDTO implements Serializable {
     public void setNota(Float nota) {
         this.nota = nota;
     }
+    
+    
+    public Float getPorcentaje() {
+        return porcentaje;
+    }
 
-
-    /*public NotasPar toNotasPar(NotasParDTO notasParDTO) {
-
-        NotasPar notasPar = new NotasPar();
-
-        notasPar.setIdAlumno(notasParDTO.getIdAlumno());
-
-        notasPar.setIdCurso(notasParDTO.getIdCurso());
-
-        notasPar.setIdLapso(notasParDTO.getIdLapso());
-
-        notasPar.setIdMat(notasParDTO.getIdMat());
-
-        notasPar.setIdPrf(notasParDTO.getIdPrf());
-
-        return notasPar;
-    }*/
-//    public static NotasParDTO fromNotasPar(NotasPar notasPar) {
-//
-//        /*NotasParDTO notasParDTO = new NotasParDTO();
-//        
-//        notasParDTO.setIdAlumno(notasPar.getIdAlumno());
-//
-//        notasParDTO.setIdCurso(notasPar.getIdCurso());
-//
-//        notasParDTO.setIdLapso(notasPar.getIdLapso());
-//
-//        notasParDTO.setIdMat(notasPar.getIdMat());
-//
-//        notasParDTO.setIdPrf(notasPar.getIdPrf());
-//        
-//        return notasParDTO;*/
-//        ModelMapper modelMapper = new ModelMapper();
-//
-//        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-//
-//        return modelMapper.map(notasPar, NotasParDTO.class);
-//
-//    }
-//    public static NotasPar fromNotasParDTO(NotasParDTO notasParDTO) {
-//
-//        ModelMapper modelMapper = new ModelMapper();
-//
-//        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-//
-//        return modelMapper.map(notasParDTO, NotasPar.class);
-//    }
-//    public NotasPar toNotasPar() {
-//
-//        ModelMapper modelMapper = new ModelMapper();
-//
-//        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-//
-//        return modelMapper.map(this, NotasPar.class);
-//    }
+    public void setPorcentaje(Float porcentaje) {
+        this.porcentaje = porcentaje;
+    }
 }

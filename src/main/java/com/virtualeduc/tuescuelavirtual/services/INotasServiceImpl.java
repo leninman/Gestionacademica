@@ -20,6 +20,7 @@ import com.virtualeduc.tuescuelavirtual.repo.IMateriaRepo;
 import com.virtualeduc.tuescuelavirtual.repo.INotasParRepo;
 import com.virtualeduc.tuescuelavirtual.repo.IProfesorRepo;
 import com.virtualeduc.tuescuelavirtual.utils.Constantes;
+import com.virtualeduc.tuescuelavirtual.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,6 +88,8 @@ public class INotasServiceImpl implements INotasService {
  
         for (NotaParDTO notaParDTO : notasParDTO) {
             
+            
+            
             NotaParDTO notaGuardada = guardarNotaParcial(NotaParDTO.toNotaPar(notaParDTO));
             
             notasGuardadas.add(notaGuardada);
@@ -105,6 +108,14 @@ public class INotasServiceImpl implements INotasService {
     
     @Override
     public NotaParDTO guardarNotaParcial(NotaPar notaPar) {
+        
+        lapso = lapsorepo.getById(notaPar.getIdLapso());
+        
+        Float rate=lapso.getPorcentaje();
+        
+        Float porcentaje=Utils.calcularPorcentajeNota(notaPar.getNota(), rate);
+        
+        notaPar.setPorcentaje(porcentaje);
         
         NotaPar nota = notasRepo.save(notaPar);
         
@@ -167,7 +178,7 @@ public class INotasServiceImpl implements INotasService {
         
         List<Notawrapper> notaswrapper = new ArrayList<>();
         
-        if(notas.size()>0){
+        if(!notas.isEmpty()){
              notaswrapper=obtenerNotas(notas);
         }
         
@@ -254,6 +265,8 @@ public class INotasServiceImpl implements INotasService {
             
             notawrapper.setNota(notaPar.getNota());
             
+            notawrapper.setPorcentaje(notaPar.getPorcentaje());
+            
             notaswrapper.add(notawrapper);
             
         }
@@ -261,4 +274,14 @@ public class INotasServiceImpl implements INotasService {
         return notaswrapper;
     
     }
+
+    @Override
+    public List<Lapso> consultarLapsosHabilitados(Long idMat,Long idCurso) {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+          return lapsorepo.consultarLapsosDisponibles(idMat, idCurso);
+    }
+    
+  
 }
+
+

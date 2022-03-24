@@ -95,6 +95,8 @@
                         <th>Seccion</th>
                         <th>Asignatura</th>
                         <th></th>
+                        <th></th>
+
 
                     </tr>
                 </thead>
@@ -105,6 +107,10 @@
                         <td th:text="${cursomateriamateriaprof.annio}"></td>
                         <td th:text="${cursomateriamateriaprof.seccion}"></td>
                         <td th:text="${cursomateriamateriaprof.materia}"></td>
+                        <td>
+                            <a type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Ver"
+                              id="btnVer" href="#"><i class="bi bi-eye"></i></a>
+                          </td>
                         <td>
                             <a type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
                                 title="Cargar calificaciones" id="btnCargarCalificaciones" 

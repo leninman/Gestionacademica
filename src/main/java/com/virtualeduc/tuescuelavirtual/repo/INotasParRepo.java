@@ -19,7 +19,7 @@ public interface INotasParRepo extends JpaRepository<NotaPar,Long> {
 //}
     
     @Query(value="SELECT "
-                + "a.ID_NOTA_PAR,a.ID_ALUMNO,a.ID_MAT,a.ID_CURSO,a.ID_PRF,a.ID_LAPSO,a.NOTA "
+                + "a.ID_NOTA_PAR,a.ID_ALUMNO,a.ID_MAT,a.ID_CURSO,a.ID_PRF,a.ID_LAPSO,a.NOTA,a.PORCENTAJE "
 	 	+ "from notas_par a "
                 + "LEFT JOIN alumnos b ON a.ID_ALUMNO =b.ID_AL "
                 + "WHERE b.TIPO_DOC_AL=?1 AND b.NUM_DOC_AL=?2"
@@ -27,7 +27,7 @@ public interface INotasParRepo extends JpaRepository<NotaPar,Long> {
 	 public List<NotaPar> consultarNotasPorAlumno(String tipoDocAl,String numDocAl);
 
     @Query(value="SELECT "
-                + "a.ID_NOTA_PAR,a.ID_ALUMNO,a.ID_MAT,a.ID_CURSO,a.ID_PRF,a.ID_LAPSO,a.NOTA,d.INT_ANNIO_ESC "
+                + "a.ID_NOTA_PAR,a.ID_ALUMNO,a.ID_MAT,a.ID_CURSO,a.ID_PRF,a.ID_LAPSO,a.NOTA,a.PORCENTAJE,d.INT_ANNIO_ESC "
 	 	+ "from notas_par a "
                 + "LEFT JOIN alumnos b ON a.ID_ALUMNO =b.ID_AL "
                 + "left join cursos c on b.ID_CURSO =c.ID_CURSO "
@@ -39,7 +39,7 @@ public interface INotasParRepo extends JpaRepository<NotaPar,Long> {
 
 
     @Query(value="SELECT "
-                + "a.ID_NOTA_PAR,a.ID_ALUMNO,a.ID_MAT,a.ID_CURSO,a.ID_PRF,a.ID_LAPSO,a.NOTA,d.INT_ANNIO_ESC "
+                + "a.ID_NOTA_PAR,a.ID_ALUMNO,a.ID_MAT,a.ID_CURSO,a.ID_PRF,a.ID_LAPSO,a.NOTA,a.PORCENTAJE,d.INT_ANNIO_ESC "
 	 	+ "from notas_par a "
                 + "LEFT JOIN alumnos b ON a.ID_ALUMNO =b.ID_AL "
                 + "left join cursos c on b.ID_CURSO =c.ID_CURSO "

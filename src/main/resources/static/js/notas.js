@@ -226,8 +226,12 @@ $("#Guardar").click(function () {
     type: "POST",
     contentType: "application/x-www-form-urlencoded",
     success: function (json) {
-      alert("LAS NOTAS HAN SIDO GUARDADAS CORRECTAMENTE");
-      window.location.href = direccionbase + "/listarcursos";
+      
+      $('#modalnotascargadas').modal({backdrop: 'static', keyboard: false});
+      $("#modalnotascargadas").modal('show');
+      $("#parrafomodalnotascargadas").html("LAS NOTAS HAN SIDO REGISTRADAS CORRECTAMENTE EN EL SISTEMA");
+     
+      
     }
   })
     .done(function () {
@@ -237,12 +241,12 @@ $("#Guardar").click(function () {
     });
 });
 
+$("#btnNotasCargadas").click(function () {
+  window.location.href = direccionbase + "/verCursos";
+});
+
 
 $("#consultarnotas").click(function () {
-
-
-
-
   direccionbase = $("#direccionbase").val();
   url = direccionbase + "/obtenerNotas";
   let cedulaidentidad = $("input:text[name=ciAlumno]").val();
@@ -299,7 +303,7 @@ $("#consultarnotas").click(function () {
         console.log(data);
         $.each(data, function (index, value) {
           /* Vamos agregando a nuestra tabla las filas necesarias */
-          $("#contenido").append("<tr><td>" + value.annio + "</td><td>" + value.nombreMat + "</td><td>" + value.nota + "</td></tr>");
+          $("#contenido").append("<tr><td>" + value.annio + "</td><td>" + value.nombreMat + "</td><td>" + value.nota + "</td><td>" + value.porcentaje + "</td></tr>");
         });
         $('#tablenotascontainer').show();
       }

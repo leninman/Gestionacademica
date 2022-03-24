@@ -269,7 +269,7 @@ public class coreController {
 
             notasresultado = notaservice.consultarNotasPorCedulaPeriodoYlapso(tipoDoc, numDoc, periodo, lapso);
 
-            if (notasresultado.size()>0) {
+            if (!notasresultado.isEmpty()) {
                 response.setNotasWrapper(notasresultado);
                 response.setResponseCode(Constantes.CONSULTA_EXITOSA_DE_NOTAS);
                 response.setResponseDescription(Constantes.CONSULTA_EXITOSA_DE_NOTAS_DESC);

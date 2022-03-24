@@ -24,6 +24,8 @@ public interface INotasService {
         
         public List<Lapso>  consultarLapsos();
         
+        public List<Lapso>  consultarLapsosHabilitados(Long idMat,Long idCurso);
+        
         
         
 

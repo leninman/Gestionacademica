@@ -53,6 +53,8 @@ public class NotaPar implements Serializable {
 //    private Profesor profesor;
 
     private Float nota;
+    
+    private Float porcentaje;
 
     public NotaPar() {
     }
@@ -144,6 +146,16 @@ public class NotaPar implements Serializable {
     public void setNota(Float nota) {
         this.nota = nota;
     }
+
+    public Float getPorcentaje() {
+        return porcentaje;
+    }
+
+    public void setPorcentaje(Float porcentaje) {
+        this.porcentaje = porcentaje;
+    }
+    
+    
 
     public static long getSerialversionuid() {
         return serialVersionUID;

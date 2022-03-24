@@ -34,6 +34,8 @@ public class Lapso implements Serializable {
     
     private String descripcion;
     
+    private Float porcentaje;
+    
     public Long getIdLapso() {
         return idLapso;
     }
@@ -57,6 +59,16 @@ public class Lapso implements Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public Float getPorcentaje() {
+        return porcentaje;
+    }
+
+    public void setPorcentaje(Float porcentaje) {
+        this.porcentaje = porcentaje;
+    }
+    
+    
 
     
     
