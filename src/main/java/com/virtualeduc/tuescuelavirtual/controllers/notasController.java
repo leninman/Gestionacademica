@@ -4,14 +4,13 @@ import com.virtualeduc.tuescuelavirtual.models.Alumno;
 import com.virtualeduc.tuescuelavirtual.models.Annio;
 import com.virtualeduc.tuescuelavirtual.models.AnnioEscolar;
 import com.virtualeduc.tuescuelavirtual.models.Curso;
-import com.virtualeduc.tuescuelavirtual.models.CursoProf;
+
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.Notawrapper;
+
+import com.virtualeduc.tuescuelavirtual.models.DTOS.Notawrapperporlapso;
 import com.virtualeduc.tuescuelavirtual.models.Lapso;
-import com.virtualeduc.tuescuelavirtual.models.NotaPar;
-import com.virtualeduc.tuescuelavirtual.models.Notasquery;
+
 import com.virtualeduc.tuescuelavirtual.models.Profesor;
 import com.virtualeduc.tuescuelavirtual.models.Responses;
 import com.virtualeduc.tuescuelavirtual.models.Seccion;
@@ -37,15 +36,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 
@@ -75,10 +67,9 @@ public class notasController {
     List<ViewCursosMateriasAsignada> cursosmateriasprof;
 
     Profesor profesor;
-    
+
     private boolean cursoSinAlumnos;
-    
-   
+
     protected final Log logger = LogFactory.getLog(this.getClass());
 
     @GetMapping("/verCursos")
@@ -125,18 +116,16 @@ public class notasController {
             @RequestParam Long idCurso,
             Model model) {
 
-        
-        cursoSinAlumnos=true;
-         
+        cursoSinAlumnos = true;
+
         Responses resp = alumnoservice.consultarAlumnosPorCurso(idCurso);
-        
-       if(!resp.getListadeAlumnos().isEmpty()){
-           cursoSinAlumnos=false;
-       }
-        
+
+        if (!resp.getListadeAlumnos().isEmpty()) {
+            cursoSinAlumnos = false;
+        }
+
         List<Lapso> lapsosdisponibles = notaservice.consultarLapsosHabilitados(idMat, idCurso);
 
-        
         model.addAttribute("alumnos", resp.getListadeAlumnos());
 
         model.addAttribute("annio", annio);
@@ -152,14 +141,14 @@ public class notasController {
         model.addAttribute("idMat", idMat);
 
         model.addAttribute("idCurso", idCurso);
-        
-        model.addAttribute("lapsosdisponibles",lapsosdisponibles);
-        
-        model.addAttribute("cursoSinAlumnos",cursoSinAlumnos);
+
+        model.addAttribute("lapsosdisponibles", lapsosdisponibles);
+
+        model.addAttribute("cursoSinAlumnos", cursoSinAlumnos);
 
         // model.addAttribute("idLapso", idLapso);
         model.addAttribute("direccionbase", direccionbase);
-    
+
         return "notas/formulariocarga";
 
     }
@@ -201,7 +190,7 @@ public class notasController {
         return lapsos;
 
     }
-    
+
     @GetMapping(path = "/consultarNotas")
     //public String consultarNotas(Notasquery notasquery, Model model) {
     public String consultarNotas(Model model) {
@@ -267,5 +256,42 @@ public class notasController {
         return "notas/consultarNotas";
 
     }
+
+    @GetMapping(path = "/consultarNotasDocente")
+    public String consultarNotasDocente(
+            @RequestParam String annio,
+            @RequestParam String seccion,
+            @RequestParam String materia,
+            @RequestParam Long idPrf,
+            @RequestParam Long idMat,
+            @RequestParam Long idCurso,
+            Model model) {
+        
+         cursoSinAlumnos = true;
+         
+         Responses resp = alumnoservice.consultarAlumnosPorCurso(idCurso);
+         
+         if (!resp.getListadeAlumnos().isEmpty()) {
+            cursoSinAlumnos = false;
+        }
+         
+         List<AlumnoDTO> alumnos=resp.getListadeAlumnos();
+         
+         List<Notawrapperporlapso> listadodenotas=notaservice.consultarNotasPorCursoMateria(alumnos, idMat, idCurso);
+         
+         model.addAttribute("listadodenotas",listadodenotas);
+         
+         model.addAttribute("cursoSinAlumnos",cursoSinAlumnos);
+
+         model.addAttribute("annio",annio);
+
+         model.addAttribute("seccion",seccion);
+
+         model.addAttribute("materia",materia);
+         
+        return "notas/consultaDeNotasDocentes";
+    }
+
+
 
 }

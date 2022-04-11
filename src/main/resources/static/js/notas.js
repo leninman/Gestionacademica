@@ -90,6 +90,22 @@ $('#tipoConsulta').click(function () {
 
 });
 
+$(".btn").click(function() {
+  
+  let fila=$(this).closest("tr");
+  
+  let nombreAlumno=fila.find("#nombreAlumno").html();
+  let nota1=fila.find("#notalapso1").html();
+  let nota2=fila.find("#notalapso2").html();
+  let nota3=fila.find("#notalapso3").html();
+  $("#nombrelAumno").val(nombreAlumno);
+  $("#notaprimerlapso").val(nota1);
+  $("#notasegundolapso").val(nota2);
+  $("#notatercerlapso").val(nota3);
+  $("#modaldetallenotasalumno").modal("show");
+
+});
+
 
 
 

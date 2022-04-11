@@ -3,10 +3,12 @@ package com.virtualeduc.tuescuelavirtual.services;
 import com.virtualeduc.tuescuelavirtual.models.Alumno;
 import com.virtualeduc.tuescuelavirtual.models.AnnioEscolar;
 import com.virtualeduc.tuescuelavirtual.models.Curso;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.MateriaDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.NotaParDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.Notawrapper;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.Notawrapperporlapso;
 import com.virtualeduc.tuescuelavirtual.models.Lapso;
 import com.virtualeduc.tuescuelavirtual.models.Materia;
 import com.virtualeduc.tuescuelavirtual.models.NotaPar;
@@ -279,6 +281,52 @@ public class INotasServiceImpl implements INotasService {
     public List<Lapso> consultarLapsosHabilitados(Long idMat,Long idCurso) {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
           return lapsorepo.consultarLapsosDisponibles(idMat, idCurso);
+    }
+
+    @Override
+    public List<Notawrapperporlapso> consultarNotasPorCursoMateria(List<AlumnoDTO> alumnos,Long idMat, Long idCurso) {
+      //  throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+//        List<NotaPar> notasDelCurso=new ArrayList<>();
+        
+        List<Notawrapperporlapso> notasporlapso=new ArrayList<>();
+        
+        for(AlumnoDTO alumnodto:alumnos){
+            
+            List<NotaPar> notasDelAlumno=this.notasRepo.consultarNotasPorCursoMateriaYAlumno(idCurso, idMat,alumnodto.getIdAl());
+             
+            Notawrapperporlapso Alumnoconnotas=new Notawrapperporlapso();
+             
+            Alumno alumno=new Alumno(alumnodto);
+            
+            Alumnoconnotas.setAlumno(alumno);
+             
+            for(NotaPar notaAlumno:notasDelAlumno){
+                
+                 if(notaAlumno.getIdLapso()==1){
+                     Alumnoconnotas.setNotalapso1(notaAlumno.getNota());
+                     Alumnoconnotas.setPorcentajenotalapso1(notaAlumno.getPorcentaje());
+                 }
+                 if(notaAlumno.getIdLapso()==2){
+                     Alumnoconnotas.setNotalapso2(notaAlumno.getNota());
+                     Alumnoconnotas.setPorcentajenotalapso2(notaAlumno.getPorcentaje());
+                 }
+                 
+                 if(notaAlumno.getIdLapso()==3){
+                     Alumnoconnotas.setNotalapso3(notaAlumno.getNota());
+                     Alumnoconnotas.setPorcentajenotalapso3(notaAlumno.getPorcentaje());
+                 }
+                
+             }
+             notasporlapso.add(Alumnoconnotas);
+            
+        }
+        
+      
+       return notasporlapso;
+    
+
+    
     }
     
   

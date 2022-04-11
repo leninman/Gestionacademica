@@ -5,11 +5,25 @@ input{
 #tablenotas{
     text-transform:uppercase;  
 }
+
 #tablenotas th {
     background-color: #cccccc;
     color: black;
     font-size: small;
     text-align: center;
+}
+#tablenotascurso th {
+	background-color: #cccccc;
+	color: black;
+	font-size: small;
+	text-align: center;
+}
+
+#tablenotascurso>tbody>tr>td {
+	vertical-align: middle;
+	text-align: center;
+	font-size: small;
+	text-transform:uppercase;
 }
 
 #consultarnotas {
@@ -241,6 +255,16 @@ input{
   
 }
 
+#grid-container-consultanotas {
+    display:grid;
+    grid-template-columns: auto auto;
+  
+}
+
+#nombreAlumno{
+    border: none;
+}
+
 .grid-container1 {
     display:inline-block;
     grid-template-columns: auto auto auto auto auto auto auto auto;
@@ -408,7 +432,7 @@ label{
     font-size: small;
 }
 
-#seccion {
+#seccion,#notaprimerlapso,#notasegundolapso,#notatercerlapso {
     border-radius: 100px;
     border: 1px solid #b5b5b5;
     background-color: #cccccc;

@@ -5,20 +5,12 @@
  */
 package com.virtualeduc.tuescuelavirtual.controllers;
 
-import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoCursoDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.PersonaDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.ProfesorDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.RepresentanteDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.*;
 import com.virtualeduc.tuescuelavirtual.models.Alumno;
 import com.virtualeduc.tuescuelavirtual.models.Annio;
 import com.virtualeduc.tuescuelavirtual.models.Curso;
 
 import com.virtualeduc.tuescuelavirtual.models.CursoProf;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.NotaParDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.Notawrapper;
 import com.virtualeduc.tuescuelavirtual.models.NotaPar;
 import com.virtualeduc.tuescuelavirtual.models.Profesion;
 import com.virtualeduc.tuescuelavirtual.models.Profesor;
@@ -289,5 +281,20 @@ public class coreController {
 
         return notasresultado;
 
+    }
+    @CrossOrigin(origins = {"direccionbase/actualizarNota"})
+    @PostMapping(path = "/actualizarNota")
+    public Responses actualizarNota(@RequestParam(name="idAlumno") Long idAlumno,
+                                    @RequestParam(name="idMateria") Long idMateria,
+                                    @RequestParam(name="periodoEscolar") String periodoEscolar,
+                                    @RequestParam(name="notaLapso1") Float notaLapso1,
+                                    @RequestParam(name="notaLapso2") Float notaLapso2,
+                                    @RequestParam(name="notaLapso3") Float notaLapso3){
+        Responses resp=new Responses();
+
+
+
+
+        return resp;
     }
 }
