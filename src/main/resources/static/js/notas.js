@@ -90,18 +90,37 @@ $('#tipoConsulta').click(function () {
 
 });
 
+
+
+
+$('#botonEditarNota1').click(function name() {
+  $('#notaprimerlapso').prop('readonly',false);
+  $('#notaprimerlapso').focus();
+});
+
+$('#botonEditarNota2').click(function name() {
+  $('#notasegundolapso').prop('readonly',false);
+});
+
+$('#botonEditarNota3').click(function name() {
+  $('#notatercerlapso').prop('readonly',false);
+});
+
 $(".btn").click(function() {
   
   let fila=$(this).closest("tr");
   
   let nombreAlumno=fila.find("#nombreAlumno").html();
+  let cedulaAlumno=fila.find("#cedulaAlumno").html();
   let nota1=fila.find("#notalapso1").html();
   let nota2=fila.find("#notalapso2").html();
   let nota3=fila.find("#notalapso3").html();
-  $("#nombrelAumno").val(nombreAlumno);
+  $("#nomAlumno").val(nombreAlumno);
+  $("#cedAlumno").val(cedulaAlumno);
   $("#notaprimerlapso").val(nota1);
   $("#notasegundolapso").val(nota2);
   $("#notatercerlapso").val(nota3);
+  $('#modaldetallenotasalumno').modal({ backdrop: 'static', keyboard: false });
   $("#modaldetallenotasalumno").modal("show");
 
 });

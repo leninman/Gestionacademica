@@ -107,65 +107,89 @@
                     <form>
                         <div class="row">
                             <div class="col-md-2">
-                                <label>Alumno&nbsp;</label>
+                                <label>Alumno:&nbsp;</label>
                             </div>
                             <div class="col-md-4">
-                                <input type="text" name="nombreAlumno" id="nombreAlumno" />
+                                <input readonly type="text" name="nombreAlumno" id="nomAlumno" />
+                            </div>
+
+                        </div>
+                 
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Cédula:&nbsp;</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input readonly type="text" name="cedulaAlumno" id="cedAlumno" />
                             </div>
 
                         </div>
                         <br>
                         <br>
-                        <div id="grid-container-consultanotas">
-                            <div class="grid-item">
-                                <label>Primer momento&nbsp;</label>
-                            </div>
-                            <div class="grid-item">
-                                <input type="text" name="notaprimerlapso" id="notaprimerlapso" />
-                            </div>
-                            <div class="grid-item">
-                                <label></label>
-                            </div>
-                            <div class="grid-item">
-                                <label></label>
-                            </div>
+                        
+                        
 
-                            <div class="grid-item">
-                                <label>Segundo momento&nbsp;</label>
-                            </div>
-                            <div class="grid-item">
-                                <input type="text" name="notasegundolapso" id="notasegundolapso" />
-                            </div>
-                            <div class="grid-item">
-                                <label></label>
-                            </div>
-                            <div class="grid-item">
-                                <label></label>
-                            </div>
+                        <div class="row" style="margin-left: 70px;margin-right: auto;">
+                        <table id="tableModificarNotas">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th style="width: 60px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label>1er momento&nbsp;</label>
+                                    </td>
+                                    <td>
+                                        <input readonly type="text" name="notaprimerlapso" id="notaprimerlapso" />
+                                    </td>
+                                    <td style="width: 60px;">
+                                       <!-- <a type="button" class="btnEdicionDeNotas" data-toggle="tooltip"
+                                            data-placement="top" title="Editar" id="botonEditarNota1">-->
+                                            <span class="boton" id="botonEditarNota1">Editar</span>
 
-                            <div class="grid-item">
-
-                                <label>Tercer momento&nbsp;</label>
-                            </div>
-                            <div class="grid-item">
-                                <input type="text" name="notatercerlapso" id="notatercerlapso" />
-                            </div>
-                            <div class="grid-item">
-                                <label></label>
-                            </div>
-                            <div class="grid-item">
-                                <label></label>
-                            </div>
-                            <div class="grid-item">
-                                <label></label>
-                            </div>
-                            <div class="grid-item">
-                                <label></label>
-                            </div>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>2º momento&nbsp;</label>
+                                    </td>
+                                    <td>
+                                        <input readonly type="text" name="notasegundolapso" id="notasegundolapso" />
+                                    </td>
+                                    <td style="width: 60px;">
+                                        <a type="button" class="btnEdicionDeNotas" data-toggle="tooltip"
+                                            data-placement="top" title="Editar" id="botonEditarNota2">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>3er momento&nbsp;</label>
+                                    </td>
+                                    <td>
+                                        <input readonly type="text" name="notatercerlapso" id="notatercerlapso" />
+                                    </td>
+                                    <td style="width: 60px;">
+                                        <a type="button" class="btnEdicionDeNotas" data-toggle="tooltip" data-placement="top"
+                                        title="Editar" id="botonEditarNota3">
+                                        <i class="bi bi-pencil-fill"></i>
+                                    </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                         </div>
+                        <br>
+                        <br>
+                        <br>
                         <div class="form-group col-12 text-center mb-3">
-                            <input type="submit" class="btn button btn-primary"
-                                value="Guardar">
+                            <input type="submit" class="btn button btn-primary" value="Guardar">
                         </div>
                     </form>
 
@@ -176,7 +200,7 @@
 
 
             </div>
-            
+
         </div>
     </div>
     </div>
