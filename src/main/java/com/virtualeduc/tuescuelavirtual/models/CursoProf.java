@@ -12,9 +12,8 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="`cursos_prof`")
-@NamedQuery(name="Cursos_prof.findAll", query="SELECT m FROM Cursos_prof m")
-public class Cursos_prof implements Serializable {
+@Table(name="cursos_prof")
+public class CursoProf implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -35,11 +34,11 @@ public class Cursos_prof implements Serializable {
 	
 	
 
-	public Cursos_prof() {
+	public CursoProf() {
 	}
 
 	
-	public Cursos_prof(Long idCursoProf, Long idCurso, Long idMat, Long idProf) {
+	public CursoProf(Long idCursoProf, Long idCurso, Long idMat, Long idProf) {
 		super();
 		this.idCursoProf = idCursoProf;
 		this.idCurso = idCurso;

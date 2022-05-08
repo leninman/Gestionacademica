@@ -12,8 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="notas_def")
-@NamedQuery(name="NotasDef.findAll", query="SELECT n FROM NotasDef n")
-public class NotasDef implements Serializable {
+public class NotaDef implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -34,7 +33,7 @@ public class NotasDef implements Serializable {
 
 	private String nota;
 
-	public NotasDef() {
+	public NotaDef() {
 	}
 
 	public Long getIdNota() {

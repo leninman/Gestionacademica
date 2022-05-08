@@ -54,8 +54,14 @@ public class Utils {
 		 * concat(authority.getAuthority())); return true; }
 		 * 
 		 * } return false;
-		 */
+		 */ 
 	}
+        
+        public static Float calcularPorcentajeNota(Float nota,Float rate){
+        
+           return nota*rate/100;
+        
+        }
 
 
 }

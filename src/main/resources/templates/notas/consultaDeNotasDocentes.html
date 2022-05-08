@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+
+    <link rel="stylesheet" type="text/css" href="/css/estilosNotas.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<header></header>
+
+<body>
+    <th:block th:replace="partes/header :: header" />
+    <th:block th:replace="partes/menu :: menuSuperior" />
+
+    <div class="card">
+        <div class="card-header">
+        </div>
+        <div class="card-body">
+            <input readonly type="hidden" class="input-nombre-apellido" id="idMat" th:value="${idMat}" />
+            <input readonly type="hidden" class="input-nombre-apellido" id="idPrf" th:value="${idPrf}" />
+            <input readonly type="hidden" class="input-nombre-apellido" id="idCurso" th:value="${idCurso}" />
+            <br>
+            <input type="hidden" id="direccionbase" name="direccionbase" th:value="${direccionbase}" />
+            <div class="row" id="containeretqtitulo">
+                <div class="col-md-10">
+                </div>
+                <div class="col-md-2">
+                    <b><label for="annioescolar" class="col-form-label">P.E:</label></b>
+                    <input type="text" id="annioescolar" th:value="${periodoEscolar}" />
+                </div>
+            </div>
+            <br><!-- comment -->
+            <br><!-- comment -->
+            <div class="row">
+                <div class="col-md-2">
+                    <label>Año:&nbsp;</label>
+                    <input readonly type="text" id="annio" th:value="${annio}" />
+                </div>
+                <div class="col-md-2">
+                    <label>Sección:&nbsp;</label>
+                    <input readonly type="text" id="seccion" th:value="${seccion}" />
+                </div>
+                <div class="col-md-3">
+                    <label>Asignatura:&nbsp;</label>
+                    <input readonly type="text" id="materia" th:value="${materia}" />
+                </div>
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-3">
+                </div>
+            </div>
+            <br>
+            <br>
+            <table id="tablenotascurso" th:if="${!cursoSinAlumnos}" class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Cédula del Alumno</th>
+                        <th>Nombre y apellido</th>
+                        <th>1º Momento</th>
+                        <th>%</th>
+                        <th>2º Momento</th>
+                        <th>%</th>
+                        <th>3º Momento</th>
+                        <th>%</th>
+                        <th>Detalle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="nota:${listadodenotas}">
+                        <td th:text="${nota.alumno.tipoDocAl}+${nota.alumno.numDocAl}" id="cedulaAlumno"
+                            class="cedulaAlumno"></td>
+                        <td th:text="${nota.alumno.primNombAl}+' '+${nota.alumno.primApellAl}" id="nombreAlumno"
+                            class="nombreAlumno"></td>
+                        <td th:text="${nota.notalapso1}" id="notalapso1"></td>
+                        <td th:text="${nota.porcentajenotalapso1}" id="porcentajenotalapso1"></td>
+                        <td th:text="${nota.notalapso2}" id="notalapso2"></td>
+                        <td th:text="${nota.porcentajenotalapso2}" id="porcentajenotalapso2"></td>
+                        <td th:text="${nota.notalapso3}" id="notalapso3"></td>
+                        <td th:text="${nota.porcentajenotalapso3}" id="porcentajenotalapso3"></td>
+                        <td>
+                            <a type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
+                                title="Ver" id="btnVerNotas" href="#"><i class="bi bi-eye"></i></a>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="modaldetallenotasalumno">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h7 class="modal-title">Modificación de notas</h7>
+                </div>
+                <div class="modal-body" id="detallenotas">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Alumno:&nbsp;</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input readonly type="text" name="nombreAlumno" id="nomAlumno" />
+                            </div>
+
+                        </div>
+                 
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Cédula:&nbsp;</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input readonly type="text" name="cedulaAlumno" id="cedAlumno" />
+                            </div>
+
+                        </div>
+                        <br>
+                        <br>
+                        
+                        
+
+                        <div class="row" style="margin-left: 70px;margin-right: auto;">
+                        <table id="tableModificarNotas">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th style="width: 60px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label>1er momento&nbsp;</label>
+                                    </td>
+                                    <td>
+                                        <input readonly type="text" name="notaprimerlapso" id="notaprimerlapso" />
+                                    </td>
+                                    <td style="width: 60px;">
+                                       <!-- <a type="button" class="btnEdicionDeNotas" data-toggle="tooltip"
+                                            data-placement="top" title="Editar" id="botonEditarNota1">-->
+                                            <span class="boton" id="botonEditarNota1">Editar</span>
+
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>2º momento&nbsp;</label>
+                                    </td>
+                                    <td>
+                                        <input readonly type="text" name="notasegundolapso" id="notasegundolapso" />
+                                    </td>
+                                    <td style="width: 60px;">
+                                        <a type="button" class="btnEdicionDeNotas" data-toggle="tooltip"
+                                            data-placement="top" title="Editar" id="botonEditarNota2">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>3er momento&nbsp;</label>
+                                    </td>
+                                    <td>
+                                        <input readonly type="text" name="notatercerlapso" id="notatercerlapso" />
+                                    </td>
+                                    <td style="width: 60px;">
+                                        <a type="button" class="btnEdicionDeNotas" data-toggle="tooltip" data-placement="top"
+                                        title="Editar" id="botonEditarNota3">
+                                        <i class="bi bi-pencil-fill"></i>
+                                    </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="form-group col-12 text-center mb-3">
+                            <input type="submit" class="btn button btn-primary" value="Guardar">
+                        </div>
+                    </form>
+
+                </div>
+
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+    <th:block th:replace="partes/footer :: footer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="/js/notas.js"></script>
+
+</body>

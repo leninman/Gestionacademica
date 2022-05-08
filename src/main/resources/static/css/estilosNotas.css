@@ -1,15 +1,40 @@
 input{
     text-transform:uppercase;
+    font-size: small;
 }
 #tablenotas{
-    text-transform:uppercase;
+    text-transform:uppercase;  
 }
+
 #tablenotas th {
     background-color: #cccccc;
     color: black;
     font-size: small;
     text-align: center;
 }
+#tablenotascurso th {
+	background-color: #cccccc;
+	color: black;
+	font-size: small;
+	text-align: center;
+}
+
+#tablenotascurso>tbody>tr>td {
+	vertical-align: middle;
+	text-align: center;
+	font-size: small;
+	text-transform:uppercase;
+}
+
+#consultarnotas {
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    background-color: #2441e6;
+    font-style: normal;
+    color: white;
+    width: 120px;
+    margin: 0 auto;
+  }
 
 .txtnota{
     border-radius: 100px;
@@ -40,7 +65,13 @@ input{
     margin-left: 0px;
     margin-right: 0px;
 }
-
+.titulos{
+    font-weight: bold;
+    font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
+    font-size: large;
+    color: black;
+    font-size: 20px;
+  }
 
 
 #containerTitulo{
@@ -218,12 +249,63 @@ input{
     margin-right: 0px;
 }
 
-.grid-container0,.grid-container1 {
-    display: grid;
+.grid-container0 {
+    display:grid;
     grid-template-columns: auto auto auto auto auto auto auto auto;
   
 }
 
+#grid-container-consultanotas {
+    display:grid;
+    grid-template-columns: auto auto auto;
+  
+}
+
+#nomAlumno{
+    border: none;
+}
+
+#cedAlumno{
+    border: none;
+}
+
+.grid-container1 {
+    display:inline-block;
+    grid-template-columns: auto auto auto auto auto auto auto auto;
+  
+}
+
+.btnEdicionDeNotas{
+    background-color: blue;
+    width: 35px;
+
+    
+   
+}
+.btnEdicionDeNotas:hover{
+    background-color: white;
+    width: 35px;
+    
+   
+}
+
+#tableModificarNotas{
+
+text-align: center;
+}
+
+
+#tableModificarNotas>thead>tr>th{
+width: 110px;
+align-items: center;
+
+}
+
+#tableModificarNotas>thead>tr>td{
+    width: 110px;
+    align-items: center;
+    
+    }
 
 
 
@@ -232,7 +314,9 @@ input{
 
 
 
-
+label{
+    font-size: medium;
+}
 
 
 
@@ -365,6 +449,7 @@ input{
     border: 1px solid #b5b5b5;
     text-align: center;
     width: 300px;
+    font-size: small;
 }
 
 
@@ -374,11 +459,75 @@ input{
     text-align: center;
     width: 100px;
 }
+#materia {
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    background-color: #cccccc;
+    width: 160px;
+    font-size: small;
+}
+
+#seccion,#notaprimerlapso,#notasegundolapso,#notatercerlapso {
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    background-color: #cccccc;
+    width: 60px;
+    font-size: medium;
+    align-items: center;
+    align-content: center;
+}
+
+#annio {
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    background-color: #cccccc;
+    width: 60px;
+    font-size: medium;
+}
+
+#containerbotonmodalconsultavacia{
+    display: flex;
+    justify-content: center;
+}
+
+.modal-header{
+    background-color: #cccccc;
+    height: 38px;
+    padding-top: 5px;
+     padding-bottom: 0px;
+ 
+    padding-right: 1px;
+     padding-left: 5px;
+    
+}
+
+#parrafomodalcontent{
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 30px;
+}
+
+#ciAlumno {
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    background-color: #cccccc;
+    width: 90px;
+    font-size: medium;
+}
+
+
+#nombAlumno{
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    background-color: #cccccc;
+    width: 150px;
+    font-size: medium;
+}
 .input-nombre-apellido {
     border-radius: 100px;
     border: 1px solid #b5b5b5;
     background-color: #cccccc;;
-    width: 160x;
+    width: 160px;
    
 }
 
@@ -386,20 +535,81 @@ input{
 
 
 
-#tipoCarga,#lapso{
+#tipoCarga{
     border-radius: 100px;
     border: 1px solid #b5b5b5;
     width: 155px;
     text-align: center;
-    background-color: #cccccc;
+     height: 30px;
+   
 }
 
+#lapso{
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    width: 100px;
+    text-align: center;
+    height: 30px;
+    font-size: small;
 
-#lbllapso,#lbltipodecarga{
+}
+
+#periodoEscolar{
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    width: 100px;
+    text-align: center;
+    height: 30px;
+
+
+}
+
+#tipoConsulta{
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    width: 150px;
+    text-align: center;
+    height: 30px;
+  
+
+}
+
+#momento{
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    width: 200px;
+    text-align: center;
+    height: 30px;
+  
+
+}
+
+#lbllapso,#lbltipodecarga,#lblperiodo,#lbltipo,#lblapso{
     display:none;
     font-size: small;
     color:red;
 }
+
+.boton{
+	display:inline-block;
+	width:50px;
+	height:30px;
+	text-align:center;
+	font-size:14px;
+	border:1px solid #007095;
+	border-radius:5px;
+	cursor:pointer;
+	color:white;
+	padding:5px 0 5px 20px;
+	background-image: url(images/pencil-fill.svg);
+	background-repeat:no-repeat;
+
+    background-size:20px 20px;
+	background-position:10px 5px;
+	background-color:blue;
+}
+
+.boton:hover{ background-color:#007095;}
 
 
 

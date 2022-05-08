@@ -52,63 +52,24 @@
                     <input type="text" id="annioescolar" th:value="${periodoEscolar}" />
                 </div>
             </div>
+            
+            
+             <div class="row">
 
-
-
-
-
-
-            <div class="grid-container0">
-              
-
-                <div class="grid-item">
-                    <label>Nombre del docente</label>
-                </div>
-                <div class="grid-item">
-                    <label>Cédula</label>
-                </div>
-                <div class="grid-item">
-                   
-                </div>
-                <div class="grid-item">
-                   
-                </div>
-                <div class="grid-item"></div>
-                <div class="grid-item"></div>
-                <div class="grid-item">
-                </div>
-
-
-                <div class="grid-item">
-                    <input readonly type="hidden" class="input-nombre-apellido" id="nombreProfesor"
-                    th:value="${profesor.idPrf}" />
-                </div>
-                <div class="grid-item">
-                    <input readonly type="text" class="input-nombre-apellido" id="nombreProfesor"
+                <div class="col-md-4">
+                    <label>Nombre del docente:&nbsp;</label>
+                     <input readonly type="text" class="input-nombre-apellido" id="nombreProfesor"
                         th:value="${profesor.primNombPrf}+' '+${profesor.primApellPrf}" />
                 </div>
-                <div class="grid-item">
-                    <input readonly type="text" class="input-nombre-apellido" id="cedulaProfesor"
+
+                <div class="col-md-4">
+                    <label>Cédula:&nbsp;</label>
+                       <input readonly type="text" class="input-nombre-apellido" id="cedulaProfesor"
                         th:value="${profesor.tipoDocPrf}+${profesor.numDocPrf}" />
-                </div>
-                <div class="grid-item">
-                   
-                </div>
-                <div class="grid-item">
-                    
-                </div>
-                <div class="grid-item">
-
-                </div>
-                <div class="grid-item">
-
-                </div>
-                <div class="grid-item">
-
+                  
                 </div>
 
-
-
+                
             </div>
 
             <br><br><br>
@@ -134,6 +95,8 @@
                         <th>Seccion</th>
                         <th>Asignatura</th>
                         <th></th>
+                        <th></th>
+
 
                     </tr>
                 </thead>
@@ -144,6 +107,10 @@
                         <td th:text="${cursomateriamateriaprof.annio}"></td>
                         <td th:text="${cursomateriamateriaprof.seccion}"></td>
                         <td th:text="${cursomateriamateriaprof.materia}"></td>
+                        <td>
+                            <a type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Ver"
+                              id="btnVer" th:href="@{/app/consultarNotasDocente/(annio=${cursomateriamateriaprof.annio},seccion=${cursomateriamateriaprof.seccion},materia=${cursomateriamateriaprof.materia},idPrf=${profesor.idPrf},idMat=${cursomateriamateriaprof.idMat},idCurso=${cursomateriamateriaprof.idCurso})}"><i class="bi bi-eye"></i></a>
+                        </td>
                         <td>
                             <a type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
                                 title="Cargar calificaciones" id="btnCargarCalificaciones" 

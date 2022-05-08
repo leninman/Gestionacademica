@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+    <link rel="stylesheet" type="text/css" href="/css/estilosNotas.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<header>
+    <th:block th:replace="partes/header :: header" />
+    <th:block th:replace="partes/menu :: menuSuperior" />
+
+</header>
+
+<body>
+
+
+    <div class="card">
+        <div class="card-header">
+            <div class="row" style="align-items:center">
+                <div class="col-md-11"></div>
+
+                <div class="col-md-1">
+                    <a type="button" class="btn btn-danger" id="btncerrar" th:href="@{/inicio}" data-toggle="tooltip"
+                        data-placement="top" title="Salir"><i class="bi bi-x"></i><span
+                            class="sr-only">(current)</span></a>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card-body">
+            <input type="hidden" id="direccionbase" name="direccionbase" th:value="${direccionbase}" />
+            <div class="container">
+                <div class="col-md-20">
+
+                    <form id="formdatosnotas">
+                        <br>
+                        <div class="row" id="containertitulo">
+                            <div class="col-md-4"></div>
+                            &nbsp;&nbsp;&nbsp;<p class="titulos">Consulta de notas de alumnos</p>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <label>Nombre:&nbsp;</label>
+                                <input readonly type="text" id="nombAlumno" th:value="${nombreAlumno}" />
+                            </div>
+
+                            <div class="col-md-3">
+                                <label>Cédula:&nbsp;</label>
+                                <input readonly type="text" name="ciAlumno" id="ciAlumno"
+                                    th:value="${cedulaAlumno}" />
+                            </div>
+
+                            <div class="col-md-3">
+                                <label>Año que cursa:&nbsp;</label>
+                                <input readonly type="text" id="annio" th:value="${anniocursado}" />
+                            </div>
+
+                            <div class="col-md-2">
+                                <label>Sección:&nbsp;</label>
+                                <input readonly type="text" id="seccion" th:value="${seccion}" />
+                            </div>
+
+
+
+                        </div>
+                        <br><!-- comment -->
+                        <br><!-- comment -->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label>Periodo escolar:&nbsp;</label>
+                                <select id="periodoEscolar" th:name="periodoEscolar">
+                                    <option value="" selected>
+                                    </option>
+                                    <option th:each="periodo:${periodos}" th:value="${periodo}" th:text="${periodo}">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Tipo de consulta:&nbsp;</label>
+                                <select id="tipoConsulta" th:name="tipoConsulta">
+                                    <option value="" selected></option>
+                                    <option value="Definitivas">Notas Definitivas</option>
+                                    <option value="Parciales">Notas Parciales</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4" id="lapsoconsulta">
+                                <label>Lapso:&nbsp;</label>
+                                <select id="momento" th:name="lapso">
+                                    <option value="" selected>
+                                    </option>
+                                    <option th:each="momento:${lapsos}" th:value="${momento.descripcion}"
+                                        th:text="${momento.descripcion}"></option>
+                                </select>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">
+
+                                <label for="" id="lblperiodo">Requerido</label>
+
+                            </div>
+                            <div class="col-md-4">
+
+                                <label for="" id="lbltipo">Requerido</label>
+
+                            </div>
+                            <div class="col-md-4">
+
+                                <label for="" id="lblapso">Requerido</label>
+
+                            </div>
+                          
+
+
+                        </div>
+
+                        <br>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <input type="button" id="consultarnotas" value="Consultar" data-toggle="tooltip"
+                                data-placement="top" title="Consultar Notas" />
+                        </div>
+                </div>
+                <br>
+                <br>
+
+
+                <div id="tablenotascontainer">
+                    <table id="tablenotas" class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+
+                                <th>Año</th>
+                                <th>Asignatura</th>
+                                <th>Calificacion</th>
+                                <th>Porcentaje</th>
+
+                                
+
+
+                            </tr>
+                        </thead>
+
+                        <tbody id="contenido">
+                            <!--<tr th:each="nota:${notas}">
+                                <td th:text="${nota.annio}"></td>
+                                <td th:text="${nota.nombreMat}"></td>
+                                <td th:text="${nota.nota}"></td>
+
+
+                            </tr>-->
+                        </tbody>
+                    </table>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" id="modalconsultadenotasvacia">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h7 class="modal-title">Consulta de notas</h7>
+                </div>
+                <div class="modal-body" id="parrafomodalcontent">
+                    <p id="parrafomodalconsultadenotasvacia"></p>
+                </div>
+                <div class="modal-footer" id="containerbotonmodalconsultavacia">
+                    <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                    <button type="button" class="btn btn-primary" id="btnConsultaDeNotasVacia">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="/js/notas.js"></script>
+</body>
+<footer>
+    <th:block th:replace="partes/footer :: footer" />
+</footer>
+
+</html>

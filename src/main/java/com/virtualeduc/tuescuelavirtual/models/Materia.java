@@ -44,16 +44,16 @@ public class Materia implements Serializable {
 	@Basic(optional = false)
 	@Column(name="STATUS")
 	private String status;
+        
+        
 	
-	
-
 	public Materia() {
 	}
-	
-	
 
-	
-	
+   
+
+    
+        	
 	public Materia(Long idMat, String codigoMat, String descripcionMat, Annio annio, String nombreMat, String status) {
 		super();
 		this.idMat = idMat;

@@ -5,20 +5,13 @@
  */
 package com.virtualeduc.tuescuelavirtual.controllers;
 
-import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoCursoDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.PersonaDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.ProfesorDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.RepresentanteDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.*;
 import com.virtualeduc.tuescuelavirtual.models.Alumno;
 import com.virtualeduc.tuescuelavirtual.models.Annio;
 import com.virtualeduc.tuescuelavirtual.models.Curso;
 
-import com.virtualeduc.tuescuelavirtual.models.Cursos_prof;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.NotasParDTO;
-import com.virtualeduc.tuescuelavirtual.models.DTOS.NotasParDTOwrapper;
+import com.virtualeduc.tuescuelavirtual.models.CursoProf;
+import com.virtualeduc.tuescuelavirtual.models.NotaPar;
 import com.virtualeduc.tuescuelavirtual.models.Profesion;
 import com.virtualeduc.tuescuelavirtual.models.Profesor;
 import com.virtualeduc.tuescuelavirtual.models.Representante;
@@ -78,8 +71,8 @@ public class coreController {
 
     @Autowired
     IUsuarioService usuarioservice;
-    
-     @Autowired
+
+    @Autowired
     INotasService notasservice;
 
     @Value("${dir.base}")
@@ -88,9 +81,16 @@ public class coreController {
     @Autowired
     ICursoService cursoservice;
 
+    @Autowired
+    INotasService notaservice;
+
     Representante representante;
 
     Boolean guardarAlumno;
+
+    List<AlumnoDTO> lista = new ArrayList<>();
+
+    List<Notawrapper> notasresultado;
 
     //CONSULTA DE REPRESENTANTE POR CEDULA
     @CrossOrigin(origins = {"direccionbase/consultarepresentante"})
@@ -214,11 +214,11 @@ public class coreController {
 
         Responses resp = new Responses();
 
-        List<Cursos_prof> cursosprof = new ArrayList<>();
+        List<CursoProf> cursosprof = new ArrayList<>();
 
         for (int i = 0; i < idmaterias.length; i++) {
 
-            Cursos_prof cursoprof = new Cursos_prof();
+            CursoProf cursoprof = new CursoProf();
 
             cursoprof.setIdCurso(idcursos[i]);
 
@@ -237,11 +237,64 @@ public class coreController {
     }
 
     @CrossOrigin(origins = {"direccionbase/guardarnotas"})
-    @PostMapping(path = "/guardarnotas",consumes = "application/json",produces = "application/json")
-    public @ResponseBody Responses guardarnotas(@RequestBody List<NotasParDTO> calificaciones,
+    @PostMapping(path = "/guardarnotas", consumes = "application/json", produces = "application/json")
+    public @ResponseBody
+    Responses guardarnotas(@RequestBody List<NotaParDTO> calificaciones,
             RedirectAttributes redirectAttributes) {
 
         return notasservice.guardarNotasParciales(calificaciones);
 
+    }
+
+    @CrossOrigin(origins = {"direccionbase/obtenerNotas"})
+    @GetMapping(path = "/obtenerNotas")
+    public List<Notawrapper> obtenerNotas(@RequestParam(name = "cedula") String cedula,
+            String periodo, String lapso, String tipodeconsulta, Model model) {
+
+        String tipoDoc = cedula.substring(0, 1);
+        String numDoc = cedula.substring(1);
+        Responses response = new Responses();
+        
+        notasresultado = new ArrayList<>();
+
+        if (tipodeconsulta.equalsIgnoreCase("Parciales")) {
+
+            notasresultado = notaservice.consultarNotasPorCedulaPeriodoYlapso(tipoDoc, numDoc, periodo, lapso);
+
+            if (!notasresultado.isEmpty()) {
+                response.setNotasWrapper(notasresultado);
+                response.setResponseCode(Constantes.CONSULTA_EXITOSA_DE_NOTAS);
+                response.setResponseDescription(Constantes.CONSULTA_EXITOSA_DE_NOTAS_DESC);
+            }else{
+                notasresultado=null;
+                response.setNotasWrapper(null);
+                response.setResponseCode(Constantes.PERIODO_LAPSO_SIN_REGISTROS_DE_NOTAS);
+                response.setResponseDescription(Constantes.PERIODO_LAPSO_SIN_REGISTROS_DE_NOTAS_DESC);
+                
+            }
+
+        }
+
+        if (tipodeconsulta.equalsIgnoreCase("Definitivas")) {
+             notasresultado=null;
+        }
+
+        return notasresultado;
+
+    }
+    @CrossOrigin(origins = {"direccionbase/actualizarNota"})
+    @PostMapping(path = "/actualizarNota")
+    public Responses actualizarNota(@RequestParam(name="idAlumno") Long idAlumno,
+                                    @RequestParam(name="idMateria") Long idMateria,
+                                    @RequestParam(name="periodoEscolar") String periodoEscolar,
+                                    @RequestParam(name="notaLapso1") Float notaLapso1,
+                                    @RequestParam(name="notaLapso2") Float notaLapso2,
+                                    @RequestParam(name="notaLapso3") Float notaLapso3){
+        Responses resp=new Responses();
+
+
+
+
+        return resp;
     }
 }

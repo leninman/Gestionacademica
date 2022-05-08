@@ -9,7 +9,7 @@ import com.virtualeduc.tuescuelavirtual.models.DTOS.AnnioEscolarDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.Alumno;
 import com.virtualeduc.tuescuelavirtual.models.Curso;
-import com.virtualeduc.tuescuelavirtual.models.Cursos_prof;
+import com.virtualeduc.tuescuelavirtual.models.CursoProf;
 import com.virtualeduc.tuescuelavirtual.models.Representante;
 import com.virtualeduc.tuescuelavirtual.models.Responses;
 import com.virtualeduc.tuescuelavirtual.models.ViewCursosMateriasAsignada;
