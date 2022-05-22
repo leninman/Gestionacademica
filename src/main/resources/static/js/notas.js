@@ -1,5 +1,7 @@
 
 let token;
+let idAl;
+
 
 
 
@@ -90,8 +92,9 @@ $('#tipoConsulta').click(function () {
 
 });
 
-
-
+$('#btncerrareditarnota').click(function() {
+  $('#modaldetallenotasalumno').modal('hide');
+});
 
 $('#botonEditarNota1').click(function name() {
   $('#notaprimerlapso').prop('readonly',false);
@@ -100,16 +103,18 @@ $('#botonEditarNota1').click(function name() {
 
 $('#botonEditarNota2').click(function name() {
   $('#notasegundolapso').prop('readonly',false);
+  $('#notasegundolapso').focus();
 });
 
 $('#botonEditarNota3').click(function name() {
   $('#notatercerlapso').prop('readonly',false);
+  $('#notatercerlapso').focus();
+
 });
 
 $(".btn").click(function() {
-  
   let fila=$(this).closest("tr");
-  
+  idAl=fila.find("#idAlumno").html();
   let nombreAlumno=fila.find("#nombreAlumno").html();
   let cedulaAlumno=fila.find("#cedulaAlumno").html();
   let nota1=fila.find("#notalapso1").html();
@@ -197,7 +202,49 @@ $('.editar').click(function () {
 
 });
 
+$("#GuardarCambiarNotas").click(function () {
+  direccionbase = $("#direccionbase").val();
+  url = direccionbase + "/actualizarNota";
+  let idAlumno=idAl;
+  let idMateria=$("#idMat").val();
+  let idCurso=$("#idCurso").val();
+  let notaLapso1=$("#notaprimerlapso").val();
+  let notaLapso2=$("#notasegundolapso").val();
+  let notaLapso3=$("#notatercerlapso").val();
+  $.ajax({
+    data: {
+      idAlumno:idAlumno,
+      idMateria:idMateria,
+      idCurso:idCurso,
+      notaLapso1:notaLapso1,
+      notaLapso2:notaLapso2,
+      notaLapso3:notaLapso3,
+    },
+    url: url,
+    headers: {
+      "X-CSRF-TOKEN": token,
+    },
+   
+    type: "POST",
+    dataType:"json",
+   
+    success: function () {
+      alert('LAS NOTAS HA SIDO ACTUALIZADAS');
+    /*  $('#modalnotascargadas').modal({backdrop: 'static', keyboard: false});
+      $("#modalnotascargadas").modal('show');
+      $("#parrafomodalnotascargadas").html("LAS NOTAS HAN SIDO REGISTRADAS CORRECTAMENTE EN EL SISTEMA");*/
+     
+      
+    }
+  })
+    .done(function () {
+    })
+    .fail(function (data) {
+      alert('PETICION FALLIDA');
+    });
 
+
+});
 
 
 $("#Guardar").click(function () {

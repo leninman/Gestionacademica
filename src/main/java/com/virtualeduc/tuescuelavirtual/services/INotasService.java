@@ -13,6 +13,8 @@ import java.util.List;
 public interface INotasService {
 	
 	public Responses guardarNotasParciales(List<NotaParDTO> notas);
+
+    public Responses actualizarNotasParciales(Long idAlumno,Long idMateria,Long idCurso,Float notaLapso1,Float notaLapso2,Float notaLapso3);
         
         public NotaParDTO guardarNotaParcial(NotaPar notaPar);
         
@@ -30,7 +32,7 @@ public interface INotasService {
         
         public List<Notawrapperporlapso> consultarNotasPorCursoMateria(List<AlumnoDTO> alumnos,Long idMat,Long idCurso);
         
-        
+
         
 
 }

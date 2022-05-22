@@ -269,10 +269,34 @@ public class notasController {
         
          cursoSinAlumnos = true;
          
+         String nombreProfesor = null;
+         
+         String apellidoProfesor = null;
+
+
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        
          Responses resp = alumnoservice.consultarAlumnosPorCurso(idCurso);
          
          if (!resp.getListadeAlumnos().isEmpty()) {
             cursoSinAlumnos = false;
+        }
+
+        if (Utils.hasRole("ROLE_USER_PROFESOR")) {
+
+            logger.info("Hola usuario ".concat(auth.getName()).concat(" tienes acceso"));
+
+            String user = auth.getName();
+
+            Usuario usuario = usuarioservice.findUsuarioByUserName(user);
+
+            profesor = profesoresService.consultarProfesorPorCedula(usuario.getTipodoc(), usuario.getNrodoc());
+
+           nombreProfesor=profesor.getPrimNombPrf();
+           
+           apellidoProfesor=profesor.getPrimApellPrf();
+
         }
          
          List<AlumnoDTO> alumnos=resp.getListadeAlumnos();
@@ -288,7 +312,21 @@ public class notasController {
          model.addAttribute("seccion",seccion);
 
          model.addAttribute("materia",materia);
-         
+
+         model.addAttribute("idMat",idMat);
+
+         model.addAttribute("idPrf",idPrf);
+
+        model.addAttribute("nombreProfesor",nombreProfesor);
+
+        model.addAttribute("apellidoProfesor",apellidoProfesor);
+
+        model.addAttribute("idCurso", idCurso);
+
+
+        model.addAttribute("direccionbase", direccionbase);
+
+
         return "notas/consultaDeNotasDocentes";
     }
 

@@ -40,6 +40,8 @@ public class Responses implements Serializable {
     private List<AlumnoDTO> listadeAlumnos;
 
     private List<NotaParDTO> notasParciales;
+
+    private List<NotaPar> notasParciales2;
     
     List<Notawrapper> notasWrapper;
 
@@ -91,6 +93,12 @@ public class Responses implements Serializable {
         this.notasParciales = notasParciales;
     }
 
+    public List<NotaPar> getNotasParciales2() {
+        return notasParciales2;
+    }
+    public void setNotasParciales2(List<NotaPar> notasParciales) {
+        this.notasParciales2 = notasParciales;
+    }
     public List<Notawrapper> getNotasWrapper() {
         return notasWrapper;
     }

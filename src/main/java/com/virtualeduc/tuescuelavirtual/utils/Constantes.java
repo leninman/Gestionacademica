@@ -68,6 +68,8 @@ public class Constantes {
         public static int SIN_NOTAS_DEFINITIVAS_REGISTRADAS=127;
         
         public static int CONSULTA_EXITOSA_DE_NOTAS=128;
+
+	public static int MODIFICACION_EXITOSA_DE_NOTAS=129;
         
 	
 	
@@ -158,4 +160,8 @@ public class Constantes {
 
         //mensaje28
         public static String CONSULTA_EXITOSA_DE_NOTAS_DESC="LA CONSULTA DE NOTAS SE HA REALIZADO EXITOSAMENTE";
+
+
+	//mensaje28
+	public static String MODIFICACION_EXITOSA_DE_NOTAS_DESC="LA(S) NOTAS(S) SE HAN MODIFICADO EXITOSAMENTE";
 }

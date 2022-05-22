@@ -283,14 +283,17 @@ public class coreController {
 
     }
     @CrossOrigin(origins = {"direccionbase/actualizarNota"})
-    @PostMapping(path = "/actualizarNota")
-    public Responses actualizarNota(@RequestParam(name="idAlumno") Long idAlumno,
+    @PostMapping(path = "/actualizarNota",produces = "application/json")
+    public @ResponseBody Responses actualizarNota(@RequestParam(name="idAlumno") Long idAlumno,
                                     @RequestParam(name="idMateria") Long idMateria,
-                                    @RequestParam(name="periodoEscolar") String periodoEscolar,
+                                    @RequestParam(name="idCurso") Long idCurso,
                                     @RequestParam(name="notaLapso1") Float notaLapso1,
                                     @RequestParam(name="notaLapso2") Float notaLapso2,
                                     @RequestParam(name="notaLapso3") Float notaLapso3){
         Responses resp=new Responses();
+
+
+
 
 
 
