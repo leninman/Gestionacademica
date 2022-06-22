@@ -211,6 +211,7 @@ $("#GuardarCambiarNotas").click(function () {
   let notaLapso1=$("#notaprimerlapso").val();
   let notaLapso2=$("#notasegundolapso").val();
   let notaLapso3=$("#notatercerlapso").val();
+  $("#modaldetallenotasalumno").modal("hide");
   $.ajax({
     data: {
       idAlumno:idAlumno,
@@ -229,12 +230,11 @@ $("#GuardarCambiarNotas").click(function () {
     dataType:"json",
    
     success: function () {
-      alert('LAS NOTAS HA SIDO ACTUALIZADAS');
-    /*  $('#modalnotascargadas').modal({backdrop: 'static', keyboard: false});
-      $("#modalnotascargadas").modal('show');
-      $("#parrafomodalnotascargadas").html("LAS NOTAS HAN SIDO REGISTRADAS CORRECTAMENTE EN EL SISTEMA");*/
-     
       
+   
+      $('#modalnotasmodificadas').modal({backdrop: 'static', keyboard: false});
+      $("#modalnotasmodificadas").modal('show');
+      $("#parrafomodalnotasmodificadas").html("NOTAS MODIFICADAS");
     }
   })
     .done(function () {
@@ -325,6 +325,18 @@ $("#Guardar").click(function () {
 
 $("#btnNotasCargadas").click(function () {
   window.location.href = direccionbase + "/verCursos";
+});
+
+$("#btnNotasModificadas").click(function () {
+  //window.location.href = direccionbase + "/verCursos";
+  $("#modaldetallenotasalumno").modal('hide');
+  let an=$('#inputAnnio').val();
+  let sec=$('#inputSeccion').val();
+  let mat=$('#inputMateria').val();
+  let idProfe=$('#idPrf').val();
+  let idMat=$('#idMat').val();
+  let idCur=$('#idCurso').val();
+  window.location.href=direccionbase + "/consultarNotasDocente" + "/?annio=" + an + "&seccion=" + sec + "&materia=" + mat + "&idPrf=" + idProfe + "&idMat=" + idMat + "&idCurso=" + idCur;
 });
 
 

@@ -290,14 +290,7 @@ public class coreController {
                                     @RequestParam(name="notaLapso1") Float notaLapso1,
                                     @RequestParam(name="notaLapso2") Float notaLapso2,
                                     @RequestParam(name="notaLapso3") Float notaLapso3){
-        Responses resp=new Responses();
+        return notaservice.actualizarNotasParciales(idAlumno,idMateria,idCurso,notaLapso1,notaLapso2,notaLapso3);
 
-
-
-
-
-
-
-        return resp;
     }
 }

@@ -73,7 +73,8 @@ public interface INotasParRepo extends JpaRepository<NotaPar,Long> {
 			"a.ID_PRF," +
 			"a.ID_LAPSO," +
 			"a.NOTA," +
-			"a.PROCENTAJE " +
+			"a.PORCENTAJE " +
+			"FROM notas_par a " +
 			"WHERE a.ID_ALUMNO=?1 and a.ID_MAT=?2 and a.ID_CURSO=?3"
 			,nativeQuery = true)
 	public List<NotaPar> consultarNotasPorCursoMateriaYAlumno2(Long idAlumno,Long idMat,Long idCurso);

@@ -28,6 +28,12 @@
             <input readonly type="hidden" class="input-nombre-apellido" id="idMat" th:value="${idMat}" />
             <input readonly type="hidden" class="input-nombre-apellido" id="idPrf" th:value="${idPrf}" />
             <input readonly type="hidden" class="input-nombre-apellido" id="idCurso" th:value="${idCurso}" />
+            <input type="hidden" th:value="${annio}" id="inputAnnio" />
+            <input type="hidden" th:value="${seccion}" id="inputSeccion" />
+            <input type="hidden" th:value="${materia}" id="inputMateria" />
+        
+            
+      
             <br>
             <input type="hidden" id="direccionbase" class="input-nombre-apellido" name="direccionbase" th:value="${direccionbase}" />
             <div class="row" id="containeretqtitulo">
@@ -227,6 +233,22 @@
 
             </div>
 
+        </div>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" id="modalnotasmodificadas">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h7 class="modal-title">Notas modificadas</h7>
+                </div>
+                <div class="modal-body" id="parrafomodalcontent">
+                    <p id="parrafomodalnotasmodificadas"></p>
+                </div>
+                <div class="modal-footer" id="containerbotonmodalnotasmodificadas">
+                    <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                    <button type="button" class="btn btn-primary" id="btnNotasModificadas">Aceptar</button>
+                </div>
+            </div>
         </div>
     </div>
     </div>

@@ -118,16 +118,21 @@ public class INotasServiceImpl implements INotasService {
             if(notasparciales!=null) {
                 for (NotaPar notaPar : notasparciales) {
                     Long id=notaPar.getIdAlumno();
+                    lapso = lapsorepo.getById(notaPar.getIdLapso());
+                    Float rate=lapso.getPorcentaje();
                     if(notaPar.getIdLapso()==1){
                         notaPar.setNota(notaLapso1);
+                        notaPar.setPorcentaje(Utils.calcularPorcentajeNota(notaLapso1,rate));
                     }
 
                     if(notaPar.getIdLapso()==2){
                         notaPar.setNota(notaLapso2);
+                        notaPar.setPorcentaje(Utils.calcularPorcentajeNota(notaLapso2,rate));
                     }
 
                     if(notaPar.getIdLapso()==3){
                         notaPar.setNota(notaLapso3);
+                        notaPar.setPorcentaje(Utils.calcularPorcentajeNota(notaLapso3,rate));
                     }
 
                     NotaPar nota=notasRepo.save(notaPar);
