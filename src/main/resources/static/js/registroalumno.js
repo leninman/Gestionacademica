@@ -12,6 +12,16 @@ function mostrarrepresentante2() {
   }
 }
 
+$('#mensaje24').fadeIn();
+  setTimeout(function() {
+       $("#mensaje24").fadeOut();
+  },2000);
+
+$('#mensaje1').fadeIn();
+  setTimeout(function() {
+       $("#mensaje1").fadeOut();
+  },2000);
+
 function mostrarcursoelegido() {
   x = document.getElementById("cursoelegido");
   y = document.getElementById("rowtablecursos");

@@ -47,6 +47,62 @@ $(document).ready(function () {
 });
 
 
+$('#registrarCurso').click(function () {
+  $('#Registro').modal({backdrop: 'static', keyboard: false});
+  $('#Registro').modal('show');
+});
+
+$('#mensaje3').fadeIn();
+  setTimeout(function() {
+       $("#mensaje3").fadeOut();
+  },2000);
+
+$('#mensaje6').fadeIn();
+   setTimeout(function() {
+        $("#mensaje6").fadeOut();
+   },2000);
+
+$('#mensaje7').fadeIn();
+    setTimeout(function() {
+    $("#mensaje7").fadeOut();
+    },2000);
+
+$('#mensaje8').fadeIn();
+  setTimeout(function() {
+       $("#mensaje8").fadeOut();
+  },2000);
+
+$('#mensaje9').fadeIn();
+  setTimeout(function() {
+       $("#mensaje9").fadeOut();
+  },2000);
+
+$('#mensaje4').fadeIn();
+  setTimeout(function() {
+       $("#mensaje4").fadeOut();
+  },2000);
+
+$('#mensaje12').fadeIn();
+  setTimeout(function() {
+       $("#mensaje12").fadeOut();
+  },2000);
+
+$('#mensaje29').fadeIn();
+  setTimeout(function() {
+       $("#mensaje29").fadeOut();
+  },2000);
+
+$('#mensaje30').fadeIn();
+  setTimeout(function() {
+       $("#mensaje30").fadeOut();
+  },2000);
+
+
+
+
+
+
+
 
 
 

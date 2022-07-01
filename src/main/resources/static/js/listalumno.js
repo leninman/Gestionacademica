@@ -46,6 +46,21 @@ $(document).ready(function () {
 
 });
 
+$('#mensaje1').fadeIn();
+  setTimeout(function() {
+       $("#mensaje1").fadeOut();
+  },2000);
+
+$('#mensaje2').fadeIn();
+  setTimeout(function() {
+       $("#mensaje2").fadeOut();
+},2000);
+
+$('#mensaje5').fadeIn();
+  setTimeout(function() {
+       $("#mensaje5").fadeOut();
+},2000);
+
 
 
 

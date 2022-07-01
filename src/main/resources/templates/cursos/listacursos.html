@@ -16,19 +16,23 @@
 
 <body>
     <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje3 != null}"
-        th:text="${mensaje3}" class="alert"></div>
+        th:text="${mensaje3}" class="alert" id="mensaje3"></div>
     <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje6 != null}"
-        th:text="${mensaje6}" class="alert"></div>
+        th:text="${mensaje6}" class="alert" id="mensaje6"></div>
     <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje7 != null}"
-        th:text="${mensaje7}" class="alert"></div>
+        th:text="${mensaje7}" class="alert" id="mensaje7"></div>
     <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje8 != null}"
-        th:text="${mensaje8}" class="alert"></div>
+        th:text="${mensaje8}" class="alert" id="mensaje8"></div>
     <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje9 != null}"
-        th:text="${mensaje9}" class="alert"></div>
+        th:text="${mensaje9}" class="alert" id="mensaje9"></div>
     <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje4 != null}"
-        th:text="${mensaje4}" class="alert"></div>
+        th:text="${mensaje4}" class="alert" id="mensaje4"></div>
     <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje12 != null}"
-        th:text="${mensaje12}" class="alert"></div>
+        th:text="${mensaje12}" class="alert" is="mensaje12"></div>
+    <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje29 != null}"
+        th:text="${mensaje29}" class="alert" id="mensaje29"></div>
+    <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje30 != null}"
+        th:text="${mensaje30}" class="alert" id="mensaje30"></div>
     <th:block th:replace="partes/header :: header" />
     <th:block th:replace="partes/menu :: menuSuperior" />
 
@@ -39,13 +43,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li>
-                            <!-- <a type="button" class="btn btn-secondary" th:href="@{/app/nuevocurso}"
+                            <a type="button" class="btn btn-secondary" href="#" id="registrarCurso"
                                 data-toggle="tooltip" data-placement="top" title="Registrar Nuevo Curso"><i
-                                    class="bi bi-book"></i><span class="sr-only">(current)</span></a>-->
-
-                            <a type="button" class="btn btn-secondary" th:href="@{/app/nuevocurso}"
-                                 data-placement="top" title="Registrar Nuevo Curso"><i
                                     class="bi bi-book"></i><span class="sr-only">(current)</span></a>
+
+                            <!--<a type="button" class="btn btn-secondary" th:href="@{/app/nuevocurso}"
+                                 data-placement="top" title="Registrar Nuevo Curso"><i
+                                    class="bi bi-book"></i><span class="sr-only">(current)</span></a>-->
 
 
                         </li>
@@ -116,7 +120,7 @@
                         <td>
                             <a type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
                                 title="Ver" id="btnVer" th:href="@{/app/editacurso/}+${curso.idCurso}"><i
-                                    class="bi bi-eye"></i><a>
+                                    class="bi bi-eye"></i></a>
                         </td>
                         <!--<td>
                                       <a
@@ -155,6 +159,52 @@
                 </div>
                 <div class="modal-body">
                     <form>
+                        <!-- <input type="hidden" id="direccionbase" name="direccionbase" th:value="${direccionbase}" />-->
+                        <div class="form-group col-12 p-0 mb-4">
+                            <label class="col-form-label">Periodo Escolar:&nbsp;&nbsp;</label>
+
+                            <input type="text" class="form-control" th:value="${periodoEscolar}" />
+                        </div>
+
+
+                        <!-- <select id="intAnnioEsc">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            
+                        </select>-->
+
+                        <!--//form-group-->
+                        <div class="form-group col-12 p-0 mb-4">
+                            <input type="text" class="form-control" />
+                        </div>
+                        <!--//form-group-->
+                        <div class="form-group col-12 p-0 mb-4">
+                            <input type="text" class="form-control" />
+                        </div>
+                        <!--//form-group-->
+                        <div class="form-group col-12 p-0 mb-4">
+                            <input type="text" class="form-control" />
+                        </div>
+                        <!--//form-group-->
+                        <div class="form-group col-12 text-center mb-3">
+                            <input type="submit" class="btn button btn-primary" value="Registrar Curso" id="submit">
+                        </div>
+                        <!--//form-group-->
+                        <div class="form-group col-12 text-center mb-3">
+                            <!-- <a href="#" data-toggle="modal" data-target="#Registro">
+							Registrarse </a>-->
+
+                            <!-- <a th:href="@{${direccionregistrousuario}+'/nuevousuario'}">
+                                Registrarse </a>-->
+
+
+                            <!-- <input type="button" class="btn button btn-primary" 
+						data-toggle="modal" data-target="#Registro" data-whatever="@mdo" 
+						id="RegistrarUsuario" value="Registrarse"/>-->
+
+
+                        </div>
+                        <!--//form-group-->
                     </form>
                 </div>
             </div>

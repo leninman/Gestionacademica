@@ -79,6 +79,10 @@ public interface INotasParRepo extends JpaRepository<NotaPar,Long> {
 			,nativeQuery = true)
 	public List<NotaPar> consultarNotasPorCursoMateriaYAlumno2(Long idAlumno,Long idMat,Long idCurso);
 
+	@Query(value="SELECT a.NOTA FROM notas_par a "
+			+ "WHERE a.ID_CURSO=?1",nativeQuery = true)
+	public Long[] findIdNotasByIdCurso(Long idCurso);
+
 
 
 

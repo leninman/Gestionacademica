@@ -1,237 +1,169 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-    />
-    <link rel="stylesheet" type="text/css" href="/css/estilosCurso.css" />
-  </head>
-  <header></header>
-  <body>
-    <div
-    th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
-    th:if="${mensaje4 != null}"
-    th:text="${mensaje4}"
-    class="alert"
-  ></div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+  <link rel="stylesheet" type="text/css" href="/css/estilosCurso.css" />
+</head>
+<header></header>
+
+<body>
+  <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje4 != null}"
+    th:text="${mensaje4}" class="alert"></div>
 
   <th:block th:replace="partes/header :: header" />
   <th:block th:replace="partes/menu :: menuSuperior" />
 
-   
-  
 
-  
-      <div class="card" style="
+
+
+
+  <div class="card" style="
       width: 100%;
       border-color: #cccccc;
       margin-left: auto;
       margin-right: auto;">
-        <div class="card-header" style="
+    <div class="card-header" style="
         width: 100%;
         border-color: #cccccc;
         margin-left: auto;
         margin-right: auto;
       ">
-      
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li>
-                  <a 
-                  type="button" 
-                  class="btn btn-secondary"
-                  th:href="@{/inicio}"
-                  data-toggle="tooltip"
-                  data-placement="top"
-                  title="Ir al inicio"
-                  ><i class="bi bi-house"></i
-                ></a>
-                </li>
-                &nbsp;
-                <li>
-                  <a
-                    type="button" 
-                    class="btn btn-secondary"
-                    th:href="@{/app/nuevocurso}"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Limpiar pantalla"
-                    ><i class="bi bi-eraser"></i
-                  ></a>
-                </li>
-                &nbsp;
-                <li>
-                  <a
-                    type="button" 
-                    class="btn btn-danger"
-                    th:href="@{/app/listarcursos}"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Salir"
-                    ><i class="bi bi-x"></i
-                  ></a>
-                </li>
-              </ul>
-              <div class="container" style="display: flex;
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li>
+              <a type="button" class="btn btn-secondary" th:href="@{/inicio}" data-toggle="tooltip" data-placement="top"
+                title="Ir al inicio"><i class="bi bi-house"></i></a>
+            </li>
+            &nbsp;
+            <li>
+              <a type="button" class="btn btn-secondary" th:href="@{/app/nuevocurso}" data-toggle="tooltip"
+                data-placement="top" title="Limpiar pantalla"><i class="bi bi-eraser"></i></a>
+            </li>
+            &nbsp;
+            <li>
+              <a type="button" class="btn btn-danger" th:href="@{/app/listarcursos}" data-toggle="tooltip"
+                data-placement="top" title="Salir"><i class="bi bi-x"></i></a>
+            </li>
+          </ul>
+          <div class="container" style="display: flex;
                 justify-content: left;">
-                
-          <div class="col-md-3"></div>
+
+            <div class="col-md-3"></div>
             <p style="font-weight: bold;
               font-family: 'Helvetica', 'Verdana', 'Monaco', sans-serif;
               font-size: large;
               color: black;
               font-size: 20px;">&nbsp;&nbsp;&nbsp;Formulario de creación de cursos</p>
           </div>
-            </div>
-          </nav>
         </div>
-       
+      </nav>
+    </div>
 
-        <div class="card-body" style="
+
+    <div class="card-body" style="
         width: 100%;
         border-color: #b5b5b5;
         margin-left: auto;
         margin-right: auto;
       ">
-      
-          <form
-            class="form-horizontal"
-            th:action="@{/app/agregarcurso}"
-            th:object="${cursoDTO}"
-            id="formCurso"
-            name="formCurso"
-            method="post"
-          >
-   
 
-       
-        
-          <br />
-          <br />
+      <form class="form-horizontal" th:action="@{/app/agregarcurso}" th:object="${cursoDTO}" id="formCurso"
+        name="formCurso" method="post">
 
-            <div class="row">
-              <div class="col-md-4"></div>
-              <div class="col-md-8">
-              <label for="intAnnioEsc" class="col-form-label"
-                  >Periodo Escolar:&nbsp;&nbsp;</label
-                >
-              <select id="intAnnioEsc" th:field="*{intAnnioEsc}">
-                 <option
-                  th:each="annioescolar:${annioescolar}"
-                  th:value="${annioescolar.intAnnioEsc}"
-                  th:text="${annioescolar.intAnnioEsc}"
-                ></option>
-              </select>
-              </div>
-            </div>
-            <br />
 
-            <div class="row">
-              <div class="col-md-4"></div>
-              <div class="col-md-8">
-                &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-                &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-               <label for="Annio" class="col-form-label"
-                  >Año:&nbsp;&nbsp;</label
-                >
-              <select id="Annio" th:field="*{annio}">
-                <option
-                th:each="annio:${annios}"
-                th:value="${annio}"
-                th:text="${annio}"
-              ></option>
-              </select>
-            </div>
-            </div>
-            <br />
 
-            <div class="row">
-              <div class="col-md-4"></div>
-              <div class="col-md-8">
-                &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-                &nbsp;&nbsp; &nbsp;&nbsp;
-              <label for="Nivel" class="col-form-label"
-                  >Nivel:&nbsp;&nbsp;</label
-                >
-              <select id="Nivel" th:field="*{nivel}">
-                <option
-                th:each="nivel:${niveles}"
-                th:value="${nivel}"
-                th:text="${nivel}"
-              ></option>
-               
-              </select>
-            </div>
-            </div>
-            <br />
 
-            <div class="row">
-              <div class="col-md-4"></div>
-              <div class="col-md-8">
-                &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-                &nbsp;&nbsp; &nbsp;&nbsp;
-            <label for="Turno" class="col-form-label"
-                  >Turno:&nbsp;&nbsp;</label
-                >
-              <select id="Turno" th:field="*{turno}">
-                <option
-                  th:each="turno:${turnos}"
-                  th:value="${turno.turno}"
-                  th:text="${turno.turno}"
-                ></option>
-              </select>
-            </div>
-            </div>
-            <br />
+        <br />
+        <br />
 
-            <div class="row">
-              <div class="col-md-4"></div>
-              <div class="col-md-8">
-                &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-                &nbsp;&nbsp;
-             <label for="Seccion" class="col-form-label"
-                  >Sección:&nbsp;&nbsp;</label
-                >
-              <select id="Seccion" th:field="*{seccion}">
-                <option
-                  th:each="seccion:${secciones}"
-                  th:value="${seccion.seccion}"
-                  th:text="${seccion.seccion}"
-                ></option>
-              </select>
-            </div>
-            </div>
-            <br />
-            <br />
-            <div class="row" id="rowbtncrearcurso">
-              <input
-                type="submit"
-                class="input-buttons"
-                name="submit"
-                value="Crear Curso"
-                style="margin: 0 auto"
-              />
-            </div>
-            <br />
-            <br />
-          </form>
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-8">
+            <label for="intAnnioEsc" class="col-form-label">Periodo Escolar:&nbsp;&nbsp;</label>
+            <select id="intAnnioEsc" th:field="*{intAnnioEsc}">
+              <option th:each="annioescolar:${annioescolar}" th:value="${annioescolar.intAnnioEsc}"
+                th:text="${annioescolar.intAnnioEsc}"></option>
+            </select>
+          </div>
         </div>
-      </div>
-  
-      <th:block th:replace="partes/footer :: footer" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <script src="/js/nuevocurso.js"></script>
-  </body>
+        <br />
+
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-8">
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+            <label for="Annio" class="col-form-label">Año:&nbsp;&nbsp;</label>
+            <select id="Annio" th:field="*{annio}">
+              <option th:each="annio:${annios}" th:value="${annio}" th:text="${annio}"></option>
+            </select>
+          </div>
+        </div>
+        <br />
+
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-8">
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+            &nbsp;&nbsp; &nbsp;&nbsp;
+            <label for="Nivel" class="col-form-label">Nivel:&nbsp;&nbsp;</label>
+            <select id="Nivel" th:field="*{nivel}">
+              <option th:each="nivel:${niveles}" th:value="${nivel}" th:text="${nivel}"></option>
+
+            </select>
+          </div>
+        </div>
+        <br />
+
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-8">
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+            &nbsp;&nbsp; &nbsp;&nbsp;
+            <label for="Turno" class="col-form-label">Turno:&nbsp;&nbsp;</label>
+            <select id="Turno" th:field="*{turno}">
+              <option th:each="turno:${turnos}" th:value="${turno.turno}" th:text="${turno.turno}"></option>
+            </select>
+          </div>
+        </div>
+        <br />
+
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-8">
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+            &nbsp;&nbsp;
+            <label for="Seccion" class="col-form-label">Sección:&nbsp;&nbsp;</label>
+            <select id="Seccion" th:field="*{seccion}">
+              <option th:each="seccion:${secciones}" th:value="${seccion.seccion}" th:text="${seccion.seccion}">
+              </option>
+            </select>
+          </div>
+        </div>
+        <br />
+        <br />
+        <div class="row" id="rowbtncrearcurso">
+          <input type="submit" class="input-buttons" name="submit" value="Crear Curso" style="margin: 0 auto" />
+        </div>
+        <br />
+        <br />
+      </form>
+    </div>
+  </div>
+
+  <th:block th:replace="partes/footer :: footer" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  <script src="/js/nuevocurso.js"></script>
+</body>
+
 </html>

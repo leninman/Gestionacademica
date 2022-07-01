@@ -311,7 +311,7 @@ $("#Guardar").click(function () {
       
       $('#modalnotascargadas').modal({backdrop: 'static', keyboard: false});
       $("#modalnotascargadas").modal('show');
-      $("#parrafomodalnotascargadas").html("LAS NOTAS HAN SIDO REGISTRADAS CORRECTAMENTE EN EL SISTEMA");
+      $("#parrafomodalnotascargadas").html("NOTAS REGISTRADAS EN EL SISTEMA");
      
       
     }

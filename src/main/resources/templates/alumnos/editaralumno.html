@@ -36,7 +36,7 @@
 						<li>
 							<button type="button" class="btn btn-secondary"
 								data-toggle="tooltip" data-placement="top" title="Editar"
-								id="botonEditarAlumno" sec:authorize="hasRole('ROLE_USER_DIRECTIVO')">
+								id="botonEditarAlumno" sec:authorize="hasAnyRole('ROLE_USER_DIRECTIVO','ROLE_USER_ADMINISTRATIVO')">
 								<i class="bi bi-pencil-fill"></i>
 							</button>
 						</li> &nbsp;
@@ -706,7 +706,7 @@
 						<br />
 						<div class="row">
 							<div class="col-md-5"></div>
-							<p id="titulo3">Representante secundario</p>
+							<p id="titulo4">Representante secundario</p>
 						</div>
 
 						<br />
@@ -1007,7 +1007,7 @@
 						<!--************************CURSO*********************************-->
 						<div class="row">
 							<div class="col-md-5"></div>
-							<p id="titulo3">Datos del curso asignado</p>
+							<p id="titulo5">Datos del curso asignado</p>
 						</div>
 
 						<div class="row" id="rowtablecursos">

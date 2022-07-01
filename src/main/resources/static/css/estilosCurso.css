@@ -83,11 +83,12 @@ input{
 
 .input-buttons {
     border-radius: 100px;
-    border: 1px solid #b5b5b5;
-    background-color: #b5b5b5;
-    font-style: normal;
-    color: white;
-    width: 100px;
+      border: 1px solid #b5b5b5;
+      background-color: #2441e6;
+      font-style: normal;
+      color: white;
+      width: 130px;
+      margin: 0 auto;
 }
 
 

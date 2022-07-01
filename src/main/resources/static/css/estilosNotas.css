@@ -528,6 +528,19 @@ label{
     justify-content: center;
 }
 
+#containerbtnotascargadas{
+    display: flex;
+    justify-content: center;
+}
+
+#containerbotonmodalnotasmodificadas{
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
 .modal-header{
     background-color: #cccccc;
     height: 20px;

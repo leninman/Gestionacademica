@@ -52,106 +52,15 @@
 
 
   <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje2 != null}"
-    th:text="${mensaje2}" class="alert">
+    th:text="${mensaje2}" class="alert" id="mensaje2">
   </div>
   <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje5 != null}"
-    th:text="${mensaje5}" class="alert">
+    th:text="${mensaje5}" class="alert" id="mensaje5">
   </div>
   <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje1 != null}"
-    th:text="${mensaje1}" class="alert"></div>
+    th:text="${mensaje1}" class="alert" id="mensaje1"></div>
   <th:block th:replace="partes/header :: header" />
   <th:block th:replace="partes/menu :: menuSuperior" />
-
-
-  <!--<div class="card" style="width: 100%;border: none;margin-left: auto;margin-right: auto;">-->
-
-
-
-  <!--<nav class="navbar navbar-light bg-light">
-        <form>
-          <button class="btn btn-outline-success" type="button">Main button</button>
-          <button class="btn btn-sm btn-outline-secondary" type="button">Smaller button</button>
-          <a class="btn input-buttons" th:href="@{/app/registroalumno}" id="nuevoAlumno">Nuevo</a>
-          <input type="button" class="input-buttons" value="Salir" id="salir">
-        </form>
-      </nav>-->
-  <!--<form>
-      <div class="row">
-          <div class="form-group col-md-12">
-            <label>Tipo</label>
-            <select id="inputTipoDoc" class="input-cmb-cedula" name="inputTipoDoc">
-              <option value="V">V</option>
-              <option value="E">E</option>
-              <option value="P">P</option>
-            </select>
-            <label>Cedula</label>
-            <input type="text" class="input-cedula" id="inputNumeroDeCedula" name="inputNumeroDeCedula" 
-             onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="8">
-            <label>Numero del alumno</label>
-            <input type="text" class="input-cedula" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
-            id="inputNumeroDelAlumno">
-          </div>
-         
-        </div>
-        <nav class="navbar navbar-light bg-light">
-          <form class="form-inline">
-            <button class="btn btn-outline-success" type="button">Main button</button>
-            <button class="btn btn-sm btn-outline-secondary" type="button">Smaller button</button>
-            <a class="btn input-buttons" th:href="@{/app/registroalumno}" id="nuevoAlumno">Nuevo</a>
-            <input type="button" class="input-buttons" value="Salir" id="salir">
-          </form>
-        </nav>
-        <div class="row">
-          <a class="btn input-buttons"  th:href="@{/app/consultaralumnoporcedula/}+${inputTipoDoc}+'/'+${inputNumeroDeCedula}" id="buscarAlumno">Buscar</a>
-          <input type="button" class="input-buttons" value="Buscar" id="buscarAlumno">
-          <a class="btn input-buttons" th:href="@{/app/registroalumno}" id="nuevoAlumno">Nuevo</a>
-          <input type="button" class="input-buttons" value="Salir" id="salir">
-          
-        </div>
-      </form>-->
-
-  <!--<div class="card" style="width: 100%;border-color:#337ab7">-->
-  <!-- <div class="card-header">-->
-
-
-  <!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
-  <!--<a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>-->
-
-
-  <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-
-
-  <!--<ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" th:href="@{/app/registroalumno}" data-toggle="tooltip" data-placement="top" title="Registrar Nuevo Alumno"><i class="bi bi-person-plus"></i>Nuevo <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" th:href="@{/app/inicio}"><i class="bi bi-x"></i>Salir<span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-              </li>
-            </ul>-->
-
-  <!--</div>-->
-  <!--</nav>-->
-  <!--</div>-->
-  <!-- <div class="card-body" style="border: none;">-->
 
   <div class="card">
     <div class="card-header">
@@ -164,7 +73,7 @@
           <ul class="navbar-nav mr-auto">
             <li>
               <a type="button" class="btn btn-secondary" th:href="@{/app/registroalumno}" data-toggle="tooltip"
-                data-placement="top" title="Registrar Nuevo Alumno" sec:authorize="hasRole('ROLE_USER_DIRECTIVO')"><i class="bi bi-person-plus"></i> <span
+                data-placement="top" title="Registrar Nuevo Alumno" sec:authorize="hasAnyRole('ROLE_USER_DIRECTIVO','ROLE_USER_ADMINISTRATIVO')"><i class="bi bi-person-plus"></i> <span
                   class="sr-only">(current)</span></a>
             </li>
             &nbsp;

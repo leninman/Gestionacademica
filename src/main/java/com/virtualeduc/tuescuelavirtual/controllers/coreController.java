@@ -287,9 +287,9 @@ public class coreController {
     public @ResponseBody Responses actualizarNota(@RequestParam(name="idAlumno") Long idAlumno,
                                     @RequestParam(name="idMateria") Long idMateria,
                                     @RequestParam(name="idCurso") Long idCurso,
-                                    @RequestParam(name="notaLapso1") Float notaLapso1,
-                                    @RequestParam(name="notaLapso2") Float notaLapso2,
-                                    @RequestParam(name="notaLapso3") Float notaLapso3){
+                                    @RequestParam(name="notaLapso1", required=false) Float notaLapso1,
+                                    @RequestParam(name="notaLapso2",required=false) Float notaLapso2,
+                                    @RequestParam(name="notaLapso3",required=false) Float notaLapso3){
         return notaservice.actualizarNotasParciales(idAlumno,idMateria,idCurso,notaLapso1,notaLapso2,notaLapso3);
 
     }

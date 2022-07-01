@@ -120,17 +120,17 @@ public class INotasServiceImpl implements INotasService {
                     Long id=notaPar.getIdAlumno();
                     lapso = lapsorepo.getById(notaPar.getIdLapso());
                     Float rate=lapso.getPorcentaje();
-                    if(notaPar.getIdLapso()==1){
+                    if(notaPar.getIdLapso()==1 && notaPar.getNota()!=null){
                         notaPar.setNota(notaLapso1);
                         notaPar.setPorcentaje(Utils.calcularPorcentajeNota(notaLapso1,rate));
                     }
 
-                    if(notaPar.getIdLapso()==2){
+                    if(notaPar.getIdLapso()==2 && notaPar.getNota()!=null){
                         notaPar.setNota(notaLapso2);
                         notaPar.setPorcentaje(Utils.calcularPorcentajeNota(notaLapso2,rate));
                     }
 
-                    if(notaPar.getIdLapso()==3){
+                    if(notaPar.getIdLapso()==3 && notaPar.getNota()!=null){
                         notaPar.setNota(notaLapso3);
                         notaPar.setPorcentaje(Utils.calcularPorcentajeNota(notaLapso3,rate));
                     }
@@ -373,8 +373,13 @@ public class INotasServiceImpl implements INotasService {
 
     
     }
-    
-  
+
+    @Override
+    public Long[] consultarNotasPorIdCurso(Long idCurso) {
+        return notasRepo.findIdNotasByIdCurso(idCurso);
+    }
+
+
 }
 
 

@@ -3,6 +3,8 @@ package com.virtualeduc.tuescuelavirtual.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.virtualeduc.tuescuelavirtual.models.CursoProf;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoProfDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -84,6 +86,14 @@ public class IProfesoresServiceImpl implements IProfesoresService {
 			e.printStackTrace();
 		}
 		return resp;
+	}
+
+	@Override
+	public Long[] consultarProfesoresPorIdCurso(Long idCurso) {
+		Long[] cursosProfs = profesoresRepo.findIdProfesoresByIdCurso(idCurso);
+		//List<CursoProfDTO> cursosProfsDTO = CursoProfDTO.cursosProfsDTO(cursosProfs);
+		return cursosProfs;
+
 	}
 
 	@Override

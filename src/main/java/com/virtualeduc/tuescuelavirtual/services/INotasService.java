@@ -31,7 +31,9 @@ public interface INotasService {
         public List<Lapso>  consultarLapsosHabilitados(Long idMat,Long idCurso);
         
         public List<Notawrapperporlapso> consultarNotasPorCursoMateria(List<AlumnoDTO> alumnos,Long idMat,Long idCurso);
-        
+
+
+        public Long[] consultarNotasPorIdCurso(Long idCurso);
 
         
 
