@@ -10,6 +10,8 @@ import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.Alumno;
 import com.virtualeduc.tuescuelavirtual.models.Curso;
 import com.virtualeduc.tuescuelavirtual.models.CursoProf;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.SeccionDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.TurnoDTO;
 import com.virtualeduc.tuescuelavirtual.models.Representante;
 import com.virtualeduc.tuescuelavirtual.models.Responses;
 import com.virtualeduc.tuescuelavirtual.models.ViewCursosMateriasAsignada;
@@ -79,6 +81,7 @@ public class cursoController {
 		AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
 		listacursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
 		model.addAttribute("Cursos", listacursos);
+		model.addAttribute("direccionbase", direccionbase);
 		return "cursos/listacursos";
 	}
 
@@ -120,7 +123,7 @@ public class cursoController {
 		return "redirect:listarcursos?success";
 	}
 
-	@GetMapping(path = "/eliminacurso/{idCurso}")
+	/*@GetMapping(path = "/eliminacurso/{idCurso}")
 	public String eliminacurso(@PathVariable(value = "idCurso") Long idCurso, Model model,
 			RedirectAttributes redirectAttributes) {
 
@@ -167,7 +170,7 @@ public class cursoController {
 
 		}
 		return "redirect:/app/listarcursos";
-	}
+	}*/
 
 	@GetMapping(path = "/editacurso/{idCurso}")
 	public String editacurso(@PathVariable(value = "idCurso") Long idCurso, Model model) {
@@ -322,7 +325,7 @@ public class cursoController {
 
 	}
         
-        @ModelAttribute("periodoEscolar")
+	@ModelAttribute("periodoEscolar")
         public String obtenerPeriodoEscolar(){
          
           AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
@@ -331,17 +334,42 @@ public class cursoController {
           
           return periodoEscolar;
           
-        }
+	}
 
-	/*@ModelAttribute("periodoEscolar")
-	public String obtenerPeriodoEscolar(){
 
-		AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
+	@ModelAttribute("annios")
+	public List<String> annios(){
 
-		this.periodoEscolar=annioEscolar.getIntAnnioEsc();
+		return cursoservice.annios();
 
-		return periodoEscolar;
+	}
 
-	}*/
+	@ModelAttribute("niveles")
+	public List<String> niveles(){
+
+		return cursoservice.niveles();
+
+	}
+
+
+    @ModelAttribute("turnos")
+    public List<TurnoDTO> turnos(){
+
+        return  cursoservice.consultarturnos();
+
+    }
+
+	@ModelAttribute("secciones")
+	public List<SeccionDTO> secciones(){
+
+		return  cursoservice.consultarsecciones();
+
+	}
+
+
+
+
+
+
 
 }

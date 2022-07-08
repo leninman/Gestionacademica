@@ -35,17 +35,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.virtualeduc.tuescuelavirtual.utils.Constantes;
-import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  *
@@ -75,6 +67,9 @@ public class coreController {
     @Autowired
     INotasService notasservice;
 
+    @Autowired
+    INotasService notasService;
+
     @Value("${dir.base}")
     String direccionbase;
 
@@ -87,6 +82,8 @@ public class coreController {
     Representante representante;
 
     Boolean guardarAlumno;
+
+    boolean guardarCurso;
 
     List<AlumnoDTO> lista = new ArrayList<>();
 
@@ -293,4 +290,79 @@ public class coreController {
         return notaservice.actualizarNotasParciales(idAlumno,idMateria,idCurso,notaLapso1,notaLapso2,notaLapso3);
 
     }
+
+    @CrossOrigin(origins = {"direccionbase/crearCurso"})
+    @PostMapping(path = "/crearCurso",consumes= "application/json",produces = "application/json")
+    public @ResponseBody Responses crearCurso(@Valid @RequestBody CursoDTO cursoDTO,BindingResult result,
+
+                                              RedirectAttributes redirectAttributes){
+        guardarCurso = true;
+
+        Responses resp = new Responses();
+
+
+        if (cursoservice.cursoporcurso(cursoDTO) != null) {
+            resp.setResponseCode(Constantes.CURSO_EXISTE_CODE);
+            resp.setResponseDescription(Constantes.CURSO_EXISTE_DESC);
+
+        }else{
+            resp = cursoservice.guardarCurso(cursoDTO, guardarCurso);
+        }
+
+        return resp;
+    }
+
+    @CrossOrigin(origins = {"direccionbase/eliminarcurso"})
+    @DeleteMapping(path = "/eliminarcurso/{idCurso}")
+    public @ResponseBody Responses eliminarcurso(@RequestParam(value = "idCurso") Long idCurso) {
+
+        Responses resp = new Responses();
+
+        Long[] alumnosPorCurso = alumnoservice.consultarIdAlumnoPorIdCurso(idCurso);
+        Long[] profesoresPorCurso = profesorservice.consultarProfesoresPorIdCurso(idCurso);
+        Long[] notasPorCurso = notasService.consultarNotasPorIdCurso(idCurso);
+
+        if(alumnosPorCurso.length == 0 && profesoresPorCurso.length ==0 && notasPorCurso.length == 0){
+            resp = cursoservice.eliminarCurso(idCurso);
+           /* if (resp.getResponseCode() == Constantes.CURSO_ELIMINADO_CODE) {
+                redirectAttributes.addFlashAttribute("mensaje7", resp.getResponseDescription())
+                        .addFlashAttribute("clase", "success");
+            }*/
+        }else{
+
+            if (alumnosPorCurso.length != 0) {
+
+                resp.setResponseCode(Constantes.CURSO_IMPOSIBLE_DE_ELIMINAR_CODE);
+
+                resp.setResponseDescription(Constantes.CURSO_IMPOSIBLE_DE_ELIMINAR_DESC);
+
+                /*redirectAttributes.addFlashAttribute("mensaje8", resp.getResponseDescription()).addFlashAttribute("clase",
+                        "success");*/
+
+            } else if (profesoresPorCurso.length!=0) {
+
+                resp.setResponseCode(Constantes.CURSO_IMPOSIBLE_DE_ELIMINAR_CODE_1);
+
+                resp.setResponseDescription(Constantes.CURSO_IMPOSIBLE_DE_ELIMINAR_DESC_1);
+
+               /* redirectAttributes.addFlashAttribute("mensaje29", resp.getResponseDescription()).addFlashAttribute("clase",
+                        "success");*/
+
+            }else if(notasPorCurso.length!=0){
+                resp.setResponseCode(Constantes.CURSO_IMPOSIBLE_DE_ELIMINAR_CODE_2);
+
+                resp.setResponseDescription(Constantes.CURSO_IMPOSIBLE_DE_ELIMINAR_DESC_2);
+
+                /*redirectAttributes.addFlashAttribute("mensaje30", resp.getResponseDescription()).addFlashAttribute("clase",
+                        "success");*/
+            }
+
+        }
+        return resp;
+    }
+
+
+
+
+
 }

@@ -1,3 +1,8 @@
+let mensajerespuesta;
+let codigorespuesta;
+let direccionbase;
+let url;
+let idCurso;
 
 $(document).ready(function () {
   
@@ -44,6 +49,124 @@ $(document).ready(function () {
 		]*/	        
     });   
 
+});
+
+class CursoDTO {
+  constructor(idCurso, idAnnio, idSec, idAnnioEsc, idTurno, annio, intAnnioEsc, seccion, turno, nivel, especialidad) {
+    this.idCurso = idCurso;
+    this.idAnnio = idAnnio;
+    this.idSec = idSec;
+    this.idAnnioEsc = idAnnioEsc;
+    this.idTurno = idTurno;
+    this.annio = annio;
+    this.intAnnioEsc = intAnnioEsc;
+    this.seccion = seccion;
+    this.turno = turno;
+    this.nivel = nivel;
+    this.especialidad = especialidad;
+
+  }
+
+ 
+}
+
+
+$('#btncerrarregistrarcurso').click(function() {
+  $('#Registro').modal('hide');
+});
+
+
+
+$("#crearCurso").click(function () {
+   direccionbase=$("#direccionbase").val();
+   url=direccionbase+"/crearCurso";
+  let annio = $('#Annio').val();
+  let intAnnioEsc = $('#intAnnioEsc').val();
+  let seccion = $('#Seccion').val();
+  let turno = $('#Turno').val();
+  let nivel = $('#Nivel').val();
+ 
+
+  cursoDTO = new CursoDTO(0,0,0,0,0,annio,intAnnioEsc,seccion,turno,nivel,'');
+
+
+
+    $.ajax({
+      data: JSON.stringify(cursoDTO),     
+      url: url,
+		  headers: {"X-CSRF-TOKEN": token,
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+      }, 
+      dataType: "json", //tipo de datos retornados
+      type: "POST",
+		  success: function (response) {
+      
+        mensajerespuesta=response["responseDescription"];
+        codigorespuesta=response["responseCode"];
+        $('#modalcursoregistrado').modal({ backdrop: 'static', keyboard: false });
+        $("#modalcursoregistrado").modal("show");
+        $("#parrafomodalcursoregistrado").html(mensajerespuesta);
+        $("#btnCursoRegistrado").focus();
+      
+      }
+      })
+      .done(function (response) {
+      })
+      .fail(function (response) {
+         
+      });
+});
+
+
+$("#btnCursoRegistrado").click(function () {
+  $("#modalcursoregistrado").modal('hide');
+  if(codigorespuesta===104){
+    $("#Registro").modal('hide');
+    window.location.href = direccionbase + "/listarcursos";
+  }
+});
+
+
+/*$("#eliminarCurso").click(function() {
+  let fila=$(this).closest("tr");
+  idCurso=fila.find("#idCurso").html();
+  
+  $("#nomAlumno").val(nombreAlumno);
+  $("#cedAlumno").val(cedulaAlumno);
+  $("#notaprimerlapso").val(nota1);
+  $("#notasegundolapso").val(nota2);
+  $("#notatercerlapso").val(nota3);
+  $('#modaldetallenotasalumno').modal({ backdrop: 'static', keyboard: false });
+  $("#modaldetallenotasalumno").modal("show");
+
+});*/
+
+
+$("#eliminarCurso").click(function () {
+  let fila=$(this).closest("tr");
+  idCurso=fila.find("#idCurso").html();
+
+  $.ajax({
+    data: {
+      idCurso: idCurso,
+    },     
+    url: url,
+    headers: {"X-CSRF-TOKEN": token,
+    }, 
+    dataType: "json", //tipo de datos retornados
+    type: "DELETE",
+    success: function (response) {
+    
+      mensajerespuesta=response["responseDescription"];
+      codigorespuesta=response["responseCode"];
+      $('#modalcursoeliminado').modal({ backdrop: 'static', keyboard: false });
+      $("#modalcursoeliminado").modal("show");
+      $("#parrafomodalcursoeliminado").html(mensajerespuesta);
+      $("#btnCursoEliminado").focus();
+    
+    }
+    })
 });
 
 
