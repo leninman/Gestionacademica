@@ -220,7 +220,7 @@
                                         ><i class="bi bi-pencil-fill"></i
                                       ></a>
                                     </td>-->
-              <td>
+        <!--      <td>
                 <button
                  
                   class="btn btn-secondary"
@@ -231,7 +231,14 @@
                   ><i class="bi bi-trash"></i
                 ></button>
 
-              </td>
+              </td>-->
+
+
+              <td>
+                <a type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top"
+                    title="Eliminar" id="btnEliminar" th:href="@{/app/eliminacurso/}+${curso.idCurso}"><i
+                        class="bi bi-trash"></i></a>
+            </td>
             </tr>
           </tbody>
         </table>

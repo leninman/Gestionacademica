@@ -123,7 +123,7 @@ public class cursoController {
 		return "redirect:listarcursos?success";
 	}
 
-	/*@GetMapping(path = "/eliminacurso/{idCurso}")
+	@GetMapping(path = "/eliminacurso/{idCurso}")
 	public String eliminacurso(@PathVariable(value = "idCurso") Long idCurso, Model model,
 			RedirectAttributes redirectAttributes) {
 
@@ -170,7 +170,7 @@ public class cursoController {
 
 		}
 		return "redirect:/app/listarcursos";
-	}*/
+	}
 
 	@GetMapping(path = "/editacurso/{idCurso}")
 	public String editacurso(@PathVariable(value = "idCurso") Long idCurso, Model model) {

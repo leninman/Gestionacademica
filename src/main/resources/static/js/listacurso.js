@@ -107,6 +107,9 @@ $("#crearCurso").click(function () {
         $('#modalcursoregistrado').modal({ backdrop: 'static', keyboard: false });
         $("#modalcursoregistrado").modal("show");
         $("#parrafomodalcursoregistrado").html(mensajerespuesta);
+        if(codigorespuesta===104){
+          $("#Registro").modal('hide');
+        }
         $("#btnCursoRegistrado").focus();
       
       }
@@ -122,7 +125,7 @@ $("#crearCurso").click(function () {
 $("#btnCursoRegistrado").click(function () {
   $("#modalcursoregistrado").modal('hide');
   if(codigorespuesta===104){
-    $("#Registro").modal('hide');
+   
     window.location.href = direccionbase + "/listarcursos";
   }
 });

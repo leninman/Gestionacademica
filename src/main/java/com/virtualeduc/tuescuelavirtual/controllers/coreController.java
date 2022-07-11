@@ -312,7 +312,7 @@ public class coreController {
         return resp;
     }
 
-    @CrossOrigin(origins = {"direccionbase/eliminarcurso"})
+ /*   @CrossOrigin(origins = {"direccionbase/eliminarcurso"})
     @DeleteMapping(path = "/eliminarcurso/{idCurso}")
     public @ResponseBody Responses eliminarcurso(@RequestParam(value = "idCurso") Long idCurso) {
 
@@ -324,10 +324,10 @@ public class coreController {
 
         if(alumnosPorCurso.length == 0 && profesoresPorCurso.length ==0 && notasPorCurso.length == 0){
             resp = cursoservice.eliminarCurso(idCurso);
-           /* if (resp.getResponseCode() == Constantes.CURSO_ELIMINADO_CODE) {
+            if (resp.getResponseCode() == Constantes.CURSO_ELIMINADO_CODE) {
                 redirectAttributes.addFlashAttribute("mensaje7", resp.getResponseDescription())
                         .addFlashAttribute("clase", "success");
-            }*/
+            }
         }else{
 
             if (alumnosPorCurso.length != 0) {
@@ -336,8 +336,8 @@ public class coreController {
 
                 resp.setResponseDescription(Constantes.CURSO_IMPOSIBLE_DE_ELIMINAR_DESC);
 
-                /*redirectAttributes.addFlashAttribute("mensaje8", resp.getResponseDescription()).addFlashAttribute("clase",
-                        "success");*/
+                redirectAttributes.addFlashAttribute("mensaje8", resp.getResponseDescription()).addFlashAttribute("clase",
+                        "success");
 
             } else if (profesoresPorCurso.length!=0) {
 
@@ -345,21 +345,21 @@ public class coreController {
 
                 resp.setResponseDescription(Constantes.CURSO_IMPOSIBLE_DE_ELIMINAR_DESC_1);
 
-               /* redirectAttributes.addFlashAttribute("mensaje29", resp.getResponseDescription()).addFlashAttribute("clase",
-                        "success");*/
+                redirectAttributes.addFlashAttribute("mensaje29", resp.getResponseDescription()).addFlashAttribute("clase",
+                        "success");
 
             }else if(notasPorCurso.length!=0){
                 resp.setResponseCode(Constantes.CURSO_IMPOSIBLE_DE_ELIMINAR_CODE_2);
 
                 resp.setResponseDescription(Constantes.CURSO_IMPOSIBLE_DE_ELIMINAR_DESC_2);
 
-                /*redirectAttributes.addFlashAttribute("mensaje30", resp.getResponseDescription()).addFlashAttribute("clase",
-                        "success");*/
+                redirectAttributes.addFlashAttribute("mensaje30", resp.getResponseDescription()).addFlashAttribute("clase",
+                        "success");
             }
 
         }
         return resp;
-    }
+    }*/
 
 
 
