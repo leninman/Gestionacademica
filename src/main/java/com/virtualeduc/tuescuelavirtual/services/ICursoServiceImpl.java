@@ -79,17 +79,7 @@ public class ICursoServiceImpl implements ICursoService {
 
     private Curso cursoguardado;
 
-    @Override
-    public AnnioDTO consultarAnnioPorAnnioYnivel(String annio, String nivel) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 
-        Annio an = anniorepo.consultarAnnioByAnnioAndNivel(annio, nivel);
-
-        AnnioDTO annioDTO = new AnnioDTO(an);
-
-        return annioDTO;
-
-    }
 
     @Override
     public AnnioEscolarDTO consultarAnnioEscolar() {
@@ -288,6 +278,12 @@ public class ICursoServiceImpl implements ICursoService {
     }
 
     @Override
+    public AnnioDTO consultarAnnioPorAnnioYnivel(String annio, String nivel) {
+        return null;
+    }
+
+
+    @Override
     public TurnoDTO consultarTurnoPorTurno(String turno) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 
@@ -325,11 +321,16 @@ public class ICursoServiceImpl implements ICursoService {
     }
 
     @Override
+    public List<String> consultarespecialidades() {
+        return anniorepo.especialidades();
+    }
+
+    @Override
     public Responses guardarCurso(CursoDTO curso, boolean guardarCurso) {
         // TODO Auto-generated method stub
         Responses resp = null;
 
-        Annio annio = anniorepo.consultarAnnioByAnnioAndNivel(curso.getAnnio(), curso.getNivel());
+        Annio annio = anniorepo.consultarAnnioByAnnioAndNivelAndEspecialidad(curso.getAnnio(), curso.getNivel(), curso.getEspecialidad());
 
         // Long idAnnio=annio.getIdAnnio();
         Seccion seccion = seccionrepo.consultarSeccionBySeccion(curso.getSeccion());
@@ -394,7 +395,7 @@ public class ICursoServiceImpl implements ICursoService {
     @Override
     public Curso cursoporcurso(CursoDTO curso) {
         // TODO Auto-generated method stub
-        Annio annio = anniorepo.consultarAnnioByAnnioAndNivel(curso.getAnnio(), curso.getNivel());
+        Annio annio = anniorepo.consultarAnnioByAnnioAndNivelAndEspecialidad(curso.getAnnio(), curso.getNivel(),curso.getEspecialidad());
 
         Seccion seccion = seccionrepo.consultarSeccionBySeccion(curso.getSeccion());
 

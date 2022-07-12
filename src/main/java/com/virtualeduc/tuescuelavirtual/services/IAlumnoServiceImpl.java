@@ -7,11 +7,13 @@ package com.virtualeduc.tuescuelavirtual.services;
 
 import com.virtualeduc.tuescuelavirtual.models.Alumno;
 import com.virtualeduc.tuescuelavirtual.models.Curso;
+import com.virtualeduc.tuescuelavirtual.models.Numerosdelista;
 import com.virtualeduc.tuescuelavirtual.models.Responses;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoCursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.AlumnoDTO;
 import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
 import com.virtualeduc.tuescuelavirtual.repo.IAlumnoRepo;
+import com.virtualeduc.tuescuelavirtual.repo.INumerodelistaRepo;
 import com.virtualeduc.tuescuelavirtual.utils.Constantes;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,7 +32,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class IAlumnoServiceImpl implements IAlumnoService {
 
     @Autowired
+    INumerodelistaRepo numerodelistaRepo;
+
+    @Autowired
     IAlumnoRepo alumnorepo;
+
 
     @Autowired
     IRepresentanteService representanteservice;
@@ -72,6 +78,7 @@ public class IAlumnoServiceImpl implements IAlumnoService {
                 if (alumnoconsultado == null) {
                     alumno.setFechaCreacion(new Date());
                     alumnoguardado = alumnorepo.save(alumno);
+                    generarNumeroDeListaAlumno(alumnoguardado.getIdAl(),alumnoguardado.getIdCurso().getIdCurso());
                     resp.setResponseCode(Constantes.ALUMNO_REGISTRADO_CODE);
                     resp.setResponseDescription(Constantes.ALUMNO_REGISTRADO_DESC);
                     alumnoDTO = new AlumnoDTO(alumnoguardado);
@@ -96,6 +103,41 @@ public class IAlumnoServiceImpl implements IAlumnoService {
         }
 
         return resp;
+
+    }
+
+    public Numerosdelista generarNumeroDeListaAlumno(Long idAlumno,Long idCurso){
+
+        Numerosdelista numerosdelistaAsignar = new Numerosdelista();
+
+        Long numeroAsignado;
+
+        Numerosdelista numerodelista=numerodelistaRepo.consultarNumeroListaAlumno(idAlumno,idCurso);
+
+
+
+        if(numerodelista==null){
+
+            Long numeroMaximoLista=numerodelistaRepo.consultarNumeroListaMayor(idCurso);
+
+            if(numeroMaximoLista==null){
+                numeroAsignado= Long.valueOf(1);
+            }else {
+                numeroAsignado = numeroMaximoLista + 1;
+            }
+
+            numerosdelistaAsignar.setIdAlumno(idAlumno);
+
+            numerosdelistaAsignar.setIdCurso(idCurso);
+
+            numerosdelistaAsignar.setNroLista(numeroAsignado);
+
+            numerosdelistaAsignar = numerodelistaRepo.save(numerosdelistaAsignar);
+
+
+        }
+
+        return numerosdelistaAsignar;
 
     }
 

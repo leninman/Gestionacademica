@@ -85,9 +85,10 @@ $("#crearCurso").click(function () {
   let seccion = $('#Seccion').val();
   let turno = $('#Turno').val();
   let nivel = $('#Nivel').val();
+  let especialidad = $('#especialidad').val();
  
 
-  cursoDTO = new CursoDTO(0,0,0,0,0,annio,intAnnioEsc,seccion,turno,nivel,'');
+  cursoDTO = new CursoDTO(0,0,0,0,0,annio,intAnnioEsc,seccion,turno,nivel,especialidad);
 
 
 

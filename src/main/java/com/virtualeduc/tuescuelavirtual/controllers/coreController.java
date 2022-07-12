@@ -293,11 +293,10 @@ public class coreController {
 
     @CrossOrigin(origins = {"direccionbase/crearCurso"})
     @PostMapping(path = "/crearCurso",consumes= "application/json",produces = "application/json")
-    public @ResponseBody Responses crearCurso(@Valid @RequestBody CursoDTO cursoDTO,BindingResult result,
+    public @ResponseBody Responses crearCurso(@Valid @RequestBody CursoDTO cursoDTO,BindingResult result){
 
-                                              RedirectAttributes redirectAttributes){
+
         guardarCurso = true;
-
         Responses resp = new Responses();
 
 

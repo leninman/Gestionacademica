@@ -367,6 +367,14 @@ public class cursoController {
 	}
 
 
+	@ModelAttribute("especialidades")
+	public List<String> especialidades(){
+
+		return  cursoservice.consultarespecialidades();
+
+	}
+
+
 
 
 

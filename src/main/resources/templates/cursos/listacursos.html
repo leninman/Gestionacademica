@@ -183,7 +183,7 @@
               <th>Especialidad</th>
               <th>Periodo</th>
               <th></th>
-              <!--<th></th>-->
+              <th></th>
               <th></th>
             </tr>
           </thead>
@@ -204,11 +204,11 @@
                   data-placement="top"
                   title="Ver"
                   id="btnVer"
-                  th:href="@{/app/editacurso/}+${curso.idCurso}"
+                  th:href="@{/app/vercurso/}+${curso.idCurso}"
                   ><i class="bi bi-eye"></i
                 ></a>
               </td>
-              <!--<td>
+              <td>
                                       <a
                                         type="button"
                                         class="btn btn-secondary"
@@ -219,7 +219,7 @@
                                         th:href="@{/app/editacurso/}+${curso.idCurso}"
                                         ><i class="bi bi-pencil-fill"></i
                                       ></a>
-                                    </td>-->
+                                    </td>
         <!--      <td>
                 <button
                  
@@ -379,6 +379,34 @@
                         </select>
                       </td>
                     </tr>
+
+                    <tr>
+                      <td>
+                        <label for="Especialidad" class="col-form-label"
+                          >Especialidad:</label
+                        >
+                      </td>
+                      <td style="width: 20px"></td>
+
+                      <td>
+                        <select id="especialidad">
+                          <option selected="selected">
+                          </option>
+                          <option
+                            th:each="especialidad:${especialidades}"
+                            th:value="${especialidad}"
+                            th:text="${especialidad}"
+                          ></option>
+                        </select>
+                      </td>
+                    </tr>
+
+
+
+
+
+
+
                   </tbody>
                 </table>
               </div>

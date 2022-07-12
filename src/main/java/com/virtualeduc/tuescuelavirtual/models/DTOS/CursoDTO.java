@@ -6,6 +6,8 @@
 package com.virtualeduc.tuescuelavirtual.models.DTOS;
 import com.virtualeduc.tuescuelavirtual.models.Curso;
 
+import javax.validation.constraints.NotEmpty;
+
 
 /**
  *
@@ -25,16 +27,19 @@ public class CursoDTO {
     
     
     
+    @NotEmpty
     private String annio;
     
+    @NotEmpty
     private String intAnnioEsc;
     
+    @NotEmpty
     private String seccion;
-    
+    @NotEmpty
     private String turno;
-    
+    @NotEmpty
     private String nivel;
-    
+    @NotEmpty
     private String especialidad;
     
    
