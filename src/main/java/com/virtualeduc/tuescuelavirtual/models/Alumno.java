@@ -146,6 +146,7 @@ public class Alumno implements Serializable {
         
 
 	public Alumno(AlumnoDTO alumnoDTO) {
+		this.idAl=alumnoDTO.getIdAl();
 		this.tipoDocAl = alumnoDTO.getTipoDocAl();
 		this.numDocAl = alumnoDTO.getNumDocAl();
 		this.primNombAl = alumnoDTO.getPrimNombAl();

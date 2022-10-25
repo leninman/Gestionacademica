@@ -68,6 +68,12 @@ public class Constantes {
         public static int SIN_NOTAS_DEFINITIVAS_REGISTRADAS=127;
         
         public static int CONSULTA_EXITOSA_DE_NOTAS=128;
+
+	public static int MODIFICACION_EXITOSA_DE_NOTAS=129;
+
+	public static int CURSO_IMPOSIBLE_DE_ELIMINAR_CODE_1=130;
+
+	public static int CURSO_IMPOSIBLE_DE_ELIMINAR_CODE_2=131;
         
 	
 	
@@ -96,6 +102,7 @@ public class Constantes {
 	
 	//mensaje8
 	public static String CURSO_IMPOSIBLE_DE_ELIMINAR_DESC="NO SE PUEDE ELIMINAR ESTE CURSO YA QUE POSEE ALUMNOS VINCULADOS  ";
+
 	
 	//mensaje9
 	public static String CURSO_IMPOSIBLE_DE_MODIFICAR_DESC="NO SE PUEDE MODIFICAR ESTE CURSO YA QUE POSEE ALUMNOS VINCULADOS  ";
@@ -158,4 +165,17 @@ public class Constantes {
 
         //mensaje28
         public static String CONSULTA_EXITOSA_DE_NOTAS_DESC="LA CONSULTA DE NOTAS SE HA REALIZADO EXITOSAMENTE";
+
+
+	//mensaje28
+	public static String MODIFICACION_EXITOSA_DE_NOTAS_DESC="LA(S) NOTAS(S) SE HAN MODIFICADO EXITOSAMENTE";
+
+	//mensaje29
+	public static String CURSO_IMPOSIBLE_DE_ELIMINAR_DESC_1="NO SE PUEDE ELIMINAR ESTE CURSO YA QUE POSEE DOCENTES VINCULADOS  ";
+
+	//mensaje30
+	public static String CURSO_IMPOSIBLE_DE_ELIMINAR_DESC_2="NO SE PUEDE ELIMINAR ESTE CURSO YA QUE POSEE NOTAS VINCULADAS  ";
+
+
+
 }

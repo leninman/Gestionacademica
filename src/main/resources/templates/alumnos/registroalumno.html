@@ -20,10 +20,10 @@
 	<th:block th:replace="partes/header :: header" />
 	<th:block th:replace="partes/menu :: menuSuperior" />
 	<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
-		th:if="${mensaje1 != null}" th:text="${mensaje1}" class="alert"></div>
+		th:if="${mensaje1 != null}" th:text="${mensaje1}" class="alert" id="mensaje1"></div>
 
 	<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
-		th:if="${mensaje24 != null}" th:text="${mensaje24}" class="alert"></div>
+		th:if="${mensaje24 != null}" th:text="${mensaje24}" class="alert" id="mensaje24"></div>
 
 	<!--<div class="container my-5">-->
 	<div class="card">
@@ -1028,7 +1028,7 @@
 						<!--************************CURSO*********************************-->
 						<div class="row">
 							<div class="col-md-5">&nbsp;</div>
-							<p id="titulo3">Cursos disponibles</p>
+							<p id="titulo5">Cursos disponibles</p>
 						</div>
 						<br />
 

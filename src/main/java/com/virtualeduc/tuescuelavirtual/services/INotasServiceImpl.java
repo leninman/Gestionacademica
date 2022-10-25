@@ -107,7 +107,52 @@ public class INotasServiceImpl implements INotasService {
         return response;
         
     }
-    
+
+    @Override
+    public Responses actualizarNotasParciales(Long idAlumno, Long idMateria, Long idCurso, Float notaLapso1, Float notaLapso2, Float notaLapso3) {
+        Responses resp=new Responses();
+        List<NotaPar> notasGuardadas=new ArrayList<>();
+        try {
+            List<NotaPar> notasparciales = notasRepo.consultarNotasPorCursoMateriaYAlumno2(idAlumno, idMateria, idCurso);
+
+            if(notasparciales!=null) {
+                for (NotaPar notaPar : notasparciales) {
+                    Long id=notaPar.getIdAlumno();
+                    lapso = lapsorepo.getById(notaPar.getIdLapso());
+                    Float rate=lapso.getPorcentaje();
+                    if(notaPar.getIdLapso()==1 && notaPar.getNota()!=null){
+                        notaPar.setNota(notaLapso1);
+                        notaPar.setPorcentaje(Utils.calcularPorcentajeNota(notaLapso1,rate));
+                    }
+
+                    if(notaPar.getIdLapso()==2 && notaPar.getNota()!=null){
+                        notaPar.setNota(notaLapso2);
+                        notaPar.setPorcentaje(Utils.calcularPorcentajeNota(notaLapso2,rate));
+                    }
+
+                    if(notaPar.getIdLapso()==3 && notaPar.getNota()!=null){
+                        notaPar.setNota(notaLapso3);
+                        notaPar.setPorcentaje(Utils.calcularPorcentajeNota(notaLapso3,rate));
+                    }
+
+                    NotaPar nota=notasRepo.save(notaPar);
+                    notasGuardadas.add(nota);
+
+
+
+                }
+                resp.setResponseCode(Constantes.MODIFICACION_EXITOSA_DE_NOTAS);
+                resp.setResponseDescription(Constantes.MODIFICACION_EXITOSA_DE_NOTAS_DESC);
+                resp.setNotasParciales2(notasGuardadas);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+        return resp;
+    }
+
     @Override
     public NotaParDTO guardarNotaParcial(NotaPar notaPar) {
         
@@ -328,8 +373,13 @@ public class INotasServiceImpl implements INotasService {
 
     
     }
-    
-  
+
+    @Override
+    public Long[] consultarNotasPorIdCurso(Long idCurso) {
+        return notasRepo.findIdNotasByIdCurso(idCurso);
+    }
+
+
 }
 
 

@@ -35,6 +35,8 @@ public interface ICursoService {
       public List<SeccionDTO> consultarsecciones();
       
       public List<TurnoDTO>  consultarturnos();
+
+      public List<String>  consultarespecialidades();
       
       public List<CursoDTO> consultarcursos();
       
@@ -95,6 +97,9 @@ public interface ICursoService {
       public Responses eliminarCursosMateria(Long idPrf,Long idCurso,Long idMat);
       
       public List<ViewCursosMateriasAsignada> consultarcursomateriaprofesor(Long idprofesor);
+
+
+
       
       
       

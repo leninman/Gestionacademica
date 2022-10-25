@@ -29,19 +29,17 @@ import com.virtualeduc.tuescuelavirtual.utils.Utils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import java.util.ArrayList;
-import java.util.Collection;
+
+
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.access.annotation.Secured;
+
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContext;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -97,25 +95,24 @@ public class alumnoController {
 		}
                 
                 if (Utils.hasRole("ROLE_USER_DIRECTIVO")) {
-			logger.info("Hola usuario ".concat(auth.getName()).concat(" tienes acceso"));
+					if(auth!=null) {
+						logger.info("Hola usuario ".concat(auth.getName()).concat(" tienes acceso"));
+					}
 		} else {
-			logger.info("Hola usuario ".concat(auth.getName()).concat(" no tienes acceso"));
+					if(auth!=null) {
+						logger.info("Hola usuario ".concat(auth.getName()).concat(" no tienes acceso"));
+					}
 		}
 
-		/*if (hasRole("ROLE_USER")) {
-			logger.info("Hola ".concat(auth.getName()).concat(" tienes acceso!"));
-		} else {
-			logger.info("Hola ".concat(auth.getName()).concat(" no tienes acceso!"));
-		}*/
 
-		List<AlumnoCursoDTO> listaAlumnos = new ArrayList<>();
+
+		List<AlumnoCursoDTO> listaAlumnos;
 		listaAlumnos = alumnoservice.consultarAlumnos();
 		model.addAttribute("Alumnos", listaAlumnos);
 		return "alumnos/listaralumnos";
 	}
 
-	//@Secured("ROLE_ADMIN")
-	//@Secured({"ROLE_USER", "ROLE_ADMIN"})
+
 	@GetMapping(path = "/registroalumno")
 	public String registroalumno(Model model) {
 
@@ -128,27 +125,18 @@ public class alumnoController {
 		}
 
 		AlumnoDTO alumnoDTO = new AlumnoDTO();
-		// List<CursoDTO> cursos = new ArrayList<>();
-		// AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
-		// cursos =
-		// cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
-		// model.addAttribute("Cursos", cursos);
+
 
 		model.addAttribute("alumnoDTO", alumnoDTO);
 		model.addAttribute("direccionbase", direccionbase);
 		return "alumnos/registroalumno";
 	}
 
-	//@Secured("ROLE_USER")
+
 	@GetMapping(path = "/verAlumno/{idAl}")
 	public String verAlumno(@PathVariable(value = "idAl") Long idAl, Model model) {
 		AlumnoDTO alumnoDTO = new AlumnoDTO(alumnoservice.consultarAlumnoPorId(idAl));
-		/*
-		 * List<CursoDTO> cursos = new ArrayList<>(); AnnioEscolarDTO annioEscolar =
-		 * cursoservice.consultarAnnioEscolar(); cursos =
-		 * cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
-		 * model.addAttribute("Cursos", cursos);
-		 */
+
 		model.addAttribute("alumnoDTO", alumnoDTO);
 		model.addAttribute("direccionbase", direccionbase);
 		return "alumnos/editaralumno";
@@ -159,49 +147,13 @@ public class alumnoController {
 			RedirectAttributes redirectAttributes) {
 
 		if (result.hasErrors()) {
-			/*
-			 * model.addAttribute("alumnoDTO", alumnoDTO); List<CursoDTO> cursos = new
-			 * ArrayList<>(); AnnioEscolarDTO annioEscolar =
-			 * cursoservice.consultarAnnioEscolar(); cursos =
-			 * cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
-			 * model.addAttribute("Cursos", cursos);
-			 */
 			return "alumnos/editaralumno";
 		}
-
-		/*
-		 * Alumno alumnog =
-		 * alumnoservice.consultarAlumnoPorCedula(alumnoDTO.getTipoDocAl(),
-		 * alumnoDTO.getNumDocAl());
-		 * 
-		 * if (alumnog != null) { //cedula existe
-		 * 
-		 * String cedulaGuardada = alumnog.getTipoDocAl().concat(alumnog.getNumDocAl());
-		 * 
-		 * String cedulaAguardar =
-		 * alumnoDTO.getTipoDocAl().concat(alumnoDTO.getNumDocAl());
-		 * 
-		 * if (!cedulaAguardar.equals(cedulaGuardada)) {
-		 * 
-		 * String cedula =
-		 * alumnoservice.consultarCedulasDeAlumnos(alumnoDTO.getTipoDocAl(),
-		 * alumnoDTO.getNumDocAl());
-		 * 
-		 * 
-		 * if (cedulaAguardar.equals(cedula)) {
-		 * redirectAttributes.addFlashAttribute("mensaje1",
-		 * Constantes.ALUMNO_EXISTE_DESC) .addFlashAttribute("clase", "danger");
-		 * 
-		 * return "redirect:listaralumnos"; }
-		 * 
-		 * 
-		 * } }
-		 */
 
 		// cedula no existe
 		guardar = false;
 
-		Responses resp = new Responses();
+		Responses resp;
 
 		Representante rep1;
 
@@ -253,8 +205,6 @@ public class alumnoController {
 
 			numDocRpr = alumnoDTO.getNumDocRep1();
 
-			rep1 = new Representante();
-
 			rep1 = representanteservice.consultarepresentanteporcedula(tipoDocRpr, numDocRpr);
 		} else {
 			rep1 = alumnoguardado.getIdRpr1();
@@ -268,7 +218,7 @@ public class alumnoController {
 
 			numDocRpr = alumnoDTO.getNumDocRep2();
 
-			rep2 = new Representante();
+
 
 			rep2 = representanteservice.consultarepresentanteporcedula(tipoDocRpr, numDocRpr);
 		} else {
@@ -295,7 +245,7 @@ public class alumnoController {
 
 		AlumnoDTO alumnoDTO;
 
-		Alumno alumno = new Alumno();
+		Alumno alumno;
 
 		alumno = alumnoservice.consultarAlumnoPorCedula(inputTipoDoc, inputNumeroDeCedula);
 
@@ -315,7 +265,7 @@ public class alumnoController {
 	public String consultaralumnoporid(@PathVariable(value = "idAl") Long idAl, Model model) {
 
 		AlumnoDTO alumnoDTO;
-		Alumno alumno = new Alumno();
+		Alumno alumno;
 		alumno = alumnoservice.consultarAlumnoPorId(idAl);
 		alumnoDTO = new AlumnoDTO(alumno);
 		model.addAttribute("alumnoDTO", alumnoDTO);
@@ -332,29 +282,13 @@ public class alumnoController {
 		String numDocRpr;
 
 		if (result.hasErrors()) {
-			// model.addAttribute("alumnoDTO", alumnoDTO);
-			/*
-			 * List<CursoDTO> cursos = new ArrayList<>(); AnnioEscolarDTO annioEscolar =
-			 * cursoservice.consultarAnnioEscolar(); cursos =
-			 * cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
-			 * model.addAttribute("Cursos", cursos);
-			 */
+
 			porvalidacion = true;
 			model.addAttribute("porvalidacion", porvalidacion);
 			return "alumnos/registroalumno";
 		}
 
-		/*
-		 * if(alumnoDTO.getAnnio().equals("")||alumnoDTO.getSeccion().equals("")||
-		 * alumnoDTO.getTurno().equals("")||alumnoDTO.getNivel().equals("")) {
-		 * 
-		 * redirectAttributes.addFlashAttribute("mensaje24",
-		 * Constantes.CURSO_NO_ASIGNADO_DESC).addFlashAttribute("clase", "danger");
-		 * 
-		 * return "alumnos/registroalumno";
-		 * 
-		 * }
-		 */
+
 
 		if (alumnoservice.consultarAlumnoPorCedula(alumnoDTO.getTipoDocAl(), alumnoDTO.getNumDocAl()) != null) {
 
@@ -364,11 +298,11 @@ public class alumnoController {
 			return "alumnos/registroalumno";
 		}
 
-		// model.addAttribute("alumnoDTO", new AlumnoDTO());
+
 
 		guardar = true;
 
-		Responses resp = new Responses();
+		Responses resp;
 
 		Alumno alumno = new Alumno(alumnoDTO);
 
@@ -447,39 +381,10 @@ public class alumnoController {
 
 	@ModelAttribute("Cursos")
 	public List<CursoDTO> poblarCursos() {
-		List<CursoDTO> cursos = new ArrayList<>();
+		List<CursoDTO> cursos;
 		AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
 		cursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
 		return cursos;
 	}
-
-//	private boolean hasRole(String role) {
-//
-//		SecurityContext context = SecurityContextHolder.getContext();
-//
-//		if (context == null) {
-//			return false;
-//		}
-//
-//		Authentication auth = context.getAuthentication();
-//
-//		if (auth == null) {
-//			return false;
-//		}
-//
-//		Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
-//
-//		return authorities.contains(new SimpleGrantedAuthority(role));
-//
-//		/*
-//		 * for(GrantedAuthority authority:authorities) {
-//		 * 
-//		 * if(role.equals(authority.getAuthority())) {
-//		 * logger.info("Hola usuario ".concat(auth.getName()).concat(" tu role es: ").
-//		 * concat(authority.getAuthority())); return true; }
-//		 * 
-//		 * } return false;
-//		 */
-//	}
 
 }

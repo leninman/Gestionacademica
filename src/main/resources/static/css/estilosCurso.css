@@ -4,14 +4,14 @@ input{
 #tablecursos th {
     background-color: #cccccc;
     color: black;
-    font-size: small;
+
     text-align: center;
 }
 
 #tablecursos>tbody>tr>td {
     vertical-align: middle;
     text-align: center;
-    font-size: small;
+   
 }
 
 #rowtablecursos {
@@ -72,10 +72,10 @@ input{
     font-size: 20px;
 }
 
-#intAnnioEsc,#Annio,#Turno,#Seccion,#Nivel,#intAnnioEsc{
+#intAnnioEsc,#Annio,#Turno,#Seccion,#Nivel{
     border-radius: 100px;
     border: 1px solid #b5b5b5;
-    width: 300px;
+    width: 150px;
     align-items: center;
     text-align: center;
 
@@ -83,17 +83,38 @@ input{
 
 .input-buttons {
     border-radius: 100px;
-    border: 1px solid #b5b5b5;
-    background-color: #b5b5b5;
-    font-style: normal;
-    color: white;
-    width: 100px;
+      border: 1px solid #b5b5b5;
+      background-color: #2441e6;
+      font-style: normal;
+      color: white;
+      width: 130px;
+      margin: 0 auto;
 }
 
 
-#periodo,#Annios,#Niveles,#Turnos,#Secciones{
-    border: none;
-    width: 300px;
+#Niveles,#Turnos,#Especialidad{
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    width: 150px;
+    align-items: center;
+    text-align: center;
+
+}
+
+
+#periodo{
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    width: 100px;
+    align-items: center;
+    text-align: center;
+
+}
+
+#Annios,#Secciones,#Numerocurso{
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    width: 50px;
     align-items: center;
     text-align: center;
 
@@ -108,23 +129,22 @@ input{
 #tablealumnosinscritos th {
     background-color: #cccccc;
     color: black;
-    font-size: small;
     text-align: center;
-     text-transform:uppercase;
+     width: 60px;
 }
 
 #tablealumnosinscritos>tbody>tr>td {
     vertical-align: middle;
     text-align: center;
-    font-size: small;
      text-transform:uppercase;
+     width: 60px;
 }
 
 
 #tablecurso th {
     background-color: #cccccc;
     color: black;
-    font-size: small;
+  
     text-align: center;
 }
 
@@ -137,9 +157,7 @@ input{
 #tablecurso>tbody>tr>td {
     vertical-align: middle;
     text-align: center;
-    font-size: small;
-
-
+   
 
 
 }
@@ -149,7 +167,7 @@ input{
 #tablealumno th {
     background-color: #cccccc;
     color: black;
-    font-size: small;
+
     text-align: center;
 }
 
@@ -162,20 +180,18 @@ input{
 #tablealumno>tbody>tr>td {
     vertical-align: middle;
     text-align: center;
-    font-size: small;
+   
 }
 
 #tablemateriasdisponibles th {
     background-color: #cccccc;
     color: black;
-    font-size: small;
     text-align: center;
 }
 
 #tablemateriasdisponibles>tbody>tr>td {
     vertical-align: middle;
     text-align: center;
-    font-size: small;
 }
 
 #rowtablemateriasdisponibles {
@@ -190,14 +206,12 @@ input{
 #tablemateriasasignadas th {
     background-color: #cccccc;
     color: black;
-    font-size: small;
     text-align: center;
 }
 
 #tablemateriasasignadas>tbody>tr>td {
     vertical-align: middle;
     text-align: center;
-    font-size: small;
 }
 
 #rowtablemateriasasignadas {
@@ -207,29 +221,15 @@ input{
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 #tableprofesor th {
     background-color: #cccccc;
     color: black;
-    font-size: small;
     text-align: center;
 }
 
 #tableprofesor>tbody>tr>td {
     vertical-align: middle;
     text-align: center;
-    font-size: small;
 }
 
 #rowtableprofesor {
@@ -377,6 +377,47 @@ input{
     border: 1px solid #b5b5b5;
     width: 155px;
     text-align: center;
+}
+
+
+.container{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+
+#btncerrarregistrarcurso{
+    background-color: red;
+    height: auto;
+    width: auto;
+    padding:5px 5px 5px 5px;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+    
+
+    display:inline;
+	width:40px;
+
+	
+	border-radius:5px;
+
+	
+	background-repeat:no-repeat;
+    background-size:20px 20px;
+	background-position:10px 5px;
+	
+    
+}
+
+
+#containerbotonmodalcursoregistrado,#containerbotonmodalcursoeliminado{
+    display: flex;
+    justify-content: center;
 }
 
 

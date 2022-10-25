@@ -57,6 +57,11 @@
                         sec:authorize="hasAnyRole('ROLE_USER_ALUMNO','ROLE_USER_REPRESENTANTE')">
                         CONSULTAR
                     </a>
+
+                    <a class="dropdown-item" href="#"
+                       sec:authorize="hasAnyRole('ROLE_USER_ADMINISTRATIVO','ROLE_USER_DIRECTIVO')">
+                        CONSULTAR CALIFICACIONES
+                    </a>
                    <!-- <div class="dropdown-item" id="opcionconsulta">
                         <button class="dropdown-toggle">CONSULTAR</button>
                         <div class="dropdown-content">

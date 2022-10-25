@@ -113,7 +113,7 @@ input{
     width: 100px;
 }
 
-#Guardar{
+#Guardar,#GuardarCambiarNotas{
     border-radius: 100px;
     border: 1px solid #b5b5b5;
     background-color: #2441e6;
@@ -122,6 +122,8 @@ input{
     width: 120px;
     margin: 0 auto;
 }
+
+
 
 
 .confirmar,.editar{
@@ -276,15 +278,14 @@ input{
 }
 
 .btnEdicionDeNotas{
-    background-color: blue;
+    background-color: grey;
     width: 35px;
 
     
-   
+
 }
 .btnEdicionDeNotas:hover{
     background-color: white;
-    width: 35px;
     
    
 }
@@ -292,21 +293,51 @@ input{
 #tableModificarNotas{
 
 text-align: center;
+border: #2441e6;
 }
 
 
 #tableModificarNotas>thead>tr>th{
-width: 110px;
-align-items: center;
+width: 100px;
+
 
 }
 
-#tableModificarNotas>thead>tr>td{
-    width: 110px;
+#btncerrareditarnota{
+    background-color: red;
+    height: auto;
+    width: auto;
+    padding:5px 5px 5px 5px;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+    
+
+    display:inline;
+	width:40px;
+
+	
+	border-radius:5px;
+
+	
+	background-repeat:no-repeat;
+    background-size:20px 20px;
+	background-position:10px 5px;
+	
+    
+}
+
+#tableModificarNotas>tr>td{
+    width: 100px;
     align-items: center;
+    vertical-align: middle;
+    text-align: center;
+    font-size: small;
     
     }
 
+   
 
 
 
@@ -467,14 +498,21 @@ label{
     font-size: small;
 }
 
+#docente {
+    border-radius: 100px;
+    border: 1px solid #b5b5b5;
+    background-color: #cccccc;
+    width: 200px;
+    font-size: small;
+}
+
 #seccion,#notaprimerlapso,#notasegundolapso,#notatercerlapso {
     border-radius: 100px;
     border: 1px solid #b5b5b5;
     background-color: #cccccc;
     width: 60px;
-    font-size: medium;
-    align-items: center;
-    align-content: center;
+    font-size: small;
+    justify-content: center;
 }
 
 #annio {
@@ -490,14 +528,27 @@ label{
     justify-content: center;
 }
 
+#containerbtnotascargadas{
+    display: flex;
+    justify-content: center;
+}
+
+#containerbotonmodalnotasmodificadas{
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
 .modal-header{
     background-color: #cccccc;
-    height: 38px;
-    padding-top: 5px;
+    height: 20px;
+    padding-top: 0px;
      padding-bottom: 0px;
  
-    padding-right: 1px;
-     padding-left: 5px;
+    padding-right: 0px;
+     padding-left: 0px;
     
 }
 
@@ -591,7 +642,7 @@ label{
 }
 
 .boton{
-	display:inline-block;
+	display:inline;
 	width:50px;
 	height:30px;
 	text-align:center;
@@ -600,16 +651,14 @@ label{
 	border-radius:5px;
 	cursor:pointer;
 	color:white;
-	padding:5px 0 5px 20px;
-	background-image: url(images/pencil-fill.svg);
+	padding:5px 10px 5px 10px;
 	background-repeat:no-repeat;
-
     background-size:20px 20px;
 	background-position:10px 5px;
 	background-color:blue;
 }
 
-.boton:hover{ background-color:#007095;}
+/*.boton:hover{ background-color:#007095;}
 
 
 

@@ -10,13 +10,13 @@ import com.virtualeduc.tuescuelavirtual.models.DTOS.CursoDTO;
 import com.virtualeduc.tuescuelavirtual.models.Alumno;
 import com.virtualeduc.tuescuelavirtual.models.Curso;
 import com.virtualeduc.tuescuelavirtual.models.CursoProf;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.SeccionDTO;
+import com.virtualeduc.tuescuelavirtual.models.DTOS.TurnoDTO;
 import com.virtualeduc.tuescuelavirtual.models.Representante;
 import com.virtualeduc.tuescuelavirtual.models.Responses;
 import com.virtualeduc.tuescuelavirtual.models.ViewCursosMateriasAsignada;
 import com.virtualeduc.tuescuelavirtual.models.ViewCursosMateriasSinAsignar;
-import com.virtualeduc.tuescuelavirtual.services.IAlumnoService;
-import com.virtualeduc.tuescuelavirtual.services.ICursoService;
-import com.virtualeduc.tuescuelavirtual.services.IRepresentanteService;
+import com.virtualeduc.tuescuelavirtual.services.*;
 import com.virtualeduc.tuescuelavirtual.utils.Constantes;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,10 +48,17 @@ public class cursoController {
 	IAlumnoService alumnoservice;
 
 	@Autowired
+	IProfesoresService profesorservice;
+
+
+	@Autowired
 	IRepresentanteService representanteservice;
 
 	@Autowired
 	ICursoService cursoservice;
+
+	@Autowired
+	INotasService notasService;
 
 	@Value("${dir.base}")
 	String direccionbase;
@@ -74,20 +81,21 @@ public class cursoController {
 		AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
 		listacursos = cursoservice.consultarcursosporperiodo(annioEscolar.getIdAnnioEsc());
 		model.addAttribute("Cursos", listacursos);
+		model.addAttribute("direccionbase", direccionbase);
 		return "cursos/listacursos";
 	}
 
-	@GetMapping(path = "/nuevocurso")
+	/*@GetMapping(path = "/nuevocurso")
 	public String nuevocurso(Model model) {
 		CursoDTO cursoDTO = new CursoDTO();
-		model.addAttribute("annioescolar", cursoservice.consultarAnnioEscolar());
+		//model.addAttribute("annioescolar", cursoservice.consultarAnnioEscolar());
 		model.addAttribute("annios", cursoservice.annios());
 		model.addAttribute("niveles", cursoservice.niveles());
 		model.addAttribute("secciones", cursoservice.consultarsecciones());
 		model.addAttribute("turnos", cursoservice.consultarturnos());
 		model.addAttribute("cursoDTO", cursoDTO);
 		return "cursos/crearcurso";
-	}
+	}*/
 
 	@PostMapping(path = "/agregarcurso")
 	public String registrarcurso(@Valid CursoDTO cursoDTO, BindingResult result, Model model,
@@ -121,23 +129,45 @@ public class cursoController {
 
 		Responses resp = new Responses();
 
-		if (alumnoservice.consultarIdAlumnoPorIdCurso(idCurso).length != 0) {
+		Long[] alumnosPorCurso = alumnoservice.consultarIdAlumnoPorIdCurso(idCurso);
+		Long[] profesoresPorCurso = profesorservice.consultarProfesoresPorIdCurso(idCurso);
+		Long[] notasPorCurso = notasService.consultarNotasPorIdCurso(idCurso);
 
-			resp.setResponseCode(Constantes.CURSO_IMPOSIBLE_DE_ELIMINAR_CODE);
-
-			resp.setResponseDescription(Constantes.CURSO_IMPOSIBLE_DE_ELIMINAR_DESC);
-
-			redirectAttributes.addFlashAttribute("mensaje8", resp.getResponseDescription()).addFlashAttribute("clase",
-					"success");
-
-		} else {
-
+		if(alumnosPorCurso.length == 0 && profesoresPorCurso.length ==0 && notasPorCurso.length == 0){
 			resp = cursoservice.eliminarCurso(idCurso);
-
 			if (resp.getResponseCode() == Constantes.CURSO_ELIMINADO_CODE) {
 				redirectAttributes.addFlashAttribute("mensaje7", resp.getResponseDescription())
 						.addFlashAttribute("clase", "success");
 			}
+		}else{
+
+			if (alumnosPorCurso.length != 0) {
+
+				resp.setResponseCode(Constantes.CURSO_IMPOSIBLE_DE_ELIMINAR_CODE);
+
+				resp.setResponseDescription(Constantes.CURSO_IMPOSIBLE_DE_ELIMINAR_DESC);
+
+				redirectAttributes.addFlashAttribute("mensaje8", resp.getResponseDescription()).addFlashAttribute("clase",
+						"success");
+
+			} else if (profesoresPorCurso.length!=0) {
+
+				resp.setResponseCode(Constantes.CURSO_IMPOSIBLE_DE_ELIMINAR_CODE_1);
+
+				resp.setResponseDescription(Constantes.CURSO_IMPOSIBLE_DE_ELIMINAR_DESC_1);
+
+				redirectAttributes.addFlashAttribute("mensaje29", resp.getResponseDescription()).addFlashAttribute("clase",
+						"success");
+
+			}else if(notasPorCurso.length!=0){
+				resp.setResponseCode(Constantes.CURSO_IMPOSIBLE_DE_ELIMINAR_CODE_2);
+
+				resp.setResponseDescription(Constantes.CURSO_IMPOSIBLE_DE_ELIMINAR_DESC_2);
+
+				redirectAttributes.addFlashAttribute("mensaje30", resp.getResponseDescription()).addFlashAttribute("clase",
+						"success");
+			}
+
 		}
 		return "redirect:/app/listarcursos";
 	}
@@ -295,7 +325,7 @@ public class cursoController {
 
 	}
         
-        @ModelAttribute("periodoEscolar")
+	@ModelAttribute("periodoEscolar")
         public String obtenerPeriodoEscolar(){
          
           AnnioEscolarDTO annioEscolar = cursoservice.consultarAnnioEscolar();
@@ -304,6 +334,50 @@ public class cursoController {
           
           return periodoEscolar;
           
-        }
+	}
+
+
+	@ModelAttribute("annios")
+	public List<String> annios(){
+
+		return cursoservice.annios();
+
+	}
+
+	@ModelAttribute("niveles")
+	public List<String> niveles(){
+
+		return cursoservice.niveles();
+
+	}
+
+
+    @ModelAttribute("turnos")
+    public List<TurnoDTO> turnos(){
+
+        return  cursoservice.consultarturnos();
+
+    }
+
+	@ModelAttribute("secciones")
+	public List<SeccionDTO> secciones(){
+
+		return  cursoservice.consultarsecciones();
+
+	}
+
+
+	@ModelAttribute("especialidades")
+	public List<String> especialidades(){
+
+		return  cursoservice.consultarespecialidades();
+
+	}
+
+
+
+
+
+
 
 }

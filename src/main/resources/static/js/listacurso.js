@@ -1,3 +1,8 @@
+let mensajerespuesta;
+let codigorespuesta;
+let direccionbase;
+let url;
+let idCurso;
 
 $(document).ready(function () {
   
@@ -45,6 +50,184 @@ $(document).ready(function () {
     });   
 
 });
+
+class CursoDTO {
+  constructor(idCurso, idAnnio, idSec, idAnnioEsc, idTurno, annio, intAnnioEsc, seccion, turno, nivel, especialidad) {
+    this.idCurso = idCurso;
+    this.idAnnio = idAnnio;
+    this.idSec = idSec;
+    this.idAnnioEsc = idAnnioEsc;
+    this.idTurno = idTurno;
+    this.annio = annio;
+    this.intAnnioEsc = intAnnioEsc;
+    this.seccion = seccion;
+    this.turno = turno;
+    this.nivel = nivel;
+    this.especialidad = especialidad;
+
+  }
+
+ 
+}
+
+
+$('#btncerrarregistrarcurso').click(function() {
+  $('#Registro').modal('hide');
+});
+
+
+
+$("#crearCurso").click(function () {
+   direccionbase=$("#direccionbase").val();
+   url=direccionbase+"/crearCurso";
+  let annio = $('#Annio').val();
+  let intAnnioEsc = $('#intAnnioEsc').val();
+  let seccion = $('#Seccion').val();
+  let turno = $('#Turno').val();
+  let nivel = $('#Nivel').val();
+  let especialidad = $('#especialidad').val();
+ 
+
+  cursoDTO = new CursoDTO(0,0,0,0,0,annio,intAnnioEsc,seccion,turno,nivel,especialidad);
+
+
+
+    $.ajax({
+      data: JSON.stringify(cursoDTO),     
+      url: url,
+		  headers: {"X-CSRF-TOKEN": token,
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+      }, 
+      dataType: "json", //tipo de datos retornados
+      type: "POST",
+		  success: function (response) {
+      
+        mensajerespuesta=response["responseDescription"];
+        codigorespuesta=response["responseCode"];
+        $('#modalcursoregistrado').modal({ backdrop: 'static', keyboard: false });
+        $("#modalcursoregistrado").modal("show");
+        $("#parrafomodalcursoregistrado").html(mensajerespuesta);
+        if(codigorespuesta===104){
+          $("#Registro").modal('hide');
+        }
+        $("#btnCursoRegistrado").focus();
+      
+      }
+      })
+      .done(function (response) {
+      })
+      .fail(function (response) {
+         
+      });
+});
+
+
+$("#btnCursoRegistrado").click(function () {
+  $("#modalcursoregistrado").modal('hide');
+  if(codigorespuesta===104){
+   
+    window.location.href = direccionbase + "/listarcursos";
+  }
+});
+
+
+/*$("#eliminarCurso").click(function() {
+  let fila=$(this).closest("tr");
+  idCurso=fila.find("#idCurso").html();
+  
+  $("#nomAlumno").val(nombreAlumno);
+  $("#cedAlumno").val(cedulaAlumno);
+  $("#notaprimerlapso").val(nota1);
+  $("#notasegundolapso").val(nota2);
+  $("#notatercerlapso").val(nota3);
+  $('#modaldetallenotasalumno').modal({ backdrop: 'static', keyboard: false });
+  $("#modaldetallenotasalumno").modal("show");
+
+});*/
+
+
+$("#eliminarCurso").click(function () {
+  let fila=$(this).closest("tr");
+  idCurso=fila.find("#idCurso").html();
+
+  $.ajax({
+    data: {
+      idCurso: idCurso,
+    },     
+    url: url,
+    headers: {"X-CSRF-TOKEN": token,
+    }, 
+    dataType: "json", //tipo de datos retornados
+    type: "DELETE",
+    success: function (response) {
+    
+      mensajerespuesta=response["responseDescription"];
+      codigorespuesta=response["responseCode"];
+      $('#modalcursoeliminado').modal({ backdrop: 'static', keyboard: false });
+      $("#modalcursoeliminado").modal("show");
+      $("#parrafomodalcursoeliminado").html(mensajerespuesta);
+      $("#btnCursoEliminado").focus();
+    
+    }
+    })
+});
+
+
+$('#registrarCurso').click(function () {
+  $('#Registro').modal({backdrop: 'static', keyboard: false});
+  $('#Registro').modal('show');
+});
+
+$('#mensaje3').fadeIn();
+  setTimeout(function() {
+       $("#mensaje3").fadeOut();
+  },2000);
+
+$('#mensaje6').fadeIn();
+   setTimeout(function() {
+        $("#mensaje6").fadeOut();
+   },2000);
+
+$('#mensaje7').fadeIn();
+    setTimeout(function() {
+    $("#mensaje7").fadeOut();
+    },2000);
+
+$('#mensaje8').fadeIn();
+  setTimeout(function() {
+       $("#mensaje8").fadeOut();
+  },2000);
+
+$('#mensaje9').fadeIn();
+  setTimeout(function() {
+       $("#mensaje9").fadeOut();
+  },2000);
+
+$('#mensaje4').fadeIn();
+  setTimeout(function() {
+       $("#mensaje4").fadeOut();
+  },2000);
+
+$('#mensaje12').fadeIn();
+  setTimeout(function() {
+       $("#mensaje12").fadeOut();
+  },2000);
+
+$('#mensaje29').fadeIn();
+  setTimeout(function() {
+       $("#mensaje29").fadeOut();
+  },2000);
+
+$('#mensaje30').fadeIn();
+  setTimeout(function() {
+       $("#mensaje30").fadeOut();
+  },2000);
+
+
+
+
+
 
 
 
