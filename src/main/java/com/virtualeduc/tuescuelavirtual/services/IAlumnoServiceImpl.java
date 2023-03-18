@@ -78,7 +78,7 @@ public class IAlumnoServiceImpl implements IAlumnoService {
                 if (alumnoconsultado == null) {
                     alumno.setFechaCreacion(new Date());
                     alumnoguardado = alumnorepo.save(alumno);
-                    generarNumeroDeListaAlumno(alumnoguardado.getIdAl(),alumnoguardado.getIdCurso().getIdCurso());
+                   // generarNumeroDeListaAlumno(alumnoguardado.getIdAl(),alumnoguardado.getIdCurso().getIdCurso());
                     resp.setResponseCode(Constantes.ALUMNO_REGISTRADO_CODE);
                     resp.setResponseDescription(Constantes.ALUMNO_REGISTRADO_DESC);
                     alumnoDTO = new AlumnoDTO(alumnoguardado);
