@@ -175,7 +175,7 @@ public class alumnoController {
 
 		Curso curso = new Curso();
 
-		AnnioDTO annioDTO = cursoservice.consultarAnnioPorAnnioYnivel(alumnoDTO.getAnnio(), alumnoDTO.getNivel());
+		AnnioDTO annioDTO = cursoservice.consultarAnnioPorAnnioYnivelYespecialidad(alumnoDTO.getAnnio(), alumnoDTO.getNivel(), alumnoDTO.getEspecialidad());
 
 		AnnioEscolarDTO annioescolarDTO = cursoservice.consultarAnnioEscolar();
 
